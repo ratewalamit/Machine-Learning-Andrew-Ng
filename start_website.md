@@ -1,2 +1,2 @@
 make html
-http-server -o ./build/html/
+http-server -o ./docs

@@ -10,9 +10,9 @@ Welcome to Machine-Learning-Andrew-Ng's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   source_files/Supervised_Machine_Learning_Regression_and_Classification
-   source_files/Advanced_Learning_Algorithms
-   source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning
+   source_files/Supervised_Machine_Learning_Regression_and_Classification/Supervised_Machine_Learning_Regression_and_Classification
+   source_files/Advanced_Learning_Algorithms/Advanced_Learning_Algorithms
+   source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised_Learning_Recommenders_Reinforcement_Learning.ipynb
 
 
 
