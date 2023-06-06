@@ -22,7 +22,9 @@
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link href="../../../../../_static/style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,7 +48,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Supervised_Machine_Learning_Regression_and_Classification.html">Supervised_Machine_Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Supervised_Machine_Learning_Regression_and_Classification.html">Supervised_Machine_Learning leut su make a big title hence so</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
@@ -433,7 +435,7 @@ The centroids are: [[2.42830111 3.15792418]
 <p>## 2 - K-means on a sample dataset</p>
 <p>After you have completed the two functions (<code class="docutils literal notranslate"><span class="pre">find_closest_centroids</span></code> and <code class="docutils literal notranslate"><span class="pre">compute_centroids</span></code>) above, the next step is to run the K-means algorithm on a toy 2D dataset to help you understand how K-means works. * We encourage you to take a look at the function (<code class="docutils literal notranslate"><span class="pre">run_kMeans</span></code>) below to understand how it works. * Notice that the code calls the two functions you implemented in a loop.</p>
 <p>When you run the code below, it will produce a visualization that steps through the progress of the algorithm at each iteration. * At the end, your figure should look like the one displayed in Figure 1.</p>
-<p><img alt="dec4202d42ef46c4be967132a1bf2da8" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure1.png" style="width: 500px; height: 500px;" /></p>
+<p><img alt="6d674bdf13974a74be72b31504a508e0" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure1.png" style="width: 500px; height: 500px;" /></p>
 <p><strong>Note</strong>: You do not need to implement anything for this part. Simply run the code provided below</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -559,7 +561,7 @@ K-Means iteration 9/9
 <li><p>Specifically, you only need to store the RGB values of the 16 selected colors, and for each pixel in the image you now need to only store the index of the color at that location (where only 4 bits are necessary to represent 16 possibilities).</p></li>
 </ul>
 <p>In this part, you will use the K-means algorithm to select the 16 colors that will be used to represent the compressed image. * Concretely, you will treat every pixel in the original image as a data example and use the K-means algorithm to find the 16 colors that best group (cluster) the pixels in the 3- dimensional RGB space. * Once you have computed the cluster centroids on the image, you will then use the 16 colors to replace the pixels in the original image.</p>
-<p><img alt="a3dd549ee2b844c1ab81c61b78d45f80" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure2.png" style="width: 500px; height: 500px;" /></p>
+<p><img alt="a8065184670d4dae8df1201a47804057" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure2.png" style="width: 500px; height: 500px;" /></p>
 <p><span class="math notranslate nohighlight">\(^{2}\)</span>The provided photo used in this exercise belongs to Frank Wouters and is used with his permission.</p>
 <p>### 4.1 Dataset</p>
 <p><strong>Load image</strong></p>
@@ -712,7 +714,7 @@ of <span class="math notranslate nohighlight">\(128 \times 128 \times 24 = 393,2
 </div>
 </div>
 <p>Finally, you can view the effects of the compression by reconstructing the image based only on the centroid assignments. * Specifically, you can replace each pixel location with the mean of the centroid assigned to it. * Figure 3 shows the reconstruction we obtained. Even though the resulting image retains most of the characteristics of the original, we also see some compression artifacts.</p>
-<p><img alt="3faa1eb0e4f640d8a601a326f0972959" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure3.png" style="width: 700px; height: 700px;" /></p>
+<p><img alt="0fd0b61fbb334fc28a36207ae142d157" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure3.png" style="width: 700px; height: 700px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
