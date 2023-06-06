@@ -6,8 +6,8 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Machine-Learning-Andrew-Ng'
-copyright = '2023, Amit Kumar'
+project = 'Machine Learning by Andrew Ng'
+copyright = '2023, Andrew Ng'
 author = 'Amit Kumar'
 
 # -- General configuration ---------------------------------------------------
@@ -27,3 +27,8 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 nbsphinx_allow_errors = True
+html_theme_options = {
+  'content_fixed': True,
+  'content_width': '1200px',
+}
+

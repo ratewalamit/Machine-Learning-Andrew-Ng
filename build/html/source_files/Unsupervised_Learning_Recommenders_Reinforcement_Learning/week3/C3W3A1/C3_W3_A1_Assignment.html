@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deep Q-Learning - Lunar Lander &mdash; Machine-Learning-Andrew-Ng  documentation</title>
+  <title>Deep Q-Learning - Lunar Lander &mdash; Machine Learning by Andrew Ng  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/nbsphinx-code-cells.css" type="text/css" />
@@ -36,7 +36,7 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            Machine-Learning-Andrew-Ng
+            Machine Learning by Andrew Ng
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -48,7 +48,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../Supervised_Machine_Learning_Regression_and_Classification.html">Supervised_Machine_Learning leut su make a big title hence so</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Supervised_Machine_Learning_Regression_and_Classification.html">Supervised_Machine_Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
@@ -59,7 +59,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">Machine-Learning-Andrew-Ng</a>
+          <a href="../../../../index.html">Machine Learning by Andrew Ng</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -84,7 +84,7 @@
 <section id="Outline">
 <h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
 <ul class="simple">
-<li><p>1 - Import Packages |f608d5e9a380444394c452474be3ce9e|</p></li>
+<li><p>1 - Import Packages |11801ba2493e43f2a39ba1d478233242|</p></li>
 <li><p>2 - Hyperparameters</p></li>
 <li><p>3 - The Lunar Lander Environment</p>
 <ul>
@@ -174,7 +174,7 @@ environment. - We will use several modules from the <code class="docutils litera
 <p>## 3 - The Lunar Lander Environment</p>
 <p>In this notebook we will be using <a class="reference external" href="https://www.gymlibrary.ml/">OpenAI’s Gym Library</a>. The Gym library provides a wide variety of environments for reinforcement learning. To put it simply, an environment represents a problem or task to be solved. In this notebook, we will try to solve the Lunar Lander environment using reinforcement learning.</p>
 <p>The goal of the Lunar Lander environment is to land the lunar lander safely on the landing pad on the surface of the moon. The landing pad is designated by two flag poles and it is always at coordinates <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code> but the lander is also allowed to land outside of the landing pad. The lander starts at the top center of the environment with a random initial force applied to its center of mass and has infinite fuel. The environment is considered solved if you get <code class="docutils literal notranslate"><span class="pre">200</span></code> points.</p>
-<figure><p><img alt="6afb8cf54b634da8b88965c9052073a0" class="no-scaled-link" src="../../../../_images/lunar_lander.gif" style="width: 40%;" /></p>
+<figure><p><img alt="b0c960d86ef140c5a7126361e2c716fe" class="no-scaled-link" src="../../../../_images/lunar_lander.gif" style="width: 40%;" /></p>
 <figcaption style="text-align: center; font-style: italic"><p>Fig 1. Lunar Lander Environment.</p>
 </figcaption></figure><p>### 3.1 Action Space</p>
 <p>The agent has four discrete actions available:</p>
@@ -462,7 +462,7 @@ receives) in a memory buffer and then sampling a random mini-batch of experience
 <p>By using experience replay we avoid problematic correlations, oscillations and instabilities. In addition, experience replay also allows the agent to potentially use the same experience in multiple weight updates, which increases data efficiency.</p>
 <p>## 7 - Deep Q-Learning Algorithm with Experience Replay</p>
 <p>Now that we know all the techniques that we are going to use, we can put them togther to arrive at the Deep Q-Learning Algorithm With Experience Replay.</p>
-<figure><p><img alt="2b67766d3cca4286bd95ad40af8f3c84" class="no-scaled-link" src="../../../../_images/deep_q_algorithm.png" style="width: 90%;" /></p>
+<figure><p><img alt="e77a311015b14084907f9808c091c658" class="no-scaled-link" src="../../../../_images/deep_q_algorithm.png" style="width: 90%;" /></p>
 <figcaption style="text-align: center; font-style: italic"><p>Fig 3. Deep Q-Learning with Experience Replay.</p>
 </figcaption></figure><p>### Exercise 2</p>
 <p>In this exercise you will implement line <strong>12</strong> of the algorithm outlined in <em>Fig 3</em> above and you will also compute the loss between the <span class="math notranslate nohighlight">\(y\)</span> targets and the <span class="math notranslate nohighlight">\(Q(s,a)\)</span> values. In the cell below, complete the <code class="docutils literal notranslate"><span class="pre">compute_loss</span></code> function by setting the <span class="math notranslate nohighlight">\(y\)</span> targets equal to:</p>
@@ -640,7 +640,7 @@ conditions are met, then the <code class="docutils literal notranslate"><span cl
 <li><p><strong>Line 16</strong>: At the end of each iteration of the outer loop we update the value of <span class="math notranslate nohighlight">\(\epsilon\)</span>, and check if the environment has been solved. We consider that the environment has been solved if the agent receives an average of <code class="docutils literal notranslate"><span class="pre">200</span></code> points in the last <code class="docutils literal notranslate"><span class="pre">100</span></code> episodes. If the environment has not been solved we continue the outer loop and start a new episode.</p></li>
 </ul>
 <p>Finally, we wanted to note that we have included some extra variables to keep track of the total number of points the agent received in each episode. This will help us determine if the agent has solved the environment and it will also allow us to see how our agent performed during training. We also use the <code class="docutils literal notranslate"><span class="pre">time</span></code> module to measure how long the training takes.</p>
-<figure><p><img alt="98a221252a8648ff889ef22488143a3a" class="no-scaled-link" src="../../../../_images/deep_q_algorithm.png" style="width: 90%;" /></p>
+<figure><p><img alt="d477744f4e0644f5bf426fa20a332d4a" class="no-scaled-link" src="../../../../_images/deep_q_algorithm.png" style="width: 90%;" /></p>
 <figcaption style="text-align: center; font-style: italic"><p>Fig 4. Deep Q-Learning with Experience Replay.</p>
 </figcaption></figure><p><strong>Note:</strong> With this notebook’s default parameters, the following cell takes between 10 to 15 minutes to run.</p>
 <div class="nbinput docutils container">
@@ -820,7 +820,7 @@ Your browser does not support the video tag.
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Amit Kumar.</p>
+    <p>&#169; Copyright 2023, Andrew Ng.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
