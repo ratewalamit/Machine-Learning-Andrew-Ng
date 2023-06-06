@@ -10,8 +10,10 @@ Welcome to Machine-Learning-Andrew-Ng's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   source_files/Cosmological_principle
-   source_files/abc
+   source_files/Supervised_Machine_Learning_Regression_and_Classification
+   source_files/Advanced_Learning_Algorithms
+   source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning
+
 
 
 Indices and tables

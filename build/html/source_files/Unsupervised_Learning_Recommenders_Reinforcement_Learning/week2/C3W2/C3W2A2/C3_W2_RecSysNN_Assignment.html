@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practice lab: Deep Learning for Content-Based Filtering &mdash; Machine-Learning-Andrew-Ng  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Machine-Learning-Andrew-Ng
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Cosmological_principle.html">Cosmological principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../abc.html">Cosmological principle</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Machine-Learning-Andrew-Ng</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"> Practice lab: Deep Learning for Content-Based Filtering</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week2/C3W2/C3W2A2/C3_W2_RecSysNN_Assignment.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="b79f808906584d5ea9bc6b8532dc85ab-Practice-lab:-Deep-Learning-for-Content-Based-Filtering">
+<h1><img alt="b79f808906584d5ea9bc6b8532dc85ab" src="../../../../../_images/film_strip_vertical1.png" /> Practice lab: Deep Learning for Content-Based Filtering<a class="headerlink" href="#b79f808906584d5ea9bc6b8532dc85ab-Practice-lab:-Deep-Learning-for-Content-Based-Filtering" title="Permalink to this heading"></a></h1>
+<p>In this exercise, you will implement content-based filtering using a neural network to build a recommender system for movies.</p>
+</section>
+<section id="Outline-206667ff75be4798a4927566c9dde6ae">
+<h1>Outline <img alt="206667ff75be4798a4927566c9dde6ae" src="../../../../../_images/film_reel1.png" /><a class="headerlink" href="#Outline-206667ff75be4798a4927566c9dde6ae" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>1 - Packages</p></li>
+<li><p>2 - Movie ratings dataset</p>
+<ul>
+<li><p>2.1 Content-based filtering with a neural network</p></li>
+<li><p>2.2 Preparing the training data</p></li>
+</ul>
+</li>
+<li><p>3 - Neural Network for content-based filtering</p>
+<ul>
+<li><p>3.1 Predictions</p>
+<ul>
+<li><p>Exercise 1</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>4 - Congratulations!</p></li>
+</ul>
+<p>## 1 - Packages <img alt="673272cbbdaa45d5a655a2bb2a249e54" src="../../../../../_images/movie_camera1.png" /> We will use familiar packages, NumPy, TensorFlow and helpful routines from <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>. We will also use <a class="reference external" href="https://pypi.org/project/tabulate/">tabulate</a> to neatly print tables and <a class="reference external" href="https://pandas.pydata.org/">Pandas</a> to organize tabular data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.ma</span> <span class="k">as</span> <span class="nn">ma</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">genfromtxt</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">tabulate</span>
+<span class="kn">from</span> <span class="nn">recsysNN_utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.precision&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>## 2 - Movie ratings dataset <img alt="7d4fd6204f1040ec9897891dad1275f6" src="../../../../../_images/film_rating1.png" /> The data set is derived from the <a class="reference external" href="https://grouplens.org/datasets/movielens/latest/">MovieLens ml-latest-small</a> dataset.</p>
+<p>[F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4: 19:1–19:19. <a class="reference external" href="https://doi.org/10.1145/2827872">https://doi.org/10.1145/2827872</a>]</p>
+<p>The original dataset has 9000 movies rated by 600 users with ratings on a scale of 0.5 to 5 in 0.5 step increments. The dataset has been reduced in size to focus on movies from the years since 2000 and popular genres. The reduced dataset has <span class="math notranslate nohighlight">\(n_u = 395\)</span> users and <span class="math notranslate nohighlight">\(n_m= 694\)</span> movies. For each movie, the dataset provides a movie title, release date, and one or more genres. For example “Toy Story 3” was released in 2010 and has several genres:
+“Adventure|Animation|Children|Comedy|Fantasy|IMAX”. This dataset contains little information about users other than their ratings. This dataset is used to create training vectors for the neural networks described below.</p>
+<p>### 2.1 Content-based filtering with a neural network</p>
+<p>In the collaborative filtering lab, you generated two vectors, a user vector and an item/movie vector whose dot product would predict a rating. The vectors were derived solely from the ratings.</p>
+<p>Content-based filtering also generates a user and movie feature vector but recognizes there may be other information available about the user and/or movie that may improve the prediction. The additional information is provided to a neural network which then generates the user and movie vector as shown below.</p>
+<figure><center><p><img alt="8640e3d8540f4784b4eb51bf96bdbaa1" src="../../../../../_images/RecSysNN.png" /></p>
+</center></figure><p>The movie content provided to the network is a combination of the original data and some ‘engineered features’. Recall the feature engineering discussion and lab from Course 1, Week 2, lab 4. The original features are the year the movie was released and the movie’s genre presented as a one-hot vector. There are 14 genres. The engineered feature is an average rating derived from the user ratings. Movies with multiple genre have a training vector per genre.</p>
+<p>The user content is composed of only engineered features. A per genre average rating is computed per user. Additionally, a user id, rating count and rating average are available, but are not included in the training or prediction content. They are useful in interpreting data.</p>
+<p>The training set consists of all the ratings made by the users in the data set. The user and movie/item vectors are presented to the above network together as a training set. The user vector is the same for all the movies rated by the user.</p>
+<p>Below, let’s load and display some of the data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load Data, set configuration variables</span>
+<span class="n">item_train</span><span class="p">,</span> <span class="n">user_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">item_features</span><span class="p">,</span> <span class="n">user_features</span><span class="p">,</span> <span class="n">item_vecs</span><span class="p">,</span> <span class="n">movie_dict</span><span class="p">,</span> <span class="n">user_to_genre</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+
+<span class="n">num_user_features</span> <span class="o">=</span> <span class="n">user_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span>  <span class="c1"># remove userid, rating count and ave rating during training</span>
+<span class="n">num_item_features</span> <span class="o">=</span> <span class="n">item_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># remove movie id at train time</span>
+<span class="n">uvs</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># user genre vector start</span>
+<span class="n">ivs</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># item genre vector start</span>
+<span class="n">u_s</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># start of columns to use in training, user</span>
+<span class="n">i_s</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># start of columns to use in training, items</span>
+<span class="n">scaledata</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># applies the standard scalar to data if true</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of training vectors: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">item_train</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of training vectors: 58187
+</pre></div></div>
+</div>
+<p>Some of the user and item/movie features are not used in training. Below, the features in brackets “[]” such as the “user id”, “rating count” and “rating ave” are not included when the model is trained and used. Note, the user vector is the same for all the movies rated.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint_train</span><span class="p">(</span><span class="n">user_train</span><span class="p">,</span> <span class="n">user_features</span><span class="p">,</span> <span class="n">uvs</span><span class="p">,</span>  <span class="n">u_s</span><span class="p">,</span> <span class="n">maxcount</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table>
+<thead>
+<tr><th style="text-align: center;"> [user id] </th><th style="text-align: center;"> [rating count] </th><th style="text-align: center;"> [rating ave] </th><th style="text-align: center;"> Act ion </th><th style="text-align: center;"> Adve nture </th><th style="text-align: center;"> Anim ation </th><th style="text-align: center;"> Chil dren </th><th style="text-align: center;"> Com edy </th><th style="text-align: center;"> Crime </th><th style="text-align: center;"> Docum entary </th><th style="text-align: center;"> Drama </th><th style="text-align: center;"> Fan tasy </th><th style="text-align: center;"> Hor ror </th><th style="text-align: center;"> Mys tery </th><th style="text-align: center;"> Rom ance </th><th style="text-align: center;"> Sci -Fi </th><th style="text-align: center;"> Thri ller </th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: center;">     2     </td><td style="text-align: center;">       16       </td><td style="text-align: center;">     4.1      </td><td style="text-align: center;">   3.9   </td><td style="text-align: center;">    5.0     </td><td style="text-align: center;">    0.0     </td><td style="text-align: center;">    0.0    </td><td style="text-align: center;">   4.0   </td><td style="text-align: center;">  4.2  </td><td style="text-align: center;">     4.0      </td><td style="text-align: center;">  4.0  </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   3.0   </td><td style="text-align: center;">   4.0    </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   4.2   </td><td style="text-align: center;">    3.9    </td></tr>
+<tr><td style="text-align: center;">     2     </td><td style="text-align: center;">       16       </td><td style="text-align: center;">     4.1      </td><td style="text-align: center;">   3.9   </td><td style="text-align: center;">    5.0     </td><td style="text-align: center;">    0.0     </td><td style="text-align: center;">    0.0    </td><td style="text-align: center;">   4.0   </td><td style="text-align: center;">  4.2  </td><td style="text-align: center;">     4.0      </td><td style="text-align: center;">  4.0  </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   3.0   </td><td style="text-align: center;">   4.0    </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   4.2   </td><td style="text-align: center;">    3.9    </td></tr>
+<tr><td style="text-align: center;">     2     </td><td style="text-align: center;">       16       </td><td style="text-align: center;">     4.1      </td><td style="text-align: center;">   3.9   </td><td style="text-align: center;">    5.0     </td><td style="text-align: center;">    0.0     </td><td style="text-align: center;">    0.0    </td><td style="text-align: center;">   4.0   </td><td style="text-align: center;">  4.2  </td><td style="text-align: center;">     4.0      </td><td style="text-align: center;">  4.0  </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   3.0   </td><td style="text-align: center;">   4.0    </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   4.2   </td><td style="text-align: center;">    3.9    </td></tr>
+<tr><td style="text-align: center;">     2     </td><td style="text-align: center;">       16       </td><td style="text-align: center;">     4.1      </td><td style="text-align: center;">   3.9   </td><td style="text-align: center;">    5.0     </td><td style="text-align: center;">    0.0     </td><td style="text-align: center;">    0.0    </td><td style="text-align: center;">   4.0   </td><td style="text-align: center;">  4.2  </td><td style="text-align: center;">     4.0      </td><td style="text-align: center;">  4.0  </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   3.0   </td><td style="text-align: center;">   4.0    </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   4.2   </td><td style="text-align: center;">    3.9    </td></tr>
+<tr><td style="text-align: center;">     2     </td><td style="text-align: center;">       16       </td><td style="text-align: center;">     4.1      </td><td style="text-align: center;">   3.9   </td><td style="text-align: center;">    5.0     </td><td style="text-align: center;">    0.0     </td><td style="text-align: center;">    0.0    </td><td style="text-align: center;">   4.0   </td><td style="text-align: center;">  4.2  </td><td style="text-align: center;">     4.0      </td><td style="text-align: center;">  4.0  </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   3.0   </td><td style="text-align: center;">   4.0    </td><td style="text-align: center;">   0.0    </td><td style="text-align: center;">   4.2   </td><td style="text-align: center;">    3.9    </td></tr>
+</tbody>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint_train</span><span class="p">(</span><span class="n">item_train</span><span class="p">,</span> <span class="n">item_features</span><span class="p">,</span> <span class="n">ivs</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">maxcount</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table>
+<thead>
+<tr><th style="text-align: center;"> [movie id] </th><th style="text-align: center;"> year </th><th style="text-align: center;"> ave rating </th><th style="text-align: center;"> Act ion </th><th style="text-align: center;"> Adve nture </th><th style="text-align: center;"> Anim ation </th><th style="text-align: center;"> Chil dren </th><th style="text-align: center;"> Com edy </th><th style="text-align: center;"> Crime </th><th style="text-align: center;"> Docum entary </th><th style="text-align: center;"> Drama </th><th style="text-align: center;"> Fan tasy </th><th style="text-align: center;"> Hor ror </th><th style="text-align: center;"> Mys tery </th><th style="text-align: center;"> Rom ance </th><th style="text-align: center;"> Sci -Fi </th><th style="text-align: center;"> Thri ller </th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: center;">    6874    </td><td style="text-align: center;"> 2003 </td><td style="text-align: center;">    4.0     </td><td style="text-align: center;">    1    </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">   0   </td><td style="text-align: center;">      0       </td><td style="text-align: center;">   0   </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">     0     </td></tr>
+<tr><td style="text-align: center;">    6874    </td><td style="text-align: center;"> 2003 </td><td style="text-align: center;">    4.0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">   1   </td><td style="text-align: center;">      0       </td><td style="text-align: center;">   0   </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">     0     </td></tr>
+<tr><td style="text-align: center;">    6874    </td><td style="text-align: center;"> 2003 </td><td style="text-align: center;">    4.0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">   0   </td><td style="text-align: center;">      0       </td><td style="text-align: center;">   0   </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">     1     </td></tr>
+<tr><td style="text-align: center;">    8798    </td><td style="text-align: center;"> 2004 </td><td style="text-align: center;">    3.8     </td><td style="text-align: center;">    1    </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">   0   </td><td style="text-align: center;">      0       </td><td style="text-align: center;">   0   </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">     0     </td></tr>
+<tr><td style="text-align: center;">    8798    </td><td style="text-align: center;"> 2004 </td><td style="text-align: center;">    3.8     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0      </td><td style="text-align: center;">     0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">   1   </td><td style="text-align: center;">      0       </td><td style="text-align: center;">   0   </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0     </td><td style="text-align: center;">    0    </td><td style="text-align: center;">     0     </td></tr>
+</tbody>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;y_train[:5]: </span><span class="si">{</span><span class="n">y_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+y_train[:5]: [4.  4.  4.  3.5 3.5]
+</pre></div></div>
+</div>
+<p>Above, we can see that movie 6874 is an action movie released in 2003. User 2 rates action movies as 3.9 on average. Further, movie 6874 was also listed in the Crime and Thriller genre. MovieLens users gave the movie an average rating of 4. A training example consists of a row from both tables and a rating from y_train.</p>
+<p>### 2.2 Preparing the training data Recall in Course 1, Week 2, you explored feature scaling as a means of improving convergence. We’ll scale the input features using the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">scikit learn StandardScaler</a>. This was used in Course 1, Week 2, Lab 5. Below, the inverse_transform is also shown to produce the original inputs.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scale training data</span>
+<span class="k">if</span> <span class="n">scaledata</span><span class="p">:</span>
+    <span class="n">item_train_save</span> <span class="o">=</span> <span class="n">item_train</span>
+    <span class="n">user_train_save</span> <span class="o">=</span> <span class="n">user_train</span>
+
+    <span class="n">scalerItem</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">scalerItem</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">item_train</span><span class="p">)</span>
+    <span class="n">item_train</span> <span class="o">=</span> <span class="n">scalerItem</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item_train</span><span class="p">)</span>
+
+    <span class="n">scalerUser</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">scalerUser</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">user_train</span><span class="p">)</span>
+    <span class="n">user_train</span> <span class="o">=</span> <span class="n">scalerUser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">user_train</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">item_train_save</span><span class="p">,</span> <span class="n">scalerItem</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">item_train</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">user_train_save</span><span class="p">,</span> <span class="n">scalerUser</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">user_train</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+True
+</pre></div></div>
+</div>
+<p>To allow us to evaluate the results, we will split the data into training and test sets as was discussed in Course 2, Week 3. Here we will use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">sklean train_test_split</a> to split and shuffle the data. Note that setting the initial random state to the same value ensures item, user, and y are shuffled identically.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">item_train</span><span class="p">,</span> <span class="n">item_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">item_train</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.80</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">user_train</span><span class="p">,</span> <span class="n">user_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">user_train</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.80</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span>       <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span>    <span class="n">train_size</span><span class="o">=</span><span class="mf">0.80</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;movie/item training data shape: </span><span class="si">{</span><span class="n">item_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;movie/item test  data shape: </span><span class="si">{</span><span class="n">item_test</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+movie/item training data shape: (46549, 17)
+movie/item test  data shape: (11638, 17)
+</pre></div></div>
+</div>
+<p>The scaled, shuffled data now has a mean of zero.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint_train</span><span class="p">(</span><span class="n">user_train</span><span class="p">,</span> <span class="n">user_features</span><span class="p">,</span> <span class="n">uvs</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">maxcount</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table>
+<thead>
+<tr><th style="text-align: center;"> [user id] </th><th style="text-align: center;"> [rating count] </th><th style="text-align: center;"> [rating ave] </th><th style="text-align: center;"> Act ion </th><th style="text-align: center;"> Adve nture </th><th style="text-align: center;"> Anim ation </th><th style="text-align: center;"> Chil dren </th><th style="text-align: center;"> Com edy </th><th style="text-align: center;"> Crime </th><th style="text-align: center;"> Docum entary </th><th style="text-align: center;"> Drama </th><th style="text-align: center;"> Fan tasy </th><th style="text-align: center;"> Hor ror </th><th style="text-align: center;"> Mys tery </th><th style="text-align: center;"> Rom ance </th><th style="text-align: center;"> Sci -Fi </th><th style="text-align: center;"> Thri ller </th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: center;">     1     </td><td style="text-align: center;">       0        </td><td style="text-align: center;">     0.6      </td><td style="text-align: center;">   0.7   </td><td style="text-align: center;">    0.6     </td><td style="text-align: center;">    0.6     </td><td style="text-align: center;">    0.7    </td><td style="text-align: center;">   0.7   </td><td style="text-align: center;">  0.5  </td><td style="text-align: center;">     0.7      </td><td style="text-align: center;">  0.2  </td><td style="text-align: center;">   0.3    </td><td style="text-align: center;">   0.3   </td><td style="text-align: center;">   0.5    </td><td style="text-align: center;">   0.5    </td><td style="text-align: center;">   0.8   </td><td style="text-align: center;">    0.5    </td></tr>
+<tr><td style="text-align: center;">     0     </td><td style="text-align: center;">       0        </td><td style="text-align: center;">     1.6      </td><td style="text-align: center;">   1.5   </td><td style="text-align: center;">    1.7     </td><td style="text-align: center;">    0.9     </td><td style="text-align: center;">    1.0    </td><td style="text-align: center;">   1.4   </td><td style="text-align: center;">  0.8  </td><td style="text-align: center;">     -1.2     </td><td style="text-align: center;">  1.2  </td><td style="text-align: center;">   1.2    </td><td style="text-align: center;">   1.6   </td><td style="text-align: center;">   0.9    </td><td style="text-align: center;">   1.4    </td><td style="text-align: center;">   1.2   </td><td style="text-align: center;">    1.0    </td></tr>
+<tr><td style="text-align: center;">     0     </td><td style="text-align: center;">       0        </td><td style="text-align: center;">     0.8      </td><td style="text-align: center;">   0.6   </td><td style="text-align: center;">    0.7     </td><td style="text-align: center;">    0.5     </td><td style="text-align: center;">    0.6    </td><td style="text-align: center;">   0.6   </td><td style="text-align: center;">  0.3  </td><td style="text-align: center;">     -1.2     </td><td style="text-align: center;">  0.7  </td><td style="text-align: center;">   0.8    </td><td style="text-align: center;">   0.9   </td><td style="text-align: center;">   0.6    </td><td style="text-align: center;">   0.2    </td><td style="text-align: center;">   0.6   </td><td style="text-align: center;">    0.6    </td></tr>
+<tr><td style="text-align: center;">     1     </td><td style="text-align: center;">       0        </td><td style="text-align: center;">     -0.1     </td><td style="text-align: center;">   0.2   </td><td style="text-align: center;">    -0.1    </td><td style="text-align: center;">    0.3     </td><td style="text-align: center;">    0.7    </td><td style="text-align: center;">   0.3   </td><td style="text-align: center;">  0.2  </td><td style="text-align: center;">     1.0      </td><td style="text-align: center;"> -0.5  </td><td style="text-align: center;">   -0.7   </td><td style="text-align: center;">  -2.1   </td><td style="text-align: center;">   0.5    </td><td style="text-align: center;">   0.7    </td><td style="text-align: center;">   0.3   </td><td style="text-align: center;">    0.0    </td></tr>
+<tr><td style="text-align: center;">    -1     </td><td style="text-align: center;">       0        </td><td style="text-align: center;">     -1.3     </td><td style="text-align: center;">  -0.8   </td><td style="text-align: center;">    -0.8    </td><td style="text-align: center;">    0.1     </td><td style="text-align: center;">   -0.1    </td><td style="text-align: center;">  -1.1   </td><td style="text-align: center;"> -0.9  </td><td style="text-align: center;">     -1.2     </td><td style="text-align: center;"> -1.5  </td><td style="text-align: center;">   -0.6   </td><td style="text-align: center;">  -0.5   </td><td style="text-align: center;">   -0.6   </td><td style="text-align: center;">   -0.9   </td><td style="text-align: center;">  -0.4   </td><td style="text-align: center;">   -0.9    </td></tr>
+</tbody>
+</table></div>
+</div>
+<p>Scale the target ratings using a Min Max Scaler to scale the target to be between -1 and 1. We use scikit-learn because it has an inverse_transform. <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html">scikit learn MinMaxScaler</a></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ynorm_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ynorm_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ynorm_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ynorm_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(46549, 1) (11638, 1)
+</pre></div></div>
+</div>
+<p>## 3 - Neural Network for content-based filtering Now, let’s construct a neural network as described in the figure above. It will have two networks that are combined by a dot product. You will construct the two networks. In this example, they will be identical. Note that these networks do not need to be the same. If the user content was substantially larger than the movie content, you might elect to increase the complexity of the user network relative to the movie network. In this case, the
+content is similar, so the networks are the same.</p>
+<ul class="simple">
+<li><p>Use a Keras sequential model</p>
+<ul>
+<li><p>The first layer is a dense layer with 256 units and a relu activation.</p></li>
+<li><p>The second layer is a dense layer with 128 units and a relu activation.</p></li>
+<li><p>The third layer is a dense layer with <code class="docutils literal notranslate"><span class="pre">num_outputs</span></code> units and a linear or no activation.</p></li>
+</ul>
+</li>
+</ul>
+<p>The remainder of the network will be provided. The provided code does not use the Keras sequential model but instead uses the Keras <a class="reference external" href="https://keras.io/guides/functional_api/">functional api</a>. This format allows for more flexibility in how components are interconnected.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># GRADED_CELL</span>
+<span class="c1"># UNQ_C1</span>
+
+<span class="n">num_outputs</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">user_NN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_outputs</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">),</span>
+    <span class="c1">### END CODE HERE ###</span>
+<span class="p">])</span>
+
+<span class="n">item_NN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_outputs</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">),</span>
+    <span class="c1">### END CODE HERE ###</span>
+<span class="p">])</span>
+
+<span class="c1"># create the user input and point to the base network</span>
+<span class="n">input_user</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_user_features</span><span class="p">))</span>
+<span class="n">vu</span> <span class="o">=</span> <span class="n">user_NN</span><span class="p">(</span><span class="n">input_user</span><span class="p">)</span>
+<span class="n">vu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">l2_normalize</span><span class="p">(</span><span class="n">vu</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># create the item input and point to the base network</span>
+<span class="n">input_item</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_item_features</span><span class="p">))</span>
+<span class="n">vm</span> <span class="o">=</span> <span class="n">item_NN</span><span class="p">(</span><span class="n">input_item</span><span class="p">)</span>
+<span class="n">vm</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">l2_normalize</span><span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># compute the dot product of the two vectors vu and vm</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dot</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="mi">1</span><span class="p">)([</span><span class="n">vu</span><span class="p">,</span> <span class="n">vm</span><span class="p">])</span>
+
+<span class="c1"># specify the inputs and output of the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">([</span><span class="n">input_user</span><span class="p">,</span> <span class="n">input_item</span><span class="p">],</span> <span class="n">output</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Model: &#34;model&#34;
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to
+==================================================================================================
+input_1 (InputLayer)            [(None, 14)]         0
+__________________________________________________________________________________________________
+input_2 (InputLayer)            [(None, 16)]         0
+__________________________________________________________________________________________________
+sequential (Sequential)         (None, 32)           40864       input_1[0][0]
+__________________________________________________________________________________________________
+sequential_1 (Sequential)       (None, 32)           41376       input_2[0][0]
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize/Square [(None, 32)]         0           sequential[0][0]
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_1/Squa [(None, 32)]         0           sequential_1[0][0]
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize/Sum (T [(None, 1)]          0           tf_op_layer_l2_normalize/Square[0
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_1/Sum  [(None, 1)]          0           tf_op_layer_l2_normalize_1/Square
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize/Maximu [(None, 1)]          0           tf_op_layer_l2_normalize/Sum[0][0
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_1/Maxi [(None, 1)]          0           tf_op_layer_l2_normalize_1/Sum[0]
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize/Rsqrt  [(None, 1)]          0           tf_op_layer_l2_normalize/Maximum[
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_1/Rsqr [(None, 1)]          0           tf_op_layer_l2_normalize_1/Maximu
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize (Tenso [(None, 32)]         0           sequential[0][0]
+                                                                 tf_op_layer_l2_normalize/Rsqrt[0]
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_1 (Ten [(None, 32)]         0           sequential_1[0][0]
+                                                                 tf_op_layer_l2_normalize_1/Rsqrt[
+__________________________________________________________________________________________________
+dot (Dot)                       (None, 1)            0           tf_op_layer_l2_normalize[0][0]
+                                                                 tf_op_layer_l2_normalize_1[0][0]
+==================================================================================================
+Total params: 82,240
+Trainable params: 82,240
+Non-trainable params: 0
+__________________________________________________________________________________________________
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Public tests</span>
+<span class="kn">from</span> <span class="nn">public_tests</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">test_tower</span><span class="p">(</span><span class="n">user_NN</span><span class="p">)</span>
+<span class="n">test_tower</span><span class="p">(</span><span class="n">item_NN</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-green-intense-fg">All tests passed!
+</span><span class="ansi-green-intense-fg">All tests passed!</span>
+</pre></div></div>
+</div>
+<details><p>Click for hints</p>
+<p>You can create a dense layer with a relu activation as shown.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">user_NN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="c1">### START CODE HERE ###</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+
+
+    <span class="c1">### END CODE HERE ###</span>
+<span class="p">])</span>
+
+<span class="n">item_NN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="c1">### START CODE HERE ###</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+
+
+    <span class="c1">### END CODE HERE ###</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<details><p>Click for solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">user_NN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="c1">### START CODE HERE ###</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_outputs</span><span class="p">),</span>
+    <span class="c1">### END CODE HERE ###</span>
+<span class="p">])</span>
+
+<span class="n">item_NN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="c1">### START CODE HERE ###</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_outputs</span><span class="p">),</span>
+    <span class="c1">### END CODE HERE ###</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</details></details><p>We’ll use a mean squared error loss and an Adam optimizer.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cost_fn</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">MeanSquaredError</span><span class="p">()</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="n">cost_fn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">([</span><span class="n">user_train</span><span class="p">[:,</span> <span class="n">u_s</span><span class="p">:],</span> <span class="n">item_train</span><span class="p">[:,</span> <span class="n">i_s</span><span class="p">:]],</span> <span class="n">ynorm_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Train on 46549 samples
+Epoch 1/30
+46549/46549 [==============================] - 6s 133us/sample - loss: 0.1254
+Epoch 2/30
+46549/46549 [==============================] - 6s 122us/sample - loss: 0.1187
+Epoch 3/30
+46549/46549 [==============================] - 6s 121us/sample - loss: 0.1169
+Epoch 4/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1154
+Epoch 5/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1142
+Epoch 6/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1130
+Epoch 7/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1119
+Epoch 8/30
+46549/46549 [==============================] - 6s 119us/sample - loss: 0.1110
+Epoch 9/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1095
+Epoch 10/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1083
+Epoch 11/30
+46549/46549 [==============================] - 6s 122us/sample - loss: 0.1073
+Epoch 12/30
+46549/46549 [==============================] - 6s 119us/sample - loss: 0.1066
+Epoch 13/30
+46549/46549 [==============================] - 6s 121us/sample - loss: 0.1059
+Epoch 14/30
+46549/46549 [==============================] - 6s 121us/sample - loss: 0.1054
+Epoch 15/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1047
+Epoch 16/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1041
+Epoch 17/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1036
+Epoch 18/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1030
+Epoch 19/30
+46549/46549 [==============================] - 6s 119us/sample - loss: 0.1027
+Epoch 20/30
+46549/46549 [==============================] - 6s 122us/sample - loss: 0.1021
+Epoch 21/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1018
+Epoch 22/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1014
+Epoch 23/30
+46549/46549 [==============================] - 6s 119us/sample - loss: 0.1010
+Epoch 24/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1006
+Epoch 25/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.1003
+Epoch 26/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.0999
+Epoch 27/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.0997
+Epoch 28/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.0991
+Epoch 29/30
+46549/46549 [==============================] - 6s 120us/sample - loss: 0.0989
+Epoch 30/30
+46549/46549 [==============================] - 6s 121us/sample - loss: 0.0985
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;tensorflow.python.keras.callbacks.History at 0x7fba9d2b5110&gt;
+</pre></div></div>
+</div>
+<p>Evaluate the model to determine loss on the test data. It is comparable to the training loss indicating the model has not substantially overfit the training data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="n">user_test</span><span class="p">[:,</span> <span class="n">u_s</span><span class="p">:],</span> <span class="n">item_test</span><span class="p">[:,</span> <span class="n">i_s</span><span class="p">:]],</span> <span class="n">ynorm_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+11638/11638 [==============================] - 0s 36us/sample - loss: 0.1045
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.10449595100221243
+</pre></div></div>
+</div>
+<p>### 3.1 Predictions Below, you’ll use your model to make predictions in a number of circumstances. #### Predictions for a new user First, we’ll create a new user and have the model suggest movies for that user. After you have tried this example on the example user content, feel free to change the user content to match your own preferences and see what the model suggests. Note that ratings are between 0.5 and 5.0, inclusive, in half-step increments.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_user_id</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">new_rating_ave</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">new_action</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">new_adventure</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_animation</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_childrens</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_comedy</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">new_crime</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_documentary</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_drama</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_fantasy</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_horror</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_mystery</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_romance</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">new_scifi</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">new_thriller</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new_rating_count</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">user_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">new_user_id</span><span class="p">,</span> <span class="n">new_rating_count</span><span class="p">,</span> <span class="n">new_rating_ave</span><span class="p">,</span>
+                      <span class="n">new_action</span><span class="p">,</span> <span class="n">new_adventure</span><span class="p">,</span> <span class="n">new_animation</span><span class="p">,</span> <span class="n">new_childrens</span><span class="p">,</span>
+                      <span class="n">new_comedy</span><span class="p">,</span> <span class="n">new_crime</span><span class="p">,</span> <span class="n">new_documentary</span><span class="p">,</span>
+                      <span class="n">new_drama</span><span class="p">,</span> <span class="n">new_fantasy</span><span class="p">,</span> <span class="n">new_horror</span><span class="p">,</span> <span class="n">new_mystery</span><span class="p">,</span>
+                      <span class="n">new_romance</span><span class="p">,</span> <span class="n">new_scifi</span><span class="p">,</span> <span class="n">new_thriller</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s look at the top-rated movies for the new user. Recall, the user vector had genres that favored Comedy and Romance. Below, we’ll use a set of movie/item vectors, <code class="docutils literal notranslate"><span class="pre">item_vecs</span></code> that have a vector for each movie in the training/test set. This is matched with the user vector above and the scaled vectors are used to predict ratings for all the movies for our new user above.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate and replicate the user vector to match the number movies in the data set.</span>
+<span class="n">user_vecs</span> <span class="o">=</span> <span class="n">gen_user_vecs</span><span class="p">(</span><span class="n">user_vec</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">item_vecs</span><span class="p">))</span>
+
+<span class="c1"># scale the vectors and make predictions for all movies. Return results sorted by rating.</span>
+<span class="n">sorted_index</span><span class="p">,</span> <span class="n">sorted_ypu</span><span class="p">,</span> <span class="n">sorted_items</span><span class="p">,</span> <span class="n">sorted_user</span> <span class="o">=</span> <span class="n">predict_uservec</span><span class="p">(</span><span class="n">user_vecs</span><span class="p">,</span>  <span class="n">item_vecs</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span>
+                                                                       <span class="n">scaler</span><span class="p">,</span> <span class="n">scalerUser</span><span class="p">,</span> <span class="n">scalerItem</span><span class="p">,</span> <span class="n">scaledata</span><span class="o">=</span><span class="n">scaledata</span><span class="p">)</span>
+
+<span class="n">print_pred_movies</span><span class="p">(</span><span class="n">sorted_ypu</span><span class="p">,</span> <span class="n">sorted_user</span><span class="p">,</span> <span class="n">sorted_items</span><span class="p">,</span> <span class="n">movie_dict</span><span class="p">,</span> <span class="n">maxcount</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table>
+<thead>
+<tr><th style="text-align: right;">    y_p</th><th style="text-align: right;">  movie id</th><th style="text-align: right;">  rating ave</th><th>title                      </th><th>genres      </th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: right;">4.86762</td><td style="text-align: right;">     64969</td><td style="text-align: right;">     3.61765</td><td>Yes Man (2008)             </td><td>Comedy      </td></tr>
+<tr><td style="text-align: right;">4.86692</td><td style="text-align: right;">     69122</td><td style="text-align: right;">     3.63158</td><td>Hangover, The (2009)       </td><td>Comedy|Crime</td></tr>
+<tr><td style="text-align: right;">4.86477</td><td style="text-align: right;">     63131</td><td style="text-align: right;">     3.625  </td><td>Role Models (2008)         </td><td>Comedy      </td></tr>
+<tr><td style="text-align: right;">4.85853</td><td style="text-align: right;">     60756</td><td style="text-align: right;">     3.55357</td><td>Step Brothers (2008)       </td><td>Comedy      </td></tr>
+<tr><td style="text-align: right;">4.85785</td><td style="text-align: right;">     68135</td><td style="text-align: right;">     3.55   </td><td>17 Again (2009)            </td><td>Comedy|Drama</td></tr>
+<tr><td style="text-align: right;">4.85178</td><td style="text-align: right;">     78209</td><td style="text-align: right;">     3.55   </td><td>Get Him to the Greek (2010)</td><td>Comedy      </td></tr>
+<tr><td style="text-align: right;">4.85138</td><td style="text-align: right;">      8622</td><td style="text-align: right;">     3.48649</td><td>Fahrenheit 9/11 (2004)     </td><td>Documentary </td></tr>
+<tr><td style="text-align: right;">4.8505 </td><td style="text-align: right;">     67087</td><td style="text-align: right;">     3.52941</td><td>I Love You, Man (2009)     </td><td>Comedy      </td></tr>
+<tr><td style="text-align: right;">4.85043</td><td style="text-align: right;">     69784</td><td style="text-align: right;">     3.65   </td><td>Brüno (Bruno) (2009)       </td><td>Comedy      </td></tr>
+<tr><td style="text-align: right;">4.84934</td><td style="text-align: right;">     89864</td><td style="text-align: right;">     3.63158</td><td>50/50 (2011)               </td><td>Comedy|Drama</td></tr>
+</tbody>
+</table></div>
+</div>
+<p>If you do create a user above, it is worth noting that the network was trained to predict a user rating given a user vector that includes a <strong>set</strong> of user genre ratings. Simply providing a maximum rating for a single genre and minimum ratings for the rest may not be meaningful to the network if there were no users with similar sets of ratings.</p>
+<section id="Predictions-for-an-existing-user.">
+<h2>Predictions for an existing user.<a class="headerlink" href="#Predictions-for-an-existing-user." title="Permalink to this heading"></a></h2>
+<p>Let’s look at the predictions for “user 36”, one of the users in the data set. We can compare the predicted ratings with the model’s ratings. Note that movies with multiple genre’s show up multiple times in the training data. For example,’The Time Machine’ has three genre’s: Adventure, Action, Sci-Fi</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uid</span> <span class="o">=</span>  <span class="mi">36</span>
+<span class="c1"># form a set of user vectors. This is the same vector, transformed and repeated.</span>
+<span class="n">user_vecs</span><span class="p">,</span> <span class="n">y_vecs</span> <span class="o">=</span> <span class="n">get_user_vecs</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">scalerUser</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">user_train</span><span class="p">),</span> <span class="n">item_vecs</span><span class="p">,</span> <span class="n">user_to_genre</span><span class="p">)</span>
+
+<span class="c1"># scale the vectors and make predictions for all movies. Return results sorted by rating.</span>
+<span class="n">sorted_index</span><span class="p">,</span> <span class="n">sorted_ypu</span><span class="p">,</span> <span class="n">sorted_items</span><span class="p">,</span> <span class="n">sorted_user</span> <span class="o">=</span> <span class="n">predict_uservec</span><span class="p">(</span><span class="n">user_vecs</span><span class="p">,</span> <span class="n">item_vecs</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span>
+                                                                      <span class="n">scalerUser</span><span class="p">,</span> <span class="n">scalerItem</span><span class="p">,</span> <span class="n">scaledata</span><span class="o">=</span><span class="n">scaledata</span><span class="p">)</span>
+<span class="n">sorted_y</span> <span class="o">=</span> <span class="n">y_vecs</span><span class="p">[</span><span class="n">sorted_index</span><span class="p">]</span>
+
+<span class="c1">#print sorted predictions</span>
+<span class="n">print_existing_user</span><span class="p">(</span><span class="n">sorted_ypu</span><span class="p">,</span> <span class="n">sorted_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">sorted_user</span><span class="p">,</span> <span class="n">sorted_items</span><span class="p">,</span> <span class="n">item_features</span><span class="p">,</span> <span class="n">ivs</span><span class="p">,</span> <span class="n">uvs</span><span class="p">,</span> <span class="n">movie_dict</span><span class="p">,</span> <span class="n">maxcount</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table>
+<thead>
+<tr><th style="text-align: right;">  y_p</th><th style="text-align: right;">  y</th><th style="text-align: right;">  user</th><th style="text-align: right;">  user genre ave</th><th style="text-align: right;">  movie rating ave</th><th>title                   </th><th>genres   </th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: right;">  3.1</td><td style="text-align: right;">3.0</td><td style="text-align: right;">    36</td><td style="text-align: right;">            3.00</td><td style="text-align: right;">              2.86</td><td>Time Machine, The (2002)</td><td>Adventure</td></tr>
+<tr><td style="text-align: right;">  3.0</td><td style="text-align: right;">3.0</td><td style="text-align: right;">    36</td><td style="text-align: right;">            3.00</td><td style="text-align: right;">              2.86</td><td>Time Machine, The (2002)</td><td>Action   </td></tr>
+<tr><td style="text-align: right;">  2.8</td><td style="text-align: right;">3.0</td><td style="text-align: right;">    36</td><td style="text-align: right;">            3.00</td><td style="text-align: right;">              2.86</td><td>Time Machine, The (2002)</td><td>Sci-Fi   </td></tr>
+<tr><td style="text-align: right;">  2.3</td><td style="text-align: right;">1.0</td><td style="text-align: right;">    36</td><td style="text-align: right;">            1.00</td><td style="text-align: right;">              4.00</td><td>Beautiful Mind, A (2001)</td><td>Romance  </td></tr>
+<tr><td style="text-align: right;">  2.2</td><td style="text-align: right;">1.0</td><td style="text-align: right;">    36</td><td style="text-align: right;">            1.50</td><td style="text-align: right;">              4.00</td><td>Beautiful Mind, A (2001)</td><td>Drama    </td></tr>
+<tr><td style="text-align: right;">  1.6</td><td style="text-align: right;">1.5</td><td style="text-align: right;">    36</td><td style="text-align: right;">            1.75</td><td style="text-align: right;">              3.52</td><td>Road to Perdition (2002)</td><td>Crime    </td></tr>
+<tr><td style="text-align: right;">  1.6</td><td style="text-align: right;">2.0</td><td style="text-align: right;">    36</td><td style="text-align: right;">            1.75</td><td style="text-align: right;">              3.52</td><td>Gangs of New York (2002)</td><td>Crime    </td></tr>
+<tr><td style="text-align: right;">  1.5</td><td style="text-align: right;">1.5</td><td style="text-align: right;">    36</td><td style="text-align: right;">            1.50</td><td style="text-align: right;">              3.52</td><td>Road to Perdition (2002)</td><td>Drama    </td></tr>
+<tr><td style="text-align: right;">  1.5</td><td style="text-align: right;">2.0</td><td style="text-align: right;">    36</td><td style="text-align: right;">            1.50</td><td style="text-align: right;">              3.52</td><td>Gangs of New York (2002)</td><td>Drama    </td></tr>
+</tbody>
+</table></div>
+</div>
+</section>
+<section id="Finding-Similar-Items">
+<h2>Finding Similar Items<a class="headerlink" href="#Finding-Similar-Items" title="Permalink to this heading"></a></h2>
+<p>The neural network above produces two feature vectors, a user feature vector <span class="math notranslate nohighlight">\(v_u\)</span>, and a movie feature vector, <span class="math notranslate nohighlight">\(v_m\)</span>. These are 32 entry vectors whose values are difficult to interpret. However, similar items will have similar vectors. This information can be used to make recommendations. For example, if a user has rated “Toy Story 3” highly, one could recommend similar movies by selecting movies with similar movie feature vectors.</p>
+<p>A similarity measure is the squared distance between the two vectors $ <span class="math">\mathbf{v_m^{(k)}}`$ and :math:</span>mathbf{v_m^{(i)}}` :</p>
+<div class="math notranslate nohighlight">
+\[\left\Vert \mathbf{v_m^{(k)}} - \mathbf{v_m^{(i)}}  \right\Vert^2 = \sum_{l=1}^{n}(v_{m_l}^{(k)} - v_{m_l}^{(i)})^2\tag{1}\]</div>
+<p>### Exercise 1</p>
+<p>Write a function to compute the square distance.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># GRADED_FUNCTION: sq_dist</span>
+<span class="c1"># UNQ_C2</span>
+<span class="k">def</span> <span class="nf">sq_dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the squared distance between two vectors</span>
+<span class="sd">    Args:</span>
+<span class="sd">      a (ndarray (n,)): vector with n features</span>
+<span class="sd">      b (ndarray (n,)): vector with n features</span>
+<span class="sd">    Returns:</span>
+<span class="sd">      d (float) : distance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">))</span>
+    <span class="c1">### END CODE HERE ###</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Public tests</span>
+<span class="n">test_sq_dist</span><span class="p">(</span><span class="n">sq_dist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-green-intense-fg">All tests passed!</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]);</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">]);</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>       <span class="n">b3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;squared distance between a1 and b1: </span><span class="si">{</span><span class="n">sq_dist</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">b1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;squared distance between a2 and b2: </span><span class="si">{</span><span class="n">sq_dist</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">b2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;squared distance between a3 and b3: </span><span class="si">{</span><span class="n">sq_dist</span><span class="p">(</span><span class="n">a3</span><span class="p">,</span><span class="w"> </span><span class="n">b3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+squared distance between a1 and b1: 0.0
+squared distance between a2 and b2: 0.030000000000000054
+squared distance between a3 and b3: 2
+</pre></div></div>
+</div>
+<details><p>Click for hints</p>
+<p>While a summation is often an indication a for loop should be used, here the subtraction can be element-wise in one statement. Further, you can utilized np.square to square, element-wise, the result of the subtraction. np.sum can be used to sum the squared elements.</p>
+</details><p>A matrix of distances between movies can be computed once when the model is trained and then reused for new recommendations without retraining. The first step, once a model is trained, is to obtain the movie feature vector, <span class="math notranslate nohighlight">\(v_m\)</span>, for each of the movies. To do this, we will use the trained <code class="docutils literal notranslate"><span class="pre">item_NN</span></code> and build a small model to allow us to run the movie vectors through it to generate <span class="math notranslate nohighlight">\(v_m\)</span>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_item_m</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_item_features</span><span class="p">))</span>    <span class="c1"># input layer</span>
+<span class="n">vm_m</span> <span class="o">=</span> <span class="n">item_NN</span><span class="p">(</span><span class="n">input_item_m</span><span class="p">)</span>                                       <span class="c1"># use the trained item_NN</span>
+<span class="n">vm_m</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">l2_normalize</span><span class="p">(</span><span class="n">vm_m</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                        <span class="c1"># incorporate normalization as was done in the original model</span>
+<span class="n">model_m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">input_item_m</span><span class="p">,</span> <span class="n">vm_m</span><span class="p">)</span>
+<span class="n">model_m</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Model: &#34;model_1&#34;
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to
+==================================================================================================
+input_3 (InputLayer)            [(None, 16)]         0
+__________________________________________________________________________________________________
+sequential_1 (Sequential)       (None, 32)           41376       input_3[0][0]
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_2/Squa [(None, 32)]         0           sequential_1[1][0]
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_2/Sum  [(None, 1)]          0           tf_op_layer_l2_normalize_2/Square
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_2/Maxi [(None, 1)]          0           tf_op_layer_l2_normalize_2/Sum[0]
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_2/Rsqr [(None, 1)]          0           tf_op_layer_l2_normalize_2/Maximu
+__________________________________________________________________________________________________
+tf_op_layer_l2_normalize_2 (Ten [(None, 32)]         0           sequential_1[1][0]
+                                                                 tf_op_layer_l2_normalize_2/Rsqrt[
+==================================================================================================
+Total params: 41,376
+Trainable params: 41,376
+Non-trainable params: 0
+__________________________________________________________________________________________________
+</pre></div></div>
+</div>
+<p>Once you have a movie model, you can create a set of movie feature vectors by using the model to predict using a set of item/movie vectors as input. <code class="docutils literal notranslate"><span class="pre">item_vecs</span></code> is a set of all of the movie vectors. Recall that the same movie will appear as a separate vector for each of its genres. It must be scaled to use with the trained model. The result of the prediction is a 32 entry feature vector for each movie.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaled_item_vecs</span> <span class="o">=</span> <span class="n">scalerItem</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item_vecs</span><span class="p">)</span>
+<span class="n">vms</span> <span class="o">=</span> <span class="n">model_m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">scaled_item_vecs</span><span class="p">[:,</span><span class="n">i_s</span><span class="p">:])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;size of all predicted movie feature vectors: </span><span class="si">{</span><span class="n">vms</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+size of all predicted movie feature vectors: (1883, 32)
+</pre></div></div>
+</div>
+<p>Let’s now compute a matrix of the squared distance between each movie feature vector and all other movie feature vectors:</p>
+<figure><p><img alt="d539690b1ea04d519a723038c01363d6" src="../../../../../_images/distmatrix.PNG" /></p>
+</center></figure><p>We can then find the closest movie by finding the minimum along each row. We will make use of <a class="reference external" href="https://numpy.org/doc/1.21/user/tutorial-ma.html">numpy masked arrays</a> to avoid selecting the same movie. The masked values along the diagonal won’t be included in the computation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vms</span><span class="p">)</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">dim</span><span class="p">,</span><span class="n">dim</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+        <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">sq_dist</span><span class="p">(</span><span class="n">vms</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">vms</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:])</span>
+
+<span class="n">m_dist</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># mask the diagonal</span>
+
+<span class="n">disp</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;movie1&quot;</span><span class="p">,</span> <span class="s2">&quot;genres&quot;</span><span class="p">,</span> <span class="s2">&quot;movie2&quot;</span><span class="p">,</span> <span class="s2">&quot;genres&quot;</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="n">min_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">m_dist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">movie1_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">item_vecs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">movie2_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">item_vecs</span><span class="p">[</span><span class="n">min_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">genre1</span><span class="p">,</span><span class="n">_</span>  <span class="o">=</span> <span class="n">get_item_genre</span><span class="p">(</span><span class="n">item_vecs</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">ivs</span><span class="p">,</span> <span class="n">item_features</span><span class="p">)</span>
+    <span class="n">genre2</span><span class="p">,</span><span class="n">_</span>  <span class="o">=</span> <span class="n">get_item_genre</span><span class="p">(</span><span class="n">item_vecs</span><span class="p">[</span><span class="n">min_idx</span><span class="p">,:],</span> <span class="n">ivs</span><span class="p">,</span> <span class="n">item_features</span><span class="p">)</span>
+
+    <span class="n">disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">[</span><span class="n">movie_dict</span><span class="p">[</span><span class="n">movie1_id</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="n">genre1</span><span class="p">,</span>
+                  <span class="n">movie_dict</span><span class="p">[</span><span class="n">movie2_id</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="n">genre2</span><span class="p">]</span>
+               <span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">disp</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;firstrow&quot;</span><span class="p">,</span> <span class="n">floatfmt</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;.1f&quot;</span><span class="p">,</span> <span class="s2">&quot;.1f&quot;</span><span class="p">,</span> <span class="s2">&quot;.0f&quot;</span><span class="p">,</span> <span class="s2">&quot;.2f&quot;</span><span class="p">,</span> <span class="s2">&quot;.2f&quot;</span><span class="p">])</span>
+<span class="n">table</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table>
+<thead>
+<tr><th>movie1                                </th><th>genres   </th><th>movie2                                             </th><th>genres   </th></tr>
+</thead>
+<tbody>
+<tr><td>Save the Last Dance (2001)            </td><td>Drama    </td><td>John Q (2002)                                      </td><td>Drama    </td></tr>
+<tr><td>Save the Last Dance (2001)            </td><td>Romance  </td><td>Saving Silverman (Evil Woman) (2001)               </td><td>Romance  </td></tr>
+<tr><td>Wedding Planner, The (2001)           </td><td>Comedy   </td><td>National Lampoon&#x27;s Van Wilder (2002)               </td><td>Comedy   </td></tr>
+<tr><td>Wedding Planner, The (2001)           </td><td>Romance  </td><td>Mr. Deeds (2002)                                   </td><td>Romance  </td></tr>
+<tr><td>Hannibal (2001)                       </td><td>Horror   </td><td>Final Destination 2 (2003)                         </td><td>Horror   </td></tr>
+<tr><td>Hannibal (2001)                       </td><td>Thriller </td><td>Sum of All Fears, The (2002)                       </td><td>Thriller </td></tr>
+<tr><td>Saving Silverman (Evil Woman) (2001)  </td><td>Comedy   </td><td>Cats &amp; Dogs (2001)                                 </td><td>Comedy   </td></tr>
+<tr><td>Saving Silverman (Evil Woman) (2001)  </td><td>Romance  </td><td>Save the Last Dance (2001)                         </td><td>Romance  </td></tr>
+<tr><td>Down to Earth (2001)                  </td><td>Comedy   </td><td>Joe Dirt (2001)                                    </td><td>Comedy   </td></tr>
+<tr><td>Down to Earth (2001)                  </td><td>Fantasy  </td><td>Haunted Mansion, The (2003)                        </td><td>Fantasy  </td></tr>
+<tr><td>Down to Earth (2001)                  </td><td>Romance  </td><td>Joe Dirt (2001)                                    </td><td>Romance  </td></tr>
+<tr><td>Mexican, The (2001)                   </td><td>Action   </td><td>Knight&#x27;s Tale, A (2001)                            </td><td>Action   </td></tr>
+<tr><td>Mexican, The (2001)                   </td><td>Comedy   </td><td>Knight&#x27;s Tale, A (2001)                            </td><td>Comedy   </td></tr>
+<tr><td>15 Minutes (2001)                     </td><td>Thriller </td><td>Final Destination 2 (2003)                         </td><td>Thriller </td></tr>
+<tr><td>Heartbreakers (2001)                  </td><td>Comedy   </td><td>Animal, The (2001)                                 </td><td>Comedy   </td></tr>
+<tr><td>Heartbreakers (2001)                  </td><td>Crime    </td><td>Charlie&#x27;s Angels: Full Throttle (2003)             </td><td>Crime    </td></tr>
+<tr><td>Heartbreakers (2001)                  </td><td>Romance  </td><td>Stepford Wives, The (2004)                         </td><td>Comedy   </td></tr>
+<tr><td>Spy Kids (2001)                       </td><td>Action   </td><td>Lara Croft: Tomb Raider (2001)                     </td><td>Action   </td></tr>
+<tr><td>Spy Kids (2001)                       </td><td>Adventure</td><td>Lara Croft: Tomb Raider (2001)                     </td><td>Adventure</td></tr>
+<tr><td>Spy Kids (2001)                       </td><td>Children </td><td>Princess Diaries, The (2001)                       </td><td>Children </td></tr>
+<tr><td>Spy Kids (2001)                       </td><td>Comedy   </td><td>Men in Black II (a.k.a. MIIB) (a.k.a. MIB 2) (2002)</td><td>Comedy   </td></tr>
+<tr><td>Along Came a Spider (2001)            </td><td>Action   </td><td>Swordfish (2001)                                   </td><td>Action   </td></tr>
+<tr><td>Along Came a Spider (2001)            </td><td>Crime    </td><td>Swordfish (2001)                                   </td><td>Crime    </td></tr>
+<tr><td>Along Came a Spider (2001)            </td><td>Mystery  </td><td>Ring, The (2002)                                   </td><td>Mystery  </td></tr>
+<tr><td>Along Came a Spider (2001)            </td><td>Thriller </td><td>Signs (2002)                                       </td><td>Thriller </td></tr>
+<tr><td>Blow (2001)                           </td><td>Crime    </td><td>Training Day (2001)                                </td><td>Crime    </td></tr>
+<tr><td>Blow (2001)                           </td><td>Drama    </td><td>Training Day (2001)                                </td><td>Drama    </td></tr>
+<tr><td>Bridget Jones&#x27;s Diary (2001)          </td><td>Comedy   </td><td>Super Troopers (2001)                              </td><td>Comedy   </td></tr>
+<tr><td>Bridget Jones&#x27;s Diary (2001)          </td><td>Drama    </td><td>Others, The (2001)                                 </td><td>Drama    </td></tr>
+<tr><td>Bridget Jones&#x27;s Diary (2001)          </td><td>Romance  </td><td>Punch-Drunk Love (2002)                            </td><td>Romance  </td></tr>
+<tr><td>Joe Dirt (2001)                       </td><td>Adventure</td><td>Charlie&#x27;s Angels: Full Throttle (2003)             </td><td>Action   </td></tr>
+<tr><td>Joe Dirt (2001)                       </td><td>Comedy   </td><td>Dr. Dolittle 2 (2001)                              </td><td>Comedy   </td></tr>
+<tr><td>Joe Dirt (2001)                       </td><td>Mystery  </td><td>Doom (2005)                                        </td><td>Horror   </td></tr>
+<tr><td>Joe Dirt (2001)                       </td><td>Romance  </td><td>Down to Earth (2001)                               </td><td>Romance  </td></tr>
+<tr><td>Crocodile Dundee in Los Angeles (2001)</td><td>Comedy   </td><td>Heartbreakers (2001)                               </td><td>Comedy   </td></tr>
+<tr><td>Crocodile Dundee in Los Angeles (2001)</td><td>Drama    </td><td>Scary Movie 4 (2006)                               </td><td>Horror   </td></tr>
+<tr><td>Mummy Returns, The (2001)             </td><td>Action   </td><td>Swordfish (2001)                                   </td><td>Action   </td></tr>
+<tr><td>Mummy Returns, The (2001)             </td><td>Adventure</td><td>Rundown, The (2003)                                </td><td>Adventure</td></tr>
+<tr><td>Mummy Returns, The (2001)             </td><td>Comedy   </td><td>American Pie 2 (2001)                              </td><td>Comedy   </td></tr>
+<tr><td>Mummy Returns, The (2001)             </td><td>Thriller </td><td>Star Trek: Nemesis (2002)                          </td><td>Thriller </td></tr>
+<tr><td>Knight&#x27;s Tale, A (2001)               </td><td>Action   </td><td>Mexican, The (2001)                                </td><td>Action   </td></tr>
+<tr><td>Knight&#x27;s Tale, A (2001)               </td><td>Comedy   </td><td>Mexican, The (2001)                                </td><td>Comedy   </td></tr>
+<tr><td>Knight&#x27;s Tale, A (2001)               </td><td>Romance  </td><td>Bruce Almighty (2003)                              </td><td>Romance  </td></tr>
+<tr><td>Shrek (2001)                          </td><td>Adventure</td><td>Monsters, Inc. (2001)                              </td><td>Adventure</td></tr>
+<tr><td>Shrek (2001)                          </td><td>Animation</td><td>Monsters, Inc. (2001)                              </td><td>Animation</td></tr>
+<tr><td>Shrek (2001)                          </td><td>Children </td><td>Monsters, Inc. (2001)                              </td><td>Children </td></tr>
+<tr><td>Shrek (2001)                          </td><td>Comedy   </td><td>Monsters, Inc. (2001)                              </td><td>Comedy   </td></tr>
+<tr><td>Shrek (2001)                          </td><td>Fantasy  </td><td>Monsters, Inc. (2001)                              </td><td>Fantasy  </td></tr>
+<tr><td>Shrek (2001)                          </td><td>Romance  </td><td>Monsoon Wedding (2001)                             </td><td>Romance  </td></tr>
+<tr><td>Animal, The (2001)                    </td><td>Comedy   </td><td>Heartbreakers (2001)                               </td><td>Comedy   </td></tr>
+</tbody>
+</table></div>
+</div>
+<p>The results show the model will suggest a movie from the same genre.</p>
+<p>## 4 - Congratulations! <img alt="2dc16521fd3a47c892ede9b7ea3ceec3" src="../../../../../_images/film_award1.png" /> You have completed a content-based recommender system.</p>
+<p>This structure is the basis of many commercial recommender systems. The user content can be greatly expanded to incorporate more information about the user if it is available. Items are not limited to movies. This can be used to recommend any item, books, cars or items that are similar to an item in your ‘shopping cart’.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Amit Kumar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practice Lab: Decision Trees &mdash; Machine-Learning-Andrew-Ng  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Machine-Learning-Andrew-Ng
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Cosmological_principle.html">Cosmological principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../abc.html">Cosmological principle</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Machine-Learning-Andrew-Ng</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Practice Lab: Decision Trees</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/source_files/Advanced_Learning_Algorithms/week4/C2W4A1/C2_W4_Decision_Tree_with_Markdown.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Practice-Lab:-Decision-Trees">
+<h1>Practice Lab: Decision Trees<a class="headerlink" href="#Practice-Lab:-Decision-Trees" title="Permalink to this heading"></a></h1>
+<p>In this exercise, you will implement a decision tree from scratch and apply it to the task of classifying whether a mushroom is edible or poisonous.</p>
+</section>
+<section id="Outline">
+<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>1 - Packages</p></li>
+<li><p>2 - Problem Statement</p></li>
+<li><p>3 - Dataset</p>
+<ul>
+<li><p>3.1 One hot encoded dataset</p></li>
+</ul>
+</li>
+<li><p>4 - Decision Tree Refresher</p>
+<ul>
+<li><p>4.1 Calculate entropy</p>
+<ul>
+<li><p>Exercise 1</p></li>
+</ul>
+</li>
+<li><p>4.2 Split dataset</p>
+<ul>
+<li><p>Exercise 2</p></li>
+</ul>
+</li>
+<li><p>4.3 Calculate information gain</p>
+<ul>
+<li><p>Exercise 3</p></li>
+</ul>
+</li>
+<li><p>4.4 Get best split</p>
+<ul>
+<li><p>Exercise 4</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>5 - Building the tree</p></li>
+</ul>
+<p>## 1 - Packages</p>
+<p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a class="reference external" href="https://www.numpy.org">numpy</a> is the fundamental package for working with matrices in Python. - <a class="reference external" href="https://matplotlib.org">matplotlib</a> is a famous library to plot graphs in Python. - <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> contains helper functions for this assignment. You do not need to modify code in this file.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">public_tests</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<p>## 2 - Problem Statement</p>
+<p>Suppose you are starting a company that grows and sells wild mushrooms. - Since not all mushrooms are edible, you’d like to be able to tell whether a given mushroom is edible or poisonous based on it’s physical attributes - You have some existing data that you can use for this task.</p>
+<p>Can you use the data to help you identify which mushrooms can be sold safely?</p>
+<p>Note: The dataset used is for illustrative purposes only. It is not meant to be a guide on identifying edible mushrooms.</p>
+<p>## 3 - Dataset</p>
+<p>You will start by loading the dataset for this task. The dataset you have collected is as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cap Color</p></th>
+<th class="head"><p>Stalk Shape</p></th>
+<th class="head"><p>Solitary</p></th>
+<th class="head"><p>Edible</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Brown</p></td>
+<td><p>Tapering</p></td>
+<td><p>Yes</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brown</p></td>
+<td><p>Enlarging</p></td>
+<td><p>Yes</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Brown</p></td>
+<td><p>Enlarging</p></td>
+<td><p>No</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brown</p></td>
+<td><p>Enlarging</p></td>
+<td><p>No</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Brown</p></td>
+<td><p>Tapering</p></td>
+<td><p>Yes</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Red</p></td>
+<td><p>Tapering</p></td>
+<td><p>Yes</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Red</p></td>
+<td><p>Enlarging</p></td>
+<td><p>No</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brown</p></td>
+<td><p>Enlarging</p></td>
+<td><p>Yes</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Red</p></td>
+<td><p>Tapering</p></td>
+<td><p>No</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brown</p></td>
+<td><p>Enlarging</p></td>
+<td><p>No</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>You have 10 examples of mushrooms. For each example, you have</p>
+<ul>
+<li><p>Three features</p>
+<ul>
+<li><p>Cap Color (<code class="docutils literal notranslate"><span class="pre">Brown</span></code> or <code class="docutils literal notranslate"><span class="pre">Red</span></code>),</p></li>
+<li><p>Stalk Shape (<code class="docutils literal notranslate"><span class="pre">Tapering</span></code> or <code class="docutils literal notranslate"><span class="pre">Enlarging</span></code>), and</p></li>
+<li><p>Solitary (<code class="docutils literal notranslate"><span class="pre">Yes</span></code> or <code class="docutils literal notranslate"><span class="pre">No</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Label</p>
+<ul>
+<li><p>Edible (<code class="docutils literal notranslate"><span class="pre">1</span></code> indicating yes or <code class="docutils literal notranslate"><span class="pre">0</span></code> indicating poisonous)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>### 3.1 One hot encoded dataset For ease of implementation, we have one-hot encoded the features (turned them into 0 or 1 valued features)</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Brown Cap</p></th>
+<th class="head"><p>Tapering Stalk Shape</p></th>
+<th class="head"><p>Solitary</p></th>
+<th class="head"><p>Edible</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, - <code class="docutils literal notranslate"><span class="pre">X_train</span></code> contains three features for each example - Brown Color (A value of <code class="docutils literal notranslate"><span class="pre">1</span></code> indicates “Brown” cap color and <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates “Red” cap color) - Tapering Shape (A value of <code class="docutils literal notranslate"><span class="pre">1</span></code> indicates “Tapering Stalk Shape” and <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates “Enlarging” stalk shape) - Solitary (A value of <code class="docutils literal notranslate"><span class="pre">1</span></code> indicates “Yes” and <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates “No”)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">y_train</span></code> is whether the mushroom is edible</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">1</span></code> indicates edible</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">0</span></code> indicates poisonous</p></li>
+</ul>
+</li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<section id="View-the-variables">
+<h2>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Let’s get more familiar with your dataset.</div>
+<div class="line">- A good place to start is to just print out each variable and see what it contains.</div>
+</div>
+<p>The code below prints the first few elements of <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and the type of the variable.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First few elements of X_train:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of X_train:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+First few elements of X_train:
+ [[1 1 1]
+ [1 0 1]
+ [1 0 0]
+ [1 0 0]
+ [1 1 1]]
+Type of X_train: &lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div></div>
+</div>
+<p>Now, let’s do the same for <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First few elements of y_train:&quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of y_train:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+First few elements of y_train: [1 1 0 0 1]
+Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div></div>
+</div>
+</section>
+<section id="Check-the-dimensions-of-your-variables">
+<h2>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this heading"></a></h2>
+<p>Another useful way to get familiar with your data is to view its dimensions.</p>
+<p>Please print the shape of <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and see how many training examples you have in your dataset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The shape of X_train is:&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The shape of y_train is: &#39;</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Number of training examples (m):&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The shape of X_train is: (10, 3)
+The shape of y_train is:  (10,)
+Number of training examples (m): 10
+</pre></div></div>
+</div>
+<p>## 4 - Decision Tree Refresher</p>
+<p>In this practice lab, you will build a decision tree based on the dataset provided.</p>
+<ul class="simple">
+<li><p>Recall that the steps for building a decision tree are as follows:</p>
+<ul>
+<li><p>Start with all examples at the root node</p></li>
+<li><p>Calculate information gain for splitting on all possible features, and pick the one with the highest information gain</p></li>
+<li><p>Split dataset according to the selected feature, and create left and right branches of the tree</p></li>
+<li><p>Keep repeating splitting process until stopping criteria is met</p></li>
+</ul>
+</li>
+<li><p>In this lab, you’ll implement the following functions, which will let you split a node into left and right branches using the feature with the highest information gain</p>
+<ul>
+<li><p>Calculate the entropy at a node</p></li>
+<li><p>Split the dataset at a node into left and right branches based on a given feature</p></li>
+<li><p>Calculate the information gain from splitting on a given feature</p></li>
+<li><p>Choose the feature that maximizes information gain</p></li>
+</ul>
+</li>
+<li><p>We’ll then use the helper functions you’ve implemented to build a decision tree by repeating the splitting process until the stopping criteria is met</p>
+<ul>
+<li><p>For this lab, the stopping criteria we’ve chosen is setting a maximum depth of 2</p></li>
+</ul>
+</li>
+</ul>
+<p>### 4.1 Calculate entropy</p>
+<p>First, you’ll write a helper function called <code class="docutils literal notranslate"><span class="pre">compute_entropy</span></code> that computes the entropy (measure of impurity) at a node. - The function takes in a numpy array (<code class="docutils literal notranslate"><span class="pre">y</span></code>) that indicates whether the examples in that node are edible (<code class="docutils literal notranslate"><span class="pre">1</span></code>) or poisonous(<code class="docutils literal notranslate"><span class="pre">0</span></code>)</p>
+<p>Complete the <code class="docutils literal notranslate"><span class="pre">compute_entropy()</span></code> function below to: * Compute <span class="math notranslate nohighlight">\(p_1\)</span>, which is the fraction of examples that are edible (i.e. have value = <code class="docutils literal notranslate"><span class="pre">1</span></code> in <code class="docutils literal notranslate"><span class="pre">y</span></code>) * The entropy is then calculated as</p>
+<div class="math notranslate nohighlight">
+\[H(p_1) = -p_1 \text{log}_2(p_1) - (1- p_1) \text{log}_2(1- p_1)\]</div>
+<p>* Note * The log is calculated with base <span class="math notranslate nohighlight">\(2\)</span> * For implementation purposes, <span class="math notranslate nohighlight">\(0\text{log}_2(0) = 0\)</span>. That is, if <code class="docutils literal notranslate"><span class="pre">p_1</span> <span class="pre">=</span> <span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">p_1</span> <span class="pre">=</span> <span class="pre">1</span></code>, set the entropy to <code class="docutils literal notranslate"><span class="pre">0</span></code> * Make sure to check that the data at a node is not empty (i.e. <code class="docutils literal notranslate"><span class="pre">len(y)</span> <span class="pre">!=</span> <span class="pre">0</span></code>). Return <code class="docutils literal notranslate"><span class="pre">0</span></code> if it is</p>
+<p>### Exercise 1</p>
+<p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_entropy()</span></code> function using the previous instructions.</p>
+<p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C1</span>
+<span class="c1"># GRADED FUNCTION: compute_entropy</span>
+
+<span class="k">def</span> <span class="nf">compute_entropy</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the entropy for</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">       y (ndarray): Numpy array indicating whether each example at a node is</span>
+<span class="sd">           edible (`1`) or poisonous (`0`)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        entropy (float): Entropy at that node</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># You need to return the following variables correctly</span>
+    <span class="n">entropy</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+     <span class="c1"># For p1 = 0 and 1, set the entropy to 0 (to handle 0log0)</span>
+        <span class="k">if</span> <span class="n">p1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">p1</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+             <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">p1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+             <span class="n">entropy</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1">### END CODE HERE ###</span>
+
+    <span class="k">return</span> <span class="n">entropy</span>
+</pre></div>
+</div>
+</div>
+<details><p>Click for hints</p>
+<ul>
+<li><p>To calculate <code class="docutils literal notranslate"><span class="pre">p1</span></code> * You can get the subset of examples in <code class="docutils literal notranslate"><span class="pre">y</span></code> that have the value <code class="docutils literal notranslate"><span class="pre">1</span></code> as <code class="docutils literal notranslate"><span class="pre">y[y</span> <span class="pre">==</span> <span class="pre">1]</span></code> * You can use <code class="docutils literal notranslate"><span class="pre">len(y)</span></code> to get the number of examples in <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<ul class="simple">
+<li><p>To calculate <code class="docutils literal notranslate"><span class="pre">entropy</span></code></p>
+<ul>
+<li><p>np.log2 let’s you calculate the logarithm to base 2 for a numpy array</p></li>
+<li><p>If the value of <code class="docutils literal notranslate"><span class="pre">p1</span></code> is 0 or 1, make sure to set the entropy to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+</li>
+</ul>
+<details><p>Click for more hints</p>
+<ul class="simple">
+<li><p>Here’s how you can structure the overall implementation for this function</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_entropy</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+
+    <span class="c1"># You need to return the following variables correctly</span>
+    <span class="n">entropy</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Your code here to calculate the fraction of edible examples (i.e with value = 1 in y)</span>
+        <span class="n">p1</span> <span class="o">=</span>
+
+        <span class="c1"># For p1 = 0 and 1, set the entropy to 0 (to handle 0log0)</span>
+        <span class="k">if</span> <span class="n">p1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">p1</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># Your code here to calculate the entropy using the formula provided above</span>
+            <span class="n">entropy</span> <span class="o">=</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">entropy</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="c1">### END CODE HERE ###</span>
+
+    <span class="k">return</span> <span class="n">entropy</span>
+</pre></div>
+</div>
+<p>If you’re still stuck, you can check the hints presented below to figure out how to calculate <code class="docutils literal notranslate"><span class="pre">p1</span></code> and <code class="docutils literal notranslate"><span class="pre">entropy</span></code>.</p>
+<details><p>Hint to calculate p1     You can compute p1 as p1 = len(y[y == 1]) / len(y)</p>
+</details><details><p>Hint to calculate entropy     You can compute entropy as entropy = -p1 * np.log2(p1) - (1 - p1) * np.log2(1 - p1)</p>
+</details></details></li>
+</ul>
+</details><p>You can check if your implementation was correct by running the following test code:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute entropy at the root node (i.e. with all examples)</span>
+<span class="c1"># Since we have 5 edible and 5 non-edible mushrooms, the entropy should be 1&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entropy at root node: &quot;</span><span class="p">,</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
+
+<span class="c1"># UNIT TESTS</span>
+<span class="n">compute_entropy_test</span><span class="p">(</span><span class="n">compute_entropy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Entropy at root node:  1.0
+<span class="ansi-green-intense-fg"> All tests passed.</span>
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<table><tr><td><p>Entropy at root node: 1.0</p>
+</td></tr></table><p>### 4.2 Split dataset</p>
+<p>Next, you’ll write a helper function called <code class="docutils literal notranslate"><span class="pre">split_dataset</span></code> that takes in the data at a node and a feature to split on and splits it into left and right branches. Later in the lab, you’ll implement code to calculate how good the split is.</p>
+<ul class="simple">
+<li><p>The function takes in the training data, the list of indices of data points at that node, along with the feature to split on.</p></li>
+<li><p>It splits the data and returns the subset of indices at the left and the right branch.</p></li>
+<li><p>For example, say we’re starting at the root node (so <code class="docutils literal notranslate"><span class="pre">node_indices</span> <span class="pre">=</span> <span class="pre">[0,1,2,3,4,5,6,7,8,9]</span></code>), and we chose to split on feature <code class="docutils literal notranslate"><span class="pre">0</span></code>, which is whether or not the example has a brown cap.</p>
+<ul>
+<li><p>The output of the function is then, <code class="docutils literal notranslate"><span class="pre">left_indices</span> <span class="pre">=</span> <span class="pre">[0,1,2,3,4,7,9]</span></code> and <code class="docutils literal notranslate"><span class="pre">right_indices</span> <span class="pre">=</span> <span class="pre">[5,6,8]</span></code></p></li>
+</ul>
+</li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Brown Cap</p></th>
+<th class="head"><p>Tapering Stalk Shape</p></th>
+<th class="head"><p>Solitary</p></th>
+<th class="head"><p>Edible</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>### Exercise 2</p>
+<p>Please complete the <code class="docutils literal notranslate"><span class="pre">split_dataset()</span></code> function shown below</p>
+<ul class="simple">
+<li><p>For each index in <code class="docutils literal notranslate"><span class="pre">node_indices</span></code></p>
+<ul>
+<li><p>If the value of <code class="docutils literal notranslate"><span class="pre">X</span></code> at that index for that feature is <code class="docutils literal notranslate"><span class="pre">1</span></code>, add the index to <code class="docutils literal notranslate"><span class="pre">left_indices</span></code></p></li>
+<li><p>If the value of <code class="docutils literal notranslate"><span class="pre">X</span></code> at that index for that feature is <code class="docutils literal notranslate"><span class="pre">0</span></code>, add the index to <code class="docutils literal notranslate"><span class="pre">right_indices</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C2</span>
+<span class="c1"># GRADED FUNCTION: split_dataset</span>
+
+<span class="k">def</span> <span class="nf">split_dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Splits the data at the given node into</span>
+<span class="sd">    left and right branches</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (ndarray):             Data matrix of shape(n_samples, n_features)</span>
+<span class="sd">        node_indices (list):  List containing the active indices. I.e, the samples being considered at this step.</span>
+<span class="sd">        feature (int):           Index of feature to split on</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        left_indices (list): Indices with feature value == 1</span>
+<span class="sd">        right_indices (list): Indices with feature value == 0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># You need to return the following variables correctly</span>
+    <span class="n">left_indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">right_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">node_indices</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">feature</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">left_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="c1">### END CODE HERE ###</span>
+
+    <span class="k">return</span> <span class="n">left_indices</span><span class="p">,</span> <span class="n">right_indices</span>
+</pre></div>
+</div>
+</div>
+<details><p>Click for hints</p>
+<ul>
+<li><p>Here’s how you can structure the overall implementation for this function ```python def split_dataset(X, node_indices, feature):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># You need to return the following variables correctly
+left_indices = []
+right_indices = []
+
+### START CODE HERE ###
+# Go through the indices of examples at that node
+for i in node_indices:
+    if # Your code here to check if the value of X at that index for the feature is 1
+        left_indices.append(i)
+    else:
+        right_indices.append(i)
+### END CODE HERE ###
+</pre></div>
+</div>
+<p>return left_indices, right_indices ```</p>
+<details><p>Click for more hints</p>
+<p>The condition is if X[i][feature] == 1:.</p>
+</details></li>
+</ul>
+</details><p>Now, let’s check your implementation using the code blocks below. Let’s try splitting the dataset at the root node, which contains all examples at feature 0 (Brown Cap) as we’d discussed above</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="c1"># Feel free to play around with these variables</span>
+<span class="c1"># The dataset only has three features, so this value can be 0 (Brown Cap), 1 (Tapering Stalk Shape) or 2 (Solitary)</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">left_indices</span><span class="p">,</span> <span class="n">right_indices</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">root_indices</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Left indices: &quot;</span><span class="p">,</span> <span class="n">left_indices</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Right indices: &quot;</span><span class="p">,</span> <span class="n">right_indices</span><span class="p">)</span>
+
+<span class="c1"># UNIT TESTS</span>
+<span class="n">split_dataset_test</span><span class="p">(</span><span class="n">split_dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Left indices:  [0, 1, 2, 3, 4, 7, 9]
+Right indices:  [5, 6, 8]
+<span class="ansi-green-intense-fg"> All tests passed.</span>
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Left indices:  [0, 1, 2, 3, 4, 7, 9]
+Right indices:  [5, 6, 8]
+</pre></div>
+</div>
+<p>### 4.3 Calculate information gain</p>
+<p>Next, you’ll write a function called <code class="docutils literal notranslate"><span class="pre">information_gain</span></code> that takes in the training data, the indices at a node and a feature to split on and returns the information gain from the split.</p>
+<p>### Exercise 3</p>
+<p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_information_gain()</span></code> function shown below to compute</p>
+<div class="math notranslate nohighlight">
+\[\text{Information Gain} = H(p_1^\text{node})- (w^{\text{left}}H(p_1^\text{left}) + w^{\text{right}}H(p_1^\text{right}))\]</div>
+<p>where - <span class="math notranslate nohighlight">\(H(p_1^\text{node})\)</span> is entropy at the node - <span class="math notranslate nohighlight">\(H(p_1^\text{left})\)</span> and <span class="math notranslate nohighlight">\(H(p_1^\text{right})\)</span> are the entropies at the left and the right branches resulting from the split - <span class="math notranslate nohighlight">\(w^{\text{left}}\)</span> and <span class="math notranslate nohighlight">\(w^{\text{right}}\)</span> are the proportion of examples at the left and right branch, respectively</p>
+<p>Note: - You can use the <code class="docutils literal notranslate"><span class="pre">compute_entropy()</span></code> function that you implemented above to calculate the entropy - We’ve provided some starter code that uses the <code class="docutils literal notranslate"><span class="pre">split_dataset()</span></code> function you implemented above to split the dataset</p>
+<p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C3</span>
+<span class="c1"># GRADED FUNCTION: compute_information_gain</span>
+
+<span class="k">def</span> <span class="nf">compute_information_gain</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the information of splitting the node on a given feature</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (ndarray):            Data matrix of shape(n_samples, n_features)</span>
+<span class="sd">        y (array like):         list or ndarray with n_samples containing the target variable</span>
+<span class="sd">        node_indices (ndarray): List containing the active indices. I.e, the samples being considered in this step.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        cost (float):        Cost computed</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Split dataset</span>
+    <span class="n">left_indices</span><span class="p">,</span> <span class="n">right_indices</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+
+    <span class="c1"># Some useful variables</span>
+    <span class="n">X_node</span><span class="p">,</span> <span class="n">y_node</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">node_indices</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">node_indices</span><span class="p">]</span>
+    <span class="n">X_left</span><span class="p">,</span> <span class="n">y_left</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">left_indices</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">left_indices</span><span class="p">]</span>
+    <span class="n">X_right</span><span class="p">,</span> <span class="n">y_right</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">right_indices</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">right_indices</span><span class="p">]</span>
+
+    <span class="c1"># You need to return the following variables correctly</span>
+    <span class="n">information_gain</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="n">node_entropy</span> <span class="o">=</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">y_node</span><span class="p">)</span>
+    <span class="n">left_entropy</span> <span class="o">=</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">y_left</span><span class="p">)</span>
+    <span class="n">right_entropy</span> <span class="o">=</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">y_right</span><span class="p">)</span>
+
+    <span class="c1"># Weights</span>
+    <span class="n">w_left</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_left</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_node</span><span class="p">)</span>
+    <span class="n">w_right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_right</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_node</span><span class="p">)</span>
+
+    <span class="c1">#Weighted entropy</span>
+    <span class="n">weighted_entropy</span> <span class="o">=</span> <span class="n">w_left</span> <span class="o">*</span> <span class="n">left_entropy</span> <span class="o">+</span> <span class="n">w_right</span> <span class="o">*</span> <span class="n">right_entropy</span>
+
+    <span class="c1">#Information gain</span>
+    <span class="n">information_gain</span> <span class="o">=</span> <span class="n">node_entropy</span> <span class="o">-</span> <span class="n">weighted_entropy</span>
+
+    <span class="c1">### END CODE HERE ###</span>
+
+    <span class="k">return</span> <span class="n">information_gain</span>
+</pre></div>
+</div>
+</div>
+<details><p>Click for hints</p>
+<ul>
+<li><p>Here’s how you can structure the overall implementation for this function ```python def compute_information_gain(X, y, node_indices, feature): # Split dataset left_indices, right_indices = split_dataset(X, node_indices, feature)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Some useful variables
+X_node, y_node = X[node_indices], y[node_indices]
+X_left, y_left = X[left_indices], y[left_indices]
+X_right, y_right = X[right_indices], y[right_indices]
+
+# You need to return the following variables correctly
+information_gain = 0
+
+### START CODE HERE ###
+# Your code here to compute the entropy at the node using compute_entropy()
+node_entropy =
+# Your code here to compute the entropy at the left branch
+left_entropy =
+# Your code here to compute the entropy at the right branch
+right_entropy =
+
+# Your code here to compute the proportion of examples at the left branch
+w_left =
+
+# Your code here to compute the proportion of examples at the right branch
+w_right =
+
+# Your code here to compute weighted entropy from the split using
+# w_left, w_right, left_entropy and right_entropy
+weighted_entropy =
+
+# Your code here to compute the information gain as the entropy at the node
+# minus the weighted entropy
+information_gain =
+### END CODE HERE ###
+
+return information_gain
+</pre></div>
+</div>
+<p>``` If you’re still stuck, check out the hints below.</p>
+<details><p>Hint to calculate the entropies</p>
+<p>node_entropy = compute_entropy(y_node) left_entropy = compute_entropy(y_left) right_entropy = compute_entropy(y_right)</p>
+</details><details><p>Hint to calculate w_left and w_right w_left = len(X_left) / len(X_node) w_right = len(X_right) / len(X_node)</p>
+</details><details><p>Hint to calculate weighted_entropy weighted_entropy = w_left * left_entropy + w_right * right_entropy</p>
+</details><details><p>Hint to calculate information_gain information_gain = node_entropy - weighted_entropy</p>
+</details></li>
+</ul>
+</details><p>You can now check your implementation using the cell below and calculate what the information gain would be from splitting on each of the featues</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_gain0</span> <span class="o">=</span> <span class="n">compute_information_gain</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">root_indices</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Information Gain from splitting the root on brown cap: &quot;</span><span class="p">,</span> <span class="n">info_gain0</span><span class="p">)</span>
+
+<span class="n">info_gain1</span> <span class="o">=</span> <span class="n">compute_information_gain</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">root_indices</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Information Gain from splitting the root on tapering stalk shape: &quot;</span><span class="p">,</span> <span class="n">info_gain1</span><span class="p">)</span>
+
+<span class="n">info_gain2</span> <span class="o">=</span> <span class="n">compute_information_gain</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">root_indices</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Information Gain from splitting the root on solitary: &quot;</span><span class="p">,</span> <span class="n">info_gain2</span><span class="p">)</span>
+
+<span class="c1"># UNIT TESTS</span>
+<span class="n">compute_information_gain_test</span><span class="p">(</span><span class="n">compute_information_gain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Information Gain from splitting the root on brown cap:  0.034851554559677034
+Information Gain from splitting the root on tapering stalk shape:  0.12451124978365313
+Information Gain from splitting the root on solitary:  0.2780719051126377
+<span class="ansi-green-intense-fg"> All tests passed.</span>
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Information Gain from splitting the root on brown cap:  0.034851554559677034
+Information Gain from splitting the root on tapering stalk shape:  0.12451124978365313
+Information Gain from splitting the root on solitary:  0.2780719051126377
+</pre></div>
+</div>
+<p>Splitting on “Solitary” (feature = 2) at the root node gives the maximum information gain. Therefore, it’s the best feature to split on at the root node.</p>
+<p>### 4.4 Get best split Now let’s write a function to get the best feature to split on by computing the information gain from each feature as we did above and returning the feature that gives the maximum information gain</p>
+<p>### Exercise 4 Please complete the <code class="docutils literal notranslate"><span class="pre">get_best_split()</span></code> function shown below. - The function takes in the training data, along with the indices of datapoint at that node - The output of the function is the feature that gives the maximum information gain - You can use the <code class="docutils literal notranslate"><span class="pre">compute_information_gain()</span></code> function to iterate through the features and calculate the information for each feature If you get stuck, you can check out the hints presented after the cell below to help you with the
+implementation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C4</span>
+<span class="c1"># GRADED FUNCTION: get_best_split</span>
+
+<span class="k">def</span> <span class="nf">get_best_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the optimal feature and threshold value</span>
+<span class="sd">    to split the node data</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (ndarray):            Data matrix of shape(n_samples, n_features)</span>
+<span class="sd">        y (array like):         list or ndarray with n_samples containing the target variable</span>
+<span class="sd">        node_indices (ndarray): List containing the active indices. I.e, the samples being considered in this step.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        best_feature (int):     The index of the best feature to split</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Some useful variables</span>
+    <span class="n">num_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># You need to return the following variables correctly</span>
+    <span class="n">best_feature</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="n">max_info_gain</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_features</span><span class="p">):</span>
+        <span class="n">info_gain</span> <span class="o">=</span> <span class="n">compute_information_gain</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">info_gain</span> <span class="o">&gt;</span> <span class="n">max_info_gain</span><span class="p">:</span>
+            <span class="n">max_info_gain</span> <span class="o">=</span> <span class="n">info_gain</span>
+            <span class="n">best_feature</span> <span class="o">=</span> <span class="n">feature</span>
+
+
+    <span class="c1">### END CODE HERE ##</span>
+
+    <span class="k">return</span> <span class="n">best_feature</span>
+<br/></pre></div>
+</div>
+</div>
+<details><p>Click for hints</p>
+<ul>
+<li><p>Here’s how you can structure the overall implementation for this function</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_best_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">):</span>
+
+    <span class="c1"># Some useful variables</span>
+    <span class="n">num_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># You need to return the following variables correctly</span>
+    <span class="n">best_feature</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="n">max_info_gain</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Iterate through all features</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_features</span><span class="p">):</span>
+
+        <span class="c1"># Your code here to compute the information gain from splitting on this feature</span>
+        <span class="n">info_gain</span> <span class="o">=</span>
+
+        <span class="c1"># If the information gain is larger than the max seen so far</span>
+        <span class="k">if</span> <span class="n">info_gain</span> <span class="o">&gt;</span> <span class="n">max_info_gain</span><span class="p">:</span>
+            <span class="c1"># Your code here to set the max_info_gain and best_feature</span>
+            <span class="n">max_info_gain</span> <span class="o">=</span>
+            <span class="n">best_feature</span> <span class="o">=</span>
+    <span class="c1">### END CODE HERE ##</span>
+
+<span class="k">return</span> <span class="n">best_feature</span>
+</pre></div>
+</div>
+<p>If you’re still stuck, check out the hints below.</p>
+<details><p>Hint to calculate info_gain</p>
+<p>info_gain = compute_information_gain(X, y, node_indices, feature)</p>
+</details><details><p>Hint to update the max_info_gain and best_feature max_info_gain = info_gain best_feature = feature</p>
+</details></li>
+</ul>
+</details><p>Now, let’s check the implementation of your function using the cell below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_feature</span> <span class="o">=</span> <span class="n">get_best_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">root_indices</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best feature to split on: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">best_feature</span><span class="p">)</span>
+
+<span class="c1"># UNIT TESTS</span>
+<span class="n">get_best_split_test</span><span class="p">(</span><span class="n">get_best_split</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Best feature to split on: 2
+<span class="ansi-green-intense-fg"> All tests passed.</span>
+</pre></div></div>
+</div>
+<p>As we saw above, the function returns that the best feature to split on at the root node is feature 2 (“Solitary”)</p>
+<p>## 5 - Building the tree</p>
+<p>In this section, we use the functions you implemented above to generate a decision tree by successively picking the best feature to split on until we reach the stopping criteria (maximum depth is 2).</p>
+<p>You do not need to implement anything for this part.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Not graded</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">build_tree_recursive</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">branch_name</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build a tree using the recursive algorithm that split the dataset into 2 subgroups at each node.</span>
+<span class="sd">    This function just prints the tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (ndarray):            Data matrix of shape(n_samples, n_features)</span>
+<span class="sd">        y (array like):         list or ndarray with n_samples containing the target variable</span>
+<span class="sd">        node_indices (ndarray): List containing the active indices. I.e, the samples being considered in this step.</span>
+<span class="sd">        branch_name (string):   Name of the branch. [&#39;Root&#39;, &#39;Left&#39;, &#39;Right&#39;]</span>
+<span class="sd">        max_depth (int):        Max depth of the resulting tree.</span>
+<span class="sd">        current_depth (int):    Current depth. Parameter used during recursive call.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Maximum depth reached - stop splitting</span>
+    <span class="k">if</span> <span class="n">current_depth</span> <span class="o">==</span> <span class="n">max_depth</span><span class="p">:</span>
+        <span class="n">formatting</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">*</span><span class="n">current_depth</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="n">current_depth</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">formatting</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> leaf node with indices&quot;</span> <span class="o">%</span> <span class="n">branch_name</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Otherwise, get best split and split the data</span>
+    <span class="c1"># Get the best feature and threshold at this node</span>
+    <span class="n">best_feature</span> <span class="o">=</span> <span class="n">get_best_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">)</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">current_depth</span><span class="p">,</span> <span class="n">branch_name</span><span class="p">,</span> <span class="n">best_feature</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">))</span>
+
+    <span class="n">formatting</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="n">current_depth</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> Depth </span><span class="si">%d</span><span class="s2">, </span><span class="si">%s</span><span class="s2">: Split on feature: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">formatting</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">,</span> <span class="n">branch_name</span><span class="p">,</span> <span class="n">best_feature</span><span class="p">))</span>
+
+    <span class="c1"># Split the dataset at the best feature</span>
+    <span class="n">left_indices</span><span class="p">,</span> <span class="n">right_indices</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">best_feature</span><span class="p">)</span>
+
+    <span class="c1"># continue splitting the left and the right child. Increment current depth</span>
+    <span class="n">build_tree_recursive</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">left_indices</span><span class="p">,</span> <span class="s2">&quot;Left&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">current_depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">build_tree_recursive</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">right_indices</span><span class="p">,</span> <span class="s2">&quot;Right&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">current_depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">build_tree_recursive</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">root_indices</span><span class="p">,</span> <span class="s2">&quot;Root&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">current_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ Depth 0, Root: Split on feature: 2
+- Depth 1, Left: Split on feature: 0
+  -- Left leaf node with indices [0, 1, 4, 7]
+  -- Right leaf node with indices [5]
+- Depth 1, Right: Split on feature: 1
+  -- Left leaf node with indices [8]
+  -- Right leaf node with indices [2, 3, 6, 9]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Amit Kumar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

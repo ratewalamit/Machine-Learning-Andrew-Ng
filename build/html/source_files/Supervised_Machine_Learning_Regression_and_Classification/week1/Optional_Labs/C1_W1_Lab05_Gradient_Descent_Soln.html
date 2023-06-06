@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optional Lab: Gradient Descent for Linear Regression &mdash; Machine-Learning-Andrew-Ng  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Machine-Learning-Andrew-Ng
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Supervised_Machine_Learning_Regression_and_Classification.html">Supervised_Machine_Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Machine-Learning-Andrew-Ng</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Optional Lab: Gradient Descent for Linear Regression</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/source_files/Supervised_Machine_Learning_Regression_and_Classification/week1/Optional_Labs/C1_W1_Lab05_Gradient_Descent_Soln.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Optional-Lab:-Gradient-Descent-for-Linear-Regression">
+<h1>Optional Lab: Gradient Descent for Linear Regression<a class="headerlink" href="#Optional-Lab:-Gradient-Descent-for-Linear-Regression" title="Permalink to this heading"></a></h1>
+<figure><center><p><img alt="61960ad911e14ef993af02baf4cd4c94" src="../../../../_images/C1_W1_L4_S1_Lecture_GD.png" /></p>
+</center></figure><section id="Goals">
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
+<p>In this lab, you will: - automate the process of optimizing <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> using gradient descent.</p>
+</section>
+<section id="Tools">
+<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this heading"></a></h2>
+<p>In this lab, we will make use of: - NumPy, a popular library for scientific computing - Matplotlib, a popular library for plotting data - plotting routines in the lab_utils.py file in the local directory</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;./deeplearning.mplstyle&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">lab_utils_uni</span> <span class="kn">import</span> <span class="n">plt_house_x</span><span class="p">,</span> <span class="n">plt_contour_wgrad</span><span class="p">,</span> <span class="n">plt_divergence</span><span class="p">,</span> <span class="n">plt_gradients</span>
+</pre></div>
+</div>
+</div>
+<p># Problem Statement</p>
+<p>Let’s use the same two data points as before - a house with 1000 square feet sold for \$300,000 and a house with 2000 square feet sold for \$500,000.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Size (1000 sqft)</p></th>
+<th class="head"><p>Price (1000s of dollars)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>300</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>500</p></td>
+</tr>
+</tbody>
+</table>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load our data set</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>   <span class="c1">#features</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">300.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">])</span>   <span class="c1">#target value</span>
+</pre></div>
+</div>
+</div>
+<p>### Compute_Cost This was developed in the last lab. We’ll need it again here.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Function to calculate the cost</span>
+<span class="k">def</span> <span class="nf">compute_cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">f_wb</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">+</span> <span class="p">(</span><span class="n">f_wb</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">total_cost</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">cost</span>
+
+    <span class="k">return</span> <span class="n">total_cost</span>
+</pre></div>
+</div>
+</div>
+<p>## Gradient descent summary So far in this course, you have developed a linear model that predicts <span class="math notranslate nohighlight">\(f_{w,b}(x^{(i)})\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f_{w,b}(x^{(i)}) = wx^{(i)} + b \tag{1}\]</div>
+<p>In linear regression, you utilize input training data to fit the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span> by minimizing a measure of the error between our predictions <span class="math notranslate nohighlight">\(f_{w,b}(x^{(i)})\)</span> and the actual data <span class="math notranslate nohighlight">\(y^{(i)}\)</span>. The measure is called the <span class="math notranslate nohighlight">\(cost\)</span>, <span class="math notranslate nohighlight">\(J(w,b)\)</span>. In training you measure the cost over all of our training samples <span class="math notranslate nohighlight">\(x^{(i)},y^{(i)}\)</span></p>
+<div class="math notranslate nohighlight">
+\[J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2\tag{2}\]</div>
+<p>In lecture, <em>gradient descent</em> was described as:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{align*} \text{repeat}&amp;\text{ until convergence:} \; \lbrace \newline
+\;  w &amp;= w -  \alpha \frac{\partial J(w,b)}{\partial w} \tag{3}  \; \newline
+ b &amp;= b -  \alpha \frac{\partial J(w,b)}{\partial b}  \newline \rbrace
+\end{align*}\]</div>
+<p>where, parameters <span class="math notranslate nohighlight">\(w\)</span>, <span class="math notranslate nohighlight">\(b\)</span> are updated simultaneously.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">The gradient is defined as:</div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\frac{\partial J(w,b)}{\partial w}  &amp;= \frac{1}{m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})x^{(i)} \tag{4}\\
+  \frac{\partial J(w,b)}{\partial b}  &amp;= \frac{1}{m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)}) \tag{5}\\
+\end{align}\end{split}\]</div>
+</div></blockquote>
+<p>Here <em>simultaniously</em> means that you calculate the partial derivatives for all the parameters before updating any of the parameters.</p>
+<p>## Implement Gradient Descent You will implement gradient descent algorithm for one feature. You will need three functions. - <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> implementing equation (4) and (5) above - <code class="docutils literal notranslate"><span class="pre">compute_cost</span></code> implementing equation (2) above (code from previous lab) - <code class="docutils literal notranslate"><span class="pre">gradient_descent</span></code>, utilizing compute_gradient and compute_cost</p>
+<p>Conventions: - The naming of python variables containing partial derivatives follows this pattern,<span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial b}\)</span> will be <code class="docutils literal notranslate"><span class="pre">dj_db</span></code>. - w.r.t is With Respect To, as in partial derivative of <span class="math notranslate nohighlight">\(J(wb)\)</span> With Respect To <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<p>### compute_gradient <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> implements (4) and (5) above and returns <span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial w}\)</span>,<span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial b}\)</span>. The embedded comments describe the operations.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the gradient for linear regression</span>
+<span class="sd">    Args:</span>
+<span class="sd">      x (ndarray (m,)): Data, m examples</span>
+<span class="sd">      y (ndarray (m,)): target values</span>
+<span class="sd">      w,b (scalar)    : model parameters</span>
+<span class="sd">    Returns</span>
+<span class="sd">      dj_dw (scalar): The gradient of the cost w.r.t. the parameters w</span>
+<span class="sd">      dj_db (scalar): The gradient of the cost w.r.t. the parameter b</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+
+    <span class="c1"># Number of training examples</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">f_wb</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="n">dj_dw_i</span> <span class="o">=</span> <span class="p">(</span><span class="n">f_wb</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">dj_db_i</span> <span class="o">=</span> <span class="n">f_wb</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">dj_db</span> <span class="o">+=</span> <span class="n">dj_db_i</span>
+        <span class="n">dj_dw</span> <span class="o">+=</span> <span class="n">dj_dw_i</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">dj_dw</span> <span class="o">/</span> <span class="n">m</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="n">dj_db</span> <span class="o">/</span> <span class="n">m</span>
+
+    <span class="k">return</span> <span class="n">dj_dw</span><span class="p">,</span> <span class="n">dj_db</span>
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><img alt="5414b262957f4ddfb9d47cc0293373a5" src="../../../../_images/C1_W1_Lab03_lecture_slopes.PNG" /> The lectures described how gradient descent utilizes the partial derivative of the cost with respect to a parameter at a point to update that parameter.</div>
+<div class="line">Let’s use our <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> function to find and plot some partial derivatives of our cost function relative to one of the parameters, <span class="math notranslate nohighlight">\(w_0\)</span>.</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_gradients</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">compute_cost</span><span class="p">,</span> <span class="n">compute_gradient</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_15_0.png" src="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_15_0.png" />
+</div>
+</div>
+<p>Above, the left plot shows <span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial w}\)</span> or the slope of the cost curve relative to <span class="math notranslate nohighlight">\(w\)</span> at three points. On the right side of the plot, the derivative is positive, while on the left it is negative. Due to the ‘bowl shape’, the derivatives will always lead gradient descent toward the bottom where the gradient is zero.</p>
+<p>The left plot has fixed <span class="math notranslate nohighlight">\(b=100\)</span>. Gradient descent will utilize both <span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial w}\)</span> and <span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial b}\)</span> to update parameters. The ‘quiver plot’ on the right provides a means of viewing the gradient of both parameters. The arrow sizes reflect the magnitude of the gradient at that point. The direction and slope of the arrow reflects the ratio of <span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial w}\)</span> and <span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial b}\)</span> at
+that point. Note that the gradient points <em>away</em> from the minimum. Review equation (3) above. The scaled gradient is <em>subtracted</em> from the current value of <span class="math notranslate nohighlight">\(w\)</span> or <span class="math notranslate nohighlight">\(b\)</span>. This moves the parameter in a direction that will reduce cost.</p>
+<p>### Gradient Descent Now that gradients can be computed, gradient descent, described in equation (3) above can be implemented below in <code class="docutils literal notranslate"><span class="pre">gradient_descent</span></code>. The details of the implementation are described in the comments. Below, you will utilize this function to find optimal values of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> on the training data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">,</span> <span class="n">cost_function</span><span class="p">,</span> <span class="n">gradient_function</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs gradient descent to fit w,b. Updates w,b by taking</span>
+<span class="sd">    num_iters gradient steps with learning rate alpha</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      x (ndarray (m,))  : Data, m examples</span>
+<span class="sd">      y (ndarray (m,))  : target values</span>
+<span class="sd">      w_in,b_in (scalar): initial values of model parameters</span>
+<span class="sd">      alpha (float):     Learning rate</span>
+<span class="sd">      num_iters (int):   number of iterations to run gradient descent</span>
+<span class="sd">      cost_function:     function to call to produce cost</span>
+<span class="sd">      gradient_function: function to call to produce gradient</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      w (scalar): Updated value of parameter after running gradient descent</span>
+<span class="sd">      b (scalar): Updated value of parameter after running gradient descent</span>
+<span class="sd">      J_history (List): History of cost values</span>
+<span class="sd">      p_history (list): History of parameters [w,b]</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+
+    <span class="n">w</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">w_in</span><span class="p">)</span> <span class="c1"># avoid modifying global w_in</span>
+    <span class="c1"># An array to store cost J and w&#39;s at each iteration primarily for graphing later</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">p_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b_in</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w_in</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+        <span class="c1"># Calculate the gradient and update the parameters using gradient_function</span>
+        <span class="n">dj_dw</span><span class="p">,</span> <span class="n">dj_db</span> <span class="o">=</span> <span class="n">gradient_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span> <span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="c1"># Update Parameters using equation (3) above</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dj_db</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dj_dw</span>
+
+        <span class="c1"># Save cost J at each iteration</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">100000</span><span class="p">:</span>      <span class="c1"># prevent resource exhaustion</span>
+            <span class="n">J_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">cost_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span> <span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+            <span class="n">p_history</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">])</span>
+        <span class="c1"># Print cost every at intervals 10 times or as many iterations if &lt; 10</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">%</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_iters</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">4</span><span class="si">}</span><span class="s2">: Cost </span><span class="si">{</span><span class="n">J_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">0.2e</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">,</span>
+                  <span class="sa">f</span><span class="s2">&quot;dj_dw: </span><span class="si">{</span><span class="n">dj_dw</span><span class="si">:</span><span class="s2"> 0.3e</span><span class="si">}</span><span class="s2">, dj_db: </span><span class="si">{</span><span class="n">dj_db</span><span class="si">:</span><span class="s2"> 0.3e</span><span class="si">}</span><span class="s2">  &quot;</span><span class="p">,</span>
+                  <span class="sa">f</span><span class="s2">&quot;w: </span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s2"> 0.3e</span><span class="si">}</span><span class="s2">, b:</span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2"> 0.5e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">J_history</span><span class="p">,</span> <span class="n">p_history</span> <span class="c1">#return w and J,w history for graphing</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize parameters</span>
+<span class="n">w_init</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b_init</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># some gradient descent settings</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">tmp_alpha</span> <span class="o">=</span> <span class="mf">1.0e-2</span>
+<span class="c1"># run gradient descent</span>
+<span class="n">w_final</span><span class="p">,</span> <span class="n">b_final</span><span class="p">,</span> <span class="n">J_hist</span><span class="p">,</span> <span class="n">p_hist</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">x_train</span> <span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">w_init</span><span class="p">,</span> <span class="n">b_init</span><span class="p">,</span> <span class="n">tmp_alpha</span><span class="p">,</span>
+                                                    <span class="n">iterations</span><span class="p">,</span> <span class="n">compute_cost</span><span class="p">,</span> <span class="n">compute_gradient</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(w,b) found by gradient descent: (</span><span class="si">{</span><span class="n">w_final</span><span class="si">:</span><span class="s2">8.4f</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">b_final</span><span class="si">:</span><span class="s2">8.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Iteration    0: Cost 7.93e+04  dj_dw: -6.500e+02, dj_db: -4.000e+02   w:  6.500e+00, b: 4.00000e+00
+Iteration 1000: Cost 3.41e+00  dj_dw: -3.712e-01, dj_db:  6.007e-01   w:  1.949e+02, b: 1.08228e+02
+Iteration 2000: Cost 7.93e-01  dj_dw: -1.789e-01, dj_db:  2.895e-01   w:  1.975e+02, b: 1.03966e+02
+Iteration 3000: Cost 1.84e-01  dj_dw: -8.625e-02, dj_db:  1.396e-01   w:  1.988e+02, b: 1.01912e+02
+Iteration 4000: Cost 4.28e-02  dj_dw: -4.158e-02, dj_db:  6.727e-02   w:  1.994e+02, b: 1.00922e+02
+Iteration 5000: Cost 9.95e-03  dj_dw: -2.004e-02, dj_db:  3.243e-02   w:  1.997e+02, b: 1.00444e+02
+Iteration 6000: Cost 2.31e-03  dj_dw: -9.660e-03, dj_db:  1.563e-02   w:  1.999e+02, b: 1.00214e+02
+Iteration 7000: Cost 5.37e-04  dj_dw: -4.657e-03, dj_db:  7.535e-03   w:  1.999e+02, b: 1.00103e+02
+Iteration 8000: Cost 1.25e-04  dj_dw: -2.245e-03, dj_db:  3.632e-03   w:  2.000e+02, b: 1.00050e+02
+Iteration 9000: Cost 2.90e-05  dj_dw: -1.082e-03, dj_db:  1.751e-03   w:  2.000e+02, b: 1.00024e+02
+(w,b) found by gradient descent: (199.9929,100.0116)
+</pre></div></div>
+</div>
+<p><img alt="dfea0cea87e94b6385207cd891f82bcd" src="../../../../_images/C1_W1_Lab03_lecture_learningrate.PNG" /> Take a moment and note some characteristics of the gradient descent process printed above.</p>
+<ul class="simple">
+<li><p>The cost starts large and rapidly declines as described in the slide from the lecture.</p></li>
+<li><p>The partial derivatives, <code class="docutils literal notranslate"><span class="pre">dj_dw</span></code>, and <code class="docutils literal notranslate"><span class="pre">dj_db</span></code> also get smaller, rapidly at first and then more slowly. As shown in the diagram from the lecture, as the process nears the ‘bottom of the bowl’ progress is slower due to the smaller value of the derivative at that point.</p></li>
+<li><p>progress slows though the learning rate, alpha, remains fixed</p></li>
+</ul>
+<section id="Cost-versus-iterations-of-gradient-descent">
+<h3>Cost versus iterations of gradient descent<a class="headerlink" href="#Cost-versus-iterations-of-gradient-descent" title="Permalink to this heading"></a></h3>
+<p>A plot of cost versus iterations is a useful measure of progress in gradient descent. Cost should always decrease in successful runs. The change in cost is so rapid initially, it is useful to plot the initial decent on a different scale than the final descent. In the plots below, note the scale of cost on the axes and the iteration step.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot cost versus iteration</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">J_hist</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1000</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">J_hist</span><span class="p">[</span><span class="mi">1000</span><span class="p">:])),</span> <span class="n">J_hist</span><span class="p">[</span><span class="mi">1000</span><span class="p">:])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cost vs. iteration(start)&quot;</span><span class="p">);</span>  <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cost vs. iteration (end)&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Cost&#39;</span><span class="p">)</span>            <span class="p">;</span>  <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Cost&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration step&#39;</span><span class="p">)</span>  <span class="p">;</span>  <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration step&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_22_0.png" src="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_22_0.png" />
+</div>
+</div>
+</section>
+<section id="Predictions">
+<h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this heading"></a></h3>
+<p>Now that you have discovered the optimal values for the parameters <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, you can now use the model to predict housing values based on our learned parameters. As expected, the predicted values are nearly the same as the training values for the same housing. Further, the value not in the prediction is in line with the expected value.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1000 sqft house prediction </span><span class="si">{</span><span class="n">w_final</span><span class="o">*</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b_final</span><span class="si">:</span><span class="s2">0.1f</span><span class="si">}</span><span class="s2"> Thousand dollars&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1200 sqft house prediction </span><span class="si">{</span><span class="n">w_final</span><span class="o">*</span><span class="mf">1.2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b_final</span><span class="si">:</span><span class="s2">0.1f</span><span class="si">}</span><span class="s2"> Thousand dollars&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2000 sqft house prediction </span><span class="si">{</span><span class="n">w_final</span><span class="o">*</span><span class="mf">2.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b_final</span><span class="si">:</span><span class="s2">0.1f</span><span class="si">}</span><span class="s2"> Thousand dollars&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1000 sqft house prediction 300.0 Thousand dollars
+1200 sqft house prediction 340.0 Thousand dollars
+2000 sqft house prediction 500.0 Thousand dollars
+</pre></div></div>
+</div>
+<p>## Plotting You can show the progress of gradient descent during its execution by plotting the cost over iterations on a contour plot of the cost(w,b).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt_contour_wgrad</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">p_hist</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_26_0.png" src="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_26_0.png" />
+</div>
+</div>
+<p>Above, the contour plot shows the <span class="math notranslate nohighlight">\(cost(w,b)\)</span> over a range of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. Cost levels are represented by the rings. Overlayed, using red arrows, is the path of gradient descent. Here are some things to note: - The path makes steady (monotonic) progress toward its goal. - initial steps are much larger than the steps near the goal.</p>
+<p><strong>Zooming in</strong>, we can see that final steps of gradient descent. Note the distance between steps shrinks as the gradient approaches zero.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt_contour_wgrad</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">p_hist</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">w_range</span><span class="o">=</span><span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">b_range</span><span class="o">=</span><span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+            <span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">],</span><span class="n">resolution</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_29_0.png" src="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_29_0.png" />
+</div>
+</div>
+<p>### Increased Learning Rate</p>
+<figure><p>&lt;img align=”left”, src=”./images/C1_W1_Lab03_alpha_too_big.PNG” style=”width:340px;height:240px;” &gt;</p>
+</figure><p>In the lecture, there was a discussion related to the proper value of the learning rate, <span class="math notranslate nohighlight">\(\alpha\)</span> in equation(3). The larger <span class="math notranslate nohighlight">\(\alpha\)</span> is, the faster gradient descent will converge to a solution. But, if it is too large, gradient descent will diverge. Above you have an example of a solution which converges nicely.</p>
+<p>Let’s try increasing the value of <span class="math notranslate nohighlight">\(\alpha\)</span> and see what happens:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize parameters</span>
+<span class="n">w_init</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b_init</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># set alpha to a large value</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">tmp_alpha</span> <span class="o">=</span> <span class="mf">8.0e-1</span>
+<span class="c1"># run gradient descent</span>
+<span class="n">w_final</span><span class="p">,</span> <span class="n">b_final</span><span class="p">,</span> <span class="n">J_hist</span><span class="p">,</span> <span class="n">p_hist</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">x_train</span> <span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">w_init</span><span class="p">,</span> <span class="n">b_init</span><span class="p">,</span> <span class="n">tmp_alpha</span><span class="p">,</span>
+                                                    <span class="n">iterations</span><span class="p">,</span> <span class="n">compute_cost</span><span class="p">,</span> <span class="n">compute_gradient</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Iteration    0: Cost 2.58e+05  dj_dw: -6.500e+02, dj_db: -4.000e+02   w:  5.200e+02, b: 3.20000e+02
+Iteration    1: Cost 7.82e+05  dj_dw:  1.130e+03, dj_db:  7.000e+02   w: -3.840e+02, b:-2.40000e+02
+Iteration    2: Cost 2.37e+06  dj_dw: -1.970e+03, dj_db: -1.216e+03   w:  1.192e+03, b: 7.32800e+02
+Iteration    3: Cost 7.19e+06  dj_dw:  3.429e+03, dj_db:  2.121e+03   w: -1.551e+03, b:-9.63840e+02
+Iteration    4: Cost 2.18e+07  dj_dw: -5.974e+03, dj_db: -3.691e+03   w:  3.228e+03, b: 1.98886e+03
+Iteration    5: Cost 6.62e+07  dj_dw:  1.040e+04, dj_db:  6.431e+03   w: -5.095e+03, b:-3.15579e+03
+Iteration    6: Cost 2.01e+08  dj_dw: -1.812e+04, dj_db: -1.120e+04   w:  9.402e+03, b: 5.80237e+03
+Iteration    7: Cost 6.09e+08  dj_dw:  3.156e+04, dj_db:  1.950e+04   w: -1.584e+04, b:-9.80139e+03
+Iteration    8: Cost 1.85e+09  dj_dw: -5.496e+04, dj_db: -3.397e+04   w:  2.813e+04, b: 1.73730e+04
+Iteration    9: Cost 5.60e+09  dj_dw:  9.572e+04, dj_db:  5.916e+04   w: -4.845e+04, b:-2.99567e+04
+</pre></div></div>
+</div>
+<p>Above, <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are bouncing back and forth between positive and negative with the absolute value increasing with each iteration. Further, each iteration <span class="math notranslate nohighlight">\(\frac{\partial J(w,b)}{\partial w}\)</span> changes sign and cost is increasing rather than decreasing. This is a clear sign that the <em>learning rate is too large</em> and the solution is diverging. Let’s visualize this with a plot.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_divergence</span><span class="p">(</span><span class="n">p_hist</span><span class="p">,</span> <span class="n">J_hist</span><span class="p">,</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_33_0.png" src="../../../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_week1_Optional_Labs_C1_W1_Lab05_Gradient_Descent_Soln_33_0.png" />
+</div>
+</div>
+<p>Above, the left graph shows <span class="math notranslate nohighlight">\(w\)</span>’s progression over the first few steps of gradient descent. <span class="math notranslate nohighlight">\(w\)</span> oscillates from positive to negative and cost grows rapidly. Gradient Descent is operating on both <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> simultaneously, so one needs the 3-D plot on the right for the complete picture.</p>
+</section>
+</section>
+<section id="Congratulations!">
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
+<p>In this lab you: - delved into the details of gradient descent for a single variable. - developed a routine to compute the gradient - visualized what the gradient is - completed a gradient descent routine - utilized gradient descent to find parameters - examined the impact of sizing the learning rate</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Amit Kumar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

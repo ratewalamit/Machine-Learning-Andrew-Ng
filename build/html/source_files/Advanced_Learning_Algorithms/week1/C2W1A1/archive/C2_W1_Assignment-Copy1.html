@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Networks for Handwritten Digit Recognition, Binary &mdash; Machine-Learning-Andrew-Ng  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Machine-Learning-Andrew-Ng
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Supervised_Machine_Learning_Regression_and_Classification.html">Supervised_Machine_Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Machine-Learning-Andrew-Ng</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Neural Networks for Handwritten Digit Recognition, Binary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/C2_W1_Assignment-Copy1.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Neural-Networks-for-Handwritten-Digit-Recognition,-Binary">
+<h1>Neural Networks for Handwritten Digit Recognition, Binary<a class="headerlink" href="#Neural-Networks-for-Handwritten-Digit-Recognition,-Binary" title="Permalink to this heading"></a></h1>
+<p>In this exercise, you will use a neural network to recognize the hand-written digits zero and one.</p>
+</section>
+<section id="Outline">
+<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>1 - Packages</p></li>
+<li><p>2 - Neural Networks</p>
+<ul>
+<li><p>2.1 Problem Statement</p></li>
+<li><p>2.2 Dataset</p></li>
+<li><p>2.3 Model representation</p></li>
+<li><p>2.4 Tensorflow Model Implementation</p>
+<ul>
+<li><p>Exercise 1</p></li>
+</ul>
+</li>
+<li><p>2.5 NumPy Model Implementation (Forward Prop in NumPy)</p>
+<ul>
+<li><p>Exercise 2</p></li>
+</ul>
+</li>
+<li><p>2.6 Vectorized NumPy Model Implementation (Optional)</p>
+<ul>
+<li><p>Exercise 3</p></li>
+</ul>
+</li>
+<li><p>2.7 Congratulations!</p></li>
+<li><p>2.8 NumPy Broadcasting Tutorial (Optional)</p></li>
+</ul>
+</li>
+</ul>
+<p>## 1 - Packages</p>
+<p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a class="reference external" href="https://numpy.org/">numpy</a> is the fundamental package for scientific computing with Python. - <a class="reference external" href="http://matplotlib.org">matplotlib</a> is a popular library to plot graphs in Python. - <a class="reference external" href="https://www.tensorflow.org/">tensorflow</a> a popular platform for machine learning.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">autils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;tensorflow&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">autograph</span><span class="o">.</span><span class="n">set_verbosity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2023-06-06 17:44:06.054243: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-06-06 17:44:06.086142: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-06-06 17:44:06.086709: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-06-06 17:44:06.633827: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+</pre></div></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Tensorflow and Keras</strong></div>
+<div class="line">Tensorflow is a machine learning package developed by Google. In 2019, Google integrated Keras into Tensorflow and released Tensorflow 2.0. Keras is a framework developed independently by François Chollet that creates a simple, layer-centric interface to Tensorflow. This course will be using the Keras interface.</div>
+</div>
+<p>## 2 - Neural Networks</p>
+<p>In Course 1, you implemented logistic regression. This was extended to handle non-linear boundaries using polynomial regression. For even more complex scenarios such as image recognition, neural networks are preferred.</p>
+<p>### 2.1 Problem Statement</p>
+<p>In this exercise, you will use a neural network to recognize two handwritten digits, zero and one. This is a binary classification task. Automated handwritten digit recognition is widely used today - from recognizing zip codes (postal codes) on mail envelopes to recognizing amounts written on bank checks. You will extend this network to recognize all 10 digits (0-9) in a future assignment.</p>
+<p>This exercise will show you how the methods you have learned can be used for this classification task.</p>
+<p>### 2.2 Dataset</p>
+<p>You will start by loading the dataset for this task. - The <code class="docutils literal notranslate"><span class="pre">load_data()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<ul class="simple">
+<li><p>The data set contains 1000 training examples of handwritten digits <span class="math notranslate nohighlight">\(^1\)</span>, here limited to zero and one.</p>
+<ul>
+<li><p>Each training example is a 20-pixel x 20-pixel grayscale image of the digit.</p>
+<ul>
+<li><p>Each pixel is represented by a floating-point number indicating the grayscale intensity at that location.</p></li>
+<li><p>The 20 by 20 grid of pixels is “unrolled” into a 400-dimensional vector.</p></li>
+<li><p>Each training example becomes a single row in our data matrix <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
+<li><p>This gives us a 1000 x 400 matrix <code class="docutils literal notranslate"><span class="pre">X</span></code> where every row is a training example of a handwritten digit image.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}X =
+\left(\begin{array}{cc}
+--- (x^{(1)}) --- \\
+--- (x^{(2)}) --- \\
+\vdots \\
+--- (x^{(m)}) ---
+\end{array}\right)\end{split}\]</div>
+<ul class="simple">
+<li><p>The second part of the training set is a 1000 x 1 dimensional vector <code class="docutils literal notranslate"><span class="pre">y</span></code> that contains labels for the training set</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">0</span></code> if the image is of the digit <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">1</span></code> if the image is of the digit <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p><span class="math notranslate nohighlight">\(^1\)</span> This is a subset of the MNIST handwritten digit dataset (<a class="reference external" href="http://yann.lecun.com/exdb/mnist/">http://yann.lecun.com/exdb/mnist/</a>)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[2], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)"># load dataset</span>
+<span class="ansi-green-fg">----&gt; 2</span> X, y <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">load_data</span>()
+
+<span class="ansi-red-fg">NameError</span>: name &#39;load_data&#39; is not defined
+</pre></div></div>
+</div>
+<div class="line-block">
+<div class="line-block">
+<div class="line">#### 2.2.1 View the variables Let’s get more familiar with your dataset.</div>
+</div>
+<div class="line">- A good place to start is to print out each variable and see what it contains.</div>
+</div>
+<p>The code below prints elements of the variables <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The first element of X is: &#39;</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[3], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span style="color: rgb(0,135,0)">print</span> (<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">The first element of X is: </span><span style="color: rgb(175,0,0)">&#39;</span>, <span class="ansi-yellow-bg">X</span>[<span style="color: rgb(98,98,98)">0</span>])
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The first element of y is: &#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The last element of y is: &#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[4], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span style="color: rgb(0,135,0)">print</span> (<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">The first element of y is: </span><span style="color: rgb(175,0,0)">&#39;</span>, <span class="ansi-yellow-bg">y</span>[<span style="color: rgb(98,98,98)">0</span>,<span style="color: rgb(98,98,98)">0</span>])
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span style="color: rgb(0,135,0)">print</span> (<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">The last element of y is: </span><span style="color: rgb(175,0,0)">&#39;</span>, y[<span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">0</span>])
+
+<span class="ansi-red-fg">NameError</span>: name &#39;y&#39; is not defined
+</pre></div></div>
+</div>
+<p>#### 2.2.2 Check the dimensions of your variables</p>
+<p>Another way to get familiar with your data is to view its dimensions. Please print the shape of <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> and see how many training examples you have in your dataset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The shape of X is: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The shape of y is: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[5], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span style="color: rgb(0,135,0)">print</span> (<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">The shape of X is: </span><span style="color: rgb(175,0,0)">&#39;</span> <span style="color: rgb(98,98,98)">+</span> <span style="color: rgb(0,135,0)">str</span>(<span class="ansi-yellow-bg">X</span><span style="color: rgb(98,98,98)">.</span>shape))
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span style="color: rgb(0,135,0)">print</span> (<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">The shape of y is: </span><span style="color: rgb(175,0,0)">&#39;</span> <span style="color: rgb(98,98,98)">+</span> <span style="color: rgb(0,135,0)">str</span>(y<span style="color: rgb(98,98,98)">.</span>shape))
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>#### 2.2.3 Visualizing the Data</p>
+<p>You will begin by visualizing a subset of the training set. - In the cell below, the code randomly selects 64 rows from <code class="docutils literal notranslate"><span class="pre">X</span></code>, maps each row back to a 20 pixel by 20 pixel grayscale image and displays the images together. - The label for each image is displayed above the image</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="c1"># You do not need to modify anything in this cell</span>
+
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="c1"># Select random indices</span>
+    <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+    <span class="c1"># Select rows corresponding to the random indices and</span>
+    <span class="c1"># reshape the image</span>
+    <span class="n">X_random_reshaped</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># Display the image</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_random_reshaped</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display the label above the image</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">random_index</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[6], line 5</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> warnings<span style="color: rgb(98,98,98)">.</span>simplefilter(action<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">ignore</span><span style="color: rgb(175,0,0)">&#39;</span>, category<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(215,95,95)">FutureWarning</span>)
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span style="color: rgb(95,135,135)"># You do not need to modify anything in this cell</span>
+<span class="ansi-green-fg">----&gt; 5</span> m, n <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">X</span><span style="color: rgb(98,98,98)">.</span>shape
+<span class="ansi-green-intense-fg ansi-bold">      7</span> fig, axes <span style="color: rgb(98,98,98)">=</span> plt<span style="color: rgb(98,98,98)">.</span>subplots(<span style="color: rgb(98,98,98)">8</span>,<span style="color: rgb(98,98,98)">8</span>, figsize<span style="color: rgb(98,98,98)">=</span>(<span style="color: rgb(98,98,98)">8</span>,<span style="color: rgb(98,98,98)">8</span>))
+<span class="ansi-green-intense-fg ansi-bold">      8</span> fig<span style="color: rgb(98,98,98)">.</span>tight_layout(pad<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0.1</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>### 2.3 Model representation</p>
+<p>The neural network you will use in this assignment is shown in the figure below. - This has three dense layers with sigmoid activations. - Recall that our inputs are pixel values of digit images. - Since the images are of size <span class="math notranslate nohighlight">\(20\times20\)</span>, this gives us <span class="math notranslate nohighlight">\(400\)</span> inputs</p>
+<p><img alt="d06b913788524125bda4565bf30ca42c" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_Assign1.PNG" style="width: 500px; height: 400px;" /></p>
+<ul class="simple">
+<li><p>The parameters have dimensions that are sized for a neural network with <span class="math notranslate nohighlight">\(25\)</span> units in layer 1, <span class="math notranslate nohighlight">\(15\)</span> units in layer 2 and <span class="math notranslate nohighlight">\(1\)</span> output unit in layer 3.</p>
+<ul>
+<li><p>Recall that the dimensions of these parameters are determined as follows:</p>
+<ul>
+<li><p>If network has <span class="math notranslate nohighlight">\(s_{in}\)</span> units in a layer and <span class="math notranslate nohighlight">\(s_{out}\)</span> units in the next layer, then</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(W\)</span> will be of dimension <span class="math notranslate nohighlight">\(s_{in} \times s_{out}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> will a vector with <span class="math notranslate nohighlight">\(s_{out}\)</span> elements</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Therefore, the shapes of <code class="docutils literal notranslate"><span class="pre">W</span></code>, and <code class="docutils literal notranslate"><span class="pre">b</span></code>, are</p>
+<ul>
+<li><p>layer1: The shape of <code class="docutils literal notranslate"><span class="pre">W1</span></code> is (400, 25) and the shape of <code class="docutils literal notranslate"><span class="pre">b1</span></code> is (25,)</p></li>
+<li><p>layer2: The shape of <code class="docutils literal notranslate"><span class="pre">W2</span></code> is (25, 15) and the shape of <code class="docutils literal notranslate"><span class="pre">b2</span></code> is: (15,)</p></li>
+<li><p>layer3: The shape of <code class="docutils literal notranslate"><span class="pre">W3</span></code> is (15, 1) and the shape of <code class="docutils literal notranslate"><span class="pre">b3</span></code> is: (1,) &gt;<strong>Note:</strong> The bias vector <code class="docutils literal notranslate"><span class="pre">b</span></code> could be represented as a 1-D (n,) or 2-D (n,1) array. Tensorflow utilizes a 1-D representation and this lab will maintain that convention.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>### 2.4 Tensorflow Model Implementation</p>
+<div class="line-block">
+<div class="line">Tensorflow models are built layer by layer. A layer’s input dimensions (<span class="math notranslate nohighlight">\(s_{in}\)</span> above) are calculated for you. You specify a layer’s <em>output dimensions</em> and this determines the next layer’s input dimension. The input dimension of the first layer is derived from the size of the input data specified in the <code class="docutils literal notranslate"><span class="pre">model.fit</span></code> statment below. &gt;<strong>Note:</strong> It is also possible to add an input layer that specifies the input dimension of the first layer. For example:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">tf.keras.Input(shape=(400,)),</span>&#160;&#160;&#160; <span class="pre">#specify</span> <span class="pre">input</span> <span class="pre">shape</span></code></div>
+<div class="line">We will include that here to illuminate some model sizing.</div>
+</div>
+<p>### Exercise 1</p>
+<p>Below, using Keras <a class="reference external" href="https://keras.io/guides/sequential_model/">Sequential model</a> and <a class="reference external" href="https://keras.io/api/layers/core_layers/dense/">Dense Layer</a> with a sigmoid activation to construct the network described above.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C1</span>
+<span class="c1"># GRADED CELL: Sequential model</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,)),</span>    <span class="c1">#specify input size</span>
+        <span class="c1">### START CODE HERE ###</span>
+
+        <span class="c1">### END CODE HERE ###</span>
+    <span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my_model&quot;</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Model: &#34;my_model&#34;
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #
+=================================================================
+=================================================================
+Total params: 0
+Trainable params: 0
+Non-trainable params: 0
+_________________________________________________________________
+</pre></div></div>
+</div>
+<details><p>Expected Output (Click to Expand) The <code class="docutils literal notranslate"><span class="pre">model.summary()</span></code> function displays a useful summary of the model. Because we have specified an input layer size, the shape of the weight and bias arrays are determined and the total number of parameters per layer can be shown. Note, the names of the layers may vary as they are auto-generated.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Model: &quot;my_model&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+dense (Dense)                (None, 25)                10025
+_________________________________________________________________
+dense_1 (Dense)              (None, 15)                390
+_________________________________________________________________
+dense_2 (Dense)              (None, 1)                 16
+=================================================================
+Total params: 10,431
+Trainable params: 10,431
+Non-trainable params: 0
+_________________________________________________________________
+</pre></div>
+</div>
+<details><p>Click for hints As described in the lecture:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,)),</span>    <span class="c1"># specify input size (optional)</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">),</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">),</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
+    <span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my_model&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNIT TESTS</span>
+<span class="kn">from</span> <span class="nn">public_tests</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">test_c1</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[9], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)"># UNIT TESTS</span>
+<span class="ansi-green-fg">----&gt; 2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> <span class="ansi-bold" style="color: rgb(0,0,255)">public_tests</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> <span style="color: rgb(98,98,98)">*</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> test_c1(model)
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;public_tests&#39;
+</pre></div></div>
+</div>
+<p>The parameter counts shown in the summary correspond to the number of elements in the weight and bias arrays as shown below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_num_params</span> <span class="o">=</span> <span class="mi">400</span> <span class="o">*</span> <span class="mi">25</span> <span class="o">+</span> <span class="mi">25</span>  <span class="c1"># W1 parameters  + b1 parameters</span>
+<span class="n">L2_num_params</span> <span class="o">=</span> <span class="mi">25</span> <span class="o">*</span> <span class="mi">15</span> <span class="o">+</span> <span class="mi">15</span>   <span class="c1"># W2 parameters  + b2 parameters</span>
+<span class="n">L3_num_params</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>     <span class="c1"># W3 parameters  + b3 parameters</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L1 params = &quot;</span><span class="p">,</span> <span class="n">L1_num_params</span><span class="p">,</span> <span class="s2">&quot;, L2 params = &quot;</span><span class="p">,</span> <span class="n">L2_num_params</span><span class="p">,</span> <span class="s2">&quot;,  L3 params = &quot;</span><span class="p">,</span> <span class="n">L3_num_params</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+L1 params =  10025 , L2 params =  390 ,  L3 params =  16
+</pre></div></div>
+</div>
+<p>Let’s further examine the weights to verify that tensorflow produced the same dimensions as we calculated above.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">layer1</span><span class="p">,</span> <span class="n">layer2</span><span class="p">,</span> <span class="n">layer3</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[11], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> [layer1, layer2, layer3] <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>layers
+
+<span class="ansi-red-fg">ValueError</span>: not enough values to unpack (expected 3, got 0)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Examine Weights shapes</span>
+<span class="n">W1</span><span class="p">,</span><span class="n">b1</span> <span class="o">=</span> <span class="n">layer1</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+<span class="n">W2</span><span class="p">,</span><span class="n">b2</span> <span class="o">=</span> <span class="n">layer2</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+<span class="n">W3</span><span class="p">,</span><span class="n">b3</span> <span class="o">=</span> <span class="n">layer3</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;W1 shape = </span><span class="si">{</span><span class="n">W1</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, b1 shape = </span><span class="si">{</span><span class="n">b1</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;W2 shape = </span><span class="si">{</span><span class="n">W2</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, b2 shape = </span><span class="si">{</span><span class="n">b2</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;W3 shape = </span><span class="si">{</span><span class="n">W3</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, b3 shape = </span><span class="si">{</span><span class="n">b3</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[12], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)">#### Examine Weights shapes</span>
+<span class="ansi-green-fg">----&gt; 2</span> W1,b1 <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">layer1</span><span style="color: rgb(98,98,98)">.</span>get_weights()
+<span class="ansi-green-intense-fg ansi-bold">      3</span> W2,b2 <span style="color: rgb(98,98,98)">=</span> layer2<span style="color: rgb(98,98,98)">.</span>get_weights()
+<span class="ansi-green-intense-fg ansi-bold">      4</span> W3,b3 <span style="color: rgb(98,98,98)">=</span> layer3<span style="color: rgb(98,98,98)">.</span>get_weights()
+
+<span class="ansi-red-fg">NameError</span>: name &#39;layer1&#39; is not defined
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>W1 shape = (400, 25), b1 shape = (25,)
+W2 shape = (25, 15), b2 shape = (15,)
+W3 shape = (15, 1), b3 shape = (1,)
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">xx.get_weights</span></code> returns a NumPy array. One can also access the weights directly in their tensor form. Note the shape of the tensors in the final layer.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[13], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">layers</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">2</span><span class="ansi-yellow-bg">]</span><span style="color: rgb(98,98,98)">.</span>weights)
+
+<span class="ansi-red-fg">IndexError</span>: list index out of range
+</pre></div></div>
+</div>
+<p>The following code will define a loss function and run gradient descent to fit the weights of the model to the training data. This will be explained in more detail in the following week.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(),</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.001</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[14], line 7</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> model<span style="color: rgb(98,98,98)">.</span>compile(
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     loss<span style="color: rgb(98,98,98)">=</span>tf<span style="color: rgb(98,98,98)">.</span>keras<span style="color: rgb(98,98,98)">.</span>losses<span style="color: rgb(98,98,98)">.</span>BinaryCrossentropy(),
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     optimizer<span style="color: rgb(98,98,98)">=</span>tf<span style="color: rgb(98,98,98)">.</span>keras<span style="color: rgb(98,98,98)">.</span>optimizers<span style="color: rgb(98,98,98)">.</span>Adam(<span style="color: rgb(98,98,98)">0.001</span>),
+<span class="ansi-green-intense-fg ansi-bold">      4</span> )
+<span class="ansi-green-intense-fg ansi-bold">      6</span> model<span style="color: rgb(98,98,98)">.</span>fit(
+<span class="ansi-green-fg">----&gt; 7</span>     <span class="ansi-yellow-bg">X</span>,y,
+<span class="ansi-green-intense-fg ansi-bold">      8</span>     epochs<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">20</span>
+<span class="ansi-green-intense-fg ansi-bold">      9</span> )
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>To run the model on an example to make a prediction, use <cite>Keras ``predict`</cite> &lt;<a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/Model">https://www.tensorflow.org/api_docs/python/tf/keras/Model</a>&gt;`__. The input to <code class="docutils literal notranslate"><span class="pre">predict</span></code> is an array so the single example is reshaped to be two dimensional.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">400</span><span class="p">))</span>  <span class="c1"># a zero</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; predicting a zero: </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">500</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">400</span><span class="p">))</span>  <span class="c1"># a one</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; predicting a one:  </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[15], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> prediction <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>predict(<span class="ansi-yellow-bg">X</span>[<span style="color: rgb(98,98,98)">0</span>]<span style="color: rgb(98,98,98)">.</span>reshape(<span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">400</span>))  <span style="color: rgb(95,135,135)"># a zero</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)"> predicting a zero: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>prediction<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-intense-fg ansi-bold">      3</span> prediction <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>predict(X[<span style="color: rgb(98,98,98)">500</span>]<span style="color: rgb(98,98,98)">.</span>reshape(<span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">400</span>))  <span style="color: rgb(95,135,135)"># a one</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>The output of the model is interpreted as a probability. In the first example above, the input is a zero. The model predicts the probability that the input is a one is nearly zero. In the second example, the input is a one. The model predicts the probability that the input is a one is nearly one. As in the case of logistic regression, the probability is compared to a threshold to make a final prediction.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">prediction</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;prediction after threshold: </span><span class="si">{</span><span class="n">yhat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[16], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-yellow-bg">prediction</span> <span style="color: rgb(98,98,98)">&gt;</span><span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.5</span>:
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     yhat <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">1</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+
+<span class="ansi-red-fg">NameError</span>: name &#39;prediction&#39; is not defined
+</pre></div></div>
+</div>
+<p>Let’s compare the predictions vs the labels for a random sample of 64 digits. This takes a moment to run.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="c1"># You do not need to modify anything in this cell</span>
+
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">])</span> <span class="c1">#[left, bottom, right, top]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="c1"># Select random indices</span>
+    <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+    <span class="c1"># Select rows corresponding to the random indices and</span>
+    <span class="c1"># reshape the image</span>
+    <span class="n">X_random_reshaped</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># Display the image</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_random_reshaped</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Predict using the Neural Network</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">400</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">prediction</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">yhat</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">yhat</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Display the label above the image</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="n">random_index</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">yhat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Label, yhat&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[17], line 5</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> warnings<span style="color: rgb(98,98,98)">.</span>simplefilter(action<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">ignore</span><span style="color: rgb(175,0,0)">&#39;</span>, category<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(215,95,95)">FutureWarning</span>)
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span style="color: rgb(95,135,135)"># You do not need to modify anything in this cell</span>
+<span class="ansi-green-fg">----&gt; 5</span> m, n <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">X</span><span style="color: rgb(98,98,98)">.</span>shape
+<span class="ansi-green-intense-fg ansi-bold">      7</span> fig, axes <span style="color: rgb(98,98,98)">=</span> plt<span style="color: rgb(98,98,98)">.</span>subplots(<span style="color: rgb(98,98,98)">8</span>,<span style="color: rgb(98,98,98)">8</span>, figsize<span style="color: rgb(98,98,98)">=</span>(<span style="color: rgb(98,98,98)">8</span>,<span style="color: rgb(98,98,98)">8</span>))
+<span class="ansi-green-intense-fg ansi-bold">      8</span> fig<span style="color: rgb(98,98,98)">.</span>tight_layout(pad<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0.1</span>,rect<span style="color: rgb(98,98,98)">=</span>[<span style="color: rgb(98,98,98)">0</span>, <span style="color: rgb(98,98,98)">0.03</span>, <span style="color: rgb(98,98,98)">1</span>, <span style="color: rgb(98,98,98)">0.92</span>]) <span style="color: rgb(95,135,135)">#[left, bottom, right, top]</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>### 2.5 NumPy Model Implementation (Forward Prop in NumPy) As described in lecture, it is possible to build your own dense layer using NumPy. This can then be utilized to build a multi-layer neural network.</p>
+<p><img alt="7b89fb2a42934da28a64671cfd57e6b6" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
+<p>### Exercise 2</p>
+<p>Below, build a dense layer subroutine. The example in lecture utilized a for loop to visit each unit (<code class="docutils literal notranslate"><span class="pre">j</span></code>) in the layer and perform the dot product of the weights for that unit (<code class="docutils literal notranslate"><span class="pre">W[:,j]</span></code>) and sum the bias for the unit (<code class="docutils literal notranslate"><span class="pre">b[j]</span></code>) to form <code class="docutils literal notranslate"><span class="pre">z</span></code>. An activation function <code class="docutils literal notranslate"><span class="pre">g(z)</span></code> is then applied to that result. This section will not utilize some of the matrix operations described in the optional lectures. These will be explored in a later section.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C2</span>
+<span class="c1"># GRADED FUNCTION: my_dense</span>
+
+<span class="k">def</span> <span class="nf">my_dense</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes dense layer</span>
+<span class="sd">    Args:</span>
+<span class="sd">      a_in (ndarray (n, )) : Data, 1 example</span>
+<span class="sd">      W    (ndarray (n,j)) : Weight matrix, n features per unit, j units</span>
+<span class="sd">      b    (ndarray (j, )) : bias vector, j units</span>
+<span class="sd">      g    activation function (e.g. sigmoid, relu..)</span>
+<span class="sd">    Returns</span>
+<span class="sd">      a_out (ndarray (j,))  : j units</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">units</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">a_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+<span class="c1">### START CODE HERE ###</span>
+
+<span class="c1">### END CODE HERE ###</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">a_out</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick Check</span>
+<span class="n">x_tst</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,)</span>  <span class="c1"># (1 examples, 2 features)</span>
+<span class="n">W_tst</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># (2 input features, 3 output features)</span>
+<span class="n">b_tst</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,)</span>  <span class="c1"># (3 features)</span>
+<span class="n">A_tst</span> <span class="o">=</span> <span class="n">my_dense</span><span class="p">(</span><span class="n">x_tst</span><span class="p">,</span> <span class="n">W_tst</span><span class="p">,</span> <span class="n">b_tst</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[19], line 5</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> W_tst <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.1</span><span style="color: rgb(98,98,98)">*</span>np<span style="color: rgb(98,98,98)">.</span>arange(<span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">7</span>,<span style="color: rgb(98,98,98)">1</span>)<span style="color: rgb(98,98,98)">.</span>reshape(<span style="color: rgb(98,98,98)">2</span>,<span style="color: rgb(98,98,98)">3</span>) <span style="color: rgb(95,135,135)"># (2 input features, 3 output features)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> b_tst <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.1</span><span style="color: rgb(98,98,98)">*</span>np<span style="color: rgb(98,98,98)">.</span>arange(<span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">4</span>,<span style="color: rgb(98,98,98)">1</span>)<span style="color: rgb(98,98,98)">.</span>reshape(<span style="color: rgb(98,98,98)">3</span>,)  <span style="color: rgb(95,135,135)"># (3 features)</span>
+<span class="ansi-green-fg">----&gt; 5</span> A_tst <span style="color: rgb(98,98,98)">=</span> my_dense(x_tst, W_tst, b_tst, <span class="ansi-yellow-bg">sigmoid</span>)
+<span class="ansi-green-intense-fg ansi-bold">      6</span> <span style="color: rgb(0,135,0)">print</span>(A_tst)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sigmoid&#39; is not defined
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0.54735762 0.57932425 0.61063923]
+</pre></div>
+</div>
+<details><p>Click for hints As described in the lecture:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_dense</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes dense layer</span>
+<span class="sd">    Args:</span>
+<span class="sd">      a_in (ndarray (n, )) : Data, 1 example</span>
+<span class="sd">      W    (ndarray (n,j)) : Weight matrix, n features per unit, j units</span>
+<span class="sd">      b    (ndarray (j, )) : bias vector, j units</span>
+<span class="sd">      g    activation function (e.g. sigmoid, relu..)</span>
+<span class="sd">    Returns</span>
+<span class="sd">      a_out (ndarray (j,))  : j units</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">units</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">a_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">units</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span>                            <span class="c1"># Select weights for unit j. These are in column j of W</span>
+        <span class="n">z</span> <span class="o">=</span>                            <span class="c1"># dot product of w and a_in + b</span>
+        <span class="n">a_out</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span>                     <span class="c1"># apply activation to z</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">a_out</span><span class="p">)</span>
+</pre></div>
+</div>
+<details><p>Click for more hints</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_dense</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes dense layer</span>
+<span class="sd">    Args:</span>
+<span class="sd">      a_in (ndarray (n, )) : Data, 1 example</span>
+<span class="sd">      W    (ndarray (n,j)) : Weight matrix, n features per unit, j units</span>
+<span class="sd">      b    (ndarray (j, )) : bias vector, j units</span>
+<span class="sd">      g    activation function (e.g. sigmoid, relu..)</span>
+<span class="sd">    Returns</span>
+<span class="sd">      a_out (ndarray (j,))  : j units</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">units</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">a_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">units</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">W</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">a_in</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">a_out</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">a_out</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNIT TESTS</span>
+<span class="n">test_c2</span><span class="p">(</span><span class="n">my_dense</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[20], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)"># UNIT TESTS</span>
+<span class="ansi-green-fg">----&gt; 2</span> <span class="ansi-yellow-bg">test_c2</span>(my_dense)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;test_c2&#39; is not defined
+</pre></div></div>
+</div>
+<p>The following cell builds a three-layer neural network utilizing the <code class="docutils literal notranslate"><span class="pre">my_dense</span></code> subroutine above.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_sequential</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">W3</span><span class="p">,</span> <span class="n">b3</span><span class="p">):</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="n">my_dense</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>  <span class="n">W1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">)</span>
+    <span class="n">a2</span> <span class="o">=</span> <span class="n">my_dense</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">)</span>
+    <span class="n">a3</span> <span class="o">=</span> <span class="n">my_dense</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">W3</span><span class="p">,</span> <span class="n">b3</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">a3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We can copy trained weights and biases from Tensorflow.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W1_tmp</span><span class="p">,</span><span class="n">b1_tmp</span> <span class="o">=</span> <span class="n">layer1</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+<span class="n">W2_tmp</span><span class="p">,</span><span class="n">b2_tmp</span> <span class="o">=</span> <span class="n">layer2</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+<span class="n">W3_tmp</span><span class="p">,</span><span class="n">b3_tmp</span> <span class="o">=</span> <span class="n">layer3</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[22], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> W1_tmp,b1_tmp <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">layer1</span><span style="color: rgb(98,98,98)">.</span>get_weights()
+<span class="ansi-green-intense-fg ansi-bold">      2</span> W2_tmp,b2_tmp <span style="color: rgb(98,98,98)">=</span> layer2<span style="color: rgb(98,98,98)">.</span>get_weights()
+<span class="ansi-green-intense-fg ansi-bold">      3</span> W3_tmp,b3_tmp <span style="color: rgb(98,98,98)">=</span> layer3<span style="color: rgb(98,98,98)">.</span>get_weights()
+
+<span class="ansi-red-fg">NameError</span>: name &#39;layer1&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make predictions</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">my_sequential</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">W1_tmp</span><span class="p">,</span> <span class="n">b1_tmp</span><span class="p">,</span> <span class="n">W2_tmp</span><span class="p">,</span> <span class="n">b2_tmp</span><span class="p">,</span> <span class="n">W3_tmp</span><span class="p">,</span> <span class="n">b3_tmp</span> <span class="p">)</span>
+<span class="k">if</span> <span class="n">prediction</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;yhat = &quot;</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="s2">&quot; label= &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">my_sequential</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">500</span><span class="p">],</span> <span class="n">W1_tmp</span><span class="p">,</span> <span class="n">b1_tmp</span><span class="p">,</span> <span class="n">W2_tmp</span><span class="p">,</span> <span class="n">b2_tmp</span><span class="p">,</span> <span class="n">W3_tmp</span><span class="p">,</span> <span class="n">b3_tmp</span> <span class="p">)</span>
+<span class="k">if</span> <span class="n">prediction</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;yhat = &quot;</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="s2">&quot; label= &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[23], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)"># make predictions</span>
+<span class="ansi-green-fg">----&gt; 2</span> prediction <span style="color: rgb(98,98,98)">=</span> my_sequential(<span class="ansi-yellow-bg">X</span>[<span style="color: rgb(98,98,98)">0</span>], W1_tmp, b1_tmp, W2_tmp, b2_tmp, W3_tmp, b3_tmp )
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> prediction <span style="color: rgb(98,98,98)">&gt;</span><span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.5</span>:
+<span class="ansi-green-intense-fg ansi-bold">      4</span>     yhat <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">1</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>Run the following cell to see predictions from both the Numpy model and the Tensorflow model. This takes a moment to run.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="c1"># You do not need to modify anything in this cell</span>
+
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">])</span> <span class="c1">#[left, bottom, right, top]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="c1"># Select random indices</span>
+    <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+    <span class="c1"># Select rows corresponding to the random indices and</span>
+    <span class="c1"># reshape the image</span>
+    <span class="n">X_random_reshaped</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># Display the image</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_random_reshaped</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Predict using the Neural Network implemented in Numpy</span>
+    <span class="n">my_prediction</span> <span class="o">=</span> <span class="n">my_sequential</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">random_index</span><span class="p">],</span> <span class="n">W1_tmp</span><span class="p">,</span> <span class="n">b1_tmp</span><span class="p">,</span> <span class="n">W2_tmp</span><span class="p">,</span> <span class="n">b2_tmp</span><span class="p">,</span> <span class="n">W3_tmp</span><span class="p">,</span> <span class="n">b3_tmp</span> <span class="p">)</span>
+    <span class="n">my_yhat</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">my_prediction</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1"># Predict using the Neural Network implemented in Tensorflow</span>
+    <span class="n">tf_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">400</span><span class="p">))</span>
+    <span class="n">tf_yhat</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tf_prediction</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1"># Display the label above the image</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="n">random_index</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">tf_yhat</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">my_yhat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Label, yhat Tensorflow, yhat Numpy&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[24], line 5</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> warnings<span style="color: rgb(98,98,98)">.</span>simplefilter(action<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">ignore</span><span style="color: rgb(175,0,0)">&#39;</span>, category<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(215,95,95)">FutureWarning</span>)
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span style="color: rgb(95,135,135)"># You do not need to modify anything in this cell</span>
+<span class="ansi-green-fg">----&gt; 5</span> m, n <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">X</span><span style="color: rgb(98,98,98)">.</span>shape
+<span class="ansi-green-intense-fg ansi-bold">      7</span> fig, axes <span style="color: rgb(98,98,98)">=</span> plt<span style="color: rgb(98,98,98)">.</span>subplots(<span style="color: rgb(98,98,98)">8</span>,<span style="color: rgb(98,98,98)">8</span>, figsize<span style="color: rgb(98,98,98)">=</span>(<span style="color: rgb(98,98,98)">8</span>,<span style="color: rgb(98,98,98)">8</span>))
+<span class="ansi-green-intense-fg ansi-bold">      8</span> fig<span style="color: rgb(98,98,98)">.</span>tight_layout(pad<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0.1</span>,rect<span style="color: rgb(98,98,98)">=</span>[<span style="color: rgb(98,98,98)">0</span>, <span style="color: rgb(98,98,98)">0.03</span>, <span style="color: rgb(98,98,98)">1</span>, <span style="color: rgb(98,98,98)">0.92</span>]) <span style="color: rgb(95,135,135)">#[left, bottom, right, top]</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>### 2.6 Vectorized NumPy Model Implementation (Optional) The optional lectures described vector and matrix operations that can be used to speed the calculations. Below describes a layer operation that computes the output for all units in a layer on a given input example:</p>
+<p><img alt="dc542e575ce14732b9dac146cbbfbf25" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_VectorMatrix.PNG" style="width: 600px; height: 450px;" /></p>
+<p>We can demonstrate this using the examples <code class="docutils literal notranslate"><span class="pre">X</span></code> and the <code class="docutils literal notranslate"><span class="pre">W1</span></code>,<code class="docutils literal notranslate"><span class="pre">b1</span></code> parameters above. We use <code class="docutils literal notranslate"><span class="pre">np.matmul</span></code> to perform the matrix multiply. Note, the dimensions of x and W must be compatible as shown in the diagram above.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>         <span class="c1"># column vector (400,1)</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">W1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span>    <span class="c1"># (1,400)(400,25) = (1,25)</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[25], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> x <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">X</span>[<span style="color: rgb(98,98,98)">0</span>]<span style="color: rgb(98,98,98)">.</span>reshape(<span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">1</span>)         <span style="color: rgb(95,135,135)"># column vector (400,1)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> z1 <span style="color: rgb(98,98,98)">=</span> np<span style="color: rgb(98,98,98)">.</span>matmul(x<span style="color: rgb(98,98,98)">.</span>T,W1) <span style="color: rgb(98,98,98)">+</span> b1    <span style="color: rgb(95,135,135)"># (1,400)(400,25) = (1,25)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> a1 <span style="color: rgb(98,98,98)">=</span> sigmoid(z1)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>You can take this a step further and compute all the units for all examples in one Matrix-Matrix operation.</p>
+<p><img alt="7181f5fd3cbe4623aec16612bfe6e3c2" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_MatrixMatrix.PNG" style="width: 600px; height: 450px;" /> The full operation is <span class="math notranslate nohighlight">\(\mathbf{Z}=\mathbf{XW}+\mathbf{b}\)</span>. This will utilize NumPy broadcasting to expand <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> to <span class="math notranslate nohighlight">\(m\)</span> rows. If this is unfamiliar, a short tutorial is provided at the end of the notebook.</p>
+<p>### Exercise 3</p>
+<p>Below, compose a new <code class="docutils literal notranslate"><span class="pre">my_dense_v</span></code> subroutine that performs the layer calculations for a matrix of examples. This will utilize <code class="docutils literal notranslate"><span class="pre">np.matmul()</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C3</span>
+<span class="c1"># GRADED FUNCTION: my_dense_v</span>
+
+<span class="k">def</span> <span class="nf">my_dense_v</span><span class="p">(</span><span class="n">A_in</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes dense layer</span>
+<span class="sd">    Args:</span>
+<span class="sd">      A_in (ndarray (m,n)) : Data, m examples, n features each</span>
+<span class="sd">      W    (ndarray (n,j)) : Weight matrix, n features per unit, j units</span>
+<span class="sd">      b    (ndarray (j,1)) : bias vector, j units</span>
+<span class="sd">      g    activation function (e.g. sigmoid, relu..)</span>
+<span class="sd">    Returns</span>
+<span class="sd">      A_out (ndarray (m,j)) : m examples, j units</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="c1">### START CODE HERE ###</span>
+
+
+<span class="c1">### END CODE HERE ###</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">A_out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_tst</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># (4 examples, 2 features)</span>
+<span class="n">W_tst</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># (2 input features, 3 output features)</span>
+<span class="n">b_tst</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># (3 features, 1)</span>
+<span class="n">A_tst</span> <span class="o">=</span> <span class="n">my_dense_v</span><span class="p">(</span><span class="n">X_tst</span><span class="p">,</span> <span class="n">W_tst</span><span class="p">,</span> <span class="n">b_tst</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[27], line 4</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> W_tst <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.1</span><span style="color: rgb(98,98,98)">*</span>np<span style="color: rgb(98,98,98)">.</span>arange(<span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">7</span>,<span style="color: rgb(98,98,98)">1</span>)<span style="color: rgb(98,98,98)">.</span>reshape(<span style="color: rgb(98,98,98)">2</span>,<span style="color: rgb(98,98,98)">3</span>) <span style="color: rgb(95,135,135)"># (2 input features, 3 output features)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> b_tst <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.1</span><span style="color: rgb(98,98,98)">*</span>np<span style="color: rgb(98,98,98)">.</span>arange(<span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">4</span>,<span style="color: rgb(98,98,98)">1</span>)<span style="color: rgb(98,98,98)">.</span>reshape(<span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">3</span>) <span style="color: rgb(95,135,135)"># (3 features, 1)</span>
+<span class="ansi-green-fg">----&gt; 4</span> A_tst <span style="color: rgb(98,98,98)">=</span> my_dense_v(X_tst, W_tst, b_tst, <span class="ansi-yellow-bg">sigmoid</span>)
+<span class="ansi-green-intense-fg ansi-bold">      5</span> <span style="color: rgb(0,135,0)">print</span>(A_tst)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sigmoid&#39; is not defined
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.54735762 0.57932425 0.61063923]
+ [0.57199613 0.61301418 0.65248946]
+ [0.5962827  0.64565631 0.6921095 ]
+ [0.62010643 0.67699586 0.72908792]]
+</pre></div>
+</div>
+<details><p>Click for hints In matrix form, this can be written in one or two lines.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Z = np.matmul of A_in and W plus b
+  A_out is g(Z)
+</pre></div>
+</div>
+<details><p>Click for code</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_dense_v</span><span class="p">(</span><span class="n">A_in</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes dense layer</span>
+<span class="sd">    Args:</span>
+<span class="sd">      A_in (ndarray (m,n)) : Data, m examples, n features each</span>
+<span class="sd">      W    (ndarray (n,j)) : Weight matrix, n features per unit, j units</span>
+<span class="sd">      b    (ndarray (j,1)) : bias vector, j units</span>
+<span class="sd">      g    activation function (e.g. sigmoid, relu..)</span>
+<span class="sd">    Returns</span>
+<span class="sd">      A_out (ndarray (m,j)) : m examples, j units</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A_in</span><span class="p">,</span><span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="n">A_out</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">A_out</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNIT TESTS</span>
+<span class="n">test_c3</span><span class="p">(</span><span class="n">my_dense_v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[28], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)"># UNIT TESTS</span>
+<span class="ansi-green-fg">----&gt; 2</span> <span class="ansi-yellow-bg">test_c3</span>(my_dense_v)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;test_c3&#39; is not defined
+</pre></div></div>
+</div>
+<p>The following cell builds a three-layer neural network utilizing the <code class="docutils literal notranslate"><span class="pre">my_dense_v</span></code> subroutine above.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_sequential_v</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">W1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">W3</span><span class="p">,</span> <span class="n">b3</span><span class="p">):</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="n">my_dense_v</span><span class="p">(</span><span class="n">X</span><span class="p">,</span>  <span class="n">W1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">)</span>
+    <span class="n">A2</span> <span class="o">=</span> <span class="n">my_dense_v</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">)</span>
+    <span class="n">A3</span> <span class="o">=</span> <span class="n">my_dense_v</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="n">W3</span><span class="p">,</span> <span class="n">b3</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">A3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We can again copy trained weights and biases from Tensorflow.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W1_tmp</span><span class="p">,</span><span class="n">b1_tmp</span> <span class="o">=</span> <span class="n">layer1</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+<span class="n">W2_tmp</span><span class="p">,</span><span class="n">b2_tmp</span> <span class="o">=</span> <span class="n">layer2</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+<span class="n">W3_tmp</span><span class="p">,</span><span class="n">b3_tmp</span> <span class="o">=</span> <span class="n">layer3</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[30], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> W1_tmp,b1_tmp <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">layer1</span><span style="color: rgb(98,98,98)">.</span>get_weights()
+<span class="ansi-green-intense-fg ansi-bold">      2</span> W2_tmp,b2_tmp <span style="color: rgb(98,98,98)">=</span> layer2<span style="color: rgb(98,98,98)">.</span>get_weights()
+<span class="ansi-green-intense-fg ansi-bold">      3</span> W3_tmp,b3_tmp <span style="color: rgb(98,98,98)">=</span> layer3<span style="color: rgb(98,98,98)">.</span>get_weights()
+
+<span class="ansi-red-fg">NameError</span>: name &#39;layer1&#39; is not defined
+</pre></div></div>
+</div>
+<p>Let’s make a prediction with the new model. This will make a prediction on <em>all of the examples at once</em>. Note the shape of the output.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Prediction</span> <span class="o">=</span> <span class="n">my_sequential_v</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">W1_tmp</span><span class="p">,</span> <span class="n">b1_tmp</span><span class="p">,</span> <span class="n">W2_tmp</span><span class="p">,</span> <span class="n">b2_tmp</span><span class="p">,</span> <span class="n">W3_tmp</span><span class="p">,</span> <span class="n">b3_tmp</span> <span class="p">)</span>
+<span class="n">Prediction</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[31], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> Prediction <span style="color: rgb(98,98,98)">=</span> my_sequential_v(<span class="ansi-yellow-bg">X</span>, W1_tmp, b1_tmp, W2_tmp, b2_tmp, W3_tmp, b3_tmp )
+<span class="ansi-green-intense-fg ansi-bold">      2</span> Prediction<span style="color: rgb(98,98,98)">.</span>shape
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>We’ll apply a threshold of 0.5 as before, but to all predictions at once.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Yhat</span> <span class="o">=</span> <span class="p">(</span><span class="n">Prediction</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;predict a zero: &quot;</span><span class="p">,</span><span class="n">Yhat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;predict a one: &quot;</span><span class="p">,</span> <span class="n">Yhat</span><span class="p">[</span><span class="mi">500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[32], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> Yhat <span style="color: rgb(98,98,98)">=</span> (<span class="ansi-yellow-bg">Prediction</span> <span style="color: rgb(98,98,98)">&gt;</span><span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.5</span>)<span style="color: rgb(98,98,98)">.</span>numpy()<span style="color: rgb(98,98,98)">.</span>astype(<span style="color: rgb(0,135,0)">int</span>)
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">predict a zero: </span><span style="color: rgb(175,0,0)">&#34;</span>,Yhat[<span style="color: rgb(98,98,98)">0</span>], <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">predict a one: </span><span style="color: rgb(175,0,0)">&#34;</span>, Yhat[<span style="color: rgb(98,98,98)">500</span>])
+
+<span class="ansi-red-fg">NameError</span>: name &#39;Prediction&#39; is not defined
+</pre></div></div>
+</div>
+<p>Run the following cell to see predictions. This will use the predictions we just calculated above. This takes a moment to run.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="c1"># You do not need to modify anything in this cell</span>
+
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">])</span> <span class="c1">#[left, bottom, right, top]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="c1"># Select random indices</span>
+    <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+    <span class="c1"># Select rows corresponding to the random indices and</span>
+    <span class="c1"># reshape the image</span>
+    <span class="n">X_random_reshaped</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># Display the image</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_random_reshaped</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display the label above the image</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="n">random_index</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">Yhat</span><span class="p">[</span><span class="n">random_index</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Label, Yhat&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[33], line 5</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> warnings<span style="color: rgb(98,98,98)">.</span>simplefilter(action<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">ignore</span><span style="color: rgb(175,0,0)">&#39;</span>, category<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(215,95,95)">FutureWarning</span>)
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span style="color: rgb(95,135,135)"># You do not need to modify anything in this cell</span>
+<span class="ansi-green-fg">----&gt; 5</span> m, n <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">X</span><span style="color: rgb(98,98,98)">.</span>shape
+<span class="ansi-green-intense-fg ansi-bold">      7</span> fig, axes <span style="color: rgb(98,98,98)">=</span> plt<span style="color: rgb(98,98,98)">.</span>subplots(<span style="color: rgb(98,98,98)">8</span>, <span style="color: rgb(98,98,98)">8</span>, figsize<span style="color: rgb(98,98,98)">=</span>(<span style="color: rgb(98,98,98)">8</span>, <span style="color: rgb(98,98,98)">8</span>))
+<span class="ansi-green-intense-fg ansi-bold">      8</span> fig<span style="color: rgb(98,98,98)">.</span>tight_layout(pad<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0.1</span>, rect<span style="color: rgb(98,98,98)">=</span>[<span style="color: rgb(98,98,98)">0</span>, <span style="color: rgb(98,98,98)">0.03</span>, <span style="color: rgb(98,98,98)">1</span>, <span style="color: rgb(98,98,98)">0.92</span>]) <span style="color: rgb(95,135,135)">#[left, bottom, right, top]</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;X&#39; is not defined
+</pre></div></div>
+</div>
+<p>You can see how one of the misclassified images looks.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">Yhat</span><span class="p">)</span>
+<span class="n">random_index</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">X_random_reshaped</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_random_reshaped</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="n">random_index</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">Yhat</span><span class="p">[</span><span class="n">random_index</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[34], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> fig <span style="color: rgb(98,98,98)">=</span> plt<span style="color: rgb(98,98,98)">.</span>figure(figsize<span style="color: rgb(98,98,98)">=</span>(<span style="color: rgb(98,98,98)">1</span>, <span style="color: rgb(98,98,98)">1</span>))
+<span class="ansi-green-fg">----&gt; 2</span> errors <span style="color: rgb(98,98,98)">=</span> np<span style="color: rgb(98,98,98)">.</span>where(<span class="ansi-yellow-bg">y</span> <span style="color: rgb(98,98,98)">!=</span> Yhat)
+<span class="ansi-green-intense-fg ansi-bold">      3</span> random_index <span style="color: rgb(98,98,98)">=</span> errors[<span style="color: rgb(98,98,98)">0</span>][<span style="color: rgb(98,98,98)">0</span>]
+<span class="ansi-green-intense-fg ansi-bold">      4</span> X_random_reshaped <span style="color: rgb(98,98,98)">=</span> X[random_index]<span style="color: rgb(98,98,98)">.</span>reshape((<span style="color: rgb(98,98,98)">20</span>, <span style="color: rgb(98,98,98)">20</span>))<span style="color: rgb(98,98,98)">.</span>T
+
+<span class="ansi-red-fg">NameError</span>: name &#39;y&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Figure size 100x100 with 0 Axes&gt;
+</pre></div></div>
+</div>
+<p>### 2.7 Congratulations! You have successfully built and utilized a neural network.</p>
+<p>### 2.8 NumPy Broadcasting Tutorial (Optional)</p>
+<p>In the last example, <span class="math notranslate nohighlight">\(\mathbf{Z}=\mathbf{XW} + \mathbf{b}\)</span> utilized NumPy broadcasting to expand the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. If you are not familiar with NumPy Broadcasting, this short tutorial is provided.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{XW}\)</span> is a matrix-matrix operation with dimensions <span class="math notranslate nohighlight">\((m,j_1)(j_1,j_2)\)</span> which results in a matrix with dimension <span class="math notranslate nohighlight">\((m,j_2)\)</span>. To that, we add a vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> with dimension <span class="math notranslate nohighlight">\((j_2,)\)</span>. <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> must be expanded to be a <span class="math notranslate nohighlight">\((m,j_2)\)</span> matrix for this element-wise operation to make sense. This expansion is accomplished for you by NumPy broadcasting.</p>
+<div class="line-block">
+<div class="line">Broadcasting applies to element-wise operations.</div>
+<div class="line">Its basic operation is to ‘stretch’ a smaller dimension by replicating elements to match a larger dimension.</div>
+</div>
+<p>More <a class="reference external" href="https://NumPy.org/doc/stable/user/basics.broadcasting.html">specifically</a>: When operating on two arrays, NumPy compares their shapes element-wise. It starts with the trailing (i.e. rightmost) dimensions and works its way left. Two dimensions are compatible when - they are equal, or - one of them is 1</p>
+<p>If these conditions are not met, a ValueError: operands could not be broadcast together exception is thrown, indicating that the arrays have incompatible shapes. The size of the resulting array is the size that is not 1 along each axis of the inputs.</p>
+<p>Here are some examples:</p>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_Assign1_BroadcastIndexes.PNG" style="width: 400px;" /></p>
+<center/><figcaption><p>Calculating Broadcast Result shape</p>
+</figcaption><figure/><p>The graphic below describes expanding dimensions. Note the red text below:</p>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_Assign1_Broadcasting.gif" style="width: 600px;" /></p>
+<center/><figcaption><p>Broadcast notionally expands arguments to match for element wise operations</p>
+</figcaption><figure/><p>The graphic above shows NumPy expanding the arguments to match before the final operation. Note that this is a notional description. The actual mechanics of NumPy operation choose the most efficient implementation.</p>
+<p>For each of the following examples, try to guess the size of the result before running the example.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#(3,1)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(a + b).shape: </span><span class="si">{</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, </span><span class="se">\n</span><span class="s2">a + b = </span><span class="se">\n</span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(a + b).shape: (3, 1),
+a + b =
+[[6]
+ [7]
+ [8]]
+</pre></div></div>
+</div>
+<p>Note that this applies to all element-wise operations:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#(3,1)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(a * b).shape: </span><span class="si">{</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, </span><span class="se">\n</span><span class="s2">a * b = </span><span class="se">\n</span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(a * b).shape: (3, 1),
+a * b =
+[[ 5]
+ [10]
+ [15]]
+</pre></div></div>
+</div>
+<figure><p><img alt="missing" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_Assign1_VectorAdd.PNG" style="width: 740px;" /></p>
+<center><figcaption><p>Row-Column Element-Wise Operations</p>
+</figcaption></center><figure/><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(a + b).shape: </span><span class="si">{</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, </span><span class="se">\n</span><span class="s2">a + b = </span><span class="se">\n</span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[1]
+ [2]
+ [3]
+ [4]]
+[[1 2 3]]
+(a + b).shape: (4, 3),
+a + b =
+[[2 3 4]
+ [3 4 5]
+ [4 5 6]
+ [5 6 7]]
+</pre></div></div>
+</div>
+<p>This is the scenario in the dense layer you built above. Adding a 1-D vector <span class="math notranslate nohighlight">\(b\)</span> to a (m,j) matrix.</p>
+<figure><p><img alt="missing" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_Assign1_BroadcastMatrix.PNG" style="width: 740px;" /></p>
+<center><figcaption><p>Matrix + 1-D Vector</p>
+</figcaption></center><figure/><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Amit Kumar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
