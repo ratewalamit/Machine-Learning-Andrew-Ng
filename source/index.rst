@@ -10,8 +10,8 @@ Welcome to Machine-Learning-Andrew-Ng's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   Cosmological_principle
-   files/abc
+   source_files/Cosmological_principle
+   source_files/abc
 
 
 Indices and tables
