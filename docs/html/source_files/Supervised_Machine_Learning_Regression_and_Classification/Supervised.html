@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supervised_Machine_Learning &mdash; Machine Learning by Andrew Ng  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Advanced_Learning_Algorithms" href="../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html" />
+    <link rel="prev" title="Welcome to Machine-Learning-Andrew-Ng’s documentation!" href="../../index.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Machine Learning by Andrew Ng
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Supervised_Machine_Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Weak-1">Weak-1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz---1">Practice Quiz - 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz---2">Practice Quiz - 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz---3">Practice Quiz - 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks">Optional Lab - W1: Brief Introduction to Python and Jupyter Notebooks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Goals">Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Python">Python</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Print-statement">Print statement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Weak-2">Weak-2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz">Practice Quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Quiz-1">Quiz-1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Quiz-2">Quiz-2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Quiz-3">Quiz-3</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Optional-Lab-W2:-Python,-NumPy-and-Vectorization">Optional Lab W2: Python, NumPy and Vectorization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Outline">Outline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#1.1-Goals">1.1 Goals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#1.2-Useful-References">1.2 Useful References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2-Python-and-NumPy">2 Python and NumPy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#3-Vectors">3 Vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#4-Matrices">4 Matrices</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Assignment-W2:">Assignment W2:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Practice-Lab:-Linear-Regression">Practice Lab: Linear Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#1---Packages">1 - Packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2---Problem-Statement">2 - Problem Statement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#3---Dataset">3 - Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#4---Refresher-on-linear-regression">4 - Refresher on linear regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#5---Compute-Cost">5 - Compute Cost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Exercise-1">Exercise 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6---Gradient-descent">6 - Gradient descent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Machine Learning by Andrew Ng</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Supervised_Machine_Learning</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source_files/Supervised_Machine_Learning_Regression_and_Classification/Supervised.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Supervised_Machine_Learning">
+<h1>Supervised_Machine_Learning<a class="headerlink" href="#Supervised_Machine_Learning" title="Permalink to this heading"></a></h1>
+<p><strong>(Regression_and_Classification)</strong></p>
+<section id="Weak-1">
+<h2>Weak-1<a class="headerlink" href="#Weak-1" title="Permalink to this heading"></a></h2>
+<section id="Practice-Quiz---1">
+<h3>Practice Quiz - 1<a class="headerlink" href="#Practice-Quiz---1" title="Permalink to this heading"></a></h3>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss1.png" style="width: 800px;" /></p>
+<center/><figure/></section>
+<section id="Practice-Quiz---2">
+<h3>Practice Quiz - 2<a class="headerlink" href="#Practice-Quiz---2" title="Permalink to this heading"></a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">figure</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">center</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;week1/Practice_quiz/ss2.png&quot;</span>  <span class="n">alt</span><span class="o">=</span><span class="s1">&#39;missing&#39;</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;800&quot;</span>  <span class="o">&gt;&lt;</span><span class="n">center</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">figure</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[1], line 1</span>
+<span class="ansi-red-fg">    &lt;figure&gt;</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+
+</pre></div></div>
+</div>
+</section>
+<section id="Practice-Quiz---3">
+<h3>Practice Quiz - 3<a class="headerlink" href="#Practice-Quiz---3" title="Permalink to this heading"></a></h3>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss3.png" style="width: 800px;" /></p>
+<center/><figure/></section>
+<section id="Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks">
+<h3>Optional Lab - W1: Brief Introduction to Python and Jupyter Notebooks<a class="headerlink" href="#Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks" title="Permalink to this heading"></a></h3>
+<p>Welcome to the first optional lab! Optional labs are available to: - provide information - like this notebook - reinforce lecture material with hands-on examples - provide working examples of routines used in the graded labs</p>
+<section id="Goals">
+<h4>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h4>
+<p>In this lab, you will: - Get a brief introduction to Jupyter notebooks - Take a tour of Jupyter notebooks - Learn the difference between markdown cells and code cells - Practice some basic python</p>
+<p>The easiest way to become familiar with Jupyter notebooks is to take the tour available above in the Help menu:</p>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/C1W1L1_Tour.PNG" style="width: 400px;" /></p>
+<center/><figure/><p>Jupyter notebooks have two types of cells that are used in this course. Cells such as this which contain documentation called <code class="docutils literal notranslate"><span class="pre">Markdown</span> <span class="pre">Cells</span></code>. The name is derived from the simple formatting language used in the cells. You will not be required to produce markdown cells. Its useful to understand the <code class="docutils literal notranslate"><span class="pre">cell</span> <span class="pre">pulldown</span></code> shown in graphic below. Occasionally, a cell will end up in the wrong mode and you may need to restore it to the right state:</p>
+<figure><p><img alt="missing" class="no-scaled-link" src="../../_images/C1W1L1_Markdown.PNG" style="width: 400px;" /></p>
+<figure/><p>The other type of cell is the <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">cell</span></code> where you will write your code:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#This is  a &#39;Code&#39; Cell</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is  code cell&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+This is  code cell
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Python">
+<h3>Python<a class="headerlink" href="#Python" title="Permalink to this heading"></a></h3>
+<p>You can write your code in the code cells. To run the code, select the cell and either - hold the shift-key down and hit ‘enter’ or ‘return’ - click the ‘run’ arrow above</p>
+<figure><p><img alt="566861e417194096a8be51b9442746e0" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
+<figure/><section id="Print-statement">
+<h4>Print statement<a class="headerlink" href="#Print-statement" title="Permalink to this heading"></a></h4>
+<div class="line-block">
+<div class="line">Print statements will generally use the python f-string style.</div>
+<div class="line">Try creating your own print in the following cell.</div>
+<div class="line">Try both methods of running the cell.</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print statements</span>
+<span class="n">variable</span> <span class="o">=</span> <span class="s2">&quot;right in the strings!&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f strings allow you to embed variables </span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+f strings allow you to embed variables right in the strings!
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="Weak-2">
+<h2>Weak-2<a class="headerlink" href="#Weak-2" title="Permalink to this heading"></a></h2>
+<section id="Practice-Quiz">
+<h3>Practice Quiz<a class="headerlink" href="#Practice-Quiz" title="Permalink to this heading"></a></h3>
+<section id="Quiz-1">
+<h4>Quiz-1<a class="headerlink" href="#Quiz-1" title="Permalink to this heading"></a></h4>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss11.png" style="width: 800px;" /></p>
+<center/><figure/></section>
+<section id="Quiz-2">
+<h4>Quiz-2<a class="headerlink" href="#Quiz-2" title="Permalink to this heading"></a></h4>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss2.png" style="width: 800px;" /></p>
+<center/><figure/></section>
+<section id="Quiz-3">
+<h4>Quiz-3<a class="headerlink" href="#Quiz-3" title="Permalink to this heading"></a></h4>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss31.png" style="width: 800px;" /></p>
+<center/><figure/></section>
+</section>
+<section id="Optional-Lab-W2:-Python,-NumPy-and-Vectorization">
+<h3>Optional Lab W2: Python, NumPy and Vectorization<a class="headerlink" href="#Optional-Lab-W2:-Python,-NumPy-and-Vectorization" title="Permalink to this heading"></a></h3>
+<p>A brief introduction to some of the scientific computing used in this course. In particular the NumPy scientific computing package and its use with python.</p>
+<section id="Outline">
+<h4>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>`  1.1 Goals &lt;#toc_40015_1.1&gt;`__</p></li>
+<li><p>`  1.2 Useful References &lt;#toc_40015_1.2&gt;`__</p></li>
+<li><p>2 Python and NumPy</p></li>
+<li><p>3 Vectors</p></li>
+<li><p>`  3.1 Abstract &lt;#toc_40015_3.1&gt;`__</p></li>
+<li><p>`  3.2 NumPy Arrays &lt;#toc_40015_3.2&gt;`__</p></li>
+<li><p>`  3.3 Vector Creation &lt;#toc_40015_3.3&gt;`__</p></li>
+<li><p>`  3.4 Operations on Vectors &lt;#toc_40015_3.4&gt;`__</p></li>
+<li><p>4 Matrices</p></li>
+<li><p>`  4.1 Abstract &lt;#toc_40015_4.1&gt;`__</p></li>
+<li><p>`  4.2 NumPy Arrays &lt;#toc_40015_4.2&gt;`__</p></li>
+<li><p>`  4.3 Matrix Creation &lt;#toc_40015_4.3&gt;`__</p></li>
+<li><p>`  4.4 Operations on Matrices &lt;#toc_40015_4.4&gt;`__</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>    <span class="c1"># it is an unofficial standard to use np for numpy</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="1.1-Goals">
+<h4>1.1 Goals<a class="headerlink" href="#1.1-Goals" title="Permalink to this heading"></a></h4>
+<p>In this lab, you will: - Review the features of NumPy and Python that are used in Course 1</p>
+</section>
+<section id="1.2-Useful-References">
+<h4>1.2 Useful References<a class="headerlink" href="#1.2-Useful-References" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>NumPy Documentation including a basic introduction: <a class="reference external" href="https://NumPy.org/doc/stable/">NumPy.org</a> - A challenging feature topic: <a class="reference external" href="https://NumPy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a></p></li>
+</ul>
+</section>
+<section id="2-Python-and-NumPy">
+<h4>2 Python and NumPy<a class="headerlink" href="#2-Python-and-NumPy" title="Permalink to this heading"></a></h4>
+<p>Python is the programming language we will be using in this course. It has a set of numeric data types and arithmetic operations. NumPy is a library that extends the base capabilities of python to add a richer data set including more numeric types, vectors, matrices, and many matrix functions. NumPy and python work together fairly seamlessly. Python arithmetic operators work on NumPy data types and many NumPy functions will accept python data types.</p>
+</section>
+<section id="3-Vectors">
+<h4>3 Vectors<a class="headerlink" href="#3-Vectors" title="Permalink to this heading"></a></h4>
+<section id="3.1-Abstract">
+<h5>3.1 Abstract<a class="headerlink" href="#3.1-Abstract" title="Permalink to this heading"></a></h5>
+<p><a href="#id2"><span class="problematic" id="id3">|</span></a>3d400b637fcf405eb2a77ef1b0cbeff1|Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of <span class="math notranslate nohighlight">\(n\)</span>. The elements of a
+vector can be referenced with an index. In math settings, indexes typically run from 1 to n. In computer science and these labs, indexing will typically run from 0 to n-1. In notation, elements of a vector, when referenced individually will indicate the index in a subscript, for example, the <span class="math notranslate nohighlight">\(0^{th}\)</span> element, of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(x_0\)</span>. Note, the x is not bold in this case.</p>
+</section>
+<section id="3.2-NumPy-Arrays">
+<h5>3.2 NumPy Arrays<a class="headerlink" href="#3.2-NumPy-Arrays" title="Permalink to this heading"></a></h5>
+<p>NumPy’s basic data structure is an indexable, n-dimensional <em>array</em> containing elements of the same type (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>). Right away, you may notice we have overloaded the term ‘dimension’. Above, it was the number of elements in the vector, here, dimension refers to the number of indexes of an array. A one-dimensional or 1-D array has one index. In Course 1, we will represent vectors as NumPy 1-D arrays.</p>
+<ul class="simple">
+<li><p>1-D array, shape (n,): n elements indexed [0] through [n-1]</p></li>
+</ul>
+</section>
+<section id="3.3-Vector-Creation">
+<h5>3.3 Vector Creation<a class="headerlink" href="#3.3-Vector-Creation" title="Permalink to this heading"></a></h5>
+<p>Data creation routines in NumPy will generally have a first parameter which is the shape of the object. This can either be a single value for a 1-D result or a tuple (n,m,…) specifying the shape of the result. Below are examples of creating vectors using these routines.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NumPy routines which allocate memory and fill arrays with value</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.zeros(4) :   a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a data type = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,));</span>             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.zeros(4,) :  a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a data type = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.random.random_sample(4): a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a data type = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.zeros(4) :   a = [0. 0. 0. 0.], a shape = (4,), a data type = float64
+np.zeros(4,) :  a = [0. 0. 0. 0.], a shape = (4,), a data type = float64
+np.random.random_sample(4): a = [0.21386779 0.87670962 0.50673906 0.74796839], a shape = (4,), a data type = float64
+</pre></div></div>
+</div>
+<p>Some data creation routines do not take a shape tuple:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NumPy routines which allocate memory and fill arrays with value but do not accept shape as input argument</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4.</span><span class="p">);</span>              <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.arange(4.):     a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a data type = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>          <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.random.rand(4): a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a data type = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.arange(4.):     a = [0. 1. 2. 3.], a shape = (4,), a data type = float64
+np.random.rand(4): a = [0.30016259 0.54897546 0.03274912 0.82090026], a shape = (4,), a data type = float64
+</pre></div></div>
+</div>
+<p>values can be specified manually as well.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NumPy routines which allocate memory and fill with user specified values</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]);</span>  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.array([5,4,3,2]):  a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">,     a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a data type = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]);</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.array([5.,4,3,2]): a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a data type = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.array([5,4,3,2]):  a = [5 4 3 2],     a shape = (4,), a data type = int64
+np.array([5.,4,3,2]): a = [5. 4. 3. 2.], a shape = (4,), a data type = float64
+</pre></div></div>
+</div>
+<p>These have all created a one-dimensional vector <code class="docutils literal notranslate"><span class="pre">a</span></code> with four elements. <code class="docutils literal notranslate"><span class="pre">a.shape</span></code> returns the dimensions. Here we see a.shape = <code class="docutils literal notranslate"><span class="pre">(4,)</span></code> indicating a 1-d array with 4 elements.</p>
+</section>
+<section id="3.4-Operations-on-Vectors">
+<h5>3.4 Operations on Vectors<a class="headerlink" href="#3.4-Operations-on-Vectors" title="Permalink to this heading"></a></h5>
+<p>Let’s explore some operations using vectors.</p>
+<p>3.4.1 Indexing</p>
+<div class="line-block">
+<div class="line">Elements of vectors can be accessed via indexing and slicing. NumPy provides a very complete set of indexing and slicing capabilities. We will explore only the basics needed for the course here. Reference <a class="reference external" href="https://NumPy.org/doc/stable/reference/arrays.indexing.html">Slicing and Indexing</a> for more details.</div>
+<div class="line"><strong>Indexing</strong> means referring to <em>an element</em> of an array by its position within the array.</div>
+<div class="line"><strong>Slicing</strong> means getting a <em>subset</em> of elements from an array based on their indices.</div>
+<div class="line">NumPy starts indexing at zero so the 3rd element of an vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is <code class="docutils literal notranslate"><span class="pre">a[2]</span></code>.</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#vector indexing operations on 1-D vectors</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1">#access an element</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a[2].shape: </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> a[2]  = </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">, Accessing an element returns a scalar&quot;</span><span class="p">)</span>
+
+<span class="c1"># access the last element, negative indexes count from the end</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a[-1] = </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1">#indexs must be within the range of the vector or they will produce and error</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The error message you&#39;ll see is:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[0 1 2 3 4 5 6 7 8 9]
+a[2].shape: () a[2]  = 2, Accessing an element returns a scalar
+a[-1] = 9
+The error message you&#39;ll see is:
+index 10 is out of bounds for axis 0 with size 10
+</pre></div></div>
+</div>
+<p>3.4.2 Slicing</p>
+<p>Slicing creates an array of indices using a set of three values (<code class="docutils literal notranslate"><span class="pre">start:stop:step</span></code>). A subset of values is also valid. Its use is best explained by example:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#vector slicing operations</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a         = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1">#access 5 consecutive elements (start:stop:step)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[2:7:1] = &quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># access 3 elements separated by two</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">2</span><span class="p">];</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[2:7:2] = &quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># access all elements index 3 and above</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">:];</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[3:]    = &quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># access all elements below index 3</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="mi">3</span><span class="p">];</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[:3]    = &quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># access all elements</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:];</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[:]     = &quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+a         = [0 1 2 3 4 5 6 7 8 9]
+a[2:7:1] =  [2 3 4 5 6]
+a[2:7:2] =  [2 4 6]
+a[3:]    =  [3 4 5 6 7 8 9]
+a[:3]    =  [0 1 2]
+a[:]     =  [0 1 2 3 4 5 6 7 8 9]
+</pre></div></div>
+</div>
+<p>3.4.3 Single vector operations</p>
+<p>There are a number of useful operations that involve operations on a single vector.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a             : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># negate elements of a</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">a</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b = -a        : </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># sum all elements of a, returns a scalar</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b = np.sum(a) : </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b = np.mean(a): </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b = a**2      : </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+a             : [1 2 3 4]
+b = -a        : [-1 -2 -3 -4]
+b = np.sum(a) : 10
+b = np.mean(a): 2.5
+b = a**2      : [ 1  4  9 16]
+</pre></div></div>
+</div>
+<p>3.4.4 Vector Vector element-wise operations</p>
+<p>Most of the NumPy arithmetic, logical and comparison operations apply to vectors as well. These operators work on an element-by-element basis. For example</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{a} + \mathbf{b} = \sum_{i=0}^{n-1} a_i + b_i\]</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Binary operators work element wise: </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Binary operators work element wise: [0 0 6 8]
+</pre></div></div>
+</div>
+<p>Of course, for this to work correctly, the vectors must be of the same size:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#try a mismatched vector operation</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">c</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The error message you&#39;ll see is:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The error message you&#39;ll see is:
+operands could not be broadcast together with shapes (4,) (2,)
+</pre></div></div>
+</div>
+<p>3.4.5 Scalar Vector operations</p>
+<p>Vectors can be ‘scaled’ by scalar values. A scalar value is just a number. The scalar multiplies all the elements of the vector.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="c1"># multiply a by a scalar</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">a</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b = 5 * a : </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+b = 5 * a : [ 5 10 15 20]
+</pre></div></div>
+</div>
+<p>3.4.6 Vector Vector dot product</p>
+<p>The dot product is a mainstay of Linear Algebra and NumPy. This is an operation used extensively in this course and should be well understood. The dot product is shown below.</p>
+<p><img alt="2aa7972288ee4ae580529917d8de2d2b" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
+<p>The dot product multiplies the values in two vectors element-wise and then sums the result. Vector dot product requires the dimensions of the two vectors to be the same.</p>
+<p>Let’s implement our own version of the dot product below:</p>
+<p><strong>Using a for loop</strong>, implement a function which returns the dot product of two vectors. The function to return given inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[x = \sum_{i=0}^{n-1} a_i b_i\]</div>
+<p>Assume both <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are the same shape.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Compute the dot product of two vectors</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      a (ndarray (n,)):  input vector</span>
+<span class="sd">      b (ndarray (n,)):  input vector with same dimension as a</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      x (scalar):</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test 1-D</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;my_dot(a, b) = </span><span class="si">{</span><span class="n">my_dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+my_dot(a, b) = 24
+</pre></div></div>
+</div>
+<p>Note, the dot product is expected to return a scalar value.</p>
+<p>Let’s try the same operations using <code class="docutils literal notranslate"><span class="pre">np.dot</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test 1-D</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy 1-D np.dot(a, b) = </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">, np.dot(a, b).shape = </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy 1-D np.dot(b, a) = </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">, np.dot(a, b).shape = </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+NumPy 1-D np.dot(a, b) = 24, np.dot(a, b).shape = ()
+NumPy 1-D np.dot(b, a) = 24, np.dot(a, b).shape = ()
+</pre></div></div>
+</div>
+<p>Above, you will note that the results for 1-D matched our implementation.</p>
+<p>3.4.7 The Need for Speed: vector vs for loop</p>
+<p>We utilized the NumPy library because it improves speed memory efficiency. Let’s demonstrate:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)</span>  <span class="c1"># very large arrays</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)</span>
+
+<span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># capture start time</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># capture end time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.dot(a, b) =  </span><span class="si">{</span><span class="n">c</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vectorized version duration: </span><span class="si">{</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">toc</span><span class="o">-</span><span class="n">tic</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ms &quot;</span><span class="p">)</span>
+
+<span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># capture start time</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">my_dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># capture end time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;my_dot(a, b) =  </span><span class="si">{</span><span class="n">c</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;loop version duration: </span><span class="si">{</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">toc</span><span class="o">-</span><span class="n">tic</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ms &quot;</span><span class="p">)</span>
+
+<span class="k">del</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="k">del</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>  <span class="c1">#remove these big arrays from memory</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.dot(a, b) =  2501072.5817
+Vectorized version duration: 13.6130 ms
+my_dot(a, b) =  2501072.5817
+loop version duration: 2038.0728 ms
+</pre></div></div>
+</div>
+<p>So, vectorization provides a large speed up in this example. This is because NumPy makes better use of available data parallelism in the underlying hardware. GPU’s and modern CPU’s implement Single Instruction, Multiple Data (SIMD) pipelines allowing multiple operations to be issued in parallel. This is critical in Machine Learning where the data sets are often very large.</p>
+<p>3.4.8 Vector Vector operations in Course 1</p>
+<p>Vector Vector operations will appear frequently in course 1. Here is why: - Going forward, our examples will be stored in an array, <code class="docutils literal notranslate"><span class="pre">X_train</span></code> of dimension (m,n). This will be explained more in context, but here it is important to note it is a 2 Dimensional array or matrix (see next section on matrices). - <code class="docutils literal notranslate"><span class="pre">w</span></code> will be a 1-dimensional vector of shape (n,). - we will perform operations by looping through the examples, extracting each example to work on individually by indexing X. For
+example:<code class="docutils literal notranslate"><span class="pre">X[i]</span></code> - <code class="docutils literal notranslate"><span class="pre">X[i]</span></code> returns a value of shape (n,), a 1-dimensional vector. Consequently, operations involving <code class="docutils literal notranslate"><span class="pre">X[i]</span></code> are often vector-vector.</p>
+<p>That is a somewhat lengthy explanation, but aligning and understanding the shapes of your operands is important when performing vector operations.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show common Course 1 example</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X[1] has shape </span><span class="si">{</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;w has shape </span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;c has shape </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+X[1] has shape (1,)
+w has shape (1,)
+c has shape ()
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="4-Matrices">
+<h4>4 Matrices<a class="headerlink" href="#4-Matrices" title="Permalink to this heading"></a></h4>
+<section id="4.1-Abstract">
+<h5>4.1 Abstract<a class="headerlink" href="#4.1-Abstract" title="Permalink to this heading"></a></h5>
+<p>Matrices, are two dimensional arrays. The elements of a matrix are all of the same type. In notation, matrices are denoted with capitol, bold letter such as <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In this and other labs, <code class="docutils literal notranslate"><span class="pre">m</span></code> is often the number of rows and <code class="docutils literal notranslate"><span class="pre">n</span></code> the number of columns. The elements of a matrix can be referenced with a two dimensional index. In math settings, numbers in the index typically run from 1 to n. In computer science and these labs, indexing will run from 0 to n-1.</p>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/C1_W2_Lab04_Matrices.PNG" style="width: 900px;" /></p>
+<center/><figcaption><p>Generic Matrix Notation, 1st index is row, 2nd is column</p>
+</figcaption><figure/></section>
+<section id="4.2-NumPy-Arrays">
+<h5>4.2 NumPy Arrays<a class="headerlink" href="#4.2-NumPy-Arrays" title="Permalink to this heading"></a></h5>
+<p>NumPy’s basic data structure is an indexable, n-dimensional <em>array</em> containing elements of the same type (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>). These were described earlier. Matrices have a two-dimensional (2-D) index [m,n].</p>
+<p>In Course 1, 2-D matrices are used to hold training data. Training data is <span class="math notranslate nohighlight">\(m\)</span> examples by <span class="math notranslate nohighlight">\(n\)</span> features creating an (m,n) array. Course 1 does not do operations directly on matrices but typically extracts an example as a vector and operates on that. Below you will review: - data creation - slicing and indexing</p>
+</section>
+<section id="4.3-Matrix-Creation">
+<h5>4.3 Matrix Creation<a class="headerlink" href="#4.3-Matrix-Creation" title="Permalink to this heading"></a></h5>
+<p>The same functions that created 1-D vectors will create 2-D or n-D arrays. Here are some examples</p>
+<p>Below, the shape tuple is provided to achieve a 2-D result. Notice how NumPy uses brackets to denote each dimension. Notice further than NumPy, when printing, will print one row per line.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+a shape = (1, 5), a = [[0. 0. 0. 0. 0.]]
+a shape = (2, 1), a = [[0.]
+ [0.]]
+a shape = (1, 1), a = [[0.44236513]]
+</pre></div></div>
+</div>
+<p>One can also manually specify data. Dimensions are specified with additional brackets matching the format in the printing above.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NumPy routines which allocate memory and fill with user specified values</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]]);</span>   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, np.array: a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">],</span>   <span class="c1"># One can also</span>
+              <span class="p">[</span><span class="mi">4</span><span class="p">],</span>   <span class="c1"># separate values</span>
+              <span class="p">[</span><span class="mi">3</span><span class="p">]]);</span> <span class="c1">#into separate rows</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; a shape = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, np.array: a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ a shape = (3, 1), np.array: a = [[5]
+ [4]
+ [3]]
+ a shape = (3, 1), np.array: a = [[5]
+ [4]
+ [3]]
+</pre></div></div>
+</div>
+</section>
+<section id="4.4-Operations-on-Matrices">
+<h5>4.4 Operations on Matrices<a class="headerlink" href="#4.4-Operations-on-Matrices" title="Permalink to this heading"></a></h5>
+<p>Let’s explore some operations using matrices.</p>
+<p>4.4.1 Indexing</p>
+<p>Matrices include a second index. The two indexes describe [row, column]. Access can either return an element or a row/column. See below:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#vector indexing operations on matrices</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>   <span class="c1">#reshape is a convenient way to create matrices</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a.shape: </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, </span><span class="se">\n</span><span class="s2">a= </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1">#access an element</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">a[2,0].shape:   </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a[2,0] = </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">,     type(a[2,0]) = </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2"> Accessing an element returns a scalar</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1">#access a row</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a[2].shape:   </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, a[2]   = </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">, type(a[2])   = </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+a.shape: (3, 2),
+a= [[0 1]
+ [2 3]
+ [4 5]]
+
+a[2,0].shape:   (), a[2,0] = 4,     type(a[2,0]) = &lt;class &#39;numpy.int64&#39;&gt; Accessing an element returns a scalar
+
+a[2].shape:   (2,), a[2]   = [4 5], type(a[2])   = &lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div></div>
+</div>
+<p>It is worth drawing attention to the last example. Accessing a matrix by just specifying the row will return a <em>1-D vector</em>.</p>
+<div class="line-block">
+<div class="line"><strong>Reshape</strong></div>
+<div class="line">The previous example used <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html">reshape</a> to shape the array.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">np.arange(6).reshape(-1,</span> <span class="pre">2)</span></code></div>
+<div class="line">This line of code first created a <em>1-D Vector</em> of six elements. It then reshaped that vector into a <em>2-D</em> array using the reshape command. This could have been written:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">np.arange(6).reshape(3,</span> <span class="pre">2)</span></code></div>
+<div class="line">To arrive at the same 3 row, 2 column array. The -1 argument tells the routine to compute the number of rows given the size of the array and the number of columns.</div>
+</div>
+<p>4.4.2 Slicing</p>
+<p>Slicing creates an array of indices using a set of three values (<code class="docutils literal notranslate"><span class="pre">start:stop:step</span></code>). A subset of values is also valid. Its use is best explained by example:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#vector 2-D slicing operations</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a = </span><span class="se">\n</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1">#access 5 consecutive elements (start:stop:step)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[0, 2:7:1] = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;,  a[0, 2:7:1].shape =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;a 1-D array&quot;</span><span class="p">)</span>
+
+<span class="c1">#access 5 consecutive elements (start:stop:step) in two rows</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[:, 2:7:1] = </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;,  a[:, 2:7:1].shape =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;a 2-D array&quot;</span><span class="p">)</span>
+
+<span class="c1"># access all elements</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[:,:] = </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[:,:],</span> <span class="s2">&quot;,  a[:,:].shape =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># access all elements in one row (very common usage)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[1,:] = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="s2">&quot;,  a[1,:].shape =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;a 1-D array&quot;</span><span class="p">)</span>
+<span class="c1"># same as</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a[1]   = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>   <span class="s2">&quot;,  a[1].shape   =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;a 1-D array&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+a =
+[[ 0  1  2  3  4  5  6  7  8  9]
+ [10 11 12 13 14 15 16 17 18 19]]
+a[0, 2:7:1] =  [2 3 4 5 6] ,  a[0, 2:7:1].shape = (5,) a 1-D array
+a[:, 2:7:1] =
+ [[ 2  3  4  5  6]
+ [12 13 14 15 16]] ,  a[:, 2:7:1].shape = (2, 5) a 2-D array
+a[:,:] =
+ [[ 0  1  2  3  4  5  6  7  8  9]
+ [10 11 12 13 14 15 16 17 18 19]] ,  a[:,:].shape = (2, 10)
+a[1,:] =  [10 11 12 13 14 15 16 17 18 19] ,  a[1,:].shape = (10,) a 1-D array
+a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="Assignment-W2:">
+<h3>Assignment W2:<a class="headerlink" href="#Assignment-W2:" title="Permalink to this heading"></a></h3>
+<section id="Practice-Lab:-Linear-Regression">
+<h4>Practice Lab: Linear Regression<a class="headerlink" href="#Practice-Lab:-Linear-Regression" title="Permalink to this heading"></a></h4>
+<p>Welcome to your first practice lab! In this lab, you will implement linear regression with one variable to predict profits for a restaurant franchise.</p>
+<section id="id6">
+<h5>Outline<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h5>
+<ul class="simple">
+<li><p>1 - Packages</p></li>
+<li><p>2 - Linear regression with one variable</p></li>
+<li><p>2.1 Problem Statement</p></li>
+<li><p>3 Dataset</p></li>
+<li><p>4 Refresher on linear regression</p></li>
+<li><p>5 Compute Cost</p>
+<ul>
+<li><p>Exercise 1</p></li>
+</ul>
+</li>
+<li><p>6 Gradient descent</p>
+<ul>
+<li><p>Exercise 2</p></li>
+<li><p>6.1 Learning parameters using batch gradient descent</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="1---Packages">
+<h4>1 - Packages<a class="headerlink" href="#1---Packages" title="Permalink to this heading"></a></h4>
+<p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a class="reference external" href="www.numpy.org">numpy</a> is the fundamental package for working with matrices in Python. - <a class="reference external" href="http://matplotlib.org">matplotlib</a> is a famous library to plot graphs in Python. - <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> contains helper functions for this assignment. You do not need to modify code in this file.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1">#add modules from the path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2/C1W2A1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2---Problem-Statement">
+<h4>2 - Problem Statement<a class="headerlink" href="#2---Problem-Statement" title="Permalink to this heading"></a></h4>
+<p>Suppose you are the CEO of a restaurant franchise and are considering different cities for opening a new outlet. - You would like to expand your business to cities that may give your restaurant higher profits. - The chain already has restaurants in various cities and you have data for profits and populations from the cities. - You also have data on cities that are candidates for a new restaurant. - For these cities, you have the city population.</p>
+<p>Can you use the data to help you identify which cities may potentially give your business higher profits?</p>
+</section>
+<section id="3---Dataset">
+<h4>3 - Dataset<a class="headerlink" href="#3---Dataset" title="Permalink to this heading"></a></h4>
+<div class="line-block">
+<div class="line">You will start by loading the dataset for this task. - The <code class="docutils literal notranslate"><span class="pre">load_data()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> - <code class="docutils literal notranslate"><span class="pre">x_train</span></code> is the population of a city - <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is the profit of a restaurant in that city. A negative value for profit indicates a loss.</div>
+<div class="line">- Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the dataset</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<section id="View-the-variables">
+<h5>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this heading"></a></h5>
+<div class="line-block">
+<div class="line">Before starting on any task, it is useful to get more familiar with your dataset.</div>
+<div class="line">- A good place to start is to just print out each variable and see what it contains.</div>
+</div>
+<p>The code below prints the variable <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and the type of the variable.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print x_train</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of x_train:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First five elements of x_train are:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">x_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Type of x_train: &lt;class &#39;numpy.ndarray&#39;&gt;
+First five elements of x_train are:
+ [6.1101 5.5277 8.5186 7.0032 5.8598]
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">x_train</span></code> is a numpy array that contains decimal values that are all greater than zero. - These values represent the city population times 10,000 - For example, 6.1101 means that the population for that city is 61,101</p>
+<p>Now, let’s print <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print y_train</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of y_train:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First five elements of y_train are:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
+First five elements of y_train are:
+ [17.592   9.1302 13.662  11.854   6.8233]
+</pre></div></div>
+</div>
+<p>Similarly, <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is a numpy array that has decimal values, some negative, some positive. - These represent your restaurant’s average monthly profits in each city, in units of $10,000. - For example, 17.592 represents $175,920 in average monthly profits for that city. - -2.6807 represents -$26,807 in average monthly loss for that city.</p>
+</section>
+<section id="Check-the-dimensions-of-your-variables">
+<h5>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this heading"></a></h5>
+<p>Another useful way to get familiar with your data is to view its dimensions.</p>
+<p>Please print the shape of <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and see how many training examples you have in your dataset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The shape of x_train is:&#39;</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The shape of y_train is: &#39;</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Number of training examples (m):&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The shape of x_train is: (97,)
+The shape of y_train is:  (97,)
+Number of training examples (m): 97
+</pre></div></div>
+</div>
+<p>The city population array has 97 data points, and the monthly average profits also has 97 data points. These are NumPy 1D arrays.</p>
+</section>
+<section id="Visualize-your-data">
+<h5>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this heading"></a></h5>
+<p>It is often useful to understand the data by visualizing it. - For this dataset, you can use a scatter plot to visualize the data, since it has only two properties to plot (profit and population). - Many other problems that you will encounter in real life have more than two properties (for example, population, average household income, monthly profits, monthly sales).When you have more than two properties, you can still use a scatter plot to see the relationship between each pair of properties.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scatter plot of the data. To change the markers to red &quot;x&quot;,</span>
+<span class="c1"># we used the &#39;marker&#39; and &#39;c&#39; parameters</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Profits vs. Population per city&quot;</span><span class="p">)</span>
+<span class="c1"># Set the y-axis label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Profit in $10,000&#39;</span><span class="p">)</span>
+<span class="c1"># Set the x-axis label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Population of City in 10,000s&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_102_0.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_102_0.png" />
+</div>
+</div>
+<p>Your goal is to build a linear regression model to fit this data. - With this model, you can then input a new city’s population, and have the model estimate your restaurant’s potential monthly profits for that city.</p>
+</section>
+</section>
+<section id="4---Refresher-on-linear-regression">
+<h4>4 - Refresher on linear regression<a class="headerlink" href="#4---Refresher-on-linear-regression" title="Permalink to this heading"></a></h4>
+<p>In this practice lab, you will fit the linear regression parameters <span class="math notranslate nohighlight">\((w,b)\)</span> to your dataset. - The model function for linear regression, which is a function that maps from <code class="docutils literal notranslate"><span class="pre">x</span></code> (city population) to <code class="docutils literal notranslate"><span class="pre">y</span></code> (your restaurant’s monthly profit for that city) is represented as</p>
+<div class="math notranslate nohighlight">
+\[f_{w,b}(x) = wx + b\]</div>
+<ul class="simple">
+<li><p>To train a linear regression model, you want to find the best <span class="math notranslate nohighlight">\((w,b)\)</span> parameters that fit your dataset.</p>
+<ul>
+<li><p>To compare how one choice of <span class="math notranslate nohighlight">\((w,b)\)</span> is better or worse than another choice, you can evaluate it with a cost function <span class="math notranslate nohighlight">\(J(w,b)\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(J\)</span> is a function of <span class="math notranslate nohighlight">\((w,b)\)</span>. That is, the value of the cost <span class="math notranslate nohighlight">\(J(w,b)\)</span> depends on the value of <span class="math notranslate nohighlight">\((w,b)\)</span>.</p></li>
+</ul>
+</li>
+<li><p>The choice of <span class="math notranslate nohighlight">\((w,b)\)</span> that fits your data the best is the one that has the smallest cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>.</p></li>
+</ul>
+</li>
+<li><p>To find the values <span class="math notranslate nohighlight">\((w,b)\)</span> that gets the smallest possible cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>, you can use a method called <strong>gradient descent</strong>.</p>
+<ul>
+<li><p>With each step of gradient descent, your parameters <span class="math notranslate nohighlight">\((w,b)\)</span> come closer to the optimal values that will achieve the lowest cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>.</p></li>
+</ul>
+</li>
+<li><p>The trained linear regression model can then take the input feature <span class="math notranslate nohighlight">\(x\)</span> (city population) and output a prediction <span class="math notranslate nohighlight">\(f_{w,b}(x)\)</span> (predicted monthly profit for a restaurant in that city).</p></li>
+</ul>
+</section>
+<section id="5---Compute-Cost">
+<h4>5 - Compute Cost<a class="headerlink" href="#5---Compute-Cost" title="Permalink to this heading"></a></h4>
+<p>Gradient descent involves repeated steps to adjust the value of your parameter <span class="math notranslate nohighlight">\((w,b)\)</span> to gradually get a smaller and smaller cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>. - At each step of gradient descent, it will be helpful for you to monitor your progress by computing the cost <span class="math notranslate nohighlight">\(J(w,b)\)</span> as <span class="math notranslate nohighlight">\((w,b)\)</span> gets updated. - In this section, you will implement a function to calculate <span class="math notranslate nohighlight">\(J(w,b)\)</span> so that you can check the progress of your gradient descent implementation.</p>
+<section id="Cost-function">
+<h5>Cost function<a class="headerlink" href="#Cost-function" title="Permalink to this heading"></a></h5>
+<p>As you may recall from the lecture, for one variable, the cost function for linear regression <span class="math notranslate nohighlight">\(J(w,b)\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2\]</div>
+<ul class="simple">
+<li><p>You can think of <span class="math notranslate nohighlight">\(f_{w,b}(x^{(i)})\)</span> as the model’s prediction of your restaurant’s profit, as opposed to <span class="math notranslate nohighlight">\(y^{(i)}\)</span>, which is the actual profit that is recorded in the data.</p></li>
+<li><p><span class="math notranslate nohighlight">\(m\)</span> is the number of training examples in the dataset</p></li>
+</ul>
+</section>
+<section id="Model-prediction">
+<h5>Model prediction<a class="headerlink" href="#Model-prediction" title="Permalink to this heading"></a></h5>
+<ul class="simple">
+<li><p>For linear regression with one variable, the prediction of the model <span class="math notranslate nohighlight">\(f_{w,b}\)</span> for an example <span class="math notranslate nohighlight">\(x^{(i)}\)</span> is representented as:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[f_{w,b}(x^{(i)}) = wx^{(i)} + b\]</div>
+<p>This is the equation for a line, with an intercept <span class="math notranslate nohighlight">\(b\)</span> and a slope <span class="math notranslate nohighlight">\(w\)</span></p>
+</section>
+<section id="Implementation">
+<h5>Implementation<a class="headerlink" href="#Implementation" title="Permalink to this heading"></a></h5>
+<p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_cost()</span></code> function below to compute the cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>.</p>
+</section>
+</section>
+<section id="Exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#Exercise-1" title="Permalink to this heading"></a></h4>
+<p>Complete the <code class="docutils literal notranslate"><span class="pre">compute_cost</span></code> below to:</p>
+<ul>
+<li><p>Iterate over the training examples, and for each example, compute:</p>
+<ul>
+<li><p>The prediction of the model for that example</p>
+<div class="math notranslate nohighlight">
+\[f_{wb}(x^{(i)}) =  wx^{(i)} + b\]</div>
+</li>
+<li><p>The cost for that example</p>
+<div class="math notranslate nohighlight">
+\[cost^{(i)} =  (f_{wb} - y^{(i)})^2\]</div>
+</li>
+</ul>
+</li>
+<li><p>Return the total cost over all examples</p>
+<div class="math notranslate nohighlight">
+\[J(\mathbf{w},b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} cost^{(i)}\]</div>
+<ul class="simple">
+<li><p>Here, <span class="math notranslate nohighlight">\(m\)</span> is the number of training examples and <span class="math notranslate nohighlight">\(\sum\)</span> is the summation operator</p></li>
+</ul>
+</li>
+</ul>
+<p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C1</span>
+<span class="c1"># GRADED FUNCTION: compute_cost</span>
+
+<span class="k">def</span> <span class="nf">compute_cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the cost function for linear regression.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (ndarray): Shape (m,) Input to the model (Population of cities)</span>
+<span class="sd">        y (ndarray): Shape (m,) Label (Actual profits for the cities)</span>
+<span class="sd">        w, b (scalar): Parameters of the model</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">        total_cost (float): The cost of using w,b as the parameters for linear regression</span>
+<span class="sd">               to fit the data points in x and y</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># number of training examples</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># You need to return this variable correctly</span>
+    <span class="n">total_cost</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="n">cost</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">f_wb</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">b</span>
+        <span class="n">cost</span> <span class="o">+=</span> <span class="p">(</span><span class="n">f_wb</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="n">total_cost</span> <span class="o">=</span> <span class="n">cost</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">)</span>
+
+    <span class="c1">### END CODE HERE ###</span>
+
+    <span class="k">return</span> <span class="n">total_cost</span>
+</pre></div>
+</div>
+</div>
+<details><p>Click for hints</p>
+<ul>
+<li><p>You can represent a summation operator eg: <span class="math notranslate nohighlight">\(h = \sum\limits_{i = 0}^{m-1} 2i\)</span> in code as follows: <code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">h</span> <span class="pre">=</span> <span class="pre">0</span>&#160;&#160;&#160;&#160; <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(m):</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">h</span> <span class="pre">=</span> <span class="pre">h</span> <span class="pre">+</span> <span class="pre">2*i</span></code></p>
+<ul class="simple">
+<li><p>In this case, you can iterate over all the examples in <code class="docutils literal notranslate"><span class="pre">x</span></code> using a for loop and add the <code class="docutils literal notranslate"><span class="pre">cost</span></code> from each iteration to a variable (<code class="docutils literal notranslate"><span class="pre">cost_sum</span></code>) initialized outside the loop.</p></li>
+<li><p>Then, you can return the <code class="docutils literal notranslate"><span class="pre">total_cost</span></code> as <code class="docutils literal notranslate"><span class="pre">cost_sum</span></code> divided by <code class="docutils literal notranslate"><span class="pre">2m</span></code>.</p></li>
+</ul>
+<details><p>Click for more hints</p>
+<ul class="simple">
+<li><p>Here’s how you can structure the overall implementation for this function</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># number of training examples</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># You need to return this variable correctly</span>
+    <span class="n">total_cost</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="c1"># Variable to keep track of sum of cost from each example</span>
+    <span class="n">cost_sum</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Loop over training examples</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="c1"># Your code here to get the prediction f_wb for the ith example</span>
+        <span class="n">f_wb</span> <span class="o">=</span>
+        <span class="c1"># Your code here to get the cost associated with the ith example</span>
+        <span class="n">cost</span> <span class="o">=</span>
+
+        <span class="c1"># Add to sum of cost for each example</span>
+        <span class="n">cost_sum</span> <span class="o">=</span> <span class="n">cost_sum</span> <span class="o">+</span> <span class="n">cost</span>
+
+    <span class="c1"># Get the total cost as the sum divided by (2*m)</span>
+    <span class="n">total_cost</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="p">))</span> <span class="o">*</span> <span class="n">cost_sum</span>
+    <span class="c1">### END CODE HERE ###</span>
+
+    <span class="k">return</span> <span class="n">total_cost</span>
+</pre></div>
+</div>
+<p>If you’re still stuck, you can check the hints presented below to figure out how to calculate <code class="docutils literal notranslate"><span class="pre">f_wb</span></code> and <code class="docutils literal notranslate"><span class="pre">cost</span></code>.</p>
+<details><p>Hint to calculate f_wb     For scalars <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> (x[i], w and b are all scalars), you can calculate the equation <span class="math notranslate nohighlight">\(h = ab + c\)</span> in code as h = a * b + c</p>
+<details><p>    More hints to calculate f     You can compute f_wb as f_wb = w * x[i] + b</p>
+</details></details><details><p>Hint to calculate cost     You can calculate the square of a variable z as z**2</p>
+<details><p>    More hints to calculate cost     You can compute cost as cost = (f_wb - y[i]) ** 2</p>
+</details></details></details></li>
+</ul>
+</details><p>You can check if your implementation was correct by running the following test code:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute cost with some initial values for paramaters w, b</span>
+<span class="n">initial_w</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">initial_b</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">cost</span> <span class="o">=</span> <span class="n">compute_cost</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">initial_w</span><span class="p">,</span> <span class="n">initial_b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">cost</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cost at initial w (zeros): </span><span class="si">{</span><span class="n">cost</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Public tests</span>
+<span class="kn">from</span> <span class="nn">public_tests</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">compute_cost_test</span><span class="p">(</span><span class="n">compute_cost</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;numpy.float64&#39;&gt;
+Cost at initial w (zeros): 75.203
+<span class="ansi-green-intense-fg">All tests passed!</span>
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<table><tr><td><p>Cost at initial w (zeros): 75.203</p>
+</td></tr></table></section>
+<section id="6---Gradient-descent">
+<h4>6 - Gradient descent<a class="headerlink" href="#6---Gradient-descent" title="Permalink to this heading"></a></h4>
+<p>In this section, you will implement the gradient for parameters <span class="math notranslate nohighlight">\(w, b\)</span> for linear regression.</p>
+<p>As described in the lecture videos, the gradient descent algorithm is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}&amp; \text{repeat until convergence:} \; \lbrace \newline \; &amp; \phantom {0000} b := b -  \alpha \frac{\partial J(w,b)}{\partial b} \newline       \; &amp; \phantom {0000} w := w -  \alpha \frac{\partial J(w,b)}{\partial w} \tag{1}  \; &amp;
+\newline &amp; \rbrace\end{align*}\]</div>
+<div class="line-block">
+<div class="line">where, parameters <span class="math notranslate nohighlight">\(w, b\)</span> are both updated simultaniously and where</div>
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\frac{\partial J(w,b)}{\partial b}  = \frac{1}{m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)}) \tag{2}\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J(w,b)}{\partial w}  = \frac{1}{m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) -y^{(i)})x^{(i)} \tag{3}\]</div>
+<p>* m is the number of training examples in the dataset</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_{w,b}(x^{(i)})\)</span> is the model’s prediction, while <span class="math notranslate nohighlight">\(y^{(i)}\)</span>, is the target value</p></li>
+</ul>
+<p>You will implement a function called <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> which calculates <span class="math notranslate nohighlight">\(\frac{\partial J(w)}{\partial w}\)</span>, <span class="math notranslate nohighlight">\(\frac{\partial J(w)}{\partial b}\)</span></p>
+<section id="Exercise-2">
+<h5>Exercise 2<a class="headerlink" href="#Exercise-2" title="Permalink to this heading"></a></h5>
+<p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> function to:</p>
+<ul>
+<li><p>Iterate over the training examples, and for each example, compute:</p>
+<ul>
+<li><p>The prediction of the model for that example</p>
+<div class="math notranslate nohighlight">
+\[f_{wb}(x^{(i)}) =  wx^{(i)} + b\]</div>
+</li>
+<li><p>The gradient for the parameters <span class="math notranslate nohighlight">\(w, b\)</span> from that example</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J(w,b)}{\partial b}^{(i)}  =  (f_{w,b}(x^{(i)}) - y^{(i)})\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J(w,b)}{\partial w}^{(i)}  =  (f_{w,b}(x^{(i)}) -y^{(i)})x^{(i)}\]</div>
+</li>
+</ul>
+</li>
+<li><p>Return the total gradient update from all the examples</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J(w,b)}{\partial b}  = \frac{1}{m} \sum\limits_{i = 0}^{m-1} \frac{\partial J(w,b)}{\partial b}^{(i)}\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J(w,b)}{\partial w}  = \frac{1}{m} \sum\limits_{i = 0}^{m-1} \frac{\partial J(w,b)}{\partial w}^{(i)}\]</div>
+<ul class="simple">
+<li><p>Here, <span class="math notranslate nohighlight">\(m\)</span> is the number of training examples and <span class="math notranslate nohighlight">\(\sum\)</span> is the summation operator</p></li>
+</ul>
+</li>
+</ul>
+<p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C2</span>
+<span class="c1"># GRADED FUNCTION: compute_gradient</span>
+<span class="k">def</span> <span class="nf">compute_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the gradient for linear regression</span>
+<span class="sd">    Args:</span>
+<span class="sd">      x (ndarray): Shape (m,) Input to the model (Population of cities)</span>
+<span class="sd">      y (ndarray): Shape (m,) Label (Actual profits for the cities)</span>
+<span class="sd">      w, b (scalar): Parameters of the model</span>
+<span class="sd">    Returns</span>
+<span class="sd">      dj_dw (scalar): The gradient of the cost w.r.t. the parameters w</span>
+<span class="sd">      dj_db (scalar): The gradient of the cost w.r.t. the parameter b</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+
+    <span class="c1"># Number of training examples</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># You need to return the following variables correctly</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">f_wb</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">b</span>
+        <span class="n">dj_db</span> <span class="o">+=</span> <span class="n">f_wb</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">dj_dw</span> <span class="o">+=</span> <span class="p">(</span><span class="n">f_wb</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">dj_dw</span> <span class="o">/=</span> <span class="n">m</span>
+    <span class="n">dj_db</span> <span class="o">/=</span> <span class="n">m</span>
+
+    <span class="c1">### END CODE HERE ###</span>
+
+    <span class="k">return</span> <span class="n">dj_dw</span><span class="p">,</span> <span class="n">dj_db</span>
+</pre></div>
+</div>
+</div>
+<details><p>Click for hints</p>
+<ul>
+<li><p>You can represent a summation operator eg: <span class="math notranslate nohighlight">\(h = \sum\limits_{i = 0}^{m-1} 2i\)</span> in code as follows: <code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">h</span> <span class="pre">=</span> <span class="pre">0</span>&#160;&#160;&#160;&#160; <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(m):</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">h</span> <span class="pre">=</span> <span class="pre">h</span> <span class="pre">+</span> <span class="pre">2*i</span></code></p>
+<ul class="simple">
+<li><p>In this case, you can iterate over all the examples in <code class="docutils literal notranslate"><span class="pre">x</span></code> using a for loop and for each example, keep adding the gradient from that example to the variables <code class="docutils literal notranslate"><span class="pre">dj_dw</span></code> and <code class="docutils literal notranslate"><span class="pre">dj_db</span></code> which are initialized outside the loop.</p></li>
+</ul>
+</li>
+<li><div class="line-block">
+<div class="line">Then, you can return <code class="docutils literal notranslate"><span class="pre">dj_dw</span></code> and <code class="docutils literal notranslate"><span class="pre">dj_db</span></code> both divided by <code class="docutils literal notranslate"><span class="pre">m</span></code>.</div>
+</div>
+<details><p>Click for more hints</p>
+</li>
+<li><p>Here’s how you can structure the overall implementation for this function</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the gradient for linear regression</span>
+<span class="sd">    Args:</span>
+<span class="sd">      x (ndarray): Shape (m,) Input to the model (Population of cities)</span>
+<span class="sd">      y (ndarray): Shape (m,) Label (Actual profits for the cities)</span>
+<span class="sd">      w, b (scalar): Parameters of the model</span>
+<span class="sd">    Returns</span>
+<span class="sd">      dj_dw (scalar): The gradient of the cost w.r.t. the parameters w</span>
+<span class="sd">      dj_db (scalar): The gradient of the cost w.r.t. the parameter b</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+
+    <span class="c1"># Number of training examples</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># You need to return the following variables correctly</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">### START CODE HERE ###</span>
+    <span class="c1"># Loop over examples</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="c1"># Your code here to get prediction f_wb for the ith example</span>
+        <span class="n">f_wb</span> <span class="o">=</span>
+
+        <span class="c1"># Your code here to get the gradient for w from the ith example</span>
+        <span class="n">dj_dw_i</span> <span class="o">=</span>
+
+        <span class="c1"># Your code here to get the gradient for b from the ith example</span>
+        <span class="n">dj_db_i</span> <span class="o">=</span>
+
+        <span class="c1"># Update dj_db : In Python, a += 1  is the same as a = a + 1</span>
+        <span class="n">dj_db</span> <span class="o">+=</span> <span class="n">dj_db_i</span>
+
+        <span class="c1"># Update dj_dw</span>
+        <span class="n">dj_dw</span> <span class="o">+=</span> <span class="n">dj_dw_i</span>
+
+    <span class="c1"># Divide both dj_dw and dj_db by m</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">dj_dw</span> <span class="o">/</span> <span class="n">m</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="n">dj_db</span> <span class="o">/</span> <span class="n">m</span>
+    <span class="c1">### END CODE HERE ###</span>
+
+    <span class="k">return</span> <span class="n">dj_dw</span><span class="p">,</span> <span class="n">dj_db</span>
+</pre></div>
+</div>
+<p>If you’re still stuck, you can check the hints presented below to figure out how to calculate <code class="docutils literal notranslate"><span class="pre">f_wb</span></code> and <code class="docutils literal notranslate"><span class="pre">cost</span></code>.</p>
+<details><p>Hint to calculate f_wb     You did this in the previous exercise! For scalars <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> (x[i], w and b are all scalars), you can calculate the equation <span class="math notranslate nohighlight">\(h = ab + c\)</span> in code as h = a * b + c</p>
+<details><p>    More hints to calculate f     You can compute f_wb as f_wb = w * x[i] + b</p>
+</details></details><details><p>Hint to calculate dj_dw_i     For scalars <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> (f_wb, y[i] and x[i] are all scalars), you can calculate the equation <span class="math notranslate nohighlight">\(h = (a - b)c\)</span> in code as h = (a-b)*c</p>
+<details><p>    More hints to calculate f     You can compute dj_dw_i as dj_dw_i = (f_wb - y[i]) * x[i]</p>
+</details></details><details><p>Hint to calculate dj_db_i     You can compute dj_db_i as dj_db_i = f_wb - y[i]</p>
+</details></details></li>
+</ul>
+</details><p>Run the cells below to check your implementation of the <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> function with two different initializations of the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute and display gradient with w initialized to zeroes</span>
+<span class="n">initial_w</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">initial_b</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">tmp_dj_dw</span><span class="p">,</span> <span class="n">tmp_dj_db</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">initial_w</span><span class="p">,</span> <span class="n">initial_b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gradient at initial w, b (zeros):&#39;</span><span class="p">,</span> <span class="n">tmp_dj_dw</span><span class="p">,</span> <span class="n">tmp_dj_db</span><span class="p">)</span>
+
+<span class="n">compute_gradient_test</span><span class="p">(</span><span class="n">compute_gradient</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gradient at initial w, b (zeros): -65.32884974555672 -5.83913505154639
+Using X with shape (4, 1)
+<span class="ansi-green-intense-fg">All tests passed!</span>
+</pre></div></div>
+</div>
+<p>Now let’s run the gradient descent algorithm implemented above on our dataset.</p>
+<p><strong>Expected Output</strong>:</p>
+<table><tr><td><p>Gradient at initial , b (zeros)</p>
+</td><td><p>-65.32884975 -5.83913505154639</p>
+</td></tr></table><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute and display cost and gradient with non-zero w</span>
+<span class="n">test_w</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">test_b</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">tmp_dj_dw</span><span class="p">,</span> <span class="n">tmp_dj_db</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_w</span><span class="p">,</span> <span class="n">test_b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gradient at test w, b:&#39;</span><span class="p">,</span> <span class="n">tmp_dj_dw</span><span class="p">,</span> <span class="n">tmp_dj_db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gradient at test w, b: -47.41610118114435 -4.007175051546391
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<table><tr><td><p>Gradient at test w</p>
+</td><td><p>-47.41610118 -4.007175051546391</p>
+</td></tr></table></section>
+<section id="6.1-Learning-parameters-using-batch-gradient-descent">
+<h5>6.1 Learning parameters using batch gradient descent<a class="headerlink" href="#6.1-Learning-parameters-using-batch-gradient-descent" title="Permalink to this heading"></a></h5>
+<p>You will now find the optimal parameters of a linear regression model by using batch gradient descent. Recall batch refers to running all the examples in one iteration. - You don’t need to implement anything for this part. Simply run the cells below.</p>
+<ul class="simple">
+<li><p>A good way to verify that gradient descent is working correctly is to look at the value of <span class="math notranslate nohighlight">\(J(w,b)\)</span> and check that it is decreasing with each step.</p></li>
+<li><p>Assuming you have implemented the gradient and computed the cost correctly and you have an appropriate value for the learning rate alpha, <span class="math notranslate nohighlight">\(J(w,b)\)</span> should never increase and should converge to a steady value by the end of the algorithm.</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">,</span> <span class="n">cost_function</span><span class="p">,</span> <span class="n">gradient_function</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs batch gradient descent to learn theta. Updates theta by taking</span>
+<span class="sd">    num_iters gradient steps with learning rate alpha</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      x :    (ndarray): Shape (m,)</span>
+<span class="sd">      y :    (ndarray): Shape (m,)</span>
+<span class="sd">      w_in, b_in : (scalar) Initial values of parameters of the model</span>
+<span class="sd">      cost_function: function to compute cost</span>
+<span class="sd">      gradient_function: function to compute the gradient</span>
+<span class="sd">      alpha : (float) Learning rate</span>
+<span class="sd">      num_iters : (int) number of iterations to run gradient descent</span>
+<span class="sd">    Returns</span>
+<span class="sd">      w : (ndarray): Shape (1,) Updated values of parameters of the model after</span>
+<span class="sd">          running gradient descent</span>
+<span class="sd">      b : (scalar)                Updated value of parameter of the model after</span>
+<span class="sd">          running gradient descent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># number of training examples</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># An array to store cost J and w&#39;s at each iteration — primarily for graphing later</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">w_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">w_in</span><span class="p">)</span>  <span class="c1">#avoid modifying global w within function</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b_in</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+
+        <span class="c1"># Calculate the gradient and update the parameters</span>
+        <span class="n">dj_dw</span><span class="p">,</span> <span class="n">dj_db</span> <span class="o">=</span> <span class="n">gradient_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span> <span class="p">)</span>
+
+        <span class="c1"># Update Parameters using w, b, alpha and gradient</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dj_dw</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dj_db</span>
+
+        <span class="c1"># Save cost J at each iteration</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">100000</span><span class="p">:</span>      <span class="c1"># prevent resource exhaustion</span>
+            <span class="n">cost</span> <span class="o">=</span>  <span class="n">cost_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+            <span class="n">J_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+
+        <span class="c1"># Print cost every at intervals 10 times or as many iterations if &lt; 10</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">%</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_iters</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">w_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">4</span><span class="si">}</span><span class="s2">: Cost </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">J_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">   &quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">J_history</span><span class="p">,</span> <span class="n">w_history</span> <span class="c1">#return w and J,w history for graphing</span>
+</pre></div>
+</div>
+</div>
+<p>Now let’s run the gradient descent algorithm above to learn the parameters for our dataset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize fitting parameters. Recall that the shape of w is (n,)</span>
+<span class="n">initial_w</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">initial_b</span> <span class="o">=</span> <span class="mf">0.</span>
+
+<span class="c1"># some gradient descent settings</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">1500</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">x_train</span> <span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">initial_w</span><span class="p">,</span> <span class="n">initial_b</span><span class="p">,</span>
+                     <span class="n">compute_cost</span><span class="p">,</span> <span class="n">compute_gradient</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;w,b found by gradient descent:&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Iteration    0: Cost     6.74
+Iteration  150: Cost     5.31
+Iteration  300: Cost     4.96
+Iteration  450: Cost     4.76
+Iteration  600: Cost     4.64
+Iteration  750: Cost     4.57
+Iteration  900: Cost     4.53
+Iteration 1050: Cost     4.51
+Iteration 1200: Cost     4.50
+Iteration 1350: Cost     4.49
+w,b found by gradient descent: 1.166362350335582 -3.63029143940436
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<table><tr><td><p>w, b found by gradient descent</p>
+</td><td><p>1.16636235 -3.63029143940436</p>
+</td></tr></table><p>We will now use the final parameters from gradient descent to plot the linear fit.</p>
+<p>Recall that we can get the prediction for a single example <span class="math notranslate nohighlight">\(f(x^{(i)})= wx^{(i)}+b\)</span>.</p>
+<p>To calculate the predictions on the entire dataset, we can loop through all the training examples and calculate the prediction for each example. This is shown in the code block below.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">predicted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">x_train</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<p>We will now plot the predicted values to see the linear fit.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the linear fit</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a scatter plot of the data.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Profits vs. Population per city&quot;</span><span class="p">)</span>
+<span class="c1"># Set the y-axis label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Profit in $10,000&#39;</span><span class="p">)</span>
+<span class="c1"># Set the x-axis label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Population of City in 10,000s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(0.5, 0, &#39;Population of City in 10,000s&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_130_1.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_130_1.png" />
+</div>
+</div>
+<p>Your final values of <span class="math notranslate nohighlight">\(w,b\)</span> can also be used to make predictions on profits. Let’s predict what the profit would be in areas of 35,000 and 70,000 people.</p>
+<ul class="simple">
+<li><p>The model takes in population of a city in 10,000s as input.</p></li>
+<li><p>Therefore, 35,000 people can be translated into an input to the model as <code class="docutils literal notranslate"><span class="pre">np.array([3.5])</span></code></p></li>
+<li><p>Similarly, 70,000 people can be translated into an input to the model as <code class="docutils literal notranslate"><span class="pre">np.array([7.])</span></code></p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predict1</span> <span class="o">=</span> <span class="mf">3.5</span> <span class="o">*</span> <span class="n">w</span> <span class="o">+</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;For population = 35,000, we predict a profit of $</span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">predict1</span><span class="o">*</span><span class="mi">10000</span><span class="p">))</span>
+
+<span class="n">predict2</span> <span class="o">=</span> <span class="mf">7.0</span> <span class="o">*</span> <span class="n">w</span> <span class="o">+</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;For population = 70,000, we predict a profit of $</span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">predict2</span><span class="o">*</span><span class="mi">10000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+For population = 35,000, we predict a profit of $4519.77
+For population = 70,000, we predict a profit of $45342.45
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<table><tr><td><p>For population = 35,000, we predict a profit of</p>
+</td><td><p>$4519.77</p>
+</td></tr><tr><td><p>For population = 70,000, we predict a profit of</p>
+</td><td><p>$45342.45</p>
+</td></tr></table><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../index.html" class="btn btn-neutral float-left" title="Welcome to Machine-Learning-Andrew-Ng’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html" class="btn btn-neutral float-right" title="Advanced_Learning_Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andrew Ng.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
