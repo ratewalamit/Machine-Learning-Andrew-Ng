@@ -435,7 +435,7 @@ The centroids are: [[2.42830111 3.15792418]
 <p>## 2 - K-means on a sample dataset</p>
 <p>After you have completed the two functions (<code class="docutils literal notranslate"><span class="pre">find_closest_centroids</span></code> and <code class="docutils literal notranslate"><span class="pre">compute_centroids</span></code>) above, the next step is to run the K-means algorithm on a toy 2D dataset to help you understand how K-means works. * We encourage you to take a look at the function (<code class="docutils literal notranslate"><span class="pre">run_kMeans</span></code>) below to understand how it works. * Notice that the code calls the two functions you implemented in a loop.</p>
 <p>When you run the code below, it will produce a visualization that steps through the progress of the algorithm at each iteration. * At the end, your figure should look like the one displayed in Figure 1.</p>
-<p><img alt="3bc295b684054cd492dd9f5f4294348e" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure1.png" style="width: 500px; height: 500px;" /></p>
+<p><img alt="de3a51b61b514e1fb58ffd5fe2355b9a" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure1.png" style="width: 500px; height: 500px;" /></p>
 <p><strong>Note</strong>: You do not need to implement anything for this part. Simply run the code provided below</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -561,7 +561,7 @@ K-Means iteration 9/9
 <li><p>Specifically, you only need to store the RGB values of the 16 selected colors, and for each pixel in the image you now need to only store the index of the color at that location (where only 4 bits are necessary to represent 16 possibilities).</p></li>
 </ul>
 <p>In this part, you will use the K-means algorithm to select the 16 colors that will be used to represent the compressed image. * Concretely, you will treat every pixel in the original image as a data example and use the K-means algorithm to find the 16 colors that best group (cluster) the pixels in the 3- dimensional RGB space. * Once you have computed the cluster centroids on the image, you will then use the 16 colors to replace the pixels in the original image.</p>
-<p><img alt="27657e1aa90c480a917dd68448ee3733" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure2.png" style="width: 500px; height: 500px;" /></p>
+<p><img alt="7385df4b8fb148da83ccffed7a368a8b" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure2.png" style="width: 500px; height: 500px;" /></p>
 <p><span class="math notranslate nohighlight">\(^{2}\)</span>The provided photo used in this exercise belongs to Frank Wouters and is used with his permission.</p>
 <p>### 4.1 Dataset</p>
 <p><strong>Load image</strong></p>
@@ -714,7 +714,7 @@ of <span class="math notranslate nohighlight">\(128 \times 128 \times 24 = 393,2
 </div>
 </div>
 <p>Finally, you can view the effects of the compression by reconstructing the image based only on the centroid assignments. * Specifically, you can replace each pixel location with the mean of the centroid assigned to it. * Figure 3 shows the reconstruction we obtained. Even though the resulting image retains most of the characteristics of the original, we also see some compression artifacts.</p>
-<p><img alt="91090ee94d034b2cb2c5e60777b5f529" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure3.png" style="width: 700px; height: 700px;" /></p>
+<p><img alt="edc1ec678a30435dbe396fcfbf8fbeb7" class="no-scaled-link" src="source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/week1/C3W1A/C3W1A1/images/figure3.png" style="width: 700px; height: 700px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
