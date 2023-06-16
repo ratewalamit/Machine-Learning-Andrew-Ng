@@ -23,7 +23,6 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Advanced_Learning_Algorithms" href="../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html" />
     <link rel="prev" title="Welcome to Machine-Learning-Andrew-Ng’s documentation!" href="../../index.html" />
     <link href="../../_static/style.css" rel="stylesheet" type="text/css">
 
@@ -51,10 +50,13 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Supervised_Machine_Learning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Weak-1">Weak-1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz---1">Practice Quiz - 1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz---2">Practice Quiz - 2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz---3">Practice Quiz - 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Module---1">Module - 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz">Practice Quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Quiz---1">Quiz - 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Quiz---2">Quiz - 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Quiz---3">Quiz - 3</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks">Optional Lab - W1: Brief Introduction to Python and Jupyter Notebooks</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Goals">Goals</a></li>
 </ul>
@@ -65,8 +67,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Weak-2">Weak-2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Practice-Quiz">Practice Quiz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Module---2">Module - 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Practice Quiz</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Quiz-1">Quiz-1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Quiz-2">Quiz-2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Quiz-3">Quiz-3</a></li>
@@ -96,8 +98,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -126,42 +126,38 @@
              
   <section id="Supervised_Machine_Learning">
 <h1>Supervised_Machine_Learning<a class="headerlink" href="#Supervised_Machine_Learning" title="Permalink to this heading"></a></h1>
-<p><strong>(Regression_and_Classification)</strong></p>
-<section id="Weak-1">
-<h2>Weak-1<a class="headerlink" href="#Weak-1" title="Permalink to this heading"></a></h2>
-<section id="Practice-Quiz---1">
-<h3>Practice Quiz - 1<a class="headerlink" href="#Practice-Quiz---1" title="Permalink to this heading"></a></h3>
-<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss1.png" style="width: 800px;" /></p>
-<center/><figure/></section>
-<section id="Practice-Quiz---2">
-<h3>Practice Quiz - 2<a class="headerlink" href="#Practice-Quiz---2" title="Permalink to this heading"></a></h3>
-<div class="nbinput docutils container">
+<html><p style="font-size:20px;font-weight: 700"><p>(Regression_and_Classification)</p>
+</p></html><section id="Module---1">
+<h2>Module - 1<a class="headerlink" href="#Module---1" title="Permalink to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">figure</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">center</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;week1/Practice_quiz/ss2.png&quot;</span>  <span class="n">alt</span><span class="o">=</span><span class="s1">&#39;missing&#39;</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;800&quot;</span>  <span class="o">&gt;&lt;</span><span class="n">center</span><span class="o">/&gt;</span>
-<span class="o">&lt;</span><span class="n">figure</span><span class="o">/&gt;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#ignore these lines, these are added to load some data</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification&quot;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week1&quot;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2&quot;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week3&quot;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2/C1W2A1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[1], line 1</span>
-<span class="ansi-red-fg">    &lt;figure&gt;</span>
-    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
-
-</pre></div></div>
-</div>
-</section>
-<section id="Practice-Quiz---3">
-<h3>Practice Quiz - 3<a class="headerlink" href="#Practice-Quiz---3" title="Permalink to this heading"></a></h3>
+<section id="Practice-Quiz">
+<h3>Practice Quiz<a class="headerlink" href="#Practice-Quiz" title="Permalink to this heading"></a></h3>
+<section id="Quiz---1">
+<h4>Quiz - 1<a class="headerlink" href="#Quiz---1" title="Permalink to this heading"></a></h4>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss1.png" style="width: 800px;" /></p>
+<center/><figure/></section>
+<section id="Quiz---2">
+<h4>Quiz - 2<a class="headerlink" href="#Quiz---2" title="Permalink to this heading"></a></h4>
+<figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss21.png" style="width: 800px;" /></p>
+<center/><figure/></section>
+<section id="Quiz---3">
+<h4>Quiz - 3<a class="headerlink" href="#Quiz---3" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss3.png" style="width: 800px;" /></p>
 <center/><figure/></section>
+</section>
 <section id="Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks">
 <h3>Optional Lab - W1: Brief Introduction to Python and Jupyter Notebooks<a class="headerlink" href="#Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks" title="Permalink to this heading"></a></h3>
 <p>Welcome to the first optional lab! Optional labs are available to: - provide information - like this notebook - reinforce lecture material with hands-on examples - provide working examples of routines used in the graded labs</p>
@@ -195,7 +191,7 @@ This is  code cell
 <section id="Python">
 <h3>Python<a class="headerlink" href="#Python" title="Permalink to this heading"></a></h3>
 <p>You can write your code in the code cells. To run the code, select the cell and either - hold the shift-key down and hit ‘enter’ or ‘return’ - click the ‘run’ arrow above</p>
-<figure><p><img alt="566861e417194096a8be51b9442746e0" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
+<figure><p><img alt="3e488d5e72244e05857503cb13500f75" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
 <figure/><section id="Print-statement">
 <h4>Print statement<a class="headerlink" href="#Print-statement" title="Permalink to this heading"></a></h4>
 <div class="line-block">
@@ -224,10 +220,10 @@ f strings allow you to embed variables right in the strings!
 </section>
 </section>
 </section>
-<section id="Weak-2">
-<h2>Weak-2<a class="headerlink" href="#Weak-2" title="Permalink to this heading"></a></h2>
-<section id="Practice-Quiz">
-<h3>Practice Quiz<a class="headerlink" href="#Practice-Quiz" title="Permalink to this heading"></a></h3>
+<section id="Module---2">
+<h2>Module - 2<a class="headerlink" href="#Module---2" title="Permalink to this heading"></a></h2>
+<section id="id1">
+<h3>Practice Quiz<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <section id="Quiz-1">
 <h4>Quiz-1<a class="headerlink" href="#Quiz-1" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss11.png" style="width: 800px;" /></p>
@@ -247,19 +243,19 @@ f strings allow you to embed variables right in the strings!
 <section id="Outline">
 <h4>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h4>
 <ul class="simple">
-<li><p>`  1.1 Goals &lt;#toc_40015_1.1&gt;`__</p></li>
-<li><p>`  1.2 Useful References &lt;#toc_40015_1.2&gt;`__</p></li>
+<li><p>1.1 Goals</p></li>
+<li><p>1.2 Useful References</p></li>
 <li><p>2 Python and NumPy</p></li>
 <li><p>3 Vectors</p></li>
-<li><p>`  3.1 Abstract &lt;#toc_40015_3.1&gt;`__</p></li>
-<li><p>`  3.2 NumPy Arrays &lt;#toc_40015_3.2&gt;`__</p></li>
-<li><p>`  3.3 Vector Creation &lt;#toc_40015_3.3&gt;`__</p></li>
-<li><p>`  3.4 Operations on Vectors &lt;#toc_40015_3.4&gt;`__</p></li>
+<li><p>3.1 Abstract</p></li>
+<li><p>3.2 NumPy Arrays</p></li>
+<li><p>3.3 Vector Creation</p></li>
+<li><p>3.4 Operations on Vectors</p></li>
 <li><p>4 Matrices</p></li>
-<li><p>`  4.1 Abstract &lt;#toc_40015_4.1&gt;`__</p></li>
-<li><p>`  4.2 NumPy Arrays &lt;#toc_40015_4.2&gt;`__</p></li>
-<li><p>`  4.3 Matrix Creation &lt;#toc_40015_4.3&gt;`__</p></li>
-<li><p>`  4.4 Operations on Matrices &lt;#toc_40015_4.4&gt;`__</p></li>
+<li><p>4.1 Abstract</p></li>
+<li><p>4.2 NumPy Arrays</p></li>
+<li><p>4.3 Matrix Creation</p></li>
+<li><p>4.4 Operations on Matrices</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -289,7 +285,7 @@ f strings allow you to embed variables right in the strings!
 <h4>3 Vectors<a class="headerlink" href="#3-Vectors" title="Permalink to this heading"></a></h4>
 <section id="3.1-Abstract">
 <h5>3.1 Abstract<a class="headerlink" href="#3.1-Abstract" title="Permalink to this heading"></a></h5>
-<p><a href="#id2"><span class="problematic" id="id3">|</span></a>3d400b637fcf405eb2a77ef1b0cbeff1|Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of <span class="math notranslate nohighlight">\(n\)</span>. The elements of a
+<p><a href="#id6"><span class="problematic" id="id7">|</span></a>ba3dde2d15394f39abd8e17daaf0eb79|Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of <span class="math notranslate nohighlight">\(n\)</span>. The elements of a
 vector can be referenced with an index. In math settings, indexes typically run from 1 to n. In computer science and these labs, indexing will typically run from 0 to n-1. In notation, elements of a vector, when referenced individually will indicate the index in a subscript, for example, the <span class="math notranslate nohighlight">\(0^{th}\)</span> element, of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(x_0\)</span>. Note, the x is not bold in this case.</p>
 </section>
 <section id="3.2-NumPy-Arrays">
@@ -320,7 +316,7 @@ vector can be referenced with an index. In math settings, indexes typically run 
 <div class="highlight"><pre>
 np.zeros(4) :   a = [0. 0. 0. 0.], a shape = (4,), a data type = float64
 np.zeros(4,) :  a = [0. 0. 0. 0.], a shape = (4,), a data type = float64
-np.random.random_sample(4): a = [0.21386779 0.87670962 0.50673906 0.74796839], a shape = (4,), a data type = float64
+np.random.random_sample(4): a = [0.80694701 0.11515046 0.88627338 0.23140755], a shape = (4,), a data type = float64
 </pre></div></div>
 </div>
 <p>Some data creation routines do not take a shape tuple:</p>
@@ -340,7 +336,7 @@ np.random.random_sample(4): a = [0.21386779 0.87670962 0.50673906 0.74796839], a
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 np.arange(4.):     a = [0. 1. 2. 3.], a shape = (4,), a data type = float64
-np.random.rand(4): a = [0.30016259 0.54897546 0.03274912 0.82090026], a shape = (4,), a data type = float64
+np.random.rand(4): a = [0.8128206  0.24293517 0.4857318  0.86718509], a shape = (4,), a data type = float64
 </pre></div></div>
 </div>
 <p>values can be specified manually as well.</p>
@@ -556,7 +552,7 @@ b = 5 * a : [ 5 10 15 20]
 </div>
 <p>3.4.6 Vector Vector dot product</p>
 <p>The dot product is a mainstay of Linear Algebra and NumPy. This is an operation used extensively in this course and should be well understood. The dot product is shown below.</p>
-<p><img alt="2aa7972288ee4ae580529917d8de2d2b" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
+<p><img alt="8fdb6d18089e408cbbb07e05f3feb10b" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
 <p>The dot product multiplies the values in two vectors element-wise and then sums the result. Vector dot product requires the dimensions of the two vectors to be the same.</p>
 <p>Let’s implement our own version of the dot product below:</p>
 <p><strong>Using a for loop</strong>, implement a function which returns the dot product of two vectors. The function to return given inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
@@ -664,9 +660,9 @@ NumPy 1-D np.dot(b, a) = 24, np.dot(a, b).shape = ()
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 np.dot(a, b) =  2501072.5817
-Vectorized version duration: 13.6130 ms
+Vectorized version duration: 9.9699 ms
 my_dot(a, b) =  2501072.5817
-loop version duration: 2038.0728 ms
+loop version duration: 2025.9993 ms
 </pre></div></div>
 </div>
 <p>So, vectorization provides a large speed up in this example. This is because NumPy makes better use of available data parallelism in the underlying hardware. GPU’s and modern CPU’s implement Single Instruction, Multiple Data (SIMD) pipelines allowing multiple operations to be issued in parallel. This is critical in Machine Learning where the data sets are often very large.</p>
@@ -870,8 +866,8 @@ a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
 <section id="Practice-Lab:-Linear-Regression">
 <h4>Practice Lab: Linear Regression<a class="headerlink" href="#Practice-Lab:-Linear-Regression" title="Permalink to this heading"></a></h4>
 <p>Welcome to your first practice lab! In this lab, you will implement linear regression with one variable to predict profits for a restaurant franchise.</p>
-<section id="id6">
-<h5>Outline<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h5>
+<section id="id10">
+<h5>Outline<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h5>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Linear regression with one variable</p></li>
@@ -896,20 +892,14 @@ a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
 <h4>1 - Packages<a class="headerlink" href="#1---Packages" title="Permalink to this heading"></a></h4>
 <p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a class="reference external" href="www.numpy.org">numpy</a> is the fundamental package for working with matrices in Python. - <a class="reference external" href="http://matplotlib.org">matplotlib</a> is a famous library to plot graphs in Python. - <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> contains helper functions for this assignment. You do not need to modify code in this file.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="c1">#add modules from the path</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2/C1W2A1&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
@@ -932,7 +922,7 @@ a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
 <div class="line">- Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the dataset</span>
@@ -948,7 +938,7 @@ a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
 </div>
 <p>The code below prints the variable <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and the type of the variable.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print x_train</span>
@@ -970,7 +960,7 @@ First five elements of x_train are:
 <p><code class="docutils literal notranslate"><span class="pre">x_train</span></code> is a numpy array that contains decimal values that are all greater than zero. - These values represent the city population times 10,000 - For example, 6.1101 means that the population for that city is 61,101</p>
 <p>Now, let’s print <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print y_train</span>
@@ -996,7 +986,7 @@ First five elements of y_train are:
 <p>Another useful way to get familiar with your data is to view its dimensions.</p>
 <p>Please print the shape of <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and see how many training examples you have in your dataset.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The shape of x_train is:&#39;</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -1021,7 +1011,7 @@ Number of training examples (m): 97
 <h5>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this heading"></a></h5>
 <p>It is often useful to understand the data by visualizing it. - For this dataset, you can use a scatter plot to visualize the data, since it has only two properties to plot (profit and population). - Many other problems that you will encounter in real life have more than two properties (for example, population, average household income, monthly profits, monthly sales).When you have more than two properties, you can still use a scatter plot to see the relationship between each pair of properties.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scatter plot of the data. To change the markers to red &quot;x&quot;,</span>
@@ -1125,7 +1115,7 @@ Number of training examples (m): 97
 </ul>
 <p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C1</span>
@@ -1212,7 +1202,7 @@ Number of training examples (m): 97
 </ul>
 </details><p>You can check if your implementation was correct by running the following test code:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute cost with some initial values for paramaters w, b</span>
@@ -1294,7 +1284,7 @@ Cost at initial w (zeros): 75.203
 </ul>
 <p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C2</span>
@@ -1400,7 +1390,7 @@ Cost at initial w (zeros): 75.203
 </ul>
 </details><p>Run the cells below to check your implementation of the <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> function with two different initializations of the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute and display gradient with w initialized to zeroes</span>
@@ -1429,7 +1419,7 @@ Using X with shape (4, 1)
 <table><tr><td><p>Gradient at initial , b (zeros)</p>
 </td><td><p>-65.32884975 -5.83913505154639</p>
 </td></tr></table><div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute and display cost and gradient with non-zero w</span>
@@ -1461,7 +1451,7 @@ Gradient at test w, b: -47.41610118114435 -4.007175051546391
 <li><p>Assuming you have implemented the gradient and computed the cost correctly and you have an appropriate value for the learning rate alpha, <span class="math notranslate nohighlight">\(J(w,b)\)</span> should never increase and should converge to a steady value by the end of the algorithm.</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">,</span> <span class="n">cost_function</span><span class="p">,</span> <span class="n">gradient_function</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
@@ -1518,7 +1508,7 @@ Gradient at test w, b: -47.41610118114435 -4.007175051546391
 </div>
 <p>Now let’s run the gradient descent algorithm above to learn the parameters for our dataset.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize fitting parameters. Recall that the shape of w is (n,)</span>
@@ -1560,7 +1550,7 @@ w,b found by gradient descent: 1.166362350335582 -3.63029143940436
 <p>Recall that we can get the prediction for a single example <span class="math notranslate nohighlight">\(f(x^{(i)})= wx^{(i)}+b\)</span>.</p>
 <p>To calculate the predictions on the entire dataset, we can loop through all the training examples and calculate the prediction for each example. This is shown in the code block below.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1573,7 +1563,7 @@ w,b found by gradient descent: 1.166362350335582 -3.63029143940436
 </div>
 <p>We will now plot the predicted values to see the linear fit.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the linear fit</span>
@@ -1592,7 +1582,7 @@ w,b found by gradient descent: 1.166362350335582 -3.63029143940436
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1614,7 +1604,7 @@ Text(0.5, 0, &#39;Population of City in 10,000s&#39;)
 <li><p>Similarly, 70,000 people can be translated into an input to the model as <code class="docutils literal notranslate"><span class="pre">np.array([7.])</span></code></p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predict1</span> <span class="o">=</span> <span class="mf">3.5</span> <span class="o">*</span> <span class="n">w</span> <span class="o">+</span> <span class="n">b</span>
@@ -1658,7 +1648,6 @@ For population = 70,000, we predict a profit of $45342.45
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../../index.html" class="btn btn-neutral float-left" title="Welcome to Machine-Learning-Andrew-Ng’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html" class="btn btn-neutral float-right" title="Advanced_Learning_Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
