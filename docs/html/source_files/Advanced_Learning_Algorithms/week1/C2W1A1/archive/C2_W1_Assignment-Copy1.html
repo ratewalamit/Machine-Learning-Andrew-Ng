@@ -133,11 +133,11 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-06-16 22:30:07.481965: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2023-06-16 22:30:07.513740: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2023-06-16 22:30:07.514319: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+2023-06-17 00:21:36.987548: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-06-17 00:21:37.019303: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-06-17 00:21:37.019867: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2023-06-16 22:30:08.030408: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-06-17 00:21:37.530398: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div></div>
 </div>
 <div class="line-block">
@@ -331,7 +331,7 @@ Cell <span class="ansi-green-fg">In[6], line 5</span>
 </div>
 <p>### 2.3 Model representation</p>
 <p>The neural network you will use in this assignment is shown in the figure below. - This has three dense layers with sigmoid activations. - Recall that our inputs are pixel values of digit images. - Since the images are of size <span class="math notranslate nohighlight">\(20\times20\)</span>, this gives us <span class="math notranslate nohighlight">\(400\)</span> inputs</p>
-<p><img alt="61dca5b6e0c04e1fa78aa38206eabb74" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_Assign1.PNG" style="width: 500px; height: 400px;" /></p>
+<p><img alt="8ee8af1e4db546fe9cd25abce9f73e8e" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_Assign1.PNG" style="width: 500px; height: 400px;" /></p>
 <ul class="simple">
 <li><p>The parameters have dimensions that are sized for a neural network with <span class="math notranslate nohighlight">\(25\)</span> units in layer 1, <span class="math notranslate nohighlight">\(15\)</span> units in layer 2 and <span class="math notranslate nohighlight">\(1\)</span> output unit in layer 3.</p>
 <ul>
@@ -709,7 +709,7 @@ Cell <span class="ansi-green-fg">In[17], line 5</span>
 </pre></div></div>
 </div>
 <p>### 2.5 NumPy Model Implementation (Forward Prop in NumPy) As described in lecture, it is possible to build your own dense layer using NumPy. This can then be utilized to build a multi-layer neural network.</p>
-<p><img alt="5ed7b354ab7c4e3eab9c6434c883108f" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
+<p><img alt="d40e7207206149df92ce442b577e06a4" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
 <p>### Exercise 2</p>
 <p>Below, build a dense layer subroutine. The example in lecture utilized a for loop to visit each unit (<code class="docutils literal notranslate"><span class="pre">j</span></code>) in the layer and perform the dot product of the weights for that unit (<code class="docutils literal notranslate"><span class="pre">W[:,j]</span></code>) and sum the bias for the unit (<code class="docutils literal notranslate"><span class="pre">b[j]</span></code>) to form <code class="docutils literal notranslate"><span class="pre">z</span></code>. An activation function <code class="docutils literal notranslate"><span class="pre">g(z)</span></code> is then applied to that result. This section will not utilize some of the matrix operations described in the optional lectures. These will be explored in a later section.</p>
 <div class="nbinput nblast docutils container">
@@ -971,7 +971,7 @@ Cell <span class="ansi-green-fg">In[24], line 5</span>
 </pre></div></div>
 </div>
 <p>### 2.6 Vectorized NumPy Model Implementation (Optional) The optional lectures described vector and matrix operations that can be used to speed the calculations. Below describes a layer operation that computes the output for all units in a layer on a given input example:</p>
-<p><img alt="3e95b0f6004f4f189be3cad6ba8f4b37" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_VectorMatrix.PNG" style="width: 600px; height: 450px;" /></p>
+<p><img alt="001fe1c9f9b0494cb48b968267068b5f" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_VectorMatrix.PNG" style="width: 600px; height: 450px;" /></p>
 <p>We can demonstrate this using the examples <code class="docutils literal notranslate"><span class="pre">X</span></code> and the <code class="docutils literal notranslate"><span class="pre">W1</span></code>,<code class="docutils literal notranslate"><span class="pre">b1</span></code> parameters above. We use <code class="docutils literal notranslate"><span class="pre">np.matmul</span></code> to perform the matrix multiply. Note, the dimensions of x and W must be compatible as shown in the diagram above.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
@@ -1000,7 +1000,7 @@ Cell <span class="ansi-green-fg">In[25], line 1</span>
 </pre></div></div>
 </div>
 <p>You can take this a step further and compute all the units for all examples in one Matrix-Matrix operation.</p>
-<p><img alt="0376f5c710a54a9e967baf184770f8d1" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_MatrixMatrix.PNG" style="width: 600px; height: 450px;" /> The full operation is <span class="math notranslate nohighlight">\(\mathbf{Z}=\mathbf{XW}+\mathbf{b}\)</span>. This will utilize NumPy broadcasting to expand <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> to <span class="math notranslate nohighlight">\(m\)</span> rows. If this is unfamiliar, a short tutorial is provided at the end of the notebook.</p>
+<p><img alt="adc20b51620d464a8d80d0220c076adf" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/C2W1A1/archive/images/C2_W1_MatrixMatrix.PNG" style="width: 600px; height: 450px;" /> The full operation is <span class="math notranslate nohighlight">\(\mathbf{Z}=\mathbf{XW}+\mathbf{b}\)</span>. This will utilize NumPy broadcasting to expand <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> to <span class="math notranslate nohighlight">\(m\)</span> rows. If this is unfamiliar, a short tutorial is provided at the end of the notebook.</p>
 <p>### Exercise 3</p>
 <p>Below, compose a new <code class="docutils literal notranslate"><span class="pre">my_dense_v</span></code> subroutine that performs the layer calculations for a matrix of examples. This will utilize <code class="docutils literal notranslate"><span class="pre">np.matmul()</span></code>.</p>
 <div class="nbinput nblast docutils container">

@@ -146,6 +146,14 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#ignore these lines, these are added to load some data</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification&quot;</span><span class="p">)</span>
@@ -191,7 +199,7 @@ This is  code cell
 <section id="Python">
 <h3>Python<a class="headerlink" href="#Python" title="Permalink to this heading"></a></h3>
 <p>You can write your code in the code cells. To run the code, select the cell and either - hold the shift-key down and hit ‘enter’ or ‘return’ - click the ‘run’ arrow above</p>
-<figure><p><img alt="7a97dfae89774328b5bf4e2f610a43a3" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
+<figure><p><img alt="4d7c7181135a4a3c8e7c09af8364d16e" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
 <figure/><section id="Print-statement">
 <h4>Print statement<a class="headerlink" href="#Print-statement" title="Permalink to this heading"></a></h4>
 <div class="line-block">
@@ -217,7 +225,7 @@ This is  code cell
 f strings allow you to embed variables right in the strings!
 </pre></div></div>
 </div>
-<div style="margin-bottom: 10vh;"></div></section>
+<div style="margin-bottom: 3vh;"></div><hr style="height: 3px; background-color: black; border: 3px dashed black"><hr style="height: 3px; background-color: black;"><div style="margin-bottom: 10vh;"></div></section>
 </section>
 </section>
 <section id="Module---2">
@@ -285,9 +293,10 @@ f strings allow you to embed variables right in the strings!
 <h4>3 Vectors<a class="headerlink" href="#3-Vectors" title="Permalink to this heading"></a></h4>
 <section id="3.1-Abstract">
 <h5>3.1 Abstract<a class="headerlink" href="#3.1-Abstract" title="Permalink to this heading"></a></h5>
-<p><a href="#id6"><span class="problematic" id="id7">|</span></a>f53e3ba565eb476ca11cdf110f0cac22|Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of <span class="math notranslate nohighlight">\(n\)</span>. The elements of a
-vector can be referenced with an index. In math settings, indexes typically run from 1 to n. In computer science and these labs, indexing will typically run from 0 to n-1. In notation, elements of a vector, when referenced individually will indicate the index in a subscript, for example, the <span class="math notranslate nohighlight">\(0^{th}\)</span> element, of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(x_0\)</span>. Note, the x is not bold in this case.</p>
-</section>
+<div style="float: right;margin-left: 10px;"><p><img alt="Image" class="no-scaled-link" src="../../_images/C1_W2_Lab04_Vectors.PNG" style="width: 340px;" /></p>
+</div><p><p>Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of <span class="math notranslate nohighlight">\(n\)</span>. The elements of a vector can be referenced with an
+index. In math settings, indexes typically run from 1 to n. In computer science and these labs, indexing will typically run from 0 to n-1. In notation, elements of a vector, when referenced individually will indicate the index in a subscript, for example, the <span class="math notranslate nohighlight">\(0^{th}\)</span> element, of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(x_0\)</span>. Note, the x is not bold in this case.</p>
+</p></section>
 <section id="3.2-NumPy-Arrays">
 <h5>3.2 NumPy Arrays<a class="headerlink" href="#3.2-NumPy-Arrays" title="Permalink to this heading"></a></h5>
 <p>NumPy’s basic data structure is an indexable, n-dimensional <em>array</em> containing elements of the same type (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>). Right away, you may notice we have overloaded the term ‘dimension’. Above, it was the number of elements in the vector, here, dimension refers to the number of indexes of an array. A one-dimensional or 1-D array has one index. In Course 1, we will represent vectors as NumPy 1-D arrays.</p>
@@ -552,7 +561,7 @@ b = 5 * a : [ 5 10 15 20]
 </div>
 <p>3.4.6 Vector Vector dot product</p>
 <p>The dot product is a mainstay of Linear Algebra and NumPy. This is an operation used extensively in this course and should be well understood. The dot product is shown below.</p>
-<p><img alt="e99410a8e27c4d7288818b5d6bf496d5" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
+<p><img alt="76fdbc651b444a449281de7cea7fe36a" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
 <p>The dot product multiplies the values in two vectors element-wise and then sums the result. Vector dot product requires the dimensions of the two vectors to be the same.</p>
 <p>Let’s implement our own version of the dot product below:</p>
 <p><strong>Using a for loop</strong>, implement a function which returns the dot product of two vectors. The function to return given inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
@@ -866,8 +875,8 @@ a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
 <section id="Practice-Lab:-Linear-Regression">
 <h4>Practice Lab: Linear Regression<a class="headerlink" href="#Practice-Lab:-Linear-Regression" title="Permalink to this heading"></a></h4>
 <p>Welcome to your first practice lab! In this lab, you will implement linear regression with one variable to predict profits for a restaurant franchise.</p>
-<section id="id10">
-<h5>Outline<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h5>
+<section id="id8">
+<h5>Outline<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h5>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Linear regression with one variable</p></li>
@@ -1032,7 +1041,7 @@ Number of training examples (m): 97
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_109_0.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_109_0.png" />
+<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_110_0.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_110_0.png" />
 </div>
 </div>
 <p>Your goal is to build a linear regression model to fit this data. - With this model, you can then input a new city’s population, and have the model estimate your restaurant’s potential monthly profits for that city.</p>
@@ -1594,7 +1603,7 @@ Text(0.5, 0, &#39;Population of City in 10,000s&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_137_1.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_137_1.png" />
+<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_138_1.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_138_1.png" />
 </div>
 </div>
 <p>Your final values of <span class="math notranslate nohighlight">\(w,b\)</span> can also be used to make predictions on profits. Let’s predict what the profit would be in areas of 35,000 and 70,000 people.</p>
