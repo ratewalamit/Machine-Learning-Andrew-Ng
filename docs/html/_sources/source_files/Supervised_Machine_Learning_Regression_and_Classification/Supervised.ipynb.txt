@@ -2,15 +2,36 @@
  "cells": [
   {
    "cell_type": "markdown",
+   "id": "e879e1cd",
+   "metadata": {},
+   "source": [
+    "\n",
+    "<hr style=\"height: 3px; background-color: black;\">\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f7a648ad",
+   "metadata": {},
+   "source": [
+    "# Supervised_Machine_Learning"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f4258afb",
+   "metadata": {},
+   "source": [
+    "**(Regression_and_Classification)**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "84f2d83f",
    "metadata": {},
    "source": [
-    "#   Supervised_Machine_Learning\n",
-    "\n",
-    "<html>\n",
-    "    <p style=\"font-size:20px;font-weight: 700\"> (Regression_and_Classification) </p>\n",
-    "</html>\n",
-    "    "
+    "<hr style=\"height: 3px; background-color: black;\">\n",
+    "<div style=\"margin-bottom: 4vh;\"> </div>    "
    ]
   },
   {
@@ -22,23 +43,11 @@
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": 1,
-   "id": "8c30b174",
-   "metadata": {
-    "tags": [
-     "hide_input"
-    ]
-   },
-   "outputs": [],
+   "cell_type": "markdown",
+   "id": "61f5da69",
+   "metadata": {},
    "source": [
-    "#ignore these lines, these are added to load some data\n",
-    "import sys \n",
-    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification\")\n",
-    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week1\")\n",
-    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2\")\n",
-    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week3\")\n",
-    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2/C1W2A1\")"
+    "<div style=\"margin-bottom: 8vh;\"> </div>   "
    ]
   },
   {
@@ -101,6 +110,30 @@
     "<figure>\n",
     "    <center> <img src=\"week1/Practice_quiz/ss3.png\"  alt='missing' width=\"800\"  ><center/>\n",
     "<figure/>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c25836a1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#ignore these lines, these are added to load some data\n",
+    "import sys \n",
+    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification\")\n",
+    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week1\")\n",
+    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2\")\n",
+    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week3\")\n",
+    "sys.path.append(\"/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2/C1W2A1\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "54a38366",
+   "metadata": {},
+   "source": [
+    "<div style=\"margin-bottom: 5vh;\"> </div>   "
    ]
   },
   {
@@ -286,6 +319,14 @@
   },
   {
    "cell_type": "markdown",
+   "id": "51ecaaed",
+   "metadata": {},
+   "source": [
+    "<div style=\"margin-bottom: 10vh;\"> </div>   "
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "cd4c5e8c",
    "metadata": {},
    "source": [
@@ -356,6 +397,14 @@
   },
   {
    "cell_type": "markdown",
+   "id": "ce454043",
+   "metadata": {},
+   "source": [
+    "<div style=\"margin-bottom: 8vh;\"> </div>   "
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "8cc31b14",
    "metadata": {
     "pycharm": {
@@ -406,7 +455,7 @@
     }
    },
    "source": [
-    "#### 1.1 Goals\n",
+    "#### 1.1 Goals \n",
     "<a name=\"toc_40015_1.1\"></a>\n",
     "In this lab, you will:\n",
     "- Review the features of NumPy and Python that are used in Course 1"
@@ -528,7 +577,7 @@
      "text": [
       "np.zeros(4) :   a = [0. 0. 0. 0.], a shape = (4,), a data type = float64\n",
       "np.zeros(4,) :  a = [0. 0. 0. 0.], a shape = (4,), a data type = float64\n",
-      "np.random.random_sample(4): a = [0.80694701 0.11515046 0.88627338 0.23140755], a shape = (4,), a data type = float64\n"
+      "np.random.random_sample(4): a = [0.67550763 0.82716405 0.87136689 0.39774134], a shape = (4,), a data type = float64\n"
      ]
     }
    ],
@@ -566,7 +615,7 @@
      "output_type": "stream",
      "text": [
       "np.arange(4.):     a = [0. 1. 2. 3.], a shape = (4,), a data type = float64\n",
-      "np.random.rand(4): a = [0.8128206  0.24293517 0.4857318  0.86718509], a shape = (4,), a data type = float64\n"
+      "np.random.rand(4): a = [0.08023205 0.16830734 0.62895376 0.50412987], a shape = (4,), a data type = float64\n"
      ]
     }
    ],
@@ -1117,9 +1166,9 @@
      "output_type": "stream",
      "text": [
       "np.dot(a, b) =  2501072.5817\n",
-      "Vectorized version duration: 9.9699 ms \n",
+      "Vectorized version duration: 11.6553 ms \n",
       "my_dot(a, b) =  2501072.5817\n",
-      "loop version duration: 2025.9993 ms \n"
+      "loop version duration: 2024.6034 ms \n"
      ]
     }
    ],
