@@ -18,6 +18,7 @@
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
@@ -49,8 +50,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../Supervised_Machine_Learning_Regression_and_Classification/Supervised.html">Supervised_Machine_Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -229,7 +228,7 @@ The shape of y_val is:  (307,)
 <h2>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this heading"></a></h2>
 <p>Before starting on any task, it is often useful to understand the data by visualizing it. - For this dataset, you can use a scatter plot to visualize the data (<code class="docutils literal notranslate"><span class="pre">X_train</span></code>), since it has only two properties to plot (throughput and latency)</p>
 <ul class="simple">
-<li><p>Your plot should look similar to the one below <img alt="14a80ee6e10f4960855120b56c7bb35d" class="no-scaled-link" src="../../../../../_images/figure1.png" style="width: 500px; height: 500px;" /></p></li>
+<li><p>Your plot should look similar to the one below <img alt="665d615f98be4693b869a6398f2f412b" class="no-scaled-link" src="../../../../../_images/figure1.png" style="width: 500px; height: 500px;" /></p></li>
 </ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -374,7 +373,7 @@ Variance of each feature: [1.83263141 1.70974533]
 </td></tr><tr><td><p>Variance of each feature:</p>
 </td><td><p>[1.83263141 1.70974533]</p>
 </td></tr></table><p>Now that you have completed the code in <code class="docutils literal notranslate"><span class="pre">estimate_gaussian</span></code>, we will visualize the contours of the fitted Gaussian distribution.</p>
-<p>You should get a plot similar to the figure below. <img alt="7bbdc25a6c21405ab7c6ce947ee2c789" class="no-scaled-link" src="../../../../../_images/figure2.png" style="width: 500px; height: 500px;" /></p>
+<p>You should get a plot similar to the figure below. <img alt="32700d585d7749b9ba639f6f3e4f7062" class="no-scaled-link" src="../../../../../_images/figure2.png" style="width: 500px; height: 500px;" /></p>
 <p>From your plot you can see that most of the examples are in the region with the highest probability, while the anomalous examples are in the regions with lower probabilities.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
@@ -566,7 +565,7 @@ Best F1 on Cross Validation Set: 0.875000
 </td></tr><tr><td><p>Best F1 on Cross Validation Set:</p>
 </td><td><p>0.875</p>
 </td></tr></table><p>Now we will run your anomaly detection code and circle the anomalies in the plot (Figure 3 below).</p>
-<p><img alt="90ed22bb6f8d4dc098458efbd309f3ec" class="no-scaled-link" src="../../../../../_images/figure3.png" style="width: 500px; height: 500px;" /></p>
+<p><img alt="f9abe18218984dedadf5473ed165dfde" class="no-scaled-link" src="../../../../../_images/figure3.png" style="width: 500px; height: 500px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>

@@ -18,6 +18,7 @@
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -49,8 +50,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Supervised.html">Supervised_Machine_Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -79,7 +78,7 @@
              
   <section id="Optional-Lab:-Cost-Function">
 <h1>Optional Lab: Cost Function<a class="headerlink" href="#Optional-Lab:-Cost-Function" title="Permalink to this heading"></a></h1>
-<figure><center><p><img alt="5dac98de713f47feac1959c2ef227d30" src="../../../../_images/C1_W1_L3_S2_Lecture_b.png" /></p>
+<figure><center><p><img alt="a084c010ce514c8aa3e2b4fa2f34fbd3" src="../../../../_images/C1_W1_L3_S2_Lecture_b.png" /></p>
 </center></figure><section id="Goals">
 <h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab you will: - you will implement and explore the <code class="docutils literal notranslate"><span class="pre">cost</span></code> function for linear regression with one variable.</p>
@@ -181,7 +180,7 @@
 </section>
 <section id="Cost-Function-Intuition">
 <h2>Cost Function Intuition<a class="headerlink" href="#Cost-Function-Intuition" title="Permalink to this heading"></a></h2>
-<p><img alt="ad010314cfde4edeb62b9d893e8b5966" src="../../../../_images/C1_W1_Lab02_GoalOfRegression.PNG" /> Your goal is to find a model <span class="math notranslate nohighlight">\(f_{w,b}(x) = wx + b\)</span>, with parameters <span class="math notranslate nohighlight">\(w,b\)</span>, which will accurately predict house values given an input <span class="math notranslate nohighlight">\(x\)</span>. The cost is a measure of how accurate the model is on the training data.</p>
+<p><img alt="5a4f0f1ba1224ee7abd212570b98ffa2" src="../../../../_images/C1_W1_Lab02_GoalOfRegression.PNG" /> Your goal is to find a model <span class="math notranslate nohighlight">\(f_{w,b}(x) = wx + b\)</span>, with parameters <span class="math notranslate nohighlight">\(w,b\)</span>, which will accurately predict house values given an input <span class="math notranslate nohighlight">\(x\)</span>. The cost is a measure of how accurate the model is on the training data.</p>
 <p>The cost equation (1) above shows that if <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> can be selected such that the predictions <span class="math notranslate nohighlight">\(f_{w,b}(x)\)</span> match the target data <span class="math notranslate nohighlight">\(y\)</span>, the $(f_{w,b}(x^{(i)}) - y<sup>{(i)})</sup>2 $ term will be zero and the cost minimized. In this simple two point example, you can achieve this!</p>
 <p>In the previous lab, you determined that <span class="math notranslate nohighlight">\(b=100\)</span> provided an optimal solution so let’s set <span class="math notranslate nohighlight">\(b\)</span> to 100 and focus on <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <p>Below, use the slider control to select the value of <span class="math notranslate nohighlight">\(w\)</span> that minimizes cost. It can take a few seconds for the plot to update.</p>

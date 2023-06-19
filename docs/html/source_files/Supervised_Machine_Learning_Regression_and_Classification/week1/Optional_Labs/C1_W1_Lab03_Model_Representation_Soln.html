@@ -18,6 +18,7 @@
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -49,8 +50,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Supervised.html">Supervised_Machine_Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -79,7 +78,7 @@
              
   <section id="Optional-Lab:-Model-Representation">
 <h1>Optional Lab: Model Representation<a class="headerlink" href="#Optional-Lab:-Model-Representation" title="Permalink to this heading"></a></h1>
-<figure><p><img alt="f9e93851f38645f3a33c03bd7159d938" src="../../../../_images/C1_W1_L3_S1_Lecture_b.png" /></p>
+<figure><p><img alt="f807311af9b84f6786ff5333c05da80b" src="../../../../_images/C1_W1_L3_S1_Lecture_b.png" /></p>
 </figure><section id="Goals">
 <h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab you will: - Learn to implement the model <span class="math notranslate nohighlight">\(f_{w,b}\)</span> for linear regression with one variable</p>
@@ -110,7 +109,7 @@
 </section>
 <section id="Problem-Statement">
 <h1>Problem Statement<a class="headerlink" href="#Problem-Statement" title="Permalink to this heading"></a></h1>
-<p><img alt="1dd2717c40e84833b8b8a3952f3b36af" src="../../../../_images/C1_W1_L3_S1_trainingdata.png" /></p>
+<p><img alt="2e80d171eec040988b241095bd64ca10" src="../../../../_images/C1_W1_L3_S1_trainingdata.png" /></p>
 <div class="line-block">
 <div class="line">As in the lecture, you will use the motivating example of housing price prediction.</div>
 <div class="line">This lab will use a simple data set with only two data points - a house with 1000 square feet(sqft) sold for \$300,000 and a house with 2000 square feet sold for \$500,000. These two points will constitute our <em>data or training set</em>. In this lab, the units of size are 1000 sqft and the units of price are 1000s of dollars.</div>
@@ -246,7 +245,7 @@ Number of training examples is: 2
 </div>
 <section id="Model-function">
 <h2>Model function<a class="headerlink" href="#Model-function" title="Permalink to this heading"></a></h2>
-<p><img alt="f4c9eb8785a441d2846b50dfce7ab395" src="../../../../_images/C1_W1_L3_S1_model.png" /> As described in lecture, the model function for linear regression (which is a function that maps from <code class="docutils literal notranslate"><span class="pre">x</span></code> to <code class="docutils literal notranslate"><span class="pre">y</span></code>) is represented as</p>
+<p><img alt="34d99b56596f4d59a1fd6c9551fa6ebb" src="../../../../_images/C1_W1_L3_S1_model.png" /> As described in lecture, the model function for linear regression (which is a function that maps from <code class="docutils literal notranslate"><span class="pre">x</span></code> to <code class="docutils literal notranslate"><span class="pre">y</span></code>) is represented as</p>
 <div class="math notranslate nohighlight">
 \[f_{w,b}(x^{(i)}) = wx^{(i)} + b \tag{1}\]</div>
 <p>The formula above is how you can represent straight lines - different values of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> give you different straight lines on the plot.</p>

@@ -18,6 +18,7 @@
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -49,8 +50,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Supervised_Machine_Learning_Regression_and_Classification/Supervised.html">Supervised_Machine_Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -82,7 +81,7 @@
 <section id="1.1-Goals">
 <h2>1.1 Goals<a class="headerlink" href="#1.1-Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab, you will explore an example of multi-class classification using neural networks.</p>
-<figure><p><img alt="5833bce8f725470b927d4e5a801ee70c" src="../../../../_images/C2_W2_mclass_header.png" /></p>
+<figure><p><img alt="e2a54d9a271c4c4682010dcaea9c4bc1" src="../../../../_images/C2_W2_mclass_header.png" /></p>
 </figure></section>
 <section id="1.2-Tools">
 <h2>1.2 Tools<a class="headerlink" href="#1.2-Tools" title="Permalink to this heading"></a></h2>
@@ -172,7 +171,7 @@ shape of X_train: (100, 2), shape of y_train: (100,)
 </section>
 <section id="2.2-Model">
 <h2>2.2 Model<a class="headerlink" href="#2.2-Model" title="Permalink to this heading"></a></h2>
-<p><img alt="215f102fa7de4417a5df9be4047ce607" src="../../../../_images/C2_W2_mclass_lab_network.PNG" /> This lab will use a 2-layer network as shown. Unlike the binary classification networks, this network has four outputs, one for each class. Given an input example, the output with the highest value is the predicted class of the input.</p>
+<p><img alt="a57070234c584a978e3f9e204ae240bb" src="../../../../_images/C2_W2_mclass_lab_network.PNG" /> This lab will use a 2-layer network as shown. Unlike the binary classification networks, this network has four outputs, one for each class. Given an input example, the output with the highest value is the predicted class of the input.</p>
 <p>Below is an example of how to construct this network in Tensorflow. Notice the output layer uses a <code class="docutils literal notranslate"><span class="pre">linear</span></code> rather than a <code class="docutils literal notranslate"><span class="pre">softmax</span></code> activation. While it is possible to include the softmax in the output layer, it is more numerically stable if linear outputs are passed to the loss function during training. If the model is used to predict probabilities, the softmax can be applied at that point.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -687,17 +686,17 @@ Epoch 200/200
 </section>
 <section id="Explanation">
 <h2>Explanation<a class="headerlink" href="#Explanation" title="Permalink to this heading"></a></h2>
-<section id="Layer-1-5226a96860384b74a75f3e745c456679">
-<h3>Layer 1 <img alt="5226a96860384b74a75f3e745c456679" src="../../../../_images/C2_W2_mclass_layer1.png" /><a class="headerlink" href="#Layer-1-5226a96860384b74a75f3e745c456679" title="Permalink to this heading"></a></h3>
+<section id="Layer-1-91f190f8e66e4db1a630d25d95cca0fe">
+<h3>Layer 1 <img alt="91f190f8e66e4db1a630d25d95cca0fe" src="../../../../_images/C2_W2_mclass_layer1.png" /><a class="headerlink" href="#Layer-1-91f190f8e66e4db1a630d25d95cca0fe" title="Permalink to this heading"></a></h3>
 <p>These plots show the function of Units 0 and 1 in the first layer of the network. The inputs are (<span class="math notranslate nohighlight">\(x_0,x_1\)</span>) on the axis. The output of the unit is represented by the color of the background. This is indicated by the color bar on the right of each graph. Notice that since these units are using a ReLu, the outputs do not necessarily fall between 0 and 1 and in this case are greater than 20 at their peaks. The contour lines in this graph show the transition point between the output,
-<span class="math notranslate nohighlight">\(a^{[1]}_j\)</span> being zero and non-zero. Recall the graph for a ReLu :<img alt="13678608e0774f59a3e69ad0973159c4" src="../../../../_images/C2_W2_mclass_relu.png" /> The contour line in the graph is the inflection point in the ReLu.</p>
+<span class="math notranslate nohighlight">\(a^{[1]}_j\)</span> being zero and non-zero. Recall the graph for a ReLu :<img alt="9ad0b0569b324c83b9a041ff8629a065" src="../../../../_images/C2_W2_mclass_relu.png" /> The contour line in the graph is the inflection point in the ReLu.</p>
 <div class="line-block">
 <div class="line">Unit 0 has separated classes 0 and 1 from classes 2 and 3. Points to the left of the line (classes 0 and 1) will output zero, while points to the right will output a value greater than zero.</div>
 <div class="line">Unit 1 has separated classes 0 and 2 from classes 1 and 3. Points above the line (classes 0 and 2 ) will output a zero, while points below will output a value greater than zero. Let’s see how this works out in the next layer!</div>
 </div>
 </section>
-<section id="Layer-2,-the-output-layer-da4e2cc4578d433e9940887e75ebd49f">
-<h3>Layer 2, the output layer <img alt="da4e2cc4578d433e9940887e75ebd49f" src="../../../../_images/C2_W2_mclass_layer2.png" /><a class="headerlink" href="#Layer-2,-the-output-layer-da4e2cc4578d433e9940887e75ebd49f" title="Permalink to this heading"></a></h3>
+<section id="Layer-2,-the-output-layer-de52bd6b0a6e4da6a13420cd52b0b113">
+<h3>Layer 2, the output layer <img alt="de52bd6b0a6e4da6a13420cd52b0b113" src="../../../../_images/C2_W2_mclass_layer2.png" /><a class="headerlink" href="#Layer-2,-the-output-layer-de52bd6b0a6e4da6a13420cd52b0b113" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line">The dots in these graphs are the training examples translated by the first layer. One way to think of this is the first layer has created a new set of features for evaluation by the 2nd layer. The axes in these plots are the outputs of the previous layer <span class="math notranslate nohighlight">\(a^{[1]}_0\)</span> and <span class="math notranslate nohighlight">\(a^{[1]}_1\)</span>. As predicted above, classes 0 and 1 (blue and green) have <span class="math notranslate nohighlight">\(a^{[1]}_0 = 0\)</span> while classes 0 and 2 (blue and orange) have <span class="math notranslate nohighlight">\(a^{[1]}_1 = 0\)</span>.</div>
 <div class="line">Once again, the intensity of the background color indicates the highest values.</div>

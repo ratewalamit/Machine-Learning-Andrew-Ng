@@ -50,11 +50,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Supervised.html">Supervised_Machine_Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Supervised.html#Ungraded-Lab:-Overfitting">Ungraded Lab: Overfitting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Supervised.html#Overfitting">Overfitting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Supervised.html#Adding-regularization">Adding regularization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Supervised.html#id24">Logistic Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Supervised.html#id25">Outline</a></li>
 </ul>
 
         </div>
@@ -99,7 +94,7 @@
 </div>
 <section id="Sigmoid-or-Logistic-Function">
 <h2>Sigmoid or Logistic Function<a class="headerlink" href="#Sigmoid-or-Logistic-Function" title="Permalink to this heading"></a></h2>
-<p><a href="#id1"><span class="problematic" id="id2">|</span></a>c082d4fa587e44f8812c94b121cfda58|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
+<p><a href="#id1"><span class="problematic" id="id2">|</span></a>9366bf675a564e8d8328a17488314806|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
 to values between 0 and 1.</p>
 <p>Let’s implement the sigmoid function and see this for ourselves.</p>
 </section>
@@ -238,7 +233,7 @@ Input (z), Output (sigmoid(z))
 </section>
 <section id="Logistic-Regression">
 <h2>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this heading"></a></h2>
-<p><img alt="14e97a2a0b044becb16540f3e47f3fd4" src="../../../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
+<p><img alt="c2c47d3029c34b29bf0f9eec98b51d20" src="../../../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b ) \tag{2}\]</div>
 <p>where</p>

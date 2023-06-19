@@ -18,6 +18,7 @@
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -49,8 +50,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Supervised_Machine_Learning_Regression_and_Classification/Supervised.html">Supervised_Machine_Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -96,7 +95,7 @@
 <li><p>2.3 Compare performance on training and test data</p></li>
 </ul>
 </li>
-<li><p>3 - Bias and Variance|e70886fbe0b84763b273c181cd1783b4|</p>
+<li><p>3 - Bias and Variance|2d283edf9aa84feebdc75d2cda32184d|</p>
 <ul>
 <li><p>3.1 Plot Train, Cross-Validation, Test</p></li>
 <li><p>3.2 Finding the optimal degree</p></li>
@@ -168,7 +167,7 @@
 </div>
 </div>
 <p>## 2 - Evaluating a Learning Algorithm (Polynomial Regression)</p>
-<p><img alt="24530896b4bc4a529c581dbe92e0efea" src="../../../../_images/C2_W3_TrainingVsNew.png" /> Let’s say you have created a machine learning model and you find it <em>fits</em> your training data very well. You’re done? Not quite. The goal of creating the model was to be able to predict values for new examples.</p>
+<p><img alt="5fbf926b47fa4be5ab89860e260cc43c" src="../../../../_images/C2_W3_TrainingVsNew.png" /> Let’s say you have created a machine learning model and you find it <em>fits</em> your training data very well. You’re done? Not quite. The goal of creating the model was to be able to predict values for new examples.</p>
 <div class="line-block">
 <div class="line">How can you test your model’s performance on new data before deploying it?</div>
 <div class="line">The answer has two parts: * Split your original data set into “Training” and “Test” sets. * Use the training data to fit the parameters of the model * Use the test data to evaluate the model on <em>new</em> data * Develop an error function to evaluate your model.</div>
@@ -412,7 +411,7 @@ X_cv.shape (8,) y_cv.shape (8,)
 X_test.shape (8,) y_test.shape (8,)
 </pre></div></div>
 </div>
-<p>## 3 - Bias and Variance|4d1553e5322b446e9f6df954794a16d6| Above, it was clear the degree of the polynomial model was too high. How can you choose a good value? It turns out, as shown in the diagram, the training and cross-validation performance can provide guidance. By trying a range of degree values, the training and cross-validation performance can be evaluated. As the degree becomes too large, the cross-validation performance will start to degrade relative to the training performance. Let’s
+<p>## 3 - Bias and Variance|4fdd1a650d404f5eb7d109ac4aacee3d| Above, it was clear the degree of the polynomial model was too high. How can you choose a good value? It turns out, as shown in the diagram, the training and cross-validation performance can provide guidance. By trying a range of degree values, the training and cross-validation performance can be evaluated. As the degree becomes too large, the cross-validation performance will start to degrade relative to the training performance. Let’s
 try this on our example.</p>
 <p>### 3.1 Plot Train, Cross-Validation, Test You can see below the datapoints that will be part of training (in red) are intermixed with those that the model is not trained on (test and cv).</p>
 <div class="nbinput docutils container">

@@ -18,6 +18,7 @@
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -49,8 +50,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Supervised.html">Supervised_Machine_Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Advanced_Learning_Algorithms/Advanced_Learning_Algorithms.html">Advanced_Learning_Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised_Learning_Recommenders_Reinforcement_Learning.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -79,7 +78,7 @@
              
   <section id="Optional-Lab:-Gradient-Descent-for-Linear-Regression">
 <h1>Optional Lab: Gradient Descent for Linear Regression<a class="headerlink" href="#Optional-Lab:-Gradient-Descent-for-Linear-Regression" title="Permalink to this heading"></a></h1>
-<figure><center><p><img alt="fbf952a6da574725883b93cedeb3588b" src="../../../../_images/C1_W1_L4_S1_Lecture_GD.png" /></p>
+<figure><center><p><img alt="1ba4efbe2940437c96cae1073fcade83" src="../../../../_images/C1_W1_L4_S1_Lecture_GD.png" /></p>
 </center></figure><section id="Goals">
 <h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab, you will: - automate the process of optimizing <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> using gradient descent.</p>
@@ -213,7 +212,7 @@
 </div>
 </div>
 <div class="line-block">
-<div class="line"><img alt="f046bf97993349229dfa37888a19ca74" src="../../../../_images/C1_W1_Lab03_lecture_slopes.PNG" /> The lectures described how gradient descent utilizes the partial derivative of the cost with respect to a parameter at a point to update that parameter.</div>
+<div class="line"><img alt="a3fc2f2092344a4aa9b5c3f74bcf9414" src="../../../../_images/C1_W1_Lab03_lecture_slopes.PNG" /> The lectures described how gradient descent utilizes the partial derivative of the cost with respect to a parameter at a point to update that parameter.</div>
 <div class="line">Let’s use our <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> function to find and plot some partial derivatives of our cost function relative to one of the parameters, <span class="math notranslate nohighlight">\(w_0\)</span>.</div>
 </div>
 <div class="nbinput docutils container">
@@ -325,7 +324,7 @@ Iteration 9000: Cost 2.90e-05  dj_dw: -1.082e-03, dj_db:  1.751e-03   w:  2.000e
 (w,b) found by gradient descent: (199.9929,100.0116)
 </pre></div></div>
 </div>
-<p><img alt="16634cc7084b4d56bea403ee99cd05a0" src="../../../../_images/C1_W1_Lab03_lecture_learningrate.PNG" /> Take a moment and note some characteristics of the gradient descent process printed above.</p>
+<p><img alt="6e5cf222a8d740f18b668fb4400b31f1" src="../../../../_images/C1_W1_Lab03_lecture_learningrate.PNG" /> Take a moment and note some characteristics of the gradient descent process printed above.</p>
 <ul class="simple">
 <li><p>The cost starts large and rapidly declines as described in the slide from the lecture.</p></li>
 <li><p>The partial derivatives, <code class="docutils literal notranslate"><span class="pre">dj_dw</span></code>, and <code class="docutils literal notranslate"><span class="pre">dj_db</span></code> also get smaller, rapidly at first and then more slowly. As shown in the diagram from the lecture, as the process nears the ‘bottom of the bowl’ progress is slower due to the smaller value of the derivative at that point.</p></li>
