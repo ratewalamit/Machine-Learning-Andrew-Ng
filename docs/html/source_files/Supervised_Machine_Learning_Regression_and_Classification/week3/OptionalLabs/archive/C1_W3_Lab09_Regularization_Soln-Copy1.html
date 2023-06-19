@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optional Lab - Regularized Cost and Gradient &mdash; Machine Learning by Andrew Ng  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link href="../../../../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Machine Learning by Andrew Ng
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Supervised.html">Supervised_Machine_Learning</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Machine Learning by Andrew Ng</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Optional Lab - Regularized Cost and Gradient</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/OptionalLabs/archive/C1_W3_Lab09_Regularization_Soln-Copy1.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Optional-Lab---Regularized-Cost-and-Gradient">
+<h1>Optional Lab - Regularized Cost and Gradient<a class="headerlink" href="#Optional-Lab---Regularized-Cost-and-Gradient" title="Permalink to this heading"></a></h1>
+<section id="Goals">
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
+<p>In this lab, you will: - extend the previous linear and logistic cost functions with a regularization term. - rerun the previous example of over-fitting with a regularization term added.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="o">%</span><span class="k">matplotlib</span> widget
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">plt_overfit</span> <span class="kn">import</span> <span class="n">overfit_example</span><span class="p">,</span> <span class="n">output</span>
+<span class="kn">from</span> <span class="nn">lab_utils_common</span> <span class="kn">import</span> <span class="n">sigmoid</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[1], line 4</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> get_ipython()<span style="color: rgb(98,98,98)">.</span>run_line_magic(<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">matplotlib</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">widget</span><span style="color: rgb(175,0,0)">&#39;</span>)
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> <span class="ansi-bold" style="color: rgb(0,0,255)">matplotlib</span><span class="ansi-bold" style="color: rgb(0,0,255)">.</span><span class="ansi-bold" style="color: rgb(0,0,255)">pyplot</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> <span class="ansi-bold" style="color: rgb(0,0,255)">plt</span>
+<span class="ansi-green-fg">----&gt; 4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> <span class="ansi-bold" style="color: rgb(0,0,255)">plt_overfit</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> overfit_example, output
+<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> <span class="ansi-bold" style="color: rgb(0,0,255)">lab_utils_common</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> sigmoid
+<span class="ansi-green-intense-fg ansi-bold">      6</span> np<span style="color: rgb(98,98,98)">.</span>set_printoptions(precision<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">8</span>)
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;plt_overfit&#39;
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Adding-regularization">
+<h1>Adding regularization<a class="headerlink" href="#Adding-regularization" title="Permalink to this heading"></a></h1>
+<p><img alt="3c76f688bf764b8f85e1481cbcfd6ed6" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/OptionalLabs/archive/images/C1_W3_LinearGradientRegularized.png" /> <img alt="9327d51419be47298446fb7827674707" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/OptionalLabs/archive/images/C1_W3_LogisticGradientRegularized.png" /></p>
+<p>The slides above show the cost and gradient functions for both linear and logistic regression. Note: - Cost - The cost functions differ significantly between linear and logistic regression, but adding regularization to the equations is the same. - Gradient - The gradient functions for linear and logistic regression are very similar. They differ only in the implementation of <span class="math notranslate nohighlight">\(f_{wb}\)</span>.</p>
+<section id="Cost-functions-with-regularization">
+<h2>Cost functions with regularization<a class="headerlink" href="#Cost-functions-with-regularization" title="Permalink to this heading"></a></h2>
+<section id="Cost-function-for-regularized-linear-regression">
+<h3>Cost function for regularized linear regression<a class="headerlink" href="#Cost-function-for-regularized-linear-regression" title="Permalink to this heading"></a></h3>
+<p>The equation for the cost function regularized linear regression is:</p>
+<div class="math notranslate nohighlight">
+\[J(\mathbf{w},b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{\mathbf{w},b}(\mathbf{x}^{(i)}) - y^{(i)})^2  + \frac{\lambda}{2m}  \sum_{j=0}^{n-1} w_j^2 \tag{1}\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b  \tag{2}\]</div>
+<p>Compare this to the cost function without regularization (which you implemented in a previous lab), which is of the form:</p>
+<div class="math notranslate nohighlight">
+\[J(\mathbf{w},b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{\mathbf{w},b}(\mathbf{x}^{(i)}) - y^{(i)})^2\]</div>
+<p>The difference is the regularization term, <span class="math notranslate nohighlight">\(\frac{\lambda}{2m} \sum_{j=0}^{n-1} w_j^2\)</span></p>
+<p>Including this term incentives gradient descent to minimize the size of the parameters. Note, in this example, the parameter <span class="math notranslate nohighlight">\(b\)</span> is not regularized. This is standard practice.</p>
+<p>Below is an implementation of equations (1) and (2). Note that this uses a <em>standard pattern for this course</em>, a <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">loop</span></code> over all <code class="docutils literal notranslate"><span class="pre">m</span></code> examples.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_cost_linear_reg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">lambda_</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the cost over all examples</span>
+<span class="sd">    Args:</span>
+<span class="sd">      X (ndarray (m,n): Data, m examples with n features</span>
+<span class="sd">      y (ndarray (m,)): target values</span>
+<span class="sd">      w (ndarray (n,)): model parameters</span>
+<span class="sd">      b (scalar)      : model parameter</span>
+<span class="sd">      lambda_ (scalar): Controls amount of regularization</span>
+<span class="sd">    Returns:</span>
+<span class="sd">      total_cost (scalar):  cost</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">m</span>  <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">f_wb_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>                                   <span class="c1">#(n,)(n,)=scalar, see np.dot</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">+</span> <span class="p">(</span><span class="n">f_wb_i</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>                               <span class="c1">#scalar</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span>                                              <span class="c1">#scalar</span>
+
+    <span class="n">reg_cost</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">reg_cost</span> <span class="o">+=</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>                                          <span class="c1">#scalar</span>
+    <span class="n">reg_cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">lambda_</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">))</span> <span class="o">*</span> <span class="n">reg_cost</span>                              <span class="c1">#scalar</span>
+
+    <span class="n">total_cost</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">reg_cost</span>                                       <span class="c1">#scalar</span>
+    <span class="k">return</span> <span class="n">total_cost</span>                                                  <span class="c1">#scalar</span>
+</pre></div>
+</div>
+</div>
+<p>Run the cell below to see it in action.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">y_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">w_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">X_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,)</span><span class="o">-</span><span class="mf">0.5</span>
+<span class="n">b_tmp</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">lambda_tmp</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">cost_tmp</span> <span class="o">=</span> <span class="n">compute_cost_linear_reg</span><span class="p">(</span><span class="n">X_tmp</span><span class="p">,</span> <span class="n">y_tmp</span><span class="p">,</span> <span class="n">w_tmp</span><span class="p">,</span> <span class="n">b_tmp</span><span class="p">,</span> <span class="n">lambda_tmp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Regularized cost:&quot;</span><span class="p">,</span> <span class="n">cost_tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Regularized cost: 0.07917239320214277
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<table><tr><td><p>Regularized cost: 0.07917239320214275</p>
+</td></tr></table></section>
+<section id="Cost-function-for-regularized-logistic-regression">
+<h3>Cost function for regularized logistic regression<a class="headerlink" href="#Cost-function-for-regularized-logistic-regression" title="Permalink to this heading"></a></h3>
+<p>For regularized <strong>logistic</strong> regression, the cost function is of the form</p>
+<div class="math notranslate nohighlight">
+\[J(\mathbf{w},b) = \frac{1}{m}  \sum_{i=0}^{m-1} \left[ -y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) \right] + \frac{\lambda}{2m}  \sum_{j=0}^{n-1} w_j^2 \tag{3}\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = sigmoid(\mathbf{w} \cdot \mathbf{x}^{(i)} + b)  \tag{4}\]</div>
+<p>Compare this to the cost function without regularization (which you implemented in a previous lab):</p>
+<div class="math notranslate nohighlight">
+\[J(\mathbf{w},b) = \frac{1}{m}\sum_{i=0}^{m-1} \left[ (-y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right)\right]\]</div>
+<p>As was the case in linear regression above, the difference is the regularization term, which is <span class="math notranslate nohighlight">\(\frac{\lambda}{2m} \sum_{j=0}^{n-1} w_j^2\)</span></p>
+<p>Including this term incentives gradient descent to minimize the size of the parameters. Note, in this example, the parameter <span class="math notranslate nohighlight">\(b\)</span> is not regularized. This is standard practice.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_cost_logistic_reg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">lambda_</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the cost over all examples</span>
+<span class="sd">    Args:</span>
+<span class="sd">    Args:</span>
+<span class="sd">      X (ndarray (m,n): Data, m examples with n features</span>
+<span class="sd">      y (ndarray (m,)): target values</span>
+<span class="sd">      w (ndarray (n,)): model parameters</span>
+<span class="sd">      b (scalar)      : model parameter</span>
+<span class="sd">      lambda_ (scalar): Controls amount of regularization</span>
+<span class="sd">    Returns:</span>
+<span class="sd">      total_cost (scalar):  cost</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span>  <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">z_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>                                      <span class="c1">#(n,)(n,)=scalar, see np.dot</span>
+        <span class="n">f_wb_i</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z_i</span><span class="p">)</span>                                          <span class="c1">#scalar</span>
+        <span class="n">cost</span> <span class="o">+=</span>  <span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">f_wb_i</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">f_wb_i</span><span class="p">)</span>      <span class="c1">#scalar</span>
+
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">cost</span><span class="o">/</span><span class="n">m</span>                                                      <span class="c1">#scalar</span>
+
+    <span class="n">reg_cost</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">reg_cost</span> <span class="o">+=</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>                                          <span class="c1">#scalar</span>
+    <span class="n">reg_cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">lambda_</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">))</span> <span class="o">*</span> <span class="n">reg_cost</span>                              <span class="c1">#scalar</span>
+
+    <span class="n">total_cost</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">reg_cost</span>                                       <span class="c1">#scalar</span>
+    <span class="k">return</span> <span class="n">total_cost</span>                                                  <span class="c1">#scalar</span>
+</pre></div>
+</div>
+</div>
+<p>Run the cell below to see it in action.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">y_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">w_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">X_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,)</span><span class="o">-</span><span class="mf">0.5</span>
+<span class="n">b_tmp</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">lambda_tmp</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">cost_tmp</span> <span class="o">=</span> <span class="n">compute_cost_logistic_reg</span><span class="p">(</span><span class="n">X_tmp</span><span class="p">,</span> <span class="n">y_tmp</span><span class="p">,</span> <span class="n">w_tmp</span><span class="p">,</span> <span class="n">b_tmp</span><span class="p">,</span> <span class="n">lambda_tmp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Regularized cost:&quot;</span><span class="p">,</span> <span class="n">cost_tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[5], line 7</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> b_tmp <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.5</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> lambda_tmp <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.7</span>
+<span class="ansi-green-fg">----&gt; 7</span> cost_tmp <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">compute_cost_logistic_reg</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">X_tmp</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">y_tmp</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">w_tmp</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">b_tmp</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">lambda_tmp</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      9</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">Regularized cost:</span><span style="color: rgb(175,0,0)">&#34;</span>, cost_tmp)
+
+Cell <span class="ansi-green-fg">In[4], line 19</span>, in <span class="ansi-cyan-fg">compute_cost_logistic_reg</span><span class="ansi-blue-fg">(X, y, w, b, lambda_)</span>
+<span class="ansi-green-intense-fg ansi-bold">     17</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(m):
+<span class="ansi-green-intense-fg ansi-bold">     18</span>     z_i <span style="color: rgb(98,98,98)">=</span> np<span style="color: rgb(98,98,98)">.</span>dot(X[i], w) <span style="color: rgb(98,98,98)">+</span> b                                      <span style="color: rgb(95,135,135)">#(n,)(n,)=scalar, see np.dot</span>
+<span class="ansi-green-fg">---&gt; 19</span>     f_wb_i <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">sigmoid</span>(z_i)                                          <span style="color: rgb(95,135,135)">#scalar</span>
+<span class="ansi-green-intense-fg ansi-bold">     20</span>     cost <span style="color: rgb(98,98,98)">+</span><span style="color: rgb(98,98,98)">=</span>  <span style="color: rgb(98,98,98)">-</span>y[i]<span style="color: rgb(98,98,98)">*</span>np<span style="color: rgb(98,98,98)">.</span>log(f_wb_i) <span style="color: rgb(98,98,98)">-</span> (<span style="color: rgb(98,98,98)">1</span><span style="color: rgb(98,98,98)">-</span>y[i])<span style="color: rgb(98,98,98)">*</span>np<span style="color: rgb(98,98,98)">.</span>log(<span style="color: rgb(98,98,98)">1</span><span style="color: rgb(98,98,98)">-</span>f_wb_i)      <span style="color: rgb(95,135,135)">#scalar</span>
+<span class="ansi-green-intense-fg ansi-bold">     22</span> cost <span style="color: rgb(98,98,98)">=</span> cost<span style="color: rgb(98,98,98)">/</span>m                                                      <span style="color: rgb(95,135,135)">#scalar</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sigmoid&#39; is not defined
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong>:</p>
+<table><tr><td><p>Regularized cost: 0.6850849138741673</p>
+</td></tr></table></section>
+</section>
+<section id="Gradient-descent-with-regularization">
+<h2>Gradient descent with regularization<a class="headerlink" href="#Gradient-descent-with-regularization" title="Permalink to this heading"></a></h2>
+<p>The basic algorithm for running gradient descent does not change with regularization, it is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp;\text{repeat until convergence:} \; \lbrace \\
+&amp;  \; \; \;w_j = w_j -  \alpha \frac{\partial J(\mathbf{w},b)}{\partial w_j} \tag{1}  \; &amp; \text{for j := 0..n-1} \\
+&amp;  \; \; \;  \; \;b = b -  \alpha \frac{\partial J(\mathbf{w},b)}{\partial b} \\
+&amp;\rbrace
+\end{align*}\end{split}\]</div>
+<p>Where each iteration performs simultaneous updates on <span class="math notranslate nohighlight">\(w_j\)</span> for all <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>What changes with regularization is computing the gradients.</p>
+<section id="Computing-the-Gradient-with-regularization-(both-linear/logistic)">
+<h3>Computing the Gradient with regularization (both linear/logistic)<a class="headerlink" href="#Computing-the-Gradient-with-regularization-(both-linear/logistic)" title="Permalink to this heading"></a></h3>
+<p>The gradient calculation for both linear and logistic regression are nearly identical, differing only in computation of <span class="math notranslate nohighlight">\(f_{\mathbf{w}b}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\frac{\partial J(\mathbf{w},b)}{\partial w_j}  &amp;= \frac{1}{m} \sum\limits_{i = 0}^{m-1} (f_{\mathbf{w},b}(\mathbf{x}^{(i)}) - y^{(i)})x_{j}^{(i)}  +  \frac{\lambda}{m} w_j \tag{2} \\
+\frac{\partial J(\mathbf{w},b)}{\partial b}  &amp;= \frac{1}{m} \sum\limits_{i = 0}^{m-1} (f_{\mathbf{w},b}(\mathbf{x}^{(i)}) - y^{(i)}) \tag{3}
+\end{align*}\end{split}\]</div>
+<ul>
+<li><div class="line-block">
+<div class="line">m is the number of training examples in the data set</div>
+</div>
+</li>
+<li><p><span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(x^{(i)})\)</span> is the model’s prediction, while <span class="math notranslate nohighlight">\(y^{(i)}\)</span> is the target</p></li>
+<li><div class="line-block">
+<div class="line">For a linear regression model</div>
+<div class="line"><span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(x) = \mathbf{w} \cdot \mathbf{x} + b\)</span></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">For a logistic regression model</div>
+<div class="line"><span class="math notranslate nohighlight">\(z = \mathbf{w} \cdot \mathbf{x} + b\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(x) = g(z)\)</span></div>
+<div class="line">where <span class="math notranslate nohighlight">\(g(z)\)</span> is the sigmoid function:</div>
+<div class="line"><span class="math notranslate nohighlight">\(g(z) = \frac{1}{1+e^{-z}}\)</span></div>
+</div>
+</li>
+</ul>
+<p>The term which adds regularization is the $:nbsphinx-math:<cite>frac{lambda}{m}</cite> w_j $.</p>
+</section>
+<section id="Gradient-function-for-regularized-linear-regression">
+<h3>Gradient function for regularized linear regression<a class="headerlink" href="#Gradient-function-for-regularized-linear-regression" title="Permalink to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_gradient_linear_reg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the gradient for linear regression</span>
+<span class="sd">    Args:</span>
+<span class="sd">      X (ndarray (m,n): Data, m examples with n features</span>
+<span class="sd">      y (ndarray (m,)): target values</span>
+<span class="sd">      w (ndarray (n,)): model parameters</span>
+<span class="sd">      b (scalar)      : model parameter</span>
+<span class="sd">      lambda_ (scalar): Controls amount of regularization</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      dj_dw (ndarray (n,)): The gradient of the cost w.r.t. the parameters w.</span>
+<span class="sd">      dj_db (scalar):       The gradient of the cost w.r.t. the parameter b.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>           <span class="c1">#(number of examples, number of features)</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,))</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">err</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">dj_db</span> <span class="o">=</span> <span class="n">dj_db</span> <span class="o">+</span> <span class="n">err</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">dj_dw</span> <span class="o">/</span> <span class="n">m</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="n">dj_db</span> <span class="o">/</span> <span class="n">m</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">lambda_</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">dj_db</span><span class="p">,</span> <span class="n">dj_dw</span>
+</pre></div>
+</div>
+</div>
+<p>Run the cell below to see it in action.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">y_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">w_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">X_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">b_tmp</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">lambda_tmp</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">dj_db_tmp</span><span class="p">,</span> <span class="n">dj_dw_tmp</span> <span class="o">=</span>  <span class="n">compute_gradient_linear_reg</span><span class="p">(</span><span class="n">X_tmp</span><span class="p">,</span> <span class="n">y_tmp</span><span class="p">,</span> <span class="n">w_tmp</span><span class="p">,</span> <span class="n">b_tmp</span><span class="p">,</span> <span class="n">lambda_tmp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dj_db: </span><span class="si">{</span><span class="n">dj_db_tmp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Regularized dj_dw:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">dj_dw_tmp</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+dj_db: 0.6648774569425726
+Regularized dj_dw:
+ [0.29653214748822276, 0.4911679625918033, 0.21645877535865857]
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dj_db: 0.6648774569425726
+Regularized dj_dw:
+ [0.29653214748822276, 0.4911679625918033, 0.21645877535865857]
+</pre></div>
+</div>
+</section>
+<section id="Gradient-function-for-regularized-logistic-regression">
+<h3>Gradient function for regularized logistic regression<a class="headerlink" href="#Gradient-function-for-regularized-logistic-regression" title="Permalink to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_gradient_logistic_reg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the gradient for linear regression</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      X (ndarray (m,n): Data, m examples with n features</span>
+<span class="sd">      y (ndarray (m,)): target values</span>
+<span class="sd">      w (ndarray (n,)): model parameters</span>
+<span class="sd">      b (scalar)      : model parameter</span>
+<span class="sd">      lambda_ (scalar): Controls amount of regularization</span>
+<span class="sd">    Returns</span>
+<span class="sd">      dj_dw (ndarray Shape (n,)): The gradient of the cost w.r.t. the parameters w.</span>
+<span class="sd">      dj_db (scalar)            : The gradient of the cost w.r.t. the parameter b.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,))</span>                            <span class="c1">#(n,)</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="mf">0.0</span>                                       <span class="c1">#scalar</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">f_wb_i</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>          <span class="c1">#(n,)(n,)=scalar</span>
+        <span class="n">err_i</span>  <span class="o">=</span> <span class="n">f_wb_i</span>  <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>                       <span class="c1">#scalar</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">err_i</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>      <span class="c1">#scalar</span>
+        <span class="n">dj_db</span> <span class="o">=</span> <span class="n">dj_db</span> <span class="o">+</span> <span class="n">err_i</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">dj_dw</span><span class="o">/</span><span class="n">m</span>                                   <span class="c1">#(n,)</span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="n">dj_db</span><span class="o">/</span><span class="n">m</span>                                   <span class="c1">#scalar</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">lambda_</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">dj_db</span><span class="p">,</span> <span class="n">dj_dw</span>
+<br/></pre></div>
+</div>
+</div>
+<p>Run the cell below to see it in action.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">y_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">w_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">X_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">b_tmp</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">lambda_tmp</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">dj_db_tmp</span><span class="p">,</span> <span class="n">dj_dw_tmp</span> <span class="o">=</span>  <span class="n">compute_gradient_logistic_reg</span><span class="p">(</span><span class="n">X_tmp</span><span class="p">,</span> <span class="n">y_tmp</span><span class="p">,</span> <span class="n">w_tmp</span><span class="p">,</span> <span class="n">b_tmp</span><span class="p">,</span> <span class="n">lambda_tmp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dj_db: </span><span class="si">{</span><span class="n">dj_db_tmp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Regularized dj_dw:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">dj_dw_tmp</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[9], line 7</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> b_tmp <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.5</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> lambda_tmp <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.7</span>
+<span class="ansi-green-fg">----&gt; 7</span> dj_db_tmp, dj_dw_tmp <span style="color: rgb(98,98,98)">=</span>  <span class="ansi-yellow-bg">compute_gradient_logistic_reg</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">X_tmp</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">y_tmp</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">w_tmp</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">b_tmp</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">lambda_tmp</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      9</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">dj_db: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>dj_db_tmp<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)">&#34;</span>, )
+<span class="ansi-green-intense-fg ansi-bold">     10</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">Regularized dj_dw:</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span style="color: rgb(175,0,0)"> </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>dj_dw_tmp<span style="color: rgb(98,98,98)">.</span>tolist()<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)">&#34;</span>, )
+
+Cell <span class="ansi-green-fg">In[8], line 20</span>, in <span class="ansi-cyan-fg">compute_gradient_logistic_reg</span><span class="ansi-blue-fg">(X, y, w, b, lambda_)</span>
+<span class="ansi-green-intense-fg ansi-bold">     17</span> dj_db <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0.0</span>                                       <span style="color: rgb(95,135,135)">#scalar</span>
+<span class="ansi-green-intense-fg ansi-bold">     19</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(m):
+<span class="ansi-green-fg">---&gt; 20</span>     f_wb_i <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">sigmoid</span>(np<span style="color: rgb(98,98,98)">.</span>dot(X[i],w) <span style="color: rgb(98,98,98)">+</span> b)          <span style="color: rgb(95,135,135)">#(n,)(n,)=scalar</span>
+<span class="ansi-green-intense-fg ansi-bold">     21</span>     err_i  <span style="color: rgb(98,98,98)">=</span> f_wb_i  <span style="color: rgb(98,98,98)">-</span> y[i]                       <span style="color: rgb(95,135,135)">#scalar</span>
+<span class="ansi-green-intense-fg ansi-bold">     22</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> j <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(n):
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sigmoid&#39; is not defined
+</pre></div></div>
+</div>
+<p><strong>Expected Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dj_db: 0.341798994972791
+Regularized dj_dw:
+ [0.17380012933994293, 0.32007507881566943, 0.10776313396851499]
+</pre></div>
+</div>
+</section>
+</section>
+<section id="Rerun-over-fitting-example">
+<h2>Rerun over-fitting example<a class="headerlink" href="#Rerun-over-fitting-example" title="Permalink to this heading"></a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="n">ofit</span> <span class="o">=</span> <span class="n">overfit_example</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[10], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> plt<span style="color: rgb(98,98,98)">.</span>close(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">all</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-fg">----&gt; 2</span> display(<span class="ansi-yellow-bg">output</span>)
+<span class="ansi-green-intense-fg ansi-bold">      3</span> ofit <span style="color: rgb(98,98,98)">=</span> overfit_example(<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;output&#39; is not defined
+</pre></div></div>
+</div>
+<p>In the plot above, try out regularization on the previous example. In particular: - Categorical (logistic regression) - set degree to 6, lambda to 0 (no regularization), fit the data - now set lambda to 1 (increase regularization), fit the data, notice the difference. - Regression (linear regression) - try the same procedure.</p>
+</section>
+<section id="Congratulations!">
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
+<p>You have: - examples of cost and gradient routines with regression added for both linear and logistic regression - developed some intuition on how regularization can reduce over-fitting</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andrew Ng.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
