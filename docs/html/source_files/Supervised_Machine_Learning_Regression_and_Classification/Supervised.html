@@ -18,7 +18,6 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -228,7 +227,7 @@ This is  code cell
 <section id="Python">
 <h3>Python<a class="headerlink" href="#Python" title="Permalink to this heading"></a></h3>
 <p>You can write your code in the code cells. To run the code, select the cell and either - hold the shift-key down and hit ‘enter’ or ‘return’ - click the ‘run’ arrow above</p>
-<figure><p><img alt="994099e1c7894c14a20d01b07b3c1a5e" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
+<figure><p><img alt="02856610b4cc4639a9015cbfd421b21d" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
 <figure/><section id="Print-statement">
 <h4>Print statement<a class="headerlink" href="#Print-statement" title="Permalink to this heading"></a></h4>
 <div class="line-block">
@@ -590,7 +589,7 @@ b = 5 * a : [ 5 10 15 20]
 </div>
 <p>3.4.6 Vector Vector dot product</p>
 <p>The dot product is a mainstay of Linear Algebra and NumPy. This is an operation used extensively in this course and should be well understood. The dot product is shown below.</p>
-<p><img alt="24958c1efe2c41d29c23b08a97fd7501" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
+<p><img alt="82cdf78a1e394d8c989e59ccdc02a244" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
 <p>The dot product multiplies the values in two vectors element-wise and then sums the result. Vector dot product requires the dimensions of the two vectors to be the same.</p>
 <p>Let’s implement our own version of the dot product below:</p>
 <p><strong>Using a for loop</strong>, implement a function which returns the dot product of two vectors. The function to return given inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
@@ -930,7 +929,7 @@ a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
 <h4>1 - Packages<a class="headerlink" href="#1---Packages" title="Permalink to this heading"></a></h4>
 <p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a class="reference external" href="www.numpy.org">numpy</a> is the fundamental package for working with matrices in Python. - <a class="reference external" href="http://matplotlib.org">matplotlib</a> is a famous library to plot graphs in Python. - <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> contains helper functions for this assignment. You do not need to modify code in this file.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[117]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -944,6 +943,7 @@ a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#to show graphs inline</span>
 </pre></div>
 </div>
 </div>
@@ -960,7 +960,7 @@ a[1]   =  [10 11 12 13 14 15 16 17 18 19] ,  a[1].shape   = (10,) a 1-D array
 <div class="line">- Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[118]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the dataset</span>
@@ -1049,7 +1049,7 @@ Number of training examples (m): 97
 <h5>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this heading"></a></h5>
 <p>It is often useful to understand the data by visualizing it. - For this dataset, you can use a scatter plot to visualize the data, since it has only two properties to plot (profit and population). - Many other problems that you will encounter in real life have more than two properties (for example, population, average household income, monthly profits, monthly sales).When you have more than two properties, you can still use a scatter plot to see the relationship between each pair of properties.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[122]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scatter plot of the data. To change the markers to red &quot;x&quot;,</span>
@@ -1153,7 +1153,7 @@ Number of training examples (m): 97
 </ul>
 <p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[123]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C1</span>
@@ -1193,54 +1193,62 @@ Number of training examples (m): 97
 </div>
 </div>
 <details><p>Click for hints</p>
-<ul>
-<li><p>You can represent a summation operator eg: <span class="math notranslate nohighlight">\(h = \sum\limits_{i = 0}^{m-1} 2i\)</span> in code as follows: <code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">h</span> <span class="pre">=</span> <span class="pre">0</span>&#160;&#160;&#160;&#160; <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(m):</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">h</span> <span class="pre">=</span> <span class="pre">h</span> <span class="pre">+</span> <span class="pre">2*i</span></code></p>
 <ul class="simple">
-<li><p>In this case, you can iterate over all the examples in <code class="docutils literal notranslate"><span class="pre">x</span></code> using a for loop and add the <code class="docutils literal notranslate"><span class="pre">cost</span></code> from each iteration to a variable (<code class="docutils literal notranslate"><span class="pre">cost_sum</span></code>) initialized outside the loop.</p></li>
+<li><p>You can represent a summation operator eg: <span class="math notranslate nohighlight">\(h = \sum\limits_{i = 0}^{m-1} 2i\)</span> in code as follows:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span>
+</pre></div>
+</div>
+<ul>
+<li><p>In this case, you can iterate over all the examples in <code class="docutils literal notranslate"><span class="pre">x</span></code> using a for loop and add the <code class="docutils literal notranslate"><span class="pre">cost</span></code> from each iteration to a variable (<code class="docutils literal notranslate"><span class="pre">cost_sum</span></code>) initialized outside the loop.</p>
+<ul class="simple">
 <li><p>Then, you can return the <code class="docutils literal notranslate"><span class="pre">total_cost</span></code> as <code class="docutils literal notranslate"><span class="pre">cost_sum</span></code> divided by <code class="docutils literal notranslate"><span class="pre">2m</span></code>.</p></li>
 </ul>
 <details><p>Click for more hints</p>
-<ul class="simple">
-<li><p>Here’s how you can structure the overall implementation for this function</p></li>
-</ul>
+<ul>
+<li><p>Here’s how you can structure the overall implementation for this function</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="c1"># number of training examples</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="c1"># number of training examples</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="c1"># You need to return this variable correctly</span>
-    <span class="n">total_cost</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="c1"># You need to return this variable correctly</span>
+  <span class="n">total_cost</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="c1">### START CODE HERE ###</span>
-    <span class="c1"># Variable to keep track of sum of cost from each example</span>
-    <span class="n">cost_sum</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="c1">### START CODE HERE ###</span>
+  <span class="c1"># Variable to keep track of sum of cost from each example</span>
+  <span class="n">cost_sum</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="c1"># Loop over training examples</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-        <span class="c1"># Your code here to get the prediction f_wb for the ith example</span>
-        <span class="n">f_wb</span> <span class="o">=</span>
-        <span class="c1"># Your code here to get the cost associated with the ith example</span>
-        <span class="n">cost</span> <span class="o">=</span>
+  <span class="c1"># Loop over training examples</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+      <span class="c1"># Your code here to get the prediction f_wb for the ith example</span>
+      <span class="n">f_wb</span> <span class="o">=</span>
+      <span class="c1"># Your code here to get the cost associated with the ith example</span>
+      <span class="n">cost</span> <span class="o">=</span>
 
-        <span class="c1"># Add to sum of cost for each example</span>
-        <span class="n">cost_sum</span> <span class="o">=</span> <span class="n">cost_sum</span> <span class="o">+</span> <span class="n">cost</span>
+      <span class="c1"># Add to sum of cost for each example</span>
+      <span class="n">cost_sum</span> <span class="o">=</span> <span class="n">cost_sum</span> <span class="o">+</span> <span class="n">cost</span>
 
-    <span class="c1"># Get the total cost as the sum divided by (2*m)</span>
-    <span class="n">total_cost</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="p">))</span> <span class="o">*</span> <span class="n">cost_sum</span>
-    <span class="c1">### END CODE HERE ###</span>
+  <span class="c1"># Get the total cost as the sum divided by (2*m)</span>
+  <span class="n">total_cost</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="p">))</span> <span class="o">*</span> <span class="n">cost_sum</span>
+  <span class="c1">### END CODE HERE ###</span>
 
-    <span class="k">return</span> <span class="n">total_cost</span>
+  <span class="k">return</span> <span class="n">total_cost</span>
 </pre></div>
 </div>
+</li>
+</ul>
 <p>If you’re still stuck, you can check the hints presented below to figure out how to calculate <code class="docutils literal notranslate"><span class="pre">f_wb</span></code> and <code class="docutils literal notranslate"><span class="pre">cost</span></code>.</p>
-<details><p>Hint to calculate f_wb     For scalars <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> (x[i], w and b are all scalars), you can calculate the equation <span class="math notranslate nohighlight">\(h = ab + c\)</span> in code as h = a * b + c</p>
+</li>
+</ul>
+<details><p>Hint to calculate f_wb    For scalars <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> (x[i], w and b are all scalars), you can calculate the equation <span class="math notranslate nohighlight">\(h = ab + c\)</span> in code as h = a * b + c</p>
 <details><p>    More hints to calculate f     You can compute f_wb as f_wb = w * x[i] + b</p>
 </details></details><details><p>Hint to calculate cost     You can calculate the square of a variable z as z**2</p>
 <details><p>    More hints to calculate cost     You can compute cost as cost = (f_wb - y[i]) ** 2</p>
-</details></details></details></li>
-</ul>
-</details><p>You can check if your implementation was correct by running the following test code:</p>
+</details></details></details><p>You can check if your implementation was correct by running the following test code:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[124]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute cost with some initial values for paramaters w, b</span>
@@ -1322,7 +1330,7 @@ Cost at initial w (zeros): 75.203
 </ul>
 <p>If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[125]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNQ_C2</span>
@@ -1428,7 +1436,7 @@ Cost at initial w (zeros): 75.203
 </ul>
 </details><p>Run the cells below to check your implementation of the <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> function with two different initializations of the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[126]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute and display gradient with w initialized to zeroes</span>
@@ -1457,7 +1465,7 @@ Using X with shape (4, 1)
 <table><tr><td><p>Gradient at initial , b (zeros)</p>
 </td><td><p>-65.32884975 -5.83913505154639</p>
 </td></tr></table><div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[127]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute and display cost and gradient with non-zero w</span>
@@ -1489,7 +1497,7 @@ Gradient at test w, b: -47.41610118114435 -4.007175051546391
 <li><p>Assuming you have implemented the gradient and computed the cost correctly and you have an appropriate value for the learning rate alpha, <span class="math notranslate nohighlight">\(J(w,b)\)</span> should never increase and should converge to a steady value by the end of the algorithm.</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[128]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">,</span> <span class="n">cost_function</span><span class="p">,</span> <span class="n">gradient_function</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
@@ -1546,19 +1554,18 @@ Gradient at test w, b: -47.41610118114435 -4.007175051546391
 </div>
 <p>Now let’s run the gradient descent algorithm above to learn the parameters for our dataset.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[129]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize fitting parameters. Recall that the shape of w is (n,)</span>
-<span class="n">initial_w</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">initial_b</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">initial_w</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">initial_b</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="c1"># some gradient descent settings</span>
-<span class="n">iterations</span> <span class="o">=</span> <span class="mi">1500</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">15000</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
 
-<span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">x_train</span> <span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">initial_w</span><span class="p">,</span> <span class="n">initial_b</span><span class="p">,</span>
-                     <span class="n">compute_cost</span><span class="p">,</span> <span class="n">compute_gradient</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+<span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">x_train</span> <span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">initial_w</span><span class="p">,</span> <span class="n">initial_b</span><span class="p">,</span> <span class="n">compute_cost</span><span class="p">,</span> <span class="n">compute_gradient</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;w,b found by gradient descent:&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1568,17 +1575,17 @@ Gradient at test w, b: -47.41610118114435 -4.007175051546391
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Iteration    0: Cost     6.74
-Iteration  150: Cost     5.31
-Iteration  300: Cost     4.96
-Iteration  450: Cost     4.76
-Iteration  600: Cost     4.64
-Iteration  750: Cost     4.57
-Iteration  900: Cost     4.53
-Iteration 1050: Cost     4.51
-Iteration 1200: Cost     4.50
-Iteration 1350: Cost     4.49
-w,b found by gradient descent: 1.166362350335582 -3.63029143940436
+Iteration    0: Cost   508.01
+Iteration 1500: Cost     4.50
+Iteration 3000: Cost     4.48
+Iteration 4500: Cost     4.48
+Iteration 6000: Cost     4.48
+Iteration 7500: Cost     4.48
+Iteration 9000: Cost     4.48
+Iteration 10500: Cost     4.48
+Iteration 12000: Cost     4.48
+Iteration 13500: Cost     4.48
+w,b found by gradient descent: 1.193033644188364 -3.895780878299615
 </pre></div></div>
 </div>
 <p><strong>Expected Output</strong>:</p>
@@ -1587,8 +1594,165 @@ w,b found by gradient descent: 1.166362350335582 -3.63029143940436
 </td></tr></table><p>We will now use the final parameters from gradient descent to plot the linear fit.</p>
 <p>Recall that we can get the prediction for a single example <span class="math notranslate nohighlight">\(f(x^{(i)})= wx^{(i)}+b\)</span>.</p>
 <p>To calculate the predictions on the entire dataset, we can loop through all the training examples and calculate the prediction for each example. This is shown in the code block below.</p>
+</section>
+<section id="My-solution">
+<h5>My solution<a class="headerlink" href="#My-solution" title="Permalink to this heading"></a></h5>
+<details><p>My Solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Area of triangle&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<details><p>See hints</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Area of triangle&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</details></details><details><p>Hint to calculate f_wb    For scalars <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> (x[i], w and b are all scalars), you can calculate the equation <span class="math notranslate nohighlight">\(h = ab + c\)</span> in code as h = a * b + c</p>
+<details><p>    More hints to calculate f       You can compute f_wb as f_wb = w * x[i] + b</p>
+</details></details><details><p>Hint to calculate cost     You can calculate the square of a variable z as z**2</p>
+<details><p>    More hints to calculate cost     You can compute cost as cost = (f_wb - y[i]) ** 2</p>
+</details></details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#my solution</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1">#add modules from the path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/amitk/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification/week2/C1W2A1&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#to show graphs inline</span>
+<span class="c1"># load the dataset</span>
+<span class="c1">#x_train, y_train = load_data()</span>
+<span class="n">x_train</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y_train</span><span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">x_train</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">8</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">w</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="n">n</span><span class="o">+</span><span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">cf</span><span class="o">=</span> <span class="p">(</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cf</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_train</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">dcost_w</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dcost_b</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dcost_w</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">dcost_b</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gradient_decent</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">niter</span><span class="p">):</span>
+    <span class="n">cost_i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">niter</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">niter</span><span class="p">):</span>
+        <span class="n">first</span><span class="p">,</span><span class="n">second</span><span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">first</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">second</span>
+        <span class="n">cost_i</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cost_i</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span>
+
+
+
+<span class="n">niter</span><span class="o">=</span><span class="mi">5000</span>
+<span class="n">Win</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">Bin</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">alpha</span><span class="o">=</span><span class="mf">0.005</span>
+<span class="n">grad_dec_result</span><span class="p">,</span><span class="n">wf</span><span class="p">,</span><span class="n">bf</span><span class="o">=</span><span class="n">gradient_decent</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">Win</span><span class="p">,</span><span class="n">Bin</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">niter</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">wf</span><span class="p">,</span><span class="n">bf</span><span class="p">,</span><span class="n">grad_dec_result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1">#print(compute_gradient(x_train,y_train,0.2,0.2))</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">niter</span><span class="p">),</span><span class="n">grad_dec_result</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;No of steps&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cost function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="c1">#plt.xlim(0,100)</span>
+<span class="c1">#plt.show()</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">predictedamit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">predictedamit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">wf</span> <span class="o">*</span> <span class="n">x_train</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">bf</span>
+
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="c1"># Plot the linear fit</span>
+<span class="c1">#plt.plot(x_train, predicted, c = &quot;b&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">predictedamit</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predcited model&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a scatter plot of the data.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Model fit&quot;</span><span class="p">)</span>
+<span class="c1"># Set the y-axis label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;training data&#39;</span><span class="p">)</span>
+<span class="c1"># Set the x-axis label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;training input&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[69], line 52</span>
+<span class="ansi-green-intense-fg ansi-bold">     50</span> Bin<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">5</span>
+<span class="ansi-green-intense-fg ansi-bold">     51</span> alpha<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0.005</span>
+<span class="ansi-green-fg">---&gt; 52</span> grad_dec_result,wf,bf<span style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">gradient_decent</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">x_train</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">y_train</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">Win</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">Bin</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">alpha</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">niter</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     54</span> <span style="color: rgb(0,135,0)">print</span>(wf,bf,grad_dec_result[<span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">1</span>])
+<span class="ansi-green-intense-fg ansi-bold">     55</span> <span style="color: rgb(95,135,135)">#print(compute_gradient(x_train,y_train,0.2,0.2))</span>
+
+Cell <span class="ansi-green-fg">In[69], line 40</span>, in <span class="ansi-cyan-fg">gradient_decent</span><span class="ansi-blue-fg">(x, y, w, b, alpha, niter)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span> cost_i<span style="color: rgb(98,98,98)">=</span>np<span style="color: rgb(98,98,98)">.</span>zeros(niter)
+<span class="ansi-green-intense-fg ansi-bold">     39</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> np<span style="color: rgb(98,98,98)">.</span>arange(niter):
+<span class="ansi-green-fg">---&gt; 40</span>     first,second<span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">compute_gradient</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">y</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">w</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">b</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     41</span>     w <span style="color: rgb(98,98,98)">=</span> w<span style="color: rgb(98,98,98)">-</span>alpha<span style="color: rgb(98,98,98)">*</span>first
+<span class="ansi-green-intense-fg ansi-bold">     42</span>     b <span style="color: rgb(98,98,98)">=</span> b<span style="color: rgb(98,98,98)">-</span>alpha<span style="color: rgb(98,98,98)">*</span>second
+
+Cell <span class="ansi-green-fg">In[69], line 35</span>, in <span class="ansi-cyan-fg">compute_gradient</span><span class="ansi-blue-fg">(x, y, w, b)</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">compute_gradient</span>(x,y,w,b):
+<span class="ansi-green-fg">---&gt; 35</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">dcost_w</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">w</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">b</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">y</span><span class="ansi-yellow-bg">)</span>,dcost_b(x,w,b,y)
+
+<span class="ansi-red-fg">TypeError</span>: dcost_w() missing 1 required positional argument: &#39;y&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+97
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[130]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1601,11 +1765,12 @@ w,b found by gradient descent: 1.166362350335582 -3.63029143940436
 </div>
 <p>We will now plot the predicted values to see the linear fit.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[131]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the linear fit</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="c1">#plt.plot(x_train, predictedamit, c = &quot;g&quot;)</span>
 
 <span class="c1"># Create a scatter plot of the data.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
@@ -1620,7 +1785,7 @@ w,b found by gradient descent: 1.166362350335582 -3.63029143940436
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[131]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1632,7 +1797,7 @@ Text(0.5, 0, &#39;Population of City in 10,000s&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_138_1.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_138_1.png" />
+<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_142_1.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_142_1.png" />
 </div>
 </div>
 <p>Your final values of <span class="math notranslate nohighlight">\(w,b\)</span> can also be used to make predictions on profits. Let’s predict what the profit would be in areas of 35,000 and 70,000 people.</p>
@@ -1702,7 +1867,7 @@ For population = 70,000, we predict a profit of $45342.45
 </div>
 <section id="Classification-Problems">
 <h5>Classification Problems<a class="headerlink" href="#Classification-Problems" title="Permalink to this heading"></a></h5>
-<p><img alt="96ef3d86613246fb80ceea3c38e6c418" src="../../_images/C1_W3_Classification.png" /> Examples of classification problems are things like: identifying email as Spam or Not Spam or determining if a tumor is malignant or benign. In particular, these are examples of <em>binary</em> classification where there are two possible outcomes. Outcomes can be described in pairs of ‘positive’/’negative’ such as ‘yes’/’no, ‘true’/’false’ or ‘1’/’0’.</p>
+<p><img alt="1e0317cf88b1417aba7c35e7c4f86317" src="../../_images/C1_W3_Classification.png" /> Examples of classification problems are things like: identifying email as Spam or Not Spam or determining if a tumor is malignant or benign. In particular, these are examples of <em>binary</em> classification where there are two possible outcomes. Outcomes can be described in pairs of ‘positive’/’negative’ such as ‘yes’/’no, ‘true’/’false’ or ‘1’/’0’.</p>
 <p>Plots of classification data sets often use symbols to indicate the outcome of an example. In the plots below, ‘X’ is used to represent the positive values while ‘O’ represents negative outcomes.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[134]:
@@ -1750,7 +1915,7 @@ For population = 70,000, we predict a profit of $45342.45
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_154_0.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_154_0.png" />
+<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_158_0.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_158_0.png" />
 </div>
 </div>
 <p>Note in the plots above: - In the single variable plot, positive results are shown both a red ‘X’s and as y=1. Negative results are blue ‘O’s and are located at y=0. - Recall in the case of linear regression, y would not have been limited to two values but could have been any value. - In the two-variable plot, the y axis is not available. Positive results are shown as red ‘X’s, while negative results use the blue ‘O’ symbol. - Recall in the case of linear regression with multiple variables, y
@@ -1775,7 +1940,7 @@ the box on the ‘Toggle 0.5 threshold’ to show the predictions if a threshold
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_157_0.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_157_0.png" />
+<img alt="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_161_0.png" src="../../_images/source_files_Supervised_Machine_Learning_Regression_and_Classification_Supervised_161_0.png" />
 </div>
 </div>
 <p>The example above demonstrates that the linear model is insufficient to model categorical data. The model can be extended as described in the following lab.</p>
@@ -1800,7 +1965,7 @@ the box on the ‘Toggle 0.5 threshold’ to show the predictions if a threshold
 </div>
 <section id="Sigmoid-or-Logistic-Function">
 <h5>Sigmoid or Logistic Function<a class="headerlink" href="#Sigmoid-or-Logistic-Function" title="Permalink to this heading"></a></h5>
-<p><a href="#id12"><span class="problematic" id="id13">|</span></a>233ee89f13d0458087a7310b239705ec|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
+<p><a href="#id12"><span class="problematic" id="id13">|</span></a>ab8ca26e4db24a52921c90d41a07d099|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
 to values between 0 and 1.</p>
 <p>Let’s implement the sigmoid function and see this for ourselves.</p>
 </section>
@@ -1939,7 +2104,7 @@ Input (z), Output (sigmoid(z))
 </section>
 <section id="Logistic-Regression">
 <h5>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this heading"></a></h5>
-<p><img alt="fb72c676e52c49dc8dbc3748d41f8790" src="../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
+<p><img alt="d8d4b81c9cf04a9893371ddd688e780a" src="../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b ) \tag{2}\]</div>
 <p>where</p>
@@ -2166,7 +2331,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </div>
 <section id="Squared-error-for-logistic-regression?">
 <h5>Squared error for logistic regression?<a class="headerlink" href="#Squared-error-for-logistic-regression?" title="Permalink to this heading"></a></h5>
-<p><img alt="8f38000a7b764180963c8ab4b174a1b8" src="../../_images/C1_W3_SqErrorVsLogistic.png" /> Recall for <strong>Linear</strong> Regression we have used the <strong>squared error cost function</strong>: The equation for the squared error cost with one variable is:</p>
+<p><img alt="810913b857fd4c6fa6184aceeb190b9d" src="../../_images/C1_W3_SqErrorVsLogistic.png" /> Recall for <strong>Linear</strong> Regression we have used the <strong>squared error cost function</strong>: The equation for the squared error cost with one variable is:</p>
 <div class="math notranslate nohighlight">
 \[J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 \tag{1}\]</div>
 <p>where</p>
@@ -2232,7 +2397,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </section>
 <section id="Logistic-Loss-Function">
 <h5>Logistic Loss Function<a class="headerlink" href="#Logistic-Loss-Function" title="Permalink to this heading"></a></h5>
-<p><img alt="ed726f18dbe74811ab8d2cf41af5bb05" src="../../_images/C1_W3_LogisticLoss_a.png" /> <img alt="0af7134ad0fd4176a692dd62c8e9cf4a" src="../../_images/C1_W3_LogisticLoss_b.png" /> <img alt="b646f7e54a2d46ec97f2641fb3277830" src="../../_images/C1_W3_LogisticLoss_c.png" /></p>
+<p><img alt="b4901ff7fa96443c87e846bff89d09f6" src="../../_images/C1_W3_LogisticLoss_a.png" /> <img alt="f61a918172934955aba8ffbb4797609f" src="../../_images/C1_W3_LogisticLoss_b.png" /> <img alt="e44e466c76e74fc48b677008ba1c718f" src="../../_images/C1_W3_LogisticLoss_c.png" /></p>
 <p>Logistic Regression uses a loss function more suited to the task of categorization where the target is 0 or 1 rather than any number.</p>
 <blockquote>
 <div><div class="line-block">
@@ -2574,7 +2739,7 @@ Cost for b = -4 :  0.5036808636748461
 </section>
 <section id="Logistic-Gradient-Descent">
 <h5>Logistic Gradient Descent<a class="headerlink" href="#Logistic-Gradient-Descent" title="Permalink to this heading"></a></h5>
-<p><img alt="7c3a22a7d33b496f9dd7f7612a835e4b" src="../../_images/C1_W3_Logistic_gradient_descent.png" /></p>
+<p><img alt="3feaef7af230476aae3c2749247b786e" src="../../_images/C1_W3_Logistic_gradient_descent.png" /></p>
 <p>Recall the gradient descent algorithm utilizes the gradient calculation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -2942,7 +3107,7 @@ Accuracy on training set: 1.0
 <h4>Optional Lab - 3.8: Ungraded Lab: Logistic Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab---3.8:-Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn" title="Permalink to this heading"></a></h4>
 <section id="Ungraded-Lab:-Overfitting">
 <h5>Ungraded Lab: Overfitting<a class="headerlink" href="#Ungraded-Lab:-Overfitting" title="Permalink to this heading"></a></h5>
-<p><img alt="5e9e1115ba5e4e5fbbdf913727199899" src="../../_images/C1_W3_Overfitting_a.png" /> <img alt="3a97da3e9735431ba74cfdc694cce665" src="../../_images/C1_W3_Overfitting_b.png" /> <img alt="cd6db7a6a1de4e9999bd77de63529718" src="../../_images/C1_W3_Overfitting_c.png" /></p>
+<p><img alt="eeea02d94ccc4d5f839fc5fe49279040" src="../../_images/C1_W3_Overfitting_a.png" /> <img alt="6f9d8ca95f744a98b4c2c6a026c01c52" src="../../_images/C1_W3_Overfitting_b.png" /> <img alt="d04079ce8d2343b98c09e9d81780d73e" src="../../_images/C1_W3_Overfitting_c.png" /></p>
 <p>Goals</p>
 <p>In this lab, you will explore: - the situations where overfitting can occur - some of the solutions</p>
 <p>%matplotlib widget import matplotlib.pyplot as plt from ipywidgets import Output from plt_overfit import overfit_example, output plt.style.use(‘week3/OptionalLabs/deeplearning.mplstyle’)</p>
@@ -2977,7 +3142,7 @@ Accuracy on training set: 1.0
 </div>
 <section id="Adding-regularization">
 <h5>Adding regularization<a class="headerlink" href="#Adding-regularization" title="Permalink to this heading"></a></h5>
-<p><img alt="3fff906a0bc346d2a30886fd50f91d52" src="../../_images/C1_W3_LinearGradientRegularized.png" /> <img alt="0ea02808f864444288ad12ff9293ece1" src="../../_images/C1_W3_LogisticGradientRegularized.png" /></p>
+<p><img alt="01420358e53f41c4acba011a2ff57e64" src="../../_images/C1_W3_LinearGradientRegularized.png" /> <img alt="2815b7738c9f46189bbe649a18827ee4" src="../../_images/C1_W3_LogisticGradientRegularized.png" /></p>
 <p>The slides above show the cost and gradient functions for both linear and logistic regression. Note: - Cost - The cost functions differ significantly between linear and logistic regression, but adding regularization to the equations is the same. - Gradient - The gradient functions for linear and logistic regression are very similar. They differ only in the implementation of <span class="math notranslate nohighlight">\(f_{wb}\)</span>.</p>
 </section>
 <section id="Cost-functions-with-regularization">
@@ -3513,7 +3678,7 @@ We have m = 6 training examples
 </div>
 <p>Visualize your data</p>
 <p>Before starting to implement any learning algorithm, it is always good to visualize the data if possible. - The code below displays the data on a 2D plot (as shown below), where the axes are the two exam scores, and the positive and negative examples are shown with different markers. - We use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to generate this plot.</p>
-<p><img alt="8c2a2319c6d744fa916fd463580be7c5" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="0b31e45deb2b4bd180dfbcb8a5b9bff4" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
 </pre></div>
@@ -4194,7 +4359,7 @@ Iteration 9999: Cost     0.30
 <h5>2.7 Plotting the decision boundary<a class="headerlink" href="#2.7-Plotting-the-decision-boundary" title="Permalink to this heading"></a></h5>
 <div class="line-block">
 <div class="line">We will now use the final parameters from gradient descent to plot the linear fit. If you implemented the previous parts correctly, you should see the following plot:</div>
-<div class="line"><img alt="658e7d75d009459faffa06f8e7dec3fb" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
+<div class="line"><img alt="1b312164c1ef4c33a7e2f91e2f7e6c28" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
 </div>
 <p>We will use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to create this plot.</p>
 <div class="nbinput docutils container">
@@ -4488,7 +4653,7 @@ We have m = 6 training examples
 </div>
 <p>Visualize your data</p>
 <p>The helper function <code class="docutils literal notranslate"><span class="pre">plot_data</span></code> (from <code class="docutils literal notranslate"><span class="pre">utils.py</span></code>) is used to generate a figure like Figure 3, where the axes are the two test scores, and the positive (y = 1, accepted) and negative (y = 0, rejected) examples are shown with different markers.</p>
-<p><img alt="07967dbe70144af8938f375eed73318a" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/images/figure3.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="0bf62468e9814475b8c9af058ec3a80b" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/images/figure3.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
 </pre></div>
@@ -4926,7 +5091,7 @@ Iteration 9999: Cost     0.45
 <li><p>In the function, we plotted the non-linear decision boundary by computing the classifier’s predictions on an evenly spaced grid and then drew a contour plot of where the predictions change from y = 0 to y = 1.</p></li>
 <li><p>After learning the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>, the next step is to plot a decision boundary similar to Figure 4.</p></li>
 </ul>
-<p><img alt="70006fcf0c3b4d1ea235c8fbeb5c5392" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="e67924033ecf4633a6070099088ecec0" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[105]:
 </pre></div>
