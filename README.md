@@ -1,5 +1,6 @@
 # Machine Learning Specialization Coursera
 
+## These are evolving notes, if you want to contribute, please fork the ReadtheDoc branch of this repository, and edit the Jupyter ipython notebooks located in source/source_files
 
 ![](/resources/title-head.png)
 
