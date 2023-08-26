@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Model Representation &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,14 +76,14 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Model-Representation">
-<h1>Optional Lab: Model Representation<a class="headerlink" href="#Optional-Lab:-Model-Representation" title="Permalink to this heading"></a></h1>
-<figure><p><img alt="f807311af9b84f6786ff5333c05da80b" src="../../../../_images/C1_W1_L3_S1_Lecture_b.png" /></p>
+<h1>Optional Lab: Model Representation<a class="headerlink" href="#Optional-Lab:-Model-Representation" title="Permalink to this headline"></a></h1>
+<figure><p><img alt="fc44ebdb46c04513b658c470e3b4f302" src="../../../../_images/C1_W1_L3_S1_Lecture_b.png" /></p>
 </figure><section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
 <p>In this lab you will: - Learn to implement the model <span class="math notranslate nohighlight">\(f_{w,b}\)</span> for linear regression with one variable</p>
 </section>
 <section id="Notation">
-<h2>Notation<a class="headerlink" href="#Notation" title="Permalink to this heading"></a></h2>
+<h2>Notation<a class="headerlink" href="#Notation" title="Permalink to this headline"></a></h2>
 <p>Here is a summary of some of the notation you will encounter.</p>
 <div class="line-block">
 <div class="line">|General Notation | Description| Python (if applicable) | |: ————<a href="#id1"><span class="problematic" id="id2">|: ------------------------------------------------------------|</span></a>| | <span class="math notranslate nohighlight">\(a\)</span> | scalar, non bold || | <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> | vector, bold || | <strong>Regression</strong> | | | | | <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> | Training Example feature values (in this lab - Size (1000 sqft)) | <code class="docutils literal notranslate"><span class="pre">x_train</span></code> |</div>
@@ -93,7 +92,7 @@
 </div>
 </section>
 <section id="Tools">
-<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this heading"></a></h2>
+<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this headline"></a></h2>
 <p>In this lab you will make use of: - NumPy, a popular library for scientific computing - Matplotlib, a popular library for plotting data</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -108,13 +107,17 @@
 </section>
 </section>
 <section id="Problem-Statement">
-<h1>Problem Statement<a class="headerlink" href="#Problem-Statement" title="Permalink to this heading"></a></h1>
-<p><img alt="2e80d171eec040988b241095bd64ca10" src="../../../../_images/C1_W1_L3_S1_trainingdata.png" /></p>
+<h1>Problem Statement<a class="headerlink" href="#Problem-Statement" title="Permalink to this headline"></a></h1>
+<p><img alt="656dc9f6d24446a1a2c5927fdf1edcf4" src="../../../../_images/C1_W1_L3_S1_trainingdata.png" /></p>
 <div class="line-block">
 <div class="line">As in the lecture, you will use the motivating example of housing price prediction.</div>
 <div class="line">This lab will use a simple data set with only two data points - a house with 1000 square feet(sqft) sold for \$300,000 and a house with 2000 square feet sold for \$500,000. These two points will constitute our <em>data or training set</em>. In this lab, the units of size are 1000 sqft and the units of price are 1000s of dollars.</div>
 </div>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Size (1000 sqft)</p></th>
 <th class="head"><p>Price (1000s of dollars)</p></th>
@@ -244,8 +247,8 @@ Number of training examples is: 2
 </div>
 </div>
 <section id="Model-function">
-<h2>Model function<a class="headerlink" href="#Model-function" title="Permalink to this heading"></a></h2>
-<p><img alt="34d99b56596f4d59a1fd6c9551fa6ebb" src="../../../../_images/C1_W1_L3_S1_model.png" /> As described in lecture, the model function for linear regression (which is a function that maps from <code class="docutils literal notranslate"><span class="pre">x</span></code> to <code class="docutils literal notranslate"><span class="pre">y</span></code>) is represented as</p>
+<h2>Model function<a class="headerlink" href="#Model-function" title="Permalink to this headline"></a></h2>
+<p><img alt="a9d95f08a1484657b63a2c23747d9e51" src="../../../../_images/C1_W1_L3_S1_model.png" /> As described in lecture, the model function for linear regression (which is a function that maps from <code class="docutils literal notranslate"><span class="pre">x</span></code> to <code class="docutils literal notranslate"><span class="pre">y</span></code>) is represented as</p>
 <div class="math notranslate nohighlight">
 \[f_{w,b}(x^{(i)}) = wx^{(i)} + b \tag{1}\]</div>
 <p>The formula above is how you can represent straight lines - different values of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> give you different straight lines on the plot.</p>
@@ -333,17 +336,17 @@ b: 100
 </div>
 <p>As you can see, setting <span class="math notranslate nohighlight">\(w = 100\)</span> and <span class="math notranslate nohighlight">\(b = 100\)</span> does <em>not</em> result in a line that fits our data.</p>
 <section id="Challenge">
-<h3>Challenge<a class="headerlink" href="#Challenge" title="Permalink to this heading"></a></h3>
+<h3>Challenge<a class="headerlink" href="#Challenge" title="Permalink to this headline"></a></h3>
 <p>Try experimenting with different values of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. What should the values be for a line that fits our data?</p>
 <section id="Tip:">
-<h4>Tip:<a class="headerlink" href="#Tip:" title="Permalink to this heading"></a></h4>
+<h4>Tip:<a class="headerlink" href="#Tip:" title="Permalink to this headline"></a></h4>
 <p>You can use your mouse to click on the triangle to the left of the green “Hints” below to reveal some hints for choosing b and w.</p>
 <details><p>&lt;font size=’3’, color=’darkgreen’&gt;Hints</p>
 <p><ul><li><p>Try <span class="math notranslate nohighlight">\(w = 200\)</span> and <span class="math notranslate nohighlight">\(b = 100\)</span></p>
 </li></ul></p></section>
 </section>
 <section id="Prediction">
-<h3>Prediction<a class="headerlink" href="#Prediction" title="Permalink to this heading"></a></h3>
+<h3>Prediction<a class="headerlink" href="#Prediction" title="Permalink to this headline"></a></h3>
 <p>Now that we have a model, we can use it to make our original prediction. Let’s predict the price of a house with 1200 sqft. Since the units of <span class="math notranslate nohighlight">\(x\)</span> are in 1000’s of sqft, <span class="math notranslate nohighlight">\(x\)</span> is 1.2.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
@@ -370,7 +373,7 @@ $340 thousand dollars
 </section>
 </section>
 <section id="Congratulations!">
-<h1>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h1>
+<h1>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h1>
 <p>In this lab you have learned: - Linear regression builds a model which establishes a relationship between features and targets - In the example above, the feature was house size and the target was house price - for simple linear regression, the model has two parameters <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> whose values are ‘fit’ using <em>training data</em>. - once a model’s parameters have been determined, the model can be used to make predictions on novel data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

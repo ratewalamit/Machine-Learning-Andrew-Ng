@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab - ReLU activation &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,7 +76,7 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab---ReLU-activation">
-<h1>Optional Lab - ReLU activation<a class="headerlink" href="#Optional-Lab---ReLU-activation" title="Permalink to this heading"></a></h1>
+<h1>Optional Lab - ReLU activation<a class="headerlink" href="#Optional-Lab---ReLU-activation" title="Permalink to this headline"></a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -118,15 +117,15 @@
 <script type="application/vnd.jupyter.widget-view+json">{"model_id": "e8631645d39248c7bba85e5608139136", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="line-block">
-<div class="line"><img alt="b9988f5f190840d582b7c8e83256fb3a" src="../../../../_images/C2_W2_ReLu1.png" /> The example from the lecture on the right shows an application of the ReLU. In this example, the derived “awareness” feature is not binary but has a continuous range of values. The sigmoid is best for on/off or binary situations. The ReLU provides a continuous linear relationship. Additionally it has an ‘off’ range where the output is zero.</div>
+<div class="line"><img alt="616b7c4ee252402d908fd705fd944e14" src="../../../../_images/C2_W2_ReLu1.png" /> The example from the lecture on the right shows an application of the ReLU. In this example, the derived “awareness” feature is not binary but has a continuous range of values. The sigmoid is best for on/off or binary situations. The ReLU provides a continuous linear relationship. Additionally it has an ‘off’ range where the output is zero.</div>
 <div class="line">The “off” feature makes the ReLU a Non-Linear activation. Why is this needed? Let’s examine this below.</div>
 </div>
 <section id="Why-Non-Linear-Activations?">
-<h2>Why Non-Linear Activations?<a class="headerlink" href="#Why-Non-Linear-Activations?" title="Permalink to this heading"></a></h2>
-<p><img alt="9ccdf6e942224bfaae7a285783d199d2" src="../../../../_images/C2_W2_ReLU_Graph.png" /> The function shown is composed of linear pieces (piecewise linear). The slope is consistent during the linear portion and then changes abruptly at transition points. At transition points, a new linear function is added which, when added to the existing function, will produce the new slope. The new function is added at transition point but does not contribute to the output prior to that point. The non-linear activation function is responsible for disabling the
+<h2>Why Non-Linear Activations?<a class="headerlink" href="#Why-Non-Linear-Activations?" title="Permalink to this headline"></a></h2>
+<p><img alt="3987347b1ca648938c0ae5b9c5f168d4" src="../../../../_images/C2_W2_ReLU_Graph.png" /> The function shown is composed of linear pieces (piecewise linear). The slope is consistent during the linear portion and then changes abruptly at transition points. At transition points, a new linear function is added which, when added to the existing function, will produce the new slope. The new function is added at transition point but does not contribute to the output prior to that point. The non-linear activation function is responsible for disabling the
 input prior to and sometimes after the transition points. The following exercise provides a more tangible example.</p>
 <div class="line-block">
-<div class="line">The exercise will use the network below in a regression problem where you must model a piecewise linear target : <img alt="c2406544bec64e96af0c737df6e2eed9" src="../../../../_images/C2_W2_ReLU_Network.png" /></div>
+<div class="line">The exercise will use the network below in a regression problem where you must model a piecewise linear target : <img alt="03d83870b1ba46fb84fc730a9037bb61" src="../../../../_images/C2_W2_ReLU_Network.png" /></div>
 <div class="line">The network has 3 units in the first layer. Each is required to form the target. Unit 0 is pre-programmed and fixed to map the first segment. You will modify weights and biases in unit 1 and 2 to model the 2nd and 3rd segment. The output unit is also fixed and simply sums the outputs of the first layer.</div>
 </div>
 <p>Using the sliders below, modify weights and bias to match the target. Hints: Start with <code class="docutils literal notranslate"><span class="pre">w1</span></code> and <code class="docutils literal notranslate"><span class="pre">b1</span></code> and leave <code class="docutils literal notranslate"><span class="pre">w2</span></code> and <code class="docutils literal notranslate"><span class="pre">b2</span></code> zero until you match the 2nd segment. Clicking rather than sliding is quicker. If you have trouble, don’t worry, the text below will describe this in more detail.</p>
@@ -145,14 +144,14 @@ input prior to and sometimes after the transition points. The following exercise
 <script type="application/vnd.jupyter.widget-view+json">{"model_id": "d89e83fedc19457bb6a7267d3ba2f530", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="line-block">
-<div class="line">The goal of this exercise is to appreciate how the ReLU’s non-linear behavior provides the needed ability to turn functions off until they are needed. Let’s see how this worked in this example. <img alt="717152d492e746588fe86eb3d3d51c1e" src="../../../../_images/C2_W2_ReLU_Plot.png" /> The plots on the right contain the output of the units in the first layer.</div>
+<div class="line">The goal of this exercise is to appreciate how the ReLU’s non-linear behavior provides the needed ability to turn functions off until they are needed. Let’s see how this worked in this example. <img alt="9c0e68759f164a00863245d58033632d" src="../../../../_images/C2_W2_ReLU_Plot.png" /> The plots on the right contain the output of the units in the first layer.</div>
 <div class="line">Starting at the top, unit 0 is responsible for the first segment marked with a 1. Both the linear function <span class="math notranslate nohighlight">\(z\)</span> and the function following the ReLU <span class="math notranslate nohighlight">\(a\)</span> are shown. You can see that the ReLU cuts off the function after the interval [0,1]. This is important as it prevents Unit 0 from interfering with the following segment.</div>
 </div>
 <p>Unit 1 is responsible for the 2nd segment. Here the ReLU kept this unit quiet until after x is 1. Since the first unit is not contributing, the slope for unit 1, <span class="math notranslate nohighlight">\(w^{[1]}_1\)</span>, is just the slope of the target line. The bias must be adjusted to keep the output negative until x has reached 1. Note how the contribution of Unit 1 extends to the 3rd segment as well.</p>
 <p>Unit 2 is responsible for the 3rd segment. The ReLU again zeros the output until x reaches the right value.The slope of the unit, <span class="math notranslate nohighlight">\(w^{[1]}_2\)</span>, must be set so that the sum of unit 1 and 2 have the desired slope. The bias is again adjusted to keep the output negative until x has reached 2.</p>
 <p>The “off” or disable feature of the ReLU activation enables models to stitch together linear segments to model complex non-linear functions.</p>
 <section id="Congratulations!">
-<h3>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h3>
+<h3>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h3>
 <p>You are now more familiar with the ReLU and the importance of its non-linear behavior.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Logistic Regression &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -76,11 +76,11 @@
            <div itemprop="articleBody">
              
   <section id="Logistic-Regression">
-<h1>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this heading"></a></h1>
+<h1>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this headline"></a></h1>
 <p>In this exercise, you will implement logistic regression and apply it to two different datasets.</p>
 </section>
 <section id="Outline">
-<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
+<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Logistic Regression</p>
@@ -141,7 +141,7 @@ scores from those two exams.</p>
 </div>
 </div>
 <section id="View-the-variables">
-<h2>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this heading"></a></h2>
+<h2>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this headline"></a></h2>
 <div class="line-block">
 <div class="line">Let’s get more familiar with your dataset.</div>
 <div class="line">- A good place to start is to just print out each variable and see what it contains.</div>
@@ -192,7 +192,7 @@ Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
 </div>
 </section>
 <section id="Check-the-dimensions-of-your-variables">
-<h2>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this heading"></a></h2>
+<h2>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this headline"></a></h2>
 <p>Another useful way to get familiar with your data is to view its dimensions. Let’s print the shape of <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and see how many training examples we have in our dataset.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -216,9 +216,9 @@ We have m = 100 training examples
 </div>
 </section>
 <section id="Visualize-your-data">
-<h2>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this heading"></a></h2>
+<h2>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this headline"></a></h2>
 <p>Before starting to implement any learning algorithm, it is always good to visualize the data if possible. - The code below displays the data on a 2D plot (as shown below), where the axes are the two exam scores, and the positive and negative examples are shown with different markers. - We use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to generate this plot.</p>
-<p><img alt="c765fc50d8c54568b153d7f70cfe9419" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="116ce76e1cf24d06b1cb8964cdbd037e" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -798,7 +798,7 @@ Iteration 9999: Cost     0.30
 <p>### 2.7 Plotting the decision boundary</p>
 <div class="line-block">
 <div class="line">We will now use the final parameters from gradient descent to plot the linear fit. If you implemented the previous parts correctly, you should see the following plot:</div>
-<div class="line"><img alt="667c8d960e9548fc909c8684df468cd1" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
+<div class="line"><img alt="2c28afda350c4fc596c70d1fa092aac1" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
 </div>
 <p>We will use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to create this plot.</p>
 <div class="nbinput docutils container">
@@ -995,7 +995,7 @@ Train Accuracy: 92.000000
 </div>
 </section>
 <section id="id1">
-<h2>View the variables<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>View the variables<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>The code below prints the first five values of <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and the type of the variables.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
@@ -1028,7 +1028,7 @@ Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
 </div>
 </section>
 <section id="id2">
-<h2>Check the dimensions of your variables<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2>Check the dimensions of your variables<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>Another useful way to get familiar with your data is to view its dimensions. Let’s print the shape of <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and see how many training examples we have in our dataset.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
@@ -1052,9 +1052,9 @@ We have m = 118 training examples
 </div>
 </section>
 <section id="id3">
-<h2>Visualize your data<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2>Visualize your data<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>The helper function <code class="docutils literal notranslate"><span class="pre">plot_data</span></code> (from <code class="docutils literal notranslate"><span class="pre">utils.py</span></code>) is used to generate a figure like Figure 3, where the axes are the two test scores, and the positive (y = 1, accepted) and negative (y = 0, rejected) examples are shown with different markers.</p>
-<p><img alt="a67878c44ce54a8da73407773abef3e3" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="a528eedaff984444a84cc5f21bfae413" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
@@ -1442,7 +1442,7 @@ Iteration 9999: Cost     0.45
 <li><p>In the function, we plotted the non-linear decision boundary by computing the classifier’s predictions on an evenly spaced grid and then drew a contour plot of where the predictions change from y = 0 to y = 1.</p></li>
 <li><p>After learning the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>, the next step is to plot a decision boundary similar to Figure 4.</p></li>
 </ul>
-<p><img alt="a515bc2c1076463f8d5b378e50add25d" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="f0c41f45a934495e9262208863d18616" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>

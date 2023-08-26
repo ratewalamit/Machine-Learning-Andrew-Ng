@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab - Simple Neural Network &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,9 +76,9 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab---Simple-Neural-Network">
-<h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this heading"></a></h1>
+<h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this headline"></a></h1>
 <p>In this lab we will build a small neural network using Tensorflow.</p>
-<center><p><img alt="303e4a813a4a4c87ad5e39d2385b1d96" class="no-scaled-link" src="../../../../_images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
+<center><p><img alt="426b4f9f69fb4e83b16190a19f332f61" class="no-scaled-link" src="../../../../_images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
 <center/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -99,7 +98,7 @@
 </div>
 </div>
 <section id="DataSet">
-<h2>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this heading"></a></h2>
+<h2>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -134,7 +133,7 @@
 </div>
 </div>
 <section id="Normalize-Data">
-<h3>Normalize Data<a class="headerlink" href="#Normalize-Data" title="Permalink to this heading"></a></h3>
+<h3>Normalize Data<a class="headerlink" href="#Normalize-Data" title="Permalink to this headline"></a></h3>
 <div class="line-block">
 <div class="line">Fitting the weights to the data (back-propagation, covered in next week’s lectures) will proceed more quickly if the data is normalized. This is the same procedure you used in Course 1 where features in the data are each normalized to have a similar range. The procedure below uses a Keras <a class="reference external" href="https://keras.io/api/layers/preprocessing_layers/numerical/normalization/">normalization layer</a>. It has the following steps: - create a “Normalization Layer”. Note, as applied here, this is not a layer in
 your model. - ‘adapt’ the data. This learns the mean and variance of the data set and saves the values internally. - normalize the data.</div>
@@ -187,10 +186,10 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </section>
 </section>
 <section id="Tensorflow-Model">
-<h2>Tensorflow Model<a class="headerlink" href="#Tensorflow-Model" title="Permalink to this heading"></a></h2>
+<h2>Tensorflow Model<a class="headerlink" href="#Tensorflow-Model" title="Permalink to this headline"></a></h2>
 <section id="Model">
-<h3>Model<a class="headerlink" href="#Model" title="Permalink to this heading"></a></h3>
-<center><p><img alt="4d0e6ac39eff43bc978e0eb95367851e" class="no-scaled-link" src="../../../../_images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
+<h3>Model<a class="headerlink" href="#Model" title="Permalink to this headline"></a></h3>
+<center><p><img alt="16c32235775c46f3b93bc3a5d3766fd0" class="no-scaled-link" src="../../../../_images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations as shown below:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -343,7 +342,7 @@ Epoch 10/10
 </pre></div></div>
 </div>
 <section id="Updated-Weights">
-<h4>Updated Weights<a class="headerlink" href="#Updated-Weights" title="Permalink to this heading"></a></h4>
+<h4>Updated Weights<a class="headerlink" href="#Updated-Weights" title="Permalink to this headline"></a></h4>
 <p>After fitting, the weights have been updated:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -394,8 +393,8 @@ b2: [26.14]
 </section>
 </section>
 <section id="Predictions">
-<h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this heading"></a></h3>
-<p><img alt="f8774611c64043a5ae3c70015a4c902f" src="../../../../_images/C2_W1_RoastingDecision.PNG" /></p>
+<h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this headline"></a></h3>
+<p><img alt="282c999c77c0405f890f6316c69ab5bc" src="../../../../_images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <div class="line-block">
 <div class="line">Let’s start by creating input data. The model is expecting one or more examples where examples are in the rows of matrix. In this case, we have two features so the matrix will be (m,2) where m is the number of examples. Recall, we have normalized the input features so we must normalize our test data as well.</div>
@@ -425,7 +424,7 @@ predictions =
 </pre></div></div>
 </div>
 <section id="Epochs-and-batches">
-<h4>Epochs and batches<a class="headerlink" href="#Epochs-and-batches" title="Permalink to this heading"></a></h4>
+<h4>Epochs and batches<a class="headerlink" href="#Epochs-and-batches" title="Permalink to this headline"></a></h4>
 <p>In the <code class="docutils literal notranslate"><span class="pre">compile</span></code> statement above, the number of <code class="docutils literal notranslate"><span class="pre">epochs</span></code> was set to 10. This specifies that the entire data set should be applied during training 10 times. During training, you see output describing the progress of training that looks like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Epoch 1/10
 6250/6250 [==============================] - 6s 910us/step - loss: 0.1782
@@ -481,7 +480,7 @@ decisions =
 </section>
 </section>
 <section id="Layer-Functions">
-<h2>Layer Functions<a class="headerlink" href="#Layer-Functions" title="Permalink to this heading"></a></h2>
+<h2>Layer Functions<a class="headerlink" href="#Layer-Functions" title="Permalink to this headline"></a></h2>
 <p>Let’s examine the functions of the units to determine their role in the coffee roasting decision. We will plot the output of each node for all values of the inputs (duration,temp). Each unit is a logistic function whose output can range from zero to one. The shading in the graph represents the output value. &gt; Note: In labs we typically number things starting at zero while the lectures may start with 1.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
@@ -540,7 +539,7 @@ roast’ area’s.</p>
 </div>
 </section>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
 <p>You have built a small neural network in Tensorflow. The network demonstrated the ability of neural networks to handle complex decisions by dividing the decisions between multiple units.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

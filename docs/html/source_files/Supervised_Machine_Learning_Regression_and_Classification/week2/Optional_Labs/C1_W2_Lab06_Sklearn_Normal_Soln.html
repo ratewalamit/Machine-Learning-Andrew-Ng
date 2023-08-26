@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Linear Regression using Scikit-Learn &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,14 +76,14 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Linear-Regression-using-Scikit-Learn">
-<h1>Optional Lab: Linear Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab:-Linear-Regression-using-Scikit-Learn" title="Permalink to this heading"></a></h1>
+<h1>Optional Lab: Linear Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab:-Linear-Regression-using-Scikit-Learn" title="Permalink to this headline"></a></h1>
 <p>There is an open-source, commercially usable machine learning toolkit called <a class="reference external" href="https://scikit-learn.org/stable/index.html">scikit-learn</a>. This toolkit contains implementations of many of the algorithms that you will work with in this course.</p>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
 <p>In this lab you will: - Utilize scikit-learn to implement linear regression using a close form solution based on the normal equation</p>
 </section>
 <section id="Tools">
-<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this heading"></a></h2>
+<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this headline"></a></h2>
 <p>You will utilize functions from scikit-learn as well as matplotlib and NumPy.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -102,6 +101,10 @@
 <p># Linear Regression, closed-form solution Scikit-learn has the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression">linear regression model</a> which implements a closed-form linear regression.</p>
 <p>Let’s use the data from the early labs - a house with 1000 square feet sold for \$300,000 and a house with 2000 square feet sold for \$500,000.</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Size (1000 sqft)</p></th>
 <th class="head"><p>Price (1000s of dollars)</p></th>
@@ -117,7 +120,7 @@
 </tbody>
 </table>
 <section id="Load-the-data-set">
-<h3>Load the data set<a class="headerlink" href="#Load-the-data-set" title="Permalink to this heading"></a></h3>
+<h3>Load the data set<a class="headerlink" href="#Load-the-data-set" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -129,7 +132,7 @@
 </div>
 </section>
 <section id="Create-and-fit-the-model">
-<h3>Create and fit the model<a class="headerlink" href="#Create-and-fit-the-model" title="Permalink to this heading"></a></h3>
+<h3>Create and fit the model<a class="headerlink" href="#Create-and-fit-the-model" title="Permalink to this headline"></a></h3>
 <div class="line-block">
 <div class="line">The code below performs regression using scikit-learn. The first step creates a regression object.</div>
 <div class="line">The second step utilizes one of the methods associated with the object, <code class="docutils literal notranslate"><span class="pre">fit</span></code>. This performs regression, fitting the parameters to the input data. The toolkit expects a two-dimensional X matrix.</div>
@@ -153,7 +156,7 @@
 </div>
 </section>
 <section id="View-Parameters">
-<h3>View Parameters<a class="headerlink" href="#View-Parameters" title="Permalink to this heading"></a></h3>
+<h3>View Parameters<a class="headerlink" href="#View-Parameters" title="Permalink to this headline"></a></h3>
 <p>The <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> parameters are referred to as ‘coefficients’ and ‘intercept’ in scikit-learn.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -177,7 +180,7 @@ w = [200.], b = 100.00
 </div>
 </section>
 <section id="Make-Predictions">
-<h3>Make Predictions<a class="headerlink" href="#Make-Predictions" title="Permalink to this heading"></a></h3>
+<h3>Make Predictions<a class="headerlink" href="#Make-Predictions" title="Permalink to this headline"></a></h3>
 <p>Calling the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function generates predictions.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -204,7 +207,7 @@ Prediction for 1200 sqft house: $240100.00
 </section>
 </section>
 <section id="Second-Example">
-<h2>Second Example<a class="headerlink" href="#Second-Example" title="Permalink to this heading"></a></h2>
+<h2>Second Example<a class="headerlink" href="#Second-Example" title="Permalink to this headline"></a></h2>
 <p>The second example is from an earlier lab with multiple features. The final parameter values and predictions are very close to the results from the un-normalized ‘long-run’ from that lab. That un-normalized run took hours to produce results, while this is nearly instantaneous. The closed-form solution work well on smaller data sets such as these but can be computationally demanding on larger data sets. &gt;The closed-form solution does not require normalization.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Assignment - W2: &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,13 +76,13 @@
            <div itemprop="articleBody">
              
   <section id="Assignment---W2:">
-<h1>Assignment - W2:<a class="headerlink" href="#Assignment---W2:" title="Permalink to this heading"></a></h1>
+<h1>Assignment - W2:<a class="headerlink" href="#Assignment---W2:" title="Permalink to this headline"></a></h1>
 <section id="Practice-Lab:-Linear-Regression">
-<h2>Practice Lab: Linear Regression<a class="headerlink" href="#Practice-Lab:-Linear-Regression" title="Permalink to this heading"></a></h2>
+<h2>Practice Lab: Linear Regression<a class="headerlink" href="#Practice-Lab:-Linear-Regression" title="Permalink to this headline"></a></h2>
 <p>Welcome to your first practice lab! In this lab, you will implement linear regression with one variable to predict profits for a restaurant franchise.</p>
 </section>
 <section id="Outline">
-<h2>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h2>
+<h2>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Linear regression with one variable</p>
@@ -121,12 +120,12 @@
 </div>
 </div>
 <section id="2---Problem-Statement">
-<h3>2 - Problem Statement<a class="headerlink" href="#2---Problem-Statement" title="Permalink to this heading"></a></h3>
+<h3>2 - Problem Statement<a class="headerlink" href="#2---Problem-Statement" title="Permalink to this headline"></a></h3>
 <p>Suppose you are the CEO of a restaurant franchise and are considering different cities for opening a new outlet. - You would like to expand your business to cities that may give your restaurant higher profits. - The chain already has restaurants in various cities and you have data for profits and populations from the cities. - You also have data on cities that are candidates for a new restaurant. - For these cities, you have the city population.</p>
 <p>Can you use the data to help you identify which cities may potentially give your business higher profits?</p>
 </section>
 <section id="3---Dataset">
-<h3>3 - Dataset<a class="headerlink" href="#3---Dataset" title="Permalink to this heading"></a></h3>
+<h3>3 - Dataset<a class="headerlink" href="#3---Dataset" title="Permalink to this headline"></a></h3>
 <div class="line-block">
 <div class="line">You will start by loading the dataset for this task. - The <code class="docutils literal notranslate"><span class="pre">load_data()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> - <code class="docutils literal notranslate"><span class="pre">x_train</span></code> is the population of a city - <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is the profit of a restaurant in that city. A negative value for profit indicates a loss.</div>
 <div class="line">- Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</div>
@@ -141,7 +140,7 @@
 </div>
 </div>
 <section id="View-the-variables">
-<h4>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this heading"></a></h4>
+<h4>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this headline"></a></h4>
 <div class="line-block">
 <div class="line">Before starting on any task, it is useful to get more familiar with your dataset.</div>
 <div class="line">- A good place to start is to just print out each variable and see what it contains.</div>
@@ -192,7 +191,7 @@ First five elements of y_train are:
 <p>Similarly, <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is a numpy array that has decimal values, some negative, some positive. - These represent your restaurant’s average monthly profits in each city, in units of $10,000. - For example, 17.592 represents $175,920 in average monthly profits for that city. - -2.6807 represents -$26,807 in average monthly loss for that city.</p>
 </section>
 <section id="Check-the-dimensions-of-your-variables">
-<h4>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this heading"></a></h4>
+<h4>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this headline"></a></h4>
 <p>Another useful way to get familiar with your data is to view its dimensions.</p>
 <p>Please print the shape of <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and see how many training examples you have in your dataset.</p>
 <div class="nbinput docutils container">
@@ -218,7 +217,7 @@ Number of training examples (m): 97
 <p>The city population array has 97 data points, and the monthly average profits also has 97 data points. These are NumPy 1D arrays.</p>
 </section>
 <section id="Visualize-your-data">
-<h4>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this heading"></a></h4>
+<h4>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this headline"></a></h4>
 <p>It is often useful to understand the data by visualizing it. - For this dataset, you can use a scatter plot to visualize the data, since it has only two properties to plot (profit and population). - Many other problems that you will encounter in real life have more than two properties (for example, population, average household income, monthly profits, monthly sales).When you have more than two properties, you can still use a scatter plot to see the relationship between each pair of properties.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -272,7 +271,7 @@ Number of training examples (m): 97
 <p>Gradient descent involves repeated steps to adjust the value of your parameter <span class="math notranslate nohighlight">\((w,b)\)</span> to gradually get a smaller and smaller cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>. - At each step of gradient descent, it will be helpful for you to monitor your progress by computing the cost <span class="math notranslate nohighlight">\(J(w,b)\)</span> as <span class="math notranslate nohighlight">\((w,b)\)</span> gets updated. - In this section, you will implement a function to calculate <span class="math notranslate nohighlight">\(J(w,b)\)</span> so that you can check the progress of your gradient descent implementation.</p>
 </section>
 <section id="Cost-function">
-<h4>Cost function<a class="headerlink" href="#Cost-function" title="Permalink to this heading"></a></h4>
+<h4>Cost function<a class="headerlink" href="#Cost-function" title="Permalink to this headline"></a></h4>
 <p>As you may recall from the lecture, for one variable, the cost function for linear regression <span class="math notranslate nohighlight">\(J(w,b)\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2\]</div>
@@ -282,7 +281,7 @@ Number of training examples (m): 97
 </ul>
 </section>
 <section id="Model-prediction">
-<h4>Model prediction<a class="headerlink" href="#Model-prediction" title="Permalink to this heading"></a></h4>
+<h4>Model prediction<a class="headerlink" href="#Model-prediction" title="Permalink to this headline"></a></h4>
 <ul class="simple">
 <li><p>For linear regression with one variable, the prediction of the model <span class="math notranslate nohighlight">\(f_{w,b}\)</span> for an example <span class="math notranslate nohighlight">\(x^{(i)}\)</span> is representented as:</p></li>
 </ul>
@@ -291,7 +290,7 @@ Number of training examples (m): 97
 <p>This is the equation for a line, with an intercept <span class="math notranslate nohighlight">\(b\)</span> and a slope <span class="math notranslate nohighlight">\(w\)</span></p>
 </section>
 <section id="Implementation">
-<h4>Implementation<a class="headerlink" href="#Implementation" title="Permalink to this heading"></a></h4>
+<h4>Implementation<a class="headerlink" href="#Implementation" title="Permalink to this headline"></a></h4>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_cost()</span></code> function below to compute the cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>.</p>
 <p>### Exercise 1</p>
 <p>Complete the <code class="docutils literal notranslate"><span class="pre">compute_cost</span></code> below to:</p>

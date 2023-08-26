@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Logistic Regression &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,7 +76,7 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Logistic-Regression">
-<h1>Optional Lab: Logistic Regression<a class="headerlink" href="#Optional-Lab:-Logistic-Regression" title="Permalink to this heading"></a></h1>
+<h1>Optional Lab: Logistic Regression<a class="headerlink" href="#Optional-Lab:-Logistic-Regression" title="Permalink to this headline"></a></h1>
 <p>In this ungraded lab, you will - explore the sigmoid function (also known as the logistic function) - explore logistic regression; which uses the sigmoid function</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -93,13 +92,13 @@
 </div>
 </div>
 <section id="Sigmoid-or-Logistic-Function">
-<h2>Sigmoid or Logistic Function<a class="headerlink" href="#Sigmoid-or-Logistic-Function" title="Permalink to this heading"></a></h2>
-<p><a href="#id1"><span class="problematic" id="id2">|</span></a>9366bf675a564e8d8328a17488314806|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
+<h2>Sigmoid or Logistic Function<a class="headerlink" href="#Sigmoid-or-Logistic-Function" title="Permalink to this headline"></a></h2>
+<p><a href="#id1"><span class="problematic" id="id2">|</span></a>303bec962fdc4d5ebcbfe2085532d2b6|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
 to values between 0 and 1.</p>
 <p>Let’s implement the sigmoid function and see this for ourselves.</p>
 </section>
 <section id="Formula-for-Sigmoid-function">
-<h2>Formula for Sigmoid function<a class="headerlink" href="#Formula-for-Sigmoid-function" title="Permalink to this heading"></a></h2>
+<h2>Formula for Sigmoid function<a class="headerlink" href="#Formula-for-Sigmoid-function" title="Permalink to this headline"></a></h2>
 <p>The formula for a sigmoid function is as follows -</p>
 <p><span class="math notranslate nohighlight">\(g(z) = \frac{1}{1+e^{-z}}\tag{1}\)</span></p>
 <p>In the case of logistic regression, z (the input to the sigmoid function), is the output of a linear regression model. - In the case of a single example, <span class="math notranslate nohighlight">\(z\)</span> is scalar. - in the case of multiple examples, <span class="math notranslate nohighlight">\(z\)</span> may be a vector consisting of <span class="math notranslate nohighlight">\(m\)</span> values, one for each example. - The implementation of the sigmoid function should cover both of these potential input formats. Let’s implement this in Python.</p>
@@ -232,8 +231,8 @@ Input (z), Output (sigmoid(z))
 <p>As you can see, the sigmoid function approaches <code class="docutils literal notranslate"><span class="pre">0</span></code> as <code class="docutils literal notranslate"><span class="pre">z</span></code> goes to large negative values and approaches <code class="docutils literal notranslate"><span class="pre">1</span></code> as <code class="docutils literal notranslate"><span class="pre">z</span></code> goes to large positive values.</p>
 </section>
 <section id="Logistic-Regression">
-<h2>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this heading"></a></h2>
-<p><img alt="c2c47d3029c34b29bf0f9eec98b51d20" src="../../../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
+<h2>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this headline"></a></h2>
+<p><img alt="a7bd0890a7fd45568d483a4eb2aa421c" src="../../../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b ) \tag{2}\]</div>
 <p>where</p>
@@ -273,7 +272,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </div>
 </section>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
 <p>You have explored the use of the sigmoid function in logistic regression.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Feature scaling and Learning Rate (Multi-variable) &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,13 +76,13 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Feature-scaling-and-Learning-Rate-(Multi-variable)">
-<h1>Optional Lab: Feature scaling and Learning Rate (Multi-variable)<a class="headerlink" href="#Optional-Lab:-Feature-scaling-and-Learning-Rate-(Multi-variable)" title="Permalink to this heading"></a></h1>
+<h1>Optional Lab: Feature scaling and Learning Rate (Multi-variable)<a class="headerlink" href="#Optional-Lab:-Feature-scaling-and-Learning-Rate-(Multi-variable)" title="Permalink to this headline"></a></h1>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
 <p>In this lab you will: - Utilize the multiple variables routines developed in the previous lab - run Gradient Descent on a data set with multiple features - explore the impact of the <em>learning rate alpha</em> on gradient descent - improve performance of gradient descent by <em>feature scaling</em> using z-score normalization</p>
 </section>
 <section id="Tools">
-<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this heading"></a></h2>
+<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this headline"></a></h2>
 <p>You will utilize the functions developed in the last lab as well as matplotlib and NumPy.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -101,7 +100,7 @@
 </div>
 </section>
 <section id="Notation">
-<h2>Notation<a class="headerlink" href="#Notation" title="Permalink to this heading"></a></h2>
+<h2>Notation<a class="headerlink" href="#Notation" title="Permalink to this headline"></a></h2>
 <div class="line-block">
 <div class="line">|General Notation | Description| Python (if applicable) | |: ————<a href="#id3"><span class="problematic" id="id4">|: ------------------------------------------------------------|</span></a>| | <span class="math notranslate nohighlight">\(a\)</span> | scalar, non bold || | <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> | vector, bold || | <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> | matrix, bold capital || | <strong>Regression</strong> | | | | | <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> | training example maxtrix | <code class="docutils literal notranslate"><span class="pre">X_train</span></code> |</div>
 <div class="line">| <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> | training example targets | <code class="docutils literal notranslate"><span class="pre">y_train</span></code> | <span class="math notranslate nohighlight">\(\mathbf{x}^{(i)}\)</span>, <span class="math notranslate nohighlight">\(y^{(i)}\)</span> | <span class="math notranslate nohighlight">\(i_{th}\)</span>Training Example | <code class="docutils literal notranslate"><span class="pre">X[i]</span></code>, <code class="docutils literal notranslate"><span class="pre">y[i]</span></code>| | m | number of training examples | <code class="docutils literal notranslate"><span class="pre">m</span></code>| | n | number of features in each example | <code class="docutils literal notranslate"><span class="pre">n</span></code>| | <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> | parameter: weight, | <code class="docutils literal notranslate"><span class="pre">w</span></code> | | <span class="math notranslate nohighlight">\(b\)</span> | parameter: bias | <code class="docutils literal notranslate"><span class="pre">b</span></code> |</div>
@@ -111,12 +110,19 @@ derivative of cost with respect to a parameter <span class="math notranslate noh
 </section>
 </section>
 <section id="Problem-Statement">
-<h1>Problem Statement<a class="headerlink" href="#Problem-Statement" title="Permalink to this heading"></a></h1>
+<h1>Problem Statement<a class="headerlink" href="#Problem-Statement" title="Permalink to this headline"></a></h1>
 <p>As in the previous labs, you will use the motivating example of housing price prediction. The training data set contains many examples with 4 features (size, bedrooms, floors and age) shown in the table below. Note, in this lab, the Size feature is in sqft while earlier labs utilized 1000 sqft. This data set is larger than the previous lab.</p>
 <p>We would like to build a linear regression model using these values so we can then predict the price for other houses - say, a house with 1200 sqft, 3 bedrooms, 1 floor, 40 years old.</p>
 <section id="Dataset:">
-<h2>Dataset:<a class="headerlink" href="#Dataset:" title="Permalink to this heading"></a></h2>
+<h2>Dataset:<a class="headerlink" href="#Dataset:" title="Permalink to this headline"></a></h2>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 21%" />
+<col style="width: 19%" />
+<col style="width: 16%" />
+<col style="width: 26%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Size (sqft)</p></th>
 <th class="head"><p>Number of Bedrooms</p></th>
@@ -202,12 +208,12 @@ derivative of cost with respect to a parameter <span class="math notranslate noh
 </ul>
 </section>
 <section id="Learning-Rate">
-<h2>Learning Rate<a class="headerlink" href="#Learning-Rate" title="Permalink to this heading"></a></h2>
-<figure><p><img alt="d8930ace8033448a8268396e075fd095" src="../../../../_images/C1_W2_Lab06_learningrate.PNG" /></p>
+<h2>Learning Rate<a class="headerlink" href="#Learning-Rate" title="Permalink to this headline"></a></h2>
+<figure><p><img alt="baf7d3350e91412bb0f6bbd471406310" src="../../../../_images/C1_W2_Lab06_learningrate.PNG" /></p>
 </figure><p>The lectures discussed some of the issues related to setting the learning rate <span class="math notranslate nohighlight">\(\alpha\)</span>. The learning rate controls the size of the update to the parameters. See equation (1) above. It is shared by all the parameters.</p>
 <p>Let’s run gradient descent and try a few settings of <span class="math notranslate nohighlight">\(\alpha\)</span> on our data set</p>
 <section id="\alpha-=-9.9e-7">
-<h3><span class="math notranslate nohighlight">\(\alpha\)</span> = 9.9e-7<a class="headerlink" href="#\alpha-=-9.9e-7" title="Permalink to this heading"></a></h3>
+<h3><span class="math notranslate nohighlight">\(\alpha\)</span> = 9.9e-7<a class="headerlink" href="#\alpha-=-9.9e-7" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -257,7 +263,7 @@ w,b found by gradient descent: w: [-0.87 -0.   -0.   -0.03], b: -0.00
 slightly off.</p>
 </section>
 <section id="\alpha-=-9e-7">
-<h3><span class="math notranslate nohighlight">\(\alpha\)</span> = 9e-7<a class="headerlink" href="#\alpha-=-9e-7" title="Permalink to this heading"></a></h3>
+<h3><span class="math notranslate nohighlight">\(\alpha\)</span> = 9e-7<a class="headerlink" href="#\alpha-=-9e-7" title="Permalink to this headline"></a></h3>
 <p>Let’s try a bit smaller value and see what happens.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -307,7 +313,7 @@ w,b found by gradient descent: w: [ 7.74e-02  8.27e-05 -1.06e-06 -4.20e-03], b: 
 <p>On the left, you see that cost is decreasing as it should. On the right, you can see that <span class="math notranslate nohighlight">\(w_0\)</span> is still oscillating around the minimum, but it is decreasing each iteration rather than increasing. Note above that <code class="docutils literal notranslate"><span class="pre">dj_dw[0]</span></code> changes sign with each iteration as <code class="docutils literal notranslate"><span class="pre">w[0]</span></code> jumps over the optimal value. This alpha value will converge. You can vary the number of iterations to see how it behaves.</p>
 </section>
 <section id="\alpha-=-1e-7">
-<h3><span class="math notranslate nohighlight">\(\alpha\)</span> = 1e-7<a class="headerlink" href="#\alpha-=-1e-7" title="Permalink to this heading"></a></h3>
+<h3><span class="math notranslate nohighlight">\(\alpha\)</span> = 1e-7<a class="headerlink" href="#\alpha-=-1e-7" title="Permalink to this headline"></a></h3>
 <p>Let’s try a bit smaller value for <span class="math notranslate nohighlight">\(\alpha\)</span> and see what happens.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -358,24 +364,24 @@ w,b found by gradient descent: w: [2.31e-01 4.18e-04 2.12e-04 4.81e-03], b: 0.00
 </section>
 </section>
 <section id="Feature-Scaling">
-<h2>Feature Scaling<a class="headerlink" href="#Feature-Scaling" title="Permalink to this heading"></a></h2>
-<figure><p><img alt="9349d8aadc9f427e9c96b76ddafec0b5" src="../../../../_images/C1_W2_Lab06_featurescalingheader.PNG" /></p>
+<h2>Feature Scaling<a class="headerlink" href="#Feature-Scaling" title="Permalink to this headline"></a></h2>
+<figure><p><img alt="775f700d687b40daa0b8f7a51d36aa45" src="../../../../_images/C1_W2_Lab06_featurescalingheader.PNG" /></p>
 </figure><p>The lectures described the importance of rescaling the dataset so the features have a similar range. If you are interested in the details of why this is the case, click on the ‘details’ header below. If not, the section below will walk through an implementation of how to do feature scaling.</p>
 <details><p>&lt;font size=’3’, color=’darkgreen’&gt;Details</p>
 <p>Let’s look again at the situation with <span class="math notranslate nohighlight">\(\alpha\)</span> = 9e-7. This is pretty close to the maximum value we can set <span class="math notranslate nohighlight">\(\alpha\)</span> to without diverging. This is a short run showing the first few iterations:</p>
-<figure><p><img alt="c6532dd03b514bfc91c57504e5a5c372" src="../../../../_images/C1_W2_Lab06_ShortRun.PNG" /></p>
+<figure><p><img alt="5900371fd6e04969a85fd6d921f4ef1d" src="../../../../_images/C1_W2_Lab06_ShortRun.PNG" /></p>
 </figure><p>Above, while cost is being decreased, its clear that <span class="math notranslate nohighlight">\(w_0\)</span> is making more rapid progress than the other parameters due to its much larger gradient.</p>
 <p>The graphic below shows the result of a very long run with <span class="math notranslate nohighlight">\(\alpha\)</span> = 9e-7. This takes several hours.</p>
-<figure><p><img alt="133e2deee28d4e2288f16c5c962d829c" src="../../../../_images/C1_W2_Lab06_LongRun.PNG" /></p>
+<figure><p><img alt="54fbab03988c453b9584d78e377cea07" src="../../../../_images/C1_W2_Lab06_LongRun.PNG" /></p>
 </figure><p>Above, you can see cost decreased slowly after its initial reduction. Notice the difference between <code class="docutils literal notranslate"><span class="pre">w0</span></code> and <code class="docutils literal notranslate"><span class="pre">w1</span></code>,<code class="docutils literal notranslate"><span class="pre">w2</span></code>,<code class="docutils literal notranslate"><span class="pre">w3</span></code> as well as <code class="docutils literal notranslate"><span class="pre">dj_dw0</span></code> and <code class="docutils literal notranslate"><span class="pre">dj_dw1-3</span></code>. <code class="docutils literal notranslate"><span class="pre">w0</span></code> reaches its near final value very quickly and <code class="docutils literal notranslate"><span class="pre">dj_dw0</span></code> has quickly decreased to a small value showing that <code class="docutils literal notranslate"><span class="pre">w0</span></code> is near the final value. The other parameters were reduced much more slowly.</p>
 <p>Why is this? Is there something we can improve? See below:</p>
-<figure><center><p><img alt="c2738218ef4a4f7ab2aec26d9bf84555" src="../../../../_images/C1_W2_Lab06_scale.PNG" /></p>
+<figure><center><p><img alt="2f170f27406b446b878379afb65a1588" src="../../../../_images/C1_W2_Lab06_scale.PNG" /></p>
 </center></figure><p>The figure above shows why <span class="math notranslate nohighlight">\(w\)</span>’s are updated unevenly. - <span class="math notranslate nohighlight">\(\alpha\)</span> is shared by all parameter updates (<span class="math notranslate nohighlight">\(w\)</span>’s and <span class="math notranslate nohighlight">\(b\)</span>). - the common error term is multiplied by the features for the <span class="math notranslate nohighlight">\(w\)</span>’s. (not <span class="math notranslate nohighlight">\(b\)</span>). - the features vary significantly in magnitude making some features update much faster than others. In this case, <span class="math notranslate nohighlight">\(w_0\)</span> is multiplied by ‘size(sqft)’, which is generally &gt; 1000, while <span class="math notranslate nohighlight">\(w_1\)</span> is multiplied by ‘number of bedrooms’, which is generally 2-4.</p>
 <p>The solution is Feature Scaling.</p>
 <p>The lectures discussed three different techniques: - Feature scaling, essentially dividing each positive feature by its maximum value, or more generally, rescale each feature by both its minimum and maximum values using (x-min)/(max-min). Both ways normalizes features to the range of -1 and 1, where the former method works for positive features which is simple and serves well for the lecture’s example, and the latter method works for any features. - Mean normalization: $x_i :=
 <span class="math">\dfrac{x_i - \mu_i}{max - min}</span> $ - Z-score normalization which we will explore below.</p>
 <section id="z-score-normalization">
-<h3>z-score normalization<a class="headerlink" href="#z-score-normalization" title="Permalink to this heading"></a></h3>
+<h3>z-score normalization<a class="headerlink" href="#z-score-normalization" title="Permalink to this headline"></a></h3>
 <p>After z-score normalization, all features will have a mean of 0 and a standard deviation of 1.</p>
 <p>To implement z-score normalization, adjust your input values as shown in this formula:</p>
 <div class="math notranslate nohighlight">
@@ -605,7 +611,7 @@ w,b found by gradient descent: w: [110.56 -21.27 -32.71 -37.97], b: 363.16
 </div>
 <div class="line-block">
 <div class="line"><strong>Cost Contours</strong></div>
-<div class="line"><a href="#id1"><span class="problematic" id="id2">|</span></a>7dfbb5b42f0c4723af11c645324db969|Another way to view feature scaling is in terms of the cost contours. When feature scales do not match, the plot of cost versus parameters in a contour plot is asymmetric.</div>
+<div class="line"><a href="#id1"><span class="problematic" id="id2">|</span></a>df1c6fddabc84bf2bf5a559a05b3d0ba|Another way to view feature scaling is in terms of the cost contours. When feature scales do not match, the plot of cost versus parameters in a contour plot is asymmetric.</div>
 </div>
 <p>In the plot below, the scale of the parameters is matched. The left plot is the cost contour plot of w[0], the square feet versus w[1], the number of bedrooms before normalizing the features. The plot is so asymmetric, the curves completing the contours are not visible. In contrast, when the features are normalized, the cost contour is much more symmetric. The result is that updates to parameters during gradient descent can make equal progress for each parameter.</p>
 <div class="nbinput docutils container">
@@ -626,11 +632,11 @@ w,b found by gradient descent: w: [110.56 -21.27 -32.71 -37.97], b: 363.16
 </section>
 </section>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
 <p>In this lab you: - utilized the routines for linear regression with multiple features you developed in previous labs - explored the impact of the learning rate <span class="math notranslate nohighlight">\(\alpha\)</span> on convergence - discovered the value of feature scaling using z-score normalization in speeding convergence</p>
 </section>
 <section id="Acknowledgments">
-<h2>Acknowledgments<a class="headerlink" href="#Acknowledgments" title="Permalink to this heading"></a></h2>
+<h2>Acknowledgments<a class="headerlink" href="#Acknowledgments" title="Permalink to this headline"></a></h2>
 <p>The housing data was derived from the <a class="reference external" href="http://jse.amstat.org/v19n3/decock.pdf">Ames Housing dataset</a> compiled by Dean De Cock for use in data science education.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

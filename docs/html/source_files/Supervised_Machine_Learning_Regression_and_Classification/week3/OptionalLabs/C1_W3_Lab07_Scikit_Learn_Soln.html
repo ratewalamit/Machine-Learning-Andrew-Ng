@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ungraded Lab: Logistic Regression using Scikit-Learn &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,13 +76,13 @@
            <div itemprop="articleBody">
              
   <section id="Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn">
-<h1>Ungraded Lab: Logistic Regression using Scikit-Learn<a class="headerlink" href="#Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn" title="Permalink to this heading"></a></h1>
+<h1>Ungraded Lab: Logistic Regression using Scikit-Learn<a class="headerlink" href="#Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn" title="Permalink to this headline"></a></h1>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
 <p>In this lab you will: - Train a logistic regression model using scikit-learn.</p>
 </section>
 <section id="Dataset">
-<h2>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this heading"></a></h2>
+<h2>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this headline"></a></h2>
 <p>Let’s start with the same dataset as before.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -98,7 +97,7 @@
 </div>
 </section>
 <section id="Fit-the-model">
-<h2>Fit the model<a class="headerlink" href="#Fit-the-model" title="Permalink to this heading"></a></h2>
+<h2>Fit the model<a class="headerlink" href="#Fit-the-model" title="Permalink to this headline"></a></h2>
 <p>The code below imports the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression">logistic regression model</a> from scikit-learn. You can fit this model on the training data by calling <code class="docutils literal notranslate"><span class="pre">fit</span></code> function.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -122,7 +121,7 @@ LogisticRegression()
 </div>
 </section>
 <section id="Make-Predictions">
-<h2>Make Predictions<a class="headerlink" href="#Make-Predictions" title="Permalink to this heading"></a></h2>
+<h2>Make Predictions<a class="headerlink" href="#Make-Predictions" title="Permalink to this headline"></a></h2>
 <p>You can see the predictions made by this model by calling the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -144,7 +143,7 @@ Prediction on training set: [0 0 0 1 1 1]
 </div>
 </section>
 <section id="Calculate-accuracy">
-<h2>Calculate accuracy<a class="headerlink" href="#Calculate-accuracy" title="Permalink to this heading"></a></h2>
+<h2>Calculate accuracy<a class="headerlink" href="#Calculate-accuracy" title="Permalink to this headline"></a></h2>
 <p>You can calculate this accuracy of this model by calling the <code class="docutils literal notranslate"><span class="pre">score</span></code> function.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:

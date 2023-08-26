@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Cost Function for Logistic Regression &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,9 +76,9 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Cost-Function-for-Logistic-Regression">
-<h1>Optional Lab: Cost Function for Logistic Regression<a class="headerlink" href="#Optional-Lab:-Cost-Function-for-Logistic-Regression" title="Permalink to this heading"></a></h1>
+<h1>Optional Lab: Cost Function for Logistic Regression<a class="headerlink" href="#Optional-Lab:-Cost-Function-for-Logistic-Regression" title="Permalink to this headline"></a></h1>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
 <p>In this lab, you will: - examine the implementation and utilize the cost function for logistic regression.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -95,7 +94,7 @@
 </div>
 </section>
 <section id="Dataset">
-<h2>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this heading"></a></h2>
+<h2>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this headline"></a></h2>
 <p>Let’s start with the same dataset as was used in the decision boundary lab.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -130,7 +129,7 @@
 </div>
 </section>
 <section id="Cost-function">
-<h2>Cost function<a class="headerlink" href="#Cost-function" title="Permalink to this heading"></a></h2>
+<h2>Cost function<a class="headerlink" href="#Cost-function" title="Permalink to this headline"></a></h2>
 <p>In a previous lab, you developed the <em>logistic loss</em> function. Recall, loss is defined to apply to one example. Here you combine the losses to form the <strong>cost</strong>, which includes all the examples.</p>
 <p>Recall that for logistic regression, the cost function is of the form</p>
 <div class="math notranslate nohighlight">
@@ -204,7 +203,7 @@
 <p><strong>Expected output</strong>: 0.3668667864055175</p>
 </section>
 <section id="Example">
-<h2>Example<a class="headerlink" href="#Example" title="Permalink to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#Example" title="Permalink to this headline"></a></h2>
 <p>Now, let’s see what the cost function output is for a different value of <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <ul class="simple">
 <li><p>In a previous lab, you plotted the decision boundary for <span class="math notranslate nohighlight">\(b = -3, w_0 = 1, w_1 = 1\)</span>. That is, you had <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">-3,</span> <span class="pre">w</span> <span class="pre">=</span> <span class="pre">np.array([1,1])</span></code>.</p></li>
@@ -281,7 +280,7 @@ Cost for b = -4 :  0.5036808636748461
 <p>You can see the cost function behaves as expected and the cost for <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">-4,</span> <span class="pre">w</span> <span class="pre">=</span> <span class="pre">np.array([1,1])</span></code> is indeed higher than the cost for <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">-3,</span> <span class="pre">w</span> <span class="pre">=</span> <span class="pre">np.array([1,1])</span></code></p>
 </section>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
 <p>In this lab you examined and utilized the cost function for logistic regression.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:

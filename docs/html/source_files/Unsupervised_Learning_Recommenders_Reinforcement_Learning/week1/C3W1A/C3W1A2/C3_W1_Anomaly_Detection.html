@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anomaly Detection &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -77,11 +76,11 @@
            <div itemprop="articleBody">
              
   <section id="Anomaly-Detection">
-<h1>Anomaly Detection<a class="headerlink" href="#Anomaly-Detection" title="Permalink to this heading"></a></h1>
+<h1>Anomaly Detection<a class="headerlink" href="#Anomaly-Detection" title="Permalink to this headline"></a></h1>
 <p>In this exercise, you will implement the anomaly detection algorithm and apply it to detect failing servers on a network.</p>
 </section>
 <section id="Outline">
-<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
+<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Anomaly detection</p>
@@ -130,7 +129,7 @@
 </div>
 </div>
 <section id="View-the-variables">
-<h2>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this heading"></a></h2>
+<h2>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this headline"></a></h2>
 <div class="line-block">
 <div class="line">Let’s get more familiar with your dataset.</div>
 <div class="line">- A good place to start is to just print out each variable and see what it contains.</div>
@@ -200,7 +199,7 @@ The first 5 elements of y_val are
 </div>
 </section>
 <section id="Check-the-dimensions-of-your-variables">
-<h2>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this heading"></a></h2>
+<h2>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this headline"></a></h2>
 <p>Another useful way to get familiar with your data is to view its dimensions.</p>
 <p>The code below prints the shape of <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">X_val</span></code> and <code class="docutils literal notranslate"><span class="pre">y_val</span></code>.</p>
 <div class="nbinput docutils container">
@@ -225,10 +224,10 @@ The shape of y_val is:  (307,)
 </div>
 </section>
 <section id="Visualize-your-data">
-<h2>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this heading"></a></h2>
+<h2>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this headline"></a></h2>
 <p>Before starting on any task, it is often useful to understand the data by visualizing it. - For this dataset, you can use a scatter plot to visualize the data (<code class="docutils literal notranslate"><span class="pre">X_train</span></code>), since it has only two properties to plot (throughput and latency)</p>
 <ul class="simple">
-<li><p>Your plot should look similar to the one below <img alt="665d615f98be4693b869a6398f2f412b" class="no-scaled-link" src="../../../../../_images/figure1.png" style="width: 500px; height: 500px;" /></p></li>
+<li><p>Your plot should look similar to the one below <img alt="0c066ee1a0fe4a6e831870205a1d37c8" class="no-scaled-link" src="../../../../../_images/figure1.png" style="width: 500px; height: 500px;" /></p></li>
 </ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -269,7 +268,7 @@ The shape of y_val is:  (307,)
 <li><p>For each feature <span class="math notranslate nohighlight">\(i = 1\ldots n\)</span>, you need to find parameters <span class="math notranslate nohighlight">\(\mu_i\)</span> and <span class="math notranslate nohighlight">\(\sigma_i^2\)</span> that fit the data in the <span class="math notranslate nohighlight">\(i\)</span>-th dimension <span class="math notranslate nohighlight">\(\{x_i^{(1)}, ..., x_i^{(m)}\}\)</span> (the <span class="math notranslate nohighlight">\(i\)</span>-th dimension of each example).</p></li>
 </ul>
 <section id="2.2.1-Estimating-parameters-for-a-Gaussian">
-<h3>2.2.1 Estimating parameters for a Gaussian<a class="headerlink" href="#2.2.1-Estimating-parameters-for-a-Gaussian" title="Permalink to this heading"></a></h3>
+<h3>2.2.1 Estimating parameters for a Gaussian<a class="headerlink" href="#2.2.1-Estimating-parameters-for-a-Gaussian" title="Permalink to this headline"></a></h3>
 <p><strong>Implementation</strong>:</p>
 <p>Your task is to complete the code in <code class="docutils literal notranslate"><span class="pre">estimate_gaussian</span></code> below.</p>
 <p>### Exercise 1</p>
@@ -373,7 +372,7 @@ Variance of each feature: [1.83263141 1.70974533]
 </td></tr><tr><td><p>Variance of each feature:</p>
 </td><td><p>[1.83263141 1.70974533]</p>
 </td></tr></table><p>Now that you have completed the code in <code class="docutils literal notranslate"><span class="pre">estimate_gaussian</span></code>, we will visualize the contours of the fitted Gaussian distribution.</p>
-<p>You should get a plot similar to the figure below. <img alt="32700d585d7749b9ba639f6f3e4f7062" class="no-scaled-link" src="../../../../../_images/figure2.png" style="width: 500px; height: 500px;" /></p>
+<p>You should get a plot similar to the figure below. <img alt="8d8732f7b0fb413f8144d719e7e88fda" class="no-scaled-link" src="../../../../../_images/figure2.png" style="width: 500px; height: 500px;" /></p>
 <p>From your plot you can see that most of the examples are in the region with the highest probability, while the anomalous examples are in the regions with lower probabilities.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
@@ -397,7 +396,7 @@ Variance of each feature: [1.83263141 1.70974533]
 </div>
 </section>
 <section id="2.2.2-Selecting-the-threshold-\epsilon">
-<h3>2.2.2 Selecting the threshold <span class="math notranslate nohighlight">\(\epsilon\)</span><a class="headerlink" href="#2.2.2-Selecting-the-threshold-\epsilon" title="Permalink to this heading"></a></h3>
+<h3>2.2.2 Selecting the threshold <span class="math notranslate nohighlight">\(\epsilon\)</span><a class="headerlink" href="#2.2.2-Selecting-the-threshold-\epsilon" title="Permalink to this headline"></a></h3>
 <p>Now that you have estimated the Gaussian parameters, you can investigate which examples have a very high probability given this distribution and which examples have a very low probability.</p>
 <ul class="simple">
 <li><p>The low probability examples are more likely to be the anomalies in our dataset.</p></li>
@@ -565,7 +564,7 @@ Best F1 on Cross Validation Set: 0.875000
 </td></tr><tr><td><p>Best F1 on Cross Validation Set:</p>
 </td><td><p>0.875</p>
 </td></tr></table><p>Now we will run your anomaly detection code and circle the anomalies in the plot (Figure 3 below).</p>
-<p><img alt="f9abe18218984dedadf5473ed165dfde" class="no-scaled-link" src="../../../../../_images/figure3.png" style="width: 500px; height: 500px;" /></p>
+<p><img alt="409e02b649824d9b893cf24828867d5d" class="no-scaled-link" src="../../../../../_images/figure3.png" style="width: 500px; height: 500px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
@@ -623,7 +622,7 @@ Best F1 on Cross Validation Set: 0.875000
 </section>
 </section>
 <section id="id1">
-<h2>Check the dimensions of your variables<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>Check the dimensions of your variables<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>Let’s check the dimensions of these new variables to become familiar with the data</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
@@ -647,7 +646,7 @@ The shape of y_val_high is:  (100,)
 </div>
 </section>
 <section id="Anomaly-detection">
-<h2>Anomaly detection<a class="headerlink" href="#Anomaly-detection" title="Permalink to this heading"></a></h2>
+<h2>Anomaly detection<a class="headerlink" href="#Anomaly-detection" title="Permalink to this headline"></a></h2>
 <p>Now, let’s run the anomaly detection algorithm on this new dataset.</p>
 <p>The code below will use your code to * Estimate the Gaussian parameters (<span class="math notranslate nohighlight">\(\mu_i\)</span> and <span class="math notranslate nohighlight">\(\sigma_i^2\)</span>) * Evaluate the probabilities for both the training data <code class="docutils literal notranslate"><span class="pre">X_train_high</span></code> from which you estimated the Gaussian parameters, as well as for the the cross-validation set <code class="docutils literal notranslate"><span class="pre">X_val_high</span></code>. * Finally, it will use <code class="docutils literal notranslate"><span class="pre">select_threshold</span></code> to find the best threshold <span class="math notranslate nohighlight">\(\varepsilon\)</span>.</p>
 <div class="nbinput docutils container">

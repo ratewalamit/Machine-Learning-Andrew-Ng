@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ungraded Lab: Overfitting &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,10 +76,10 @@
            <div itemprop="articleBody">
              
   <section id="Ungraded-Lab:-Overfitting">
-<h1>Ungraded Lab: Overfitting<a class="headerlink" href="#Ungraded-Lab:-Overfitting" title="Permalink to this heading"></a></h1>
-<p><img alt="81b9f8f33a2a4df2a3d258df8ed5c98c" src="../../../../_images/C1_W3_Overfitting_a.png" /> <img alt="6e1de762465c47a7b9eaf945de063c03" src="../../../../_images/C1_W3_Overfitting_b.png" /> <img alt="9d1d4b0e70cc401f91cbfa53579aa5a6" src="../../../../_images/C1_W3_Overfitting_c.png" /></p>
+<h1>Ungraded Lab: Overfitting<a class="headerlink" href="#Ungraded-Lab:-Overfitting" title="Permalink to this headline"></a></h1>
+<p><img alt="49c848cdcf8c4ee58e1ea8fd57599924" src="../../../../_images/C1_W3_Overfitting_a.png" /> <img alt="e47cd2f8cf844a609fb6fcff70b14109" src="../../../../_images/C1_W3_Overfitting_b.png" /> <img alt="a5ee0bda7fc54b90b5b39e589ed45ac0" src="../../../../_images/C1_W3_Overfitting_c.png" /></p>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
 <p>In this lab, you will explore: - the situations where overfitting can occur - some of the solutions</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -97,7 +96,7 @@
 </section>
 </section>
 <section id="Overfitting">
-<h1>Overfitting<a class="headerlink" href="#Overfitting" title="Permalink to this heading"></a></h1>
+<h1>Overfitting<a class="headerlink" href="#Overfitting" title="Permalink to this headline"></a></h1>
 <p>The week’s lecture described situations where overfitting can arise. Run the cell below to generate a plot that will allow you to explore overfitting. There are further instructions below the cell.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -126,7 +125,7 @@
 <p>To reset the plot, re-run the cell. Click slowly to allow the plot to update before receiving the next click.</p>
 <p>Notes on implementations: - the ‘ideal’ curves represent the generator model to which noise was added to achieve the data set - ‘fit’ does not use pure gradient descent to improve speed. These methods can be used on smaller data sets.</p>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
 <p>You have developed some intuition about the causes and solutions to overfitting. In the next lab, you will explore a commonly used solution, Regularization.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:

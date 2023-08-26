@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Practice Lab: Neural Networks for Handwritten Digit Recognition, Multiclass &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,15 +12,14 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -77,11 +76,11 @@
            <div itemprop="articleBody">
              
   <section id="Practice-Lab:-Neural-Networks-for-Handwritten-Digit-Recognition,-Multiclass">
-<h1>Practice Lab: Neural Networks for Handwritten Digit Recognition, Multiclass<a class="headerlink" href="#Practice-Lab:-Neural-Networks-for-Handwritten-Digit-Recognition,-Multiclass" title="Permalink to this heading"></a></h1>
+<h1>Practice Lab: Neural Networks for Handwritten Digit Recognition, Multiclass<a class="headerlink" href="#Practice-Lab:-Neural-Networks-for-Handwritten-Digit-Recognition,-Multiclass" title="Permalink to this headline"></a></h1>
 <p>In this exercise, you will use a neural network to recognize the hand-written digits 0-9.</p>
 </section>
 <section id="Outline">
-<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
+<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - ReLU Activation</p></li>
@@ -149,12 +148,12 @@
 <script type="application/vnd.jupyter.widget-view+json">{"model_id": "0aef69aa4f6146dfb4e92e7786bf102b", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="line-block">
-<div class="line"><img alt="154cc7367cee445ca622629525318a95" src="../../../../_images/C2_W2_ReLu.png" /> The example from the lecture on the right shows an application of the ReLU. In this example, the derived “awareness” feature is not binary but has a continuous range of values. The sigmoid is best for on/off or binary situations. The ReLU provides a continuous linear relationship. Additionally it has an ‘off’ range where the output is zero.</div>
+<div class="line"><img alt="c9155cadde7f47a68ffdea330d4bb157" src="../../../../_images/C2_W2_ReLu.png" /> The example from the lecture on the right shows an application of the ReLU. In this example, the derived “awareness” feature is not binary but has a continuous range of values. The sigmoid is best for on/off or binary situations. The ReLU provides a continuous linear relationship. Additionally it has an ‘off’ range where the output is zero.</div>
 <div class="line">The “off” feature makes the ReLU a Non-Linear activation. Why is this needed? This enables multiple units to contribute to to the resulting function without interfering. This is examined more in the supporting optional lab.</div>
 </div>
 <p>## 3 - Softmax Function A multiclass neural network generates N outputs. One output is selected as the predicted answer. In the output layer, a vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> is generated by a linear function which is fed into a softmax function. The softmax function converts <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> into a probability distribution as described below. After applying softmax, each output will be between 0 and 1 and the outputs will sum to 1. They can be interpreted as probabilities. The larger inputs to the
 softmax will correspond to larger output probabilities.</p>
-<center><p><img alt="20cfa0e79d5146239c6b4153a3bf7758" class="no-scaled-link" src="../../../../_images/C2_W2_NNSoftmax.PNG" style="width: 600px;" /></p>
+<center><p><img alt="324b995f74ed4a5ab65414ea19e8aeeb" class="no-scaled-link" src="../../../../_images/C2_W2_NNSoftmax.PNG" style="width: 600px;" /></p>
 <p>The softmax function can be written:</p>
 <div class="math notranslate nohighlight">
 \[a_j = \frac{e^{z_j}}{ \sum_{k=0}^{N-1}{e^{z_k} }} \tag{1}\]</div>
@@ -301,7 +300,7 @@ tensorflow softmax(z): [0.03 0.09 0.24 0.64]
 </div>
 </div>
 <section id="4.2.1-View-the-variables">
-<h2>4.2.1 View the variables<a class="headerlink" href="#4.2.1-View-the-variables" title="Permalink to this heading"></a></h2>
+<h2>4.2.1 View the variables<a class="headerlink" href="#4.2.1-View-the-variables" title="Permalink to this headline"></a></h2>
 <div class="line-block">
 <div class="line">Let’s get more familiar with your dataset.</div>
 <div class="line">- A good place to start is to print out each variable and see what it contains.</div>
@@ -335,7 +334,7 @@ The last element of y is:  9
 </div>
 </section>
 <section id="4.2.2-Check-the-dimensions-of-your-variables">
-<h2>4.2.2 Check the dimensions of your variables<a class="headerlink" href="#4.2.2-Check-the-dimensions-of-your-variables" title="Permalink to this heading"></a></h2>
+<h2>4.2.2 Check the dimensions of your variables<a class="headerlink" href="#4.2.2-Check-the-dimensions-of-your-variables" title="Permalink to this headline"></a></h2>
 <p>Another way to get familiar with your data is to view its dimensions. Please print the shape of <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> and see how many training examples you have in your dataset.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
@@ -357,7 +356,7 @@ The shape of y is: (5000, 1)
 </div>
 </section>
 <section id="4.2.3-Visualizing-the-Data">
-<h2>4.2.3 Visualizing the Data<a class="headerlink" href="#4.2.3-Visualizing-the-Data" title="Permalink to this heading"></a></h2>
+<h2>4.2.3 Visualizing the Data<a class="headerlink" href="#4.2.3-Visualizing-the-Data" title="Permalink to this headline"></a></h2>
 <p>You will begin by visualizing a subset of the training set. - In the cell below, the code randomly selects 64 rows from <code class="docutils literal notranslate"><span class="pre">X</span></code>, maps each row back to a 20 pixel by 20 pixel grayscale image and displays the images together. - The label for each image is displayed above the image</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -400,7 +399,7 @@ The shape of y is: (5000, 1)
 </div>
 <p>### 4.3 Model representation</p>
 <p>The neural network you will use in this assignment is shown in the figure below. - This has two dense layers with ReLU activations followed by an output layer with a linear activation. - Recall that our inputs are pixel values of digit images. - Since the images are of size <span class="math notranslate nohighlight">\(20\times20\)</span>, this gives us <span class="math notranslate nohighlight">\(400\)</span> inputs</p>
-<p><img alt="b530ff59c6e547ad8e3601894f41b040" class="no-scaled-link" src="../../../../_images/C2_W2_Assigment_NN.png" style="width: 600px; height: 450px;" /></p>
+<p><img alt="e86a5808afff4adb884c198b3bb9ecd3" class="no-scaled-link" src="../../../../_images/C2_W2_Assigment_NN.png" style="width: 600px; height: 450px;" /></p>
 <ul class="simple">
 <li><p>The parameters have dimensions that are sized for a neural network with <span class="math notranslate nohighlight">\(25\)</span> units in layer 1, <span class="math notranslate nohighlight">\(15\)</span> units in layer 2 and <span class="math notranslate nohighlight">\(10\)</span> output units in layer 3, one for each digit.</p>
 <ul>
@@ -687,7 +686,7 @@ Epoch 40/40
 </div>
 </section>
 <section id="Epochs-and-batches">
-<h2>Epochs and batches<a class="headerlink" href="#Epochs-and-batches" title="Permalink to this heading"></a></h2>
+<h2>Epochs and batches<a class="headerlink" href="#Epochs-and-batches" title="Permalink to this headline"></a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">compile</span></code> statement above, the number of <code class="docutils literal notranslate"><span class="pre">epochs</span></code> was set to 100. This specifies that the entire data set should be applied during training 100 times. During training, you see output describing the progress of training that looks like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Epoch 1/100
 157/157 [==============================] - 0s 1ms/step - loss: 2.2770
@@ -696,7 +695,7 @@ Epoch 40/40
 <p>The first line, <code class="docutils literal notranslate"><span class="pre">Epoch</span> <span class="pre">1/100</span></code>, describes which epoch the model is currently running. For efficiency, the training data set is broken into ‘batches’. The default size of a batch in Tensorflow is 32. There are 5000 examples in our data set or roughly 157 batches. The notation on the 2nd line <code class="docutils literal notranslate"><span class="pre">157/157</span> <span class="pre">[====</span></code> is describing which batch has been executed.</p>
 </section>
 <section id="Loss-(cost)">
-<h2>Loss (cost)<a class="headerlink" href="#Loss-(cost)" title="Permalink to this heading"></a></h2>
+<h2>Loss (cost)<a class="headerlink" href="#Loss-(cost)" title="Permalink to this headline"></a></h2>
 <p>In course 1, we learned to track the progress of gradient descent by monitoring the cost. Ideally, the cost will decrease as the number of iterations of the algorithm increases. Tensorflow refers to the cost as <code class="docutils literal notranslate"><span class="pre">loss</span></code>. Above, you saw the loss displayed each epoch as <code class="docutils literal notranslate"><span class="pre">model.fit</span></code> was executing. The <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/Model">.fit</a> method returns a variety of metrics including the loss. This is captured in the <code class="docutils literal notranslate"><span class="pre">history</span></code> variable above. This can be used to
 examine the loss in a plot as shown below.</p>
 <div class="nbinput docutils container">
@@ -715,7 +714,7 @@ examine the loss in a plot as shown below.</p>
 </div>
 </section>
 <section id="Prediction">
-<h2>Prediction<a class="headerlink" href="#Prediction" title="Permalink to this heading"></a></h2>
+<h2>Prediction<a class="headerlink" href="#Prediction" title="Permalink to this headline"></a></h2>
 <p>To make a prediction, use Keras <code class="docutils literal notranslate"><span class="pre">predict</span></code>. Below, X[1015] contains an image of a two.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
@@ -857,7 +856,7 @@ np.argmax(prediction_p): 2
 </pre></div></div>
 </div>
 <section id="Congratulations!">
-<h3>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h3>
+<h3>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h3>
 <p>You have successfully built and utilized a neural network to do multiclass classification.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
