@@ -17,7 +17,6 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../_static/js/theme.js"></script>
@@ -181,7 +180,7 @@
 <section id="Python">
 <h3>Python<a class="headerlink" href="#Python" title="Permalink to this headline"></a></h3>
 <p>You can write your code in the code cells. To run the code, select the cell and either - hold the shift-key down and hit ‘enter’ or ‘return’ - click the ‘run’ arrow above</p>
-<figure><p><img alt="23b4058fae1f4e7aaf83f66948c84307" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
+<figure><p><img alt="113f55ead65947df8257208052604c10" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
 <figure/><section id="Print-statement">
 <h4>Print statement<a class="headerlink" href="#Print-statement" title="Permalink to this headline"></a></h4>
 <div class="line-block">
@@ -469,7 +468,7 @@ index. In math settings, indexes typically run from 1 to n. In computer science 
 </div>
 <p>3.4.6 Vector Vector dot product</p>
 <p>The dot product is a mainstay of Linear Algebra and NumPy. This is an operation used extensively in this course and should be well understood. The dot product is shown below.</p>
-<p><img alt="bf2f85c767ec405383c3d087e5007587" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
+<p><img alt="48072a6b96d5431abcdf5d3919a807c9" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
 <p>The dot product multiplies the values in two vectors element-wise and then sums the result. Vector dot product requires the dimensions of the two vectors to be the same.</p>
 <p>Let’s implement our own version of the dot product below:</p>
 <p><strong>Using a for loop</strong>, implement a function which returns the dot product of two vectors. The function to return given inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
@@ -1539,7 +1538,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </div>
 <section id="Classification-Problems">
 <h5>Classification Problems<a class="headerlink" href="#Classification-Problems" title="Permalink to this headline"></a></h5>
-<p><img alt="074206b4343f43308b60839b45c51ac0" src="../../_images/C1_W3_Classification.png" /> Examples of classification problems are things like: identifying email as Spam or Not Spam or determining if a tumor is malignant or benign. In particular, these are examples of <em>binary</em> classification where there are two possible outcomes. Outcomes can be described in pairs of ‘positive’/’negative’ such as ‘yes’/’no, ‘true’/’false’ or ‘1’/’0’.</p>
+<p><img alt="e43c67b048f14b0fb32f7c1a034efd15" src="../../_images/C1_W3_Classification.png" /> Examples of classification problems are things like: identifying email as Spam or Not Spam or determining if a tumor is malignant or benign. In particular, these are examples of <em>binary</em> classification where there are two possible outcomes. Outcomes can be described in pairs of ‘positive’/’negative’ such as ‘yes’/’no, ‘true’/’false’ or ‘1’/’0’.</p>
 <p>Plots of classification data sets often use symbols to indicate the outcome of an example. In the plots below, ‘X’ is used to represent the positive values while ‘O’ represents negative outcomes.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1622,7 +1621,7 @@ the box on the ‘Toggle 0.5 threshold’ to show the predictions if a threshold
 </div>
 <section id="Sigmoid-or-Logistic-Function">
 <h5>Sigmoid or Logistic Function<a class="headerlink" href="#Sigmoid-or-Logistic-Function" title="Permalink to this headline"></a></h5>
-<p><a href="#id9"><span class="problematic" id="id10">|</span></a>a5dd8fde01544734adbb970ec9187e5d|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
+<p><a href="#id9"><span class="problematic" id="id10">|</span></a>19862bf514174db6a4c43ec763de4806|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
 to values between 0 and 1.</p>
 <p>Let’s implement the sigmoid function and see this for ourselves.</p>
 </section>
@@ -1715,7 +1714,7 @@ to values between 0 and 1.</p>
 </section>
 <section id="Logistic-Regression">
 <h5>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this headline"></a></h5>
-<p><img alt="aac53bd25037415382ee33f807889d0e" src="../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
+<p><img alt="254ecc153a8f4c5d8688a7be861ddb86" src="../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b ) \tag{2}\]</div>
 <p>where</p>
@@ -1951,7 +1950,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </div>
 <section id="Squared-error-for-logistic-regression?">
 <h5>Squared error for logistic regression?<a class="headerlink" href="#Squared-error-for-logistic-regression?" title="Permalink to this headline"></a></h5>
-<p><img alt="daa1a3ff96794f4788d878aae44f43cd" src="../../_images/C1_W3_SqErrorVsLogistic.png" /> Recall for <strong>Linear</strong> Regression we have used the <strong>squared error cost function</strong>: The equation for the squared error cost with one variable is:</p>
+<p><img alt="4ba556bdfb764cd4b6f6880bbe9ed9d2" src="../../_images/C1_W3_SqErrorVsLogistic.png" /> Recall for <strong>Linear</strong> Regression we have used the <strong>squared error cost function</strong>: The equation for the squared error cost with one variable is:</p>
 <div class="math notranslate nohighlight">
 \[J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 \tag{1}\]</div>
 <p>where</p>
@@ -2037,7 +2036,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </section>
 <section id="Logistic-Loss-Function">
 <h5>Logistic Loss Function<a class="headerlink" href="#Logistic-Loss-Function" title="Permalink to this headline"></a></h5>
-<p><img alt="d49196964162409490fc45c929d69b7c" src="../../_images/C1_W3_LogisticLoss_a.png" /> <img alt="f0557a5566f045a4ac82e76348a66fed" src="../../_images/C1_W3_LogisticLoss_b.png" /> <img alt="b5a21c3c5a4d465291ed8db5e1786fbe" src="../../_images/C1_W3_LogisticLoss_c.png" /></p>
+<p><img alt="e031aa0d60fd42089fcc1d506c05f261" src="../../_images/C1_W3_LogisticLoss_a.png" /> <img alt="d148e5edfa1f4c0eb9b22723e9d2dde2" src="../../_images/C1_W3_LogisticLoss_b.png" /> <img alt="cd1002465fed4436950f9510fa423469" src="../../_images/C1_W3_LogisticLoss_c.png" /></p>
 <p>Logistic Regression uses a loss function more suited to the task of categorization where the target is 0 or 1 rather than any number.</p>
 <blockquote>
 <div><div class="line-block">
@@ -2352,7 +2351,7 @@ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), 0) &amp;= (-(0) \log\left(f_{\mathbf{w}
 </section>
 <section id="Logistic-Gradient-Descent">
 <h5>Logistic Gradient Descent<a class="headerlink" href="#Logistic-Gradient-Descent" title="Permalink to this headline"></a></h5>
-<p><img alt="1b24a6a8867c4ede8f85b6b078b06501" src="../../_images/C1_W3_Logistic_gradient_descent.png" /></p>
+<p><img alt="07ab171a6b56415485d651e78e7ad8be" src="../../_images/C1_W3_Logistic_gradient_descent.png" /></p>
 <p>Recall the gradient descent algorithm utilizes the gradient calculation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -2890,7 +2889,7 @@ plot, rerun the cell</p>
 <h4>Optional Lab - 3.8: Ungraded Lab: Logistic Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab---3.8:-Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn" title="Permalink to this headline"></a></h4>
 <section id="Ungraded-Lab:-Overfitting">
 <h5>Ungraded Lab: Overfitting<a class="headerlink" href="#Ungraded-Lab:-Overfitting" title="Permalink to this headline"></a></h5>
-<p><img alt="c85489325ba945b2a9c19e4ade48e39e" src="../../_images/C1_W3_Overfitting_a.png" /> <img alt="32775f7481284de28e94f70994f87d8b" src="../../_images/C1_W3_Overfitting_b.png" /> <img alt="8fca4f52238547f4abcf06b9a1f1eca1" src="../../_images/C1_W3_Overfitting_c.png" /></p>
+<p><img alt="d5ac2a843a494959bd3f744b6dfc3019" src="../../_images/C1_W3_Overfitting_a.png" /> <img alt="26d779c9af4c4944944928aad862ade2" src="../../_images/C1_W3_Overfitting_b.png" /> <img alt="e327c88f1ecc42b3bf63036e75433f3d" src="../../_images/C1_W3_Overfitting_c.png" /></p>
 <p>Goals</p>
 <p>In this lab, you will explore: - the situations where overfitting can occur - some of the solutions</p>
 </section>
@@ -2969,7 +2968,7 @@ plot, rerun the cell</p>
 </div>
 <section id="Adding-regularization">
 <h5>Adding regularization<a class="headerlink" href="#Adding-regularization" title="Permalink to this headline"></a></h5>
-<p><img alt="d13dd80450bb425a964aecc5c8f6cd47" src="../../_images/C1_W3_LinearGradientRegularized.png" /> <img alt="290bf15fd4ef4dc4918a3b2aa7747f33" src="../../_images/C1_W3_LogisticGradientRegularized.png" /></p>
+<p><img alt="df90ead99daa4432b98eb22f36137565" src="../../_images/C1_W3_LinearGradientRegularized.png" /> <img alt="ff16a64829ff49c1b0fedcf08e2dc916" src="../../_images/C1_W3_LogisticGradientRegularized.png" /></p>
 <p>The slides above show the cost and gradient functions for both linear and logistic regression. Note: - Cost - The cost functions differ significantly between linear and logistic regression, but adding regularization to the equations is the same. - Gradient - The gradient functions for linear and logistic regression are very similar. They differ only in the implementation of <span class="math notranslate nohighlight">\(f_{wb}\)</span>.</p>
 </section>
 <section id="Cost-functions-with-regularization">
@@ -3346,16 +3345,25 @@ Regularized dj_dw:
 <section id="id22">
 <h4>1 - Packages<a class="headerlink" href="#id22" title="Permalink to this headline"></a></h4>
 <p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a class="reference external" href="www.numpy.org">numpy</a> is the fundamental package for scientific computing with Python. - <a class="reference external" href="http://matplotlib.org">matplotlib</a> is a famous library to plot graphs in Python. - <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> contains helper functions for this assignment. You do not need to modify code in this file.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;/home/amit/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification&#39;
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
@@ -3365,7 +3373,7 @@ Regularized dj_dw:
 <span class="n">home_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">())</span>
 <span class="n">proj_path</span><span class="o">=</span><span class="n">home_path</span><span class="o">+</span><span class="s2">&quot;/my_web/Machine-Learning-Andrew-Ng/source/source_files/Supervised_Machine_Learning_Regression_and_Classification&quot;</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">proj_path</span><span class="si">}</span><span class="s2">/week3/C1W3A1&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">proj_path</span><span class="p">)</span>
+<span class="c1">#os.chdir(proj_path)</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -3387,7 +3395,7 @@ scores from those two exams.</p>
 <h5>2.2 Loading and visualizing the data<a class="headerlink" href="#2.2-Loading-and-visualizing-the-data" title="Permalink to this headline"></a></h5>
 <p>You will start by loading the dataset for this task. - The <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> - <code class="docutils literal notranslate"><span class="pre">X_train</span></code> contains exam scores on two exams for a student - <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is the admission decision - <code class="docutils literal notranslate"><span class="pre">y_train</span> <span class="pre">=</span> <span class="pre">1</span></code> if the student was admitted - <code class="docutils literal notranslate"><span class="pre">y_train</span> <span class="pre">=</span> <span class="pre">0</span></code> if the student was not admitted - Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load dataset</span>
@@ -3468,7 +3476,7 @@ We have m = 100 training examples
 </div>
 <p>Visualize your data</p>
 <p>Before starting to implement any learning algorithm, it is always good to visualize the data if possible. - The code below displays the data on a 2D plot (as shown below), where the axes are the two exam scores, and the positive and negative examples are shown with different markers. - We use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to generate this plot.</p>
-<p><img alt="b775cf56e2ca42fabe6fa3da5e9ca940" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="72eff943e8c74eb59d6ab294d2fc370b" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
@@ -4059,7 +4067,7 @@ Iteration 9999: Cost     0.30
 <h5>2.7 Plotting the decision boundary<a class="headerlink" href="#2.7-Plotting-the-decision-boundary" title="Permalink to this headline"></a></h5>
 <div class="line-block">
 <div class="line">We will now use the final parameters from gradient descent to plot the linear fit. If you implemented the previous parts correctly, you should see the following plot:</div>
-<div class="line"><img alt="6be12c95cf5a4a349598233f386ad5f3" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
+<div class="line"><img alt="2401ae809878432a8c3d671f59567550" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
 </div>
 <p>We will use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to create this plot.</p>
 <div class="nbinput docutils container">
@@ -4336,7 +4344,7 @@ We have m = 118 training examples
 </div>
 <p>Visualize your data</p>
 <p>The helper function <code class="docutils literal notranslate"><span class="pre">plot_data</span></code> (from <code class="docutils literal notranslate"><span class="pre">utils.py</span></code>) is used to generate a figure like Figure 3, where the axes are the two test scores, and the positive (y = 1, accepted) and negative (y = 0, rejected) examples are shown with different markers.</p>
-<p><img alt="f2474632558c46ca81feedfbce9c3424" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="1613fd7bd39146468e58a1defb85a22b" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
@@ -4748,7 +4756,7 @@ Iteration 9999: Cost     0.45
 <li><p>In the function, we plotted the non-linear decision boundary by computing the classifier’s predictions on an evenly spaced grid and then drew a contour plot of where the predictions change from y = 0 to y = 1.</p></li>
 <li><p>After learning the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>, the next step is to plot a decision boundary similar to Figure 4.</p></li>
 </ul>
-<p><img alt="4f8d03516c6648388af43316414cdd0e" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="cb60efaf6f3e4d6e85a320b38ea86282" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>

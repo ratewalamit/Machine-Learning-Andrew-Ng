@@ -94,7 +94,7 @@
 <li><p>2.3 Compare performance on training and test data</p></li>
 </ul>
 </li>
-<li><p>3 - Bias and Variance|dcc5446fbdb34acf8d3cf9e1da9cad1f|</p>
+<li><p>3 - Bias and Variance|098d7dce8afb4b689c0f45f946e31c4c|</p>
 <ul>
 <li><p>3.1 Plot Train, Cross-Validation, Test</p></li>
 <li><p>3.2 Finding the optimal degree</p></li>
@@ -166,7 +166,7 @@
 </div>
 </div>
 <p>## 2 - Evaluating a Learning Algorithm (Polynomial Regression)</p>
-<p><img alt="38eac98f58734dd284ec2c0e33931989" src="../../../../_images/C2_W3_TrainingVsNew.png" /> Let’s say you have created a machine learning model and you find it <em>fits</em> your training data very well. You’re done? Not quite. The goal of creating the model was to be able to predict values for new examples.</p>
+<p><img alt="66814800ea1243548a29d44dd5194cfc" src="../../../../_images/C2_W3_TrainingVsNew.png" /> Let’s say you have created a machine learning model and you find it <em>fits</em> your training data very well. You’re done? Not quite. The goal of creating the model was to be able to predict values for new examples.</p>
 <div class="line-block">
 <div class="line">How can you test your model’s performance on new data before deploying it?</div>
 <div class="line">The answer has two parts: * Split your original data set into “Training” and “Test” sets. * Use the training data to fit the parameters of the model * Use the test data to evaluate the model on <em>new</em> data * Develop an error function to evaluate your model.</div>
@@ -415,7 +415,7 @@ X_cv.shape (8,) y_cv.shape (8,)
 X_test.shape (8,) y_test.shape (8,)
 </pre></div></div>
 </div>
-<p>## 3 - Bias and Variance|122e7e63691945daa7f52337fa17c39d| Above, it was clear the degree of the polynomial model was too high. How can you choose a good value? It turns out, as shown in the diagram, the training and cross-validation performance can provide guidance. By trying a range of degree values, the training and cross-validation performance can be evaluated. As the degree becomes too large, the cross-validation performance will start to degrade relative to the training performance. Let’s
+<p>## 3 - Bias and Variance|fe832f72fe124c01a135f8d09f5bad53| Above, it was clear the degree of the polynomial model was too high. How can you choose a good value? It turns out, as shown in the diagram, the training and cross-validation performance can provide guidance. By trying a range of degree values, the training and cross-validation performance can be evaluated. As the degree becomes too large, the cross-validation performance will start to degrade relative to the training performance. Let’s
 try this on our example.</p>
 <p>### 3.1 Plot Train, Cross-Validation, Test You can see below the datapoints that will be part of training (in red) are intermixed with those that the model is not trained on (test and cv).</p>
 <div class="nbinput docutils container">

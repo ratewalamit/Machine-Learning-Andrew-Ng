@@ -75,12 +75,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="418a780723464246aca7720cfeb53bb3-Practice-lab:-Collaborative-Filtering-Recommender-Systems">
-<h1><img alt="418a780723464246aca7720cfeb53bb3" src="../../../../../_images/movie_camera.png" /> Practice lab: Collaborative Filtering Recommender Systems<a class="headerlink" href="#418a780723464246aca7720cfeb53bb3-Practice-lab:-Collaborative-Filtering-Recommender-Systems" title="Permalink to this headline"></a></h1>
+  <section id="d02e344a2b9e44d7933fdd2d0f8dc2d8-Practice-lab:-Collaborative-Filtering-Recommender-Systems">
+<h1><img alt="d02e344a2b9e44d7933fdd2d0f8dc2d8" src="../../../../../_images/movie_camera.png" /> Practice lab: Collaborative Filtering Recommender Systems<a class="headerlink" href="#d02e344a2b9e44d7933fdd2d0f8dc2d8-Practice-lab:-Collaborative-Filtering-Recommender-Systems" title="Permalink to this headline"></a></h1>
 <p>In this exercise, you will implement collaborative filtering to build a recommender system for movies.</p>
 </section>
-<section id="d9c0f372208c42669fedc85dbdf3a031-Outline">
-<h1><img alt="d9c0f372208c42669fedc85dbdf3a031" src="../../../../../_images/film_reel.png" /> Outline<a class="headerlink" href="#d9c0f372208c42669fedc85dbdf3a031-Outline" title="Permalink to this headline"></a></h1>
+<section id="61b0b8b3eb864a989ad940e12b047dd5-Outline">
+<h1><img alt="61b0b8b3eb864a989ad940e12b047dd5" src="../../../../../_images/film_reel.png" /> Outline<a class="headerlink" href="#61b0b8b3eb864a989ad940e12b047dd5-Outline" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p>1 - Notation</p></li>
 <li><p>2 - Recommender Systems</p></li>
@@ -98,8 +98,8 @@
 <li><p>6 - Recommendations</p></li>
 <li><p>7 - Congratulations!</p></li>
 </ul>
-<section id="Packages-1a0e37a1971d46c58727efbca52db9df">
-<h2>Packages <img alt="1a0e37a1971d46c58727efbca52db9df" src="../../../../../_images/film_strip_vertical.png" /><a class="headerlink" href="#Packages-1a0e37a1971d46c58727efbca52db9df" title="Permalink to this headline"></a></h2>
+<section id="Packages-94c48230631c4b07a80b4907ef0974ea">
+<h2>Packages <img alt="94c48230631c4b07a80b4907ef0974ea" src="../../../../../_images/film_strip_vertical.png" /><a class="headerlink" href="#Packages-94c48230631c4b07a80b4907ef0974ea" title="Permalink to this headline"></a></h2>
 <p>We will use the now familiar NumPy and Tensorflow Packages.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -118,18 +118,18 @@
 ||</div>
 <div class="line">| <span class="math notranslate nohighlight">\(n_u\)</span> | number of users |num_users| | <span class="math notranslate nohighlight">\(n_m\)</span> | number of movies | num_movies | | <span class="math notranslate nohighlight">\(n\)</span> | number of features | num_features | | <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> | matrix of vectors <span class="math notranslate nohighlight">\(\mathbf{x}^{(i)}\)</span> | X | | <span class="math notranslate nohighlight">\(\mathbf{W}\)</span> | matrix of vectors <span class="math notranslate nohighlight">\(\mathbf{w}^{(j)}\)</span> | W | | <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> | vector of bias parameters <span class="math notranslate nohighlight">\(b^{(j)}\)</span> | b | | <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> | matrix of elements <span class="math notranslate nohighlight">\(r(i,j)\)</span> | R |</div>
 </div>
-<p>## 2 - Recommender Systems <img alt="df554e2d453b43b69422a1048d373d72" src="../../../../../_images/film_rating.png" /> In this lab, you will implement the collaborative filtering learning algorithm and apply it to a dataset of movie ratings. The goal of a collaborative filtering recommender system is to generate two vectors: For each user, a ‘parameter vector’ that embodies the movie tastes of a user. For each movie, a feature vector of the same size which embodies some description of the movie. The dot product of the two vectors plus the bias term
+<p>## 2 - Recommender Systems <img alt="3feb1ca0b4ac460ca909a2cd76cef643" src="../../../../../_images/film_rating.png" /> In this lab, you will implement the collaborative filtering learning algorithm and apply it to a dataset of movie ratings. The goal of a collaborative filtering recommender system is to generate two vectors: For each user, a ‘parameter vector’ that embodies the movie tastes of a user. For each movie, a feature vector of the same size which embodies some description of the movie. The dot product of the two vectors plus the bias term
 should produce an estimate of the rating the user might give to that movie.</p>
 <p>The diagram below details how these vectors are learned.</p>
-<figure><p><img alt="9ee22d629cb147c4983eb76ab1547b52" src="../../../../../_images/ColabFilterLearn.PNG" /></p>
+<figure><p><img alt="dda7fa2441774d3cb082177161e73173" src="../../../../../_images/ColabFilterLearn.PNG" /></p>
 </figure><p>Existing ratings are provided in matrix form as shown. <span class="math notranslate nohighlight">\(Y\)</span> contains ratings; 0.5 to 5 inclusive in 0.5 steps. 0 if the movie has not been rated. <span class="math notranslate nohighlight">\(R\)</span> has a 1 where movies have been rated. Movies are in rows, users in columns. Each user has a parameter vector <span class="math notranslate nohighlight">\(w^{user}\)</span> and bias. Each movie has a feature vector <span class="math notranslate nohighlight">\(x^{movie}\)</span>. These vectors are simultaneously learned by using the existing user/movie ratings as training data. One training example is shown above:
 <span class="math notranslate nohighlight">\(\mathbf{w}^{(1)} \cdot \mathbf{x}^{(1)} + b^{(1)} = 4\)</span>. It is worth noting that the feature vector <span class="math notranslate nohighlight">\(x^{movie}\)</span> must satisfy all the users while the user vector <span class="math notranslate nohighlight">\(w^{user}\)</span> must satisfy all the movies. This is the source of the name of this approach - all the users collaborate to generate the rating set.</p>
-<figure><p><img alt="adde5662274845a5972a3144a6a453de" src="../../../../../_images/ColabFilterUse.PNG" /></p>
+<figure><p><img alt="d94c8235c45c4fe4bebf76a2213f2562" src="../../../../../_images/ColabFilterUse.PNG" /></p>
 </figure><p>Once the feature vectors and parameters are learned, they can be used to predict how a user might rate an unrated movie. This is shown in the diagram above. The equation is an example of predicting a rating for user one on movie zero.</p>
 <p>In this exercise, you will implement the function <code class="docutils literal notranslate"><span class="pre">cofiCostFunc</span></code> that computes the collaborative filtering objective function. After implementing the objective function, you will use a TensorFlow custom training loop to learn the parameters for collaborative filtering. The first step is to detail the data set and data structures that will be used in the lab.</p>
 <div class="line-block">
 <div class="line-block">
-<div class="line">## 3 - Movie ratings dataset <img alt="2ac948037aba4160af0234ed8c113f38" src="../../../../../_images/film_rating.png" /> The data set is derived from the <a class="reference external" href="https://grouplens.org/datasets/movielens/latest/">MovieLens “ml-latest-small”</a> dataset.</div>
+<div class="line">## 3 - Movie ratings dataset <img alt="fefa7024efc14e038b600b34d1cee9b6" src="../../../../../_images/film_rating.png" /> The data set is derived from the <a class="reference external" href="https://grouplens.org/datasets/movielens/latest/">MovieLens “ml-latest-small”</a> dataset.</div>
 </div>
 <div class="line">[F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4: 19:1–19:19. <a class="reference external" href="https://doi.org/10.1145/2827872">https://doi.org/10.1145/2827872</a>]</div>
 </div>
@@ -215,7 +215,7 @@ num_users 443
 Average rating for movie 1 : 3.400 / 5
 </pre></div></div>
 </div>
-<p>## 4 - Collaborative filtering learning algorithm <img alt="6a660fecfef340bf8b01ab10a213e3aa" src="../../../../../_images/film_filter.png" /></p>
+<p>## 4 - Collaborative filtering learning algorithm <img alt="270b701fb86c420aaa7befec83f7cc80" src="../../../../../_images/film_filter.png" /></p>
 <p>Now, you will begin implementing the collaborative filtering learning algorithm. You will start by implementing the objective function.</p>
 <p>The collaborative filtering algorithm in the setting of movie recommendations considers a set of <span class="math notranslate nohighlight">\(n\)</span>-dimensional parameter vectors <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)},...,\mathbf{x}^{(n_m-1)}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{w}^{(0)},...,\mathbf{w}^{(n_u-1)}\)</span> and <span class="math notranslate nohighlight">\(b^{(0)},...,b^{(n_u-1)}\)</span>, where the model predicts the rating for movie <span class="math notranslate nohighlight">\(i\)</span> by user <span class="math notranslate nohighlight">\(j\)</span> as <span class="math notranslate nohighlight">\(y^{(i,j)} = \mathbf{w}^{(j)}\cdot \mathbf{x}^{(i)} + b^{(i)}\)</span> . Given a dataset that consists of a set of ratings produced by some users on
 some movies, you wish to learn the parameter vectors <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)},...,\mathbf{x}^{(n_m-1)}, \mathbf{w}^{(0)},...,\mathbf{w}^{(n_u-1)}\)</span> and <span class="math notranslate nohighlight">\(b^{(0)},...,b^{(n_u-1)}\)</span> that produce the best fit (minimizes the squared error).</p>
@@ -461,7 +461,7 @@ Cost (with regularization): 28.09
 <div class="line">Cost: 13.67</div>
 <div class="line">Cost (with regularization): 28.09</div>
 </div>
-<p>## 5 - Learning movie recommendations <img alt="be38541425f04afa9ea3fe5d6971d4bf" src="../../../../../_images/film_man_action.png" /> ——————————</p>
+<p>## 5 - Learning movie recommendations <img alt="a09b817d30d14f768fb3f26764a0094d" src="../../../../../_images/film_man_action.png" /> ——————————</p>
 <p>After you have finished implementing the collaborative filtering cost function, you can start training your algorithm to make movie recommendations for yourself.</p>
 <p>In the cell below, you can enter your own movie choices. The algorithm will then make recommendations for you! We have filled out some values according to our preferences, but after you have things working with our choices, you should change this to match your tastes. A list of all movies in the dataset is in the file <a class="reference external" href="data/small_movie_list.csv">movie list</a>.</p>
 <div class="nbinput docutils container">
@@ -885,7 +885,7 @@ Original 1.0, Predicted 1.26 for Nothing to Declare (Rien à déclarer) (2010)
 </table>
 </div></div>
 </div>
-<p>## 7 - Congratulations! <img alt="5b5b1e58f9a442efaf568847bbc9c8ff" src="../../../../../_images/film_award.png" /> You have implemented a useful recommender system!</p>
+<p>## 7 - Congratulations! <img alt="452aa0650b70440285281be7ca3ea42d" src="../../../../../_images/film_award.png" /> You have implemented a useful recommender system!</p>
 </section>
 </section>
 
