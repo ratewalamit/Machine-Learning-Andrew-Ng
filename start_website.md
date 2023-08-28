@@ -3,7 +3,10 @@ if [ -d "$directory" ]
 then
     rm -r $directory
 fi
-
+#create website
 make html
 touch ./docs/nojekyll
-http-server -o ./docs/html/
+touch ./docs/index.html
+echo '<meta http-equiv="refresh" content="0; url=./html/index.html" />' > ./docs/index.html
+#Run local server
+http-server -o ./docs/

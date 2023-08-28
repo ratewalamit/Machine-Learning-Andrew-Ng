@@ -77,7 +77,7 @@
              
   <section id="Optional-Lab:-Gradient-Descent-for-Linear-Regression">
 <h1>Optional Lab: Gradient Descent for Linear Regression<a class="headerlink" href="#Optional-Lab:-Gradient-Descent-for-Linear-Regression" title="Permalink to this headline"></a></h1>
-<figure><center><p><img alt="be2387b04ed047e58ef5c0a33f45c81b" src="../../../../_images/C1_W1_L4_S1_Lecture_GD.png" /></p>
+<figure><center><p><img alt="ea422b5ee21a4abcbd0ff93dccbe4c51" src="../../../../_images/C1_W1_L4_S1_Lecture_GD.png" /></p>
 </center></figure><section id="Goals">
 <h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
 <p>In this lab, you will: - automate the process of optimizing <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> using gradient descent.</p>
@@ -215,7 +215,7 @@
 </div>
 </div>
 <div class="line-block">
-<div class="line"><img alt="8add0c3c94d34c86bf29fe9f4191af4d" src="../../../../_images/C1_W1_Lab03_lecture_slopes.PNG" /> The lectures described how gradient descent utilizes the partial derivative of the cost with respect to a parameter at a point to update that parameter.</div>
+<div class="line"><img alt="73c8ac891d1440ca906762b8ae8920e0" src="../../../../_images/C1_W1_Lab03_lecture_slopes.PNG" /> The lectures described how gradient descent utilizes the partial derivative of the cost with respect to a parameter at a point to update that parameter.</div>
 <div class="line">Let’s use our <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> function to find and plot some partial derivatives of our cost function relative to one of the parameters, <span class="math notranslate nohighlight">\(w_0\)</span>.</div>
 </div>
 <div class="nbinput docutils container">
@@ -327,7 +327,7 @@ Iteration 9000: Cost 2.90e-05  dj_dw: -1.082e-03, dj_db:  1.751e-03   w:  2.000e
 (w,b) found by gradient descent: (199.9929,100.0116)
 </pre></div></div>
 </div>
-<p><img alt="66fce05fbcd9446dad6a0ec43edc7df0" src="../../../../_images/C1_W1_Lab03_lecture_learningrate.PNG" /> Take a moment and note some characteristics of the gradient descent process printed above.</p>
+<p><img alt="d9923d573dfb4d7fa78bc4075f8d2e68" src="../../../../_images/C1_W1_Lab03_lecture_learningrate.PNG" /> Take a moment and note some characteristics of the gradient descent process printed above.</p>
 <ul class="simple">
 <li><p>The cost starts large and rapidly declines as described in the slide from the lecture.</p></li>
 <li><p>The partial derivatives, <code class="docutils literal notranslate"><span class="pre">dj_dw</span></code>, and <code class="docutils literal notranslate"><span class="pre">dj_db</span></code> also get smaller, rapidly at first and then more slowly. As shown in the diagram from the lecture, as the process nears the ‘bottom of the bowl’ progress is slower due to the smaller value of the derivative at that point.</p></li>

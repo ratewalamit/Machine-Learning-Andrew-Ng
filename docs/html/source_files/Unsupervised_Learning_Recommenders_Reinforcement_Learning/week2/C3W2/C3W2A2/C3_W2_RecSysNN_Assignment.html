@@ -75,12 +75,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="0ba6b5466e6e4afdbef3974eda8877bb-Practice-lab:-Deep-Learning-for-Content-Based-Filtering">
-<h1><img alt="0ba6b5466e6e4afdbef3974eda8877bb" src="../../../../../_images/film_strip_vertical1.png" /> Practice lab: Deep Learning for Content-Based Filtering<a class="headerlink" href="#0ba6b5466e6e4afdbef3974eda8877bb-Practice-lab:-Deep-Learning-for-Content-Based-Filtering" title="Permalink to this headline"></a></h1>
+  <section id="de29903617414b3f86896604ed2d8906-Practice-lab:-Deep-Learning-for-Content-Based-Filtering">
+<h1><img alt="de29903617414b3f86896604ed2d8906" src="../../../../../_images/film_strip_vertical1.png" /> Practice lab: Deep Learning for Content-Based Filtering<a class="headerlink" href="#de29903617414b3f86896604ed2d8906-Practice-lab:-Deep-Learning-for-Content-Based-Filtering" title="Permalink to this headline"></a></h1>
 <p>In this exercise, you will implement content-based filtering using a neural network to build a recommender system for movies.</p>
 </section>
-<section id="Outline-b2c65cc16f884d86aaefa9b1d458a43c">
-<h1>Outline <img alt="b2c65cc16f884d86aaefa9b1d458a43c" src="../../../../../_images/film_reel1.png" /><a class="headerlink" href="#Outline-b2c65cc16f884d86aaefa9b1d458a43c" title="Permalink to this headline"></a></h1>
+<section id="Outline-75a24e2b66b148f384aa516eba1352f9">
+<h1>Outline <img alt="75a24e2b66b148f384aa516eba1352f9" src="../../../../../_images/film_reel1.png" /><a class="headerlink" href="#Outline-75a24e2b66b148f384aa516eba1352f9" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Movie ratings dataset</p>
@@ -100,7 +100,7 @@
 </li>
 <li><p>4 - Congratulations!</p></li>
 </ul>
-<p>## 1 - Packages <img alt="2d3895c8a52147e98dccd06043c309e2" src="../../../../../_images/movie_camera1.png" /> We will use familiar packages, NumPy, TensorFlow and helpful routines from <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>. We will also use <a class="reference external" href="https://pypi.org/project/tabulate/">tabulate</a> to neatly print tables and <a class="reference external" href="https://pandas.pydata.org/">Pandas</a> to organize tabular data.</p>
+<p>## 1 - Packages <img alt="69cc3126b838414b9ce65a50172b20f8" src="../../../../../_images/movie_camera1.png" /> We will use familiar packages, NumPy, TensorFlow and helpful routines from <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>. We will also use <a class="reference external" href="https://pypi.org/project/tabulate/">tabulate</a> to neatly print tables and <a class="reference external" href="https://pandas.pydata.org/">Pandas</a> to organize tabular data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -120,14 +120,14 @@
 </pre></div>
 </div>
 </div>
-<p>## 2 - Movie ratings dataset <img alt="99cd0ceae7054ebe9f607b40e3f36ebc" src="../../../../../_images/film_rating1.png" /> The data set is derived from the <a class="reference external" href="https://grouplens.org/datasets/movielens/latest/">MovieLens ml-latest-small</a> dataset.</p>
+<p>## 2 - Movie ratings dataset <img alt="ab61483921a8440c9abed831c6aaf39c" src="../../../../../_images/film_rating1.png" /> The data set is derived from the <a class="reference external" href="https://grouplens.org/datasets/movielens/latest/">MovieLens ml-latest-small</a> dataset.</p>
 <p>[F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4: 19:1–19:19. <a class="reference external" href="https://doi.org/10.1145/2827872">https://doi.org/10.1145/2827872</a>]</p>
 <p>The original dataset has 9000 movies rated by 600 users with ratings on a scale of 0.5 to 5 in 0.5 step increments. The dataset has been reduced in size to focus on movies from the years since 2000 and popular genres. The reduced dataset has <span class="math notranslate nohighlight">\(n_u = 395\)</span> users and <span class="math notranslate nohighlight">\(n_m= 694\)</span> movies. For each movie, the dataset provides a movie title, release date, and one or more genres. For example “Toy Story 3” was released in 2010 and has several genres:
 “Adventure|Animation|Children|Comedy|Fantasy|IMAX”. This dataset contains little information about users other than their ratings. This dataset is used to create training vectors for the neural networks described below.</p>
 <p>### 2.1 Content-based filtering with a neural network</p>
 <p>In the collaborative filtering lab, you generated two vectors, a user vector and an item/movie vector whose dot product would predict a rating. The vectors were derived solely from the ratings.</p>
 <p>Content-based filtering also generates a user and movie feature vector but recognizes there may be other information available about the user and/or movie that may improve the prediction. The additional information is provided to a neural network which then generates the user and movie vector as shown below.</p>
-<figure><center><p><img alt="a639b9580c684877bfcee13095746319" src="../../../../../_images/RecSysNN.png" /></p>
+<figure><center><p><img alt="9d67150d35f8498393bea8293b06c2ef" src="../../../../../_images/RecSysNN.png" /></p>
 </center></figure><p>The movie content provided to the network is a combination of the original data and some ‘engineered features’. Recall the feature engineering discussion and lab from Course 1, Week 2, lab 4. The original features are the year the movie was released and the movie’s genre presented as a one-hot vector. There are 14 genres. The engineered feature is an average rating derived from the user ratings. Movies with multiple genre have a training vector per genre.</p>
 <p>The user content is composed of only engineered features. A per genre average rating is computed per user. Additionally, a user id, rating count and rating average are available, but are not included in the training or prediction content. They are useful in interpreting data.</p>
 <p>The training set consists of all the ratings made by the users in the data set. The user and movie/item vectors are presented to the above network together as a training set. The user vector is the same for all the movies rated by the user.</p>
@@ -867,7 +867,7 @@ size of all predicted movie feature vectors: (1883, 32)
 </pre></div></div>
 </div>
 <p>Let’s now compute a matrix of the squared distance between each movie feature vector and all other movie feature vectors:</p>
-<figure><p><img alt="11be138fc3344aa9b1d832cdc14327dd" src="../../../../../_images/distmatrix.PNG" /></p>
+<figure><p><img alt="97be15e6b2e14bff97c1afd101b08595" src="../../../../../_images/distmatrix.PNG" /></p>
 </center></figure><p>We can then find the closest movie by finding the minimum along each row. We will make use of <a class="reference external" href="https://numpy.org/doc/1.21/user/tutorial-ma.html">numpy masked arrays</a> to avoid selecting the same movie. The masked values along the diagonal won’t be included in the computation.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
@@ -963,7 +963,7 @@ size of all predicted movie feature vectors: (1883, 32)
 </table></div>
 </div>
 <p>The results show the model will suggest a movie from the same genre.</p>
-<p>## 4 - Congratulations! <img alt="f2bfd1f93da541d6a8cb9517d012a217" src="../../../../../_images/film_award1.png" /> You have completed a content-based recommender system.</p>
+<p>## 4 - Congratulations! <img alt="433e94b642e449ca8b7acd3fd1d5c83a" src="../../../../../_images/film_award1.png" /> You have completed a content-based recommender system.</p>
 <p>This structure is the basis of many commercial recommender systems. The user content can be greatly expanded to incorporate more information about the user if it is available. Items are not limited to movies. This can be used to recommend any item, books, cars or items that are similar to an item in your ‘shopping cart’.</p>
 </section>
 </section>
