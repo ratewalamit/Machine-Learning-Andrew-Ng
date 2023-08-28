@@ -77,7 +77,7 @@
              
   <section id="Optional-Lab:-Cost-Function">
 <h1>Optional Lab: Cost Function<a class="headerlink" href="#Optional-Lab:-Cost-Function" title="Permalink to this headline"></a></h1>
-<figure><center><p><img alt="3b04c9c13c754a0192c395f3324c08ec" src="../../../../_images/C1_W1_L3_S2_Lecture_b.png" /></p>
+<figure><center><p><img alt="97c44d3c90ef4e328c91fb351cb3bc32" src="../../../../_images/C1_W1_L3_S2_Lecture_b.png" /></p>
 </center></figure><section id="Goals">
 <h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
 <p>In this lab you will: - you will implement and explore the <code class="docutils literal notranslate"><span class="pre">cost</span></code> function for linear regression with one variable.</p>
@@ -183,7 +183,7 @@
 </section>
 <section id="Cost-Function-Intuition">
 <h2>Cost Function Intuition<a class="headerlink" href="#Cost-Function-Intuition" title="Permalink to this headline"></a></h2>
-<p><img alt="f81e2ed101a142e8b66fcf5ca1b3eba4" src="../../../../_images/C1_W1_Lab02_GoalOfRegression.PNG" /> Your goal is to find a model <span class="math notranslate nohighlight">\(f_{w,b}(x) = wx + b\)</span>, with parameters <span class="math notranslate nohighlight">\(w,b\)</span>, which will accurately predict house values given an input <span class="math notranslate nohighlight">\(x\)</span>. The cost is a measure of how accurate the model is on the training data.</p>
+<p><img alt="0dd0e6e2ce2d41f98b65318f9274dbad" src="../../../../_images/C1_W1_Lab02_GoalOfRegression.PNG" /> Your goal is to find a model <span class="math notranslate nohighlight">\(f_{w,b}(x) = wx + b\)</span>, with parameters <span class="math notranslate nohighlight">\(w,b\)</span>, which will accurately predict house values given an input <span class="math notranslate nohighlight">\(x\)</span>. The cost is a measure of how accurate the model is on the training data.</p>
 <p>The cost equation (1) above shows that if <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> can be selected such that the predictions <span class="math notranslate nohighlight">\(f_{w,b}(x)\)</span> match the target data <span class="math notranslate nohighlight">\(y\)</span>, the $(f_{w,b}(x^{(i)}) - y<sup>{(i)})</sup>2 $ term will be zero and the cost minimized. In this simple two point example, you can achieve this!</p>
 <p>In the previous lab, you determined that <span class="math notranslate nohighlight">\(b=100\)</span> provided an optimal solution so let’s set <span class="math notranslate nohighlight">\(b\)</span> to 100 and focus on <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <p>Below, use the slider control to select the value of <span class="math notranslate nohighlight">\(w\)</span> that minimizes cost. It can take a few seconds for the plot to update.</p>

@@ -82,7 +82,7 @@
 <section id="Outline">
 <h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h1>
 <ul class="simple">
-<li><p>1 - Import Packages |8908a5b307da465aa7185a8ca9a3d1a1|</p></li>
+<li><p>1 - Import Packages |a8a2c5a8b9e7438b9aaedb78c485be90|</p></li>
 <li><p>2 - Hyperparameters</p></li>
 <li><p>3 - The Lunar Lander Environment</p>
 <ul>
@@ -172,7 +172,7 @@ environment. - We will use several modules from the <code class="docutils litera
 <p>## 3 - The Lunar Lander Environment</p>
 <p>In this notebook we will be using <a class="reference external" href="https://www.gymlibrary.ml/">OpenAI’s Gym Library</a>. The Gym library provides a wide variety of environments for reinforcement learning. To put it simply, an environment represents a problem or task to be solved. In this notebook, we will try to solve the Lunar Lander environment using reinforcement learning.</p>
 <p>The goal of the Lunar Lander environment is to land the lunar lander safely on the landing pad on the surface of the moon. The landing pad is designated by two flag poles and it is always at coordinates <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code> but the lander is also allowed to land outside of the landing pad. The lander starts at the top center of the environment with a random initial force applied to its center of mass and has infinite fuel. The environment is considered solved if you get <code class="docutils literal notranslate"><span class="pre">200</span></code> points.</p>
-<figure><p><img alt="9eafa9f2d4864bd6b8d13a7a9671fb6c" class="no-scaled-link" src="../../../../_images/lunar_lander.gif" style="width: 40%;" /></p>
+<figure><p><img alt="c43a863439c4447dadbc067d351830f4" class="no-scaled-link" src="../../../../_images/lunar_lander.gif" style="width: 40%;" /></p>
 <figcaption style="text-align: center; font-style: italic"><p>Fig 1. Lunar Lander Environment.</p>
 </figcaption></figure><p>### 3.1 Action Space</p>
 <p>The agent has four discrete actions available:</p>
@@ -460,7 +460,7 @@ receives) in a memory buffer and then sampling a random mini-batch of experience
 <p>By using experience replay we avoid problematic correlations, oscillations and instabilities. In addition, experience replay also allows the agent to potentially use the same experience in multiple weight updates, which increases data efficiency.</p>
 <p>## 7 - Deep Q-Learning Algorithm with Experience Replay</p>
 <p>Now that we know all the techniques that we are going to use, we can put them togther to arrive at the Deep Q-Learning Algorithm With Experience Replay.</p>
-<figure><p><img alt="374ea9c5397648938f4549afa465e872" class="no-scaled-link" src="../../../../_images/deep_q_algorithm.png" style="width: 90%;" /></p>
+<figure><p><img alt="d5915f1f2af0413cb9ce9cea82f02fa9" class="no-scaled-link" src="../../../../_images/deep_q_algorithm.png" style="width: 90%;" /></p>
 <figcaption style="text-align: center; font-style: italic"><p>Fig 3. Deep Q-Learning with Experience Replay.</p>
 </figcaption></figure><p>### Exercise 2</p>
 <p>In this exercise you will implement line <strong>12</strong> of the algorithm outlined in <em>Fig 3</em> above and you will also compute the loss between the <span class="math notranslate nohighlight">\(y\)</span> targets and the <span class="math notranslate nohighlight">\(Q(s,a)\)</span> values. In the cell below, complete the <code class="docutils literal notranslate"><span class="pre">compute_loss</span></code> function by setting the <span class="math notranslate nohighlight">\(y\)</span> targets equal to:</p>
@@ -638,7 +638,7 @@ conditions are met, then the <code class="docutils literal notranslate"><span cl
 <li><p><strong>Line 16</strong>: At the end of each iteration of the outer loop we update the value of <span class="math notranslate nohighlight">\(\epsilon\)</span>, and check if the environment has been solved. We consider that the environment has been solved if the agent receives an average of <code class="docutils literal notranslate"><span class="pre">200</span></code> points in the last <code class="docutils literal notranslate"><span class="pre">100</span></code> episodes. If the environment has not been solved we continue the outer loop and start a new episode.</p></li>
 </ul>
 <p>Finally, we wanted to note that we have included some extra variables to keep track of the total number of points the agent received in each episode. This will help us determine if the agent has solved the environment and it will also allow us to see how our agent performed during training. We also use the <code class="docutils literal notranslate"><span class="pre">time</span></code> module to measure how long the training takes.</p>
-<figure><p><img alt="7a1d515b48d54ce1a3b6cca7e10c09b4" class="no-scaled-link" src="../../../../_images/deep_q_algorithm.png" style="width: 90%;" /></p>
+<figure><p><img alt="41ae45bd091d4b09b6781fffaf3f0231" class="no-scaled-link" src="../../../../_images/deep_q_algorithm.png" style="width: 90%;" /></p>
 <figcaption style="text-align: center; font-style: italic"><p>Fig 4. Deep Q-Learning with Experience Replay.</p>
 </figcaption></figure><p><strong>Note:</strong> With this notebook’s default parameters, the following cell takes between 10 to 15 minutes to run.</p>
 <div class="nbinput docutils container">
