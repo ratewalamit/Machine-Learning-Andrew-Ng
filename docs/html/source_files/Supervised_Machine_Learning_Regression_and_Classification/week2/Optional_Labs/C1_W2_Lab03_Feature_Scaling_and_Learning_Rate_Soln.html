@@ -209,7 +209,7 @@ derivative of cost with respect to a parameter <span class="math notranslate noh
 </section>
 <section id="Learning-Rate">
 <h2>Learning Rate<a class="headerlink" href="#Learning-Rate" title="Permalink to this headline"></a></h2>
-<figure><p><img alt="c058878cb810431886bd75e9ced2b84e" src="../../../../_images/C1_W2_Lab06_learningrate.PNG" /></p>
+<figure><p><img alt="e7e01360378e4c16a4010545251685b9" src="../../../../_images/C1_W2_Lab06_learningrate.PNG" /></p>
 </figure><p>The lectures discussed some of the issues related to setting the learning rate <span class="math notranslate nohighlight">\(\alpha\)</span>. The learning rate controls the size of the update to the parameters. See equation (1) above. It is shared by all the parameters.</p>
 <p>Let’s run gradient descent and try a few settings of <span class="math notranslate nohighlight">\(\alpha\)</span> on our data set</p>
 <section id="\alpha-=-9.9e-7">
@@ -365,17 +365,17 @@ w,b found by gradient descent: w: [2.31e-01 4.18e-04 2.12e-04 4.81e-03], b: 0.00
 </section>
 <section id="Feature-Scaling">
 <h2>Feature Scaling<a class="headerlink" href="#Feature-Scaling" title="Permalink to this headline"></a></h2>
-<figure><p><img alt="2ae0a3e04019489191cb627da9167074" src="../../../../_images/C1_W2_Lab06_featurescalingheader.PNG" /></p>
+<figure><p><img alt="ec4d27fea51d42fb9f1b88c733db77a6" src="../../../../_images/C1_W2_Lab06_featurescalingheader.PNG" /></p>
 </figure><p>The lectures described the importance of rescaling the dataset so the features have a similar range. If you are interested in the details of why this is the case, click on the ‘details’ header below. If not, the section below will walk through an implementation of how to do feature scaling.</p>
 <details><p>&lt;font size=’3’, color=’darkgreen’&gt;Details</p>
 <p>Let’s look again at the situation with <span class="math notranslate nohighlight">\(\alpha\)</span> = 9e-7. This is pretty close to the maximum value we can set <span class="math notranslate nohighlight">\(\alpha\)</span> to without diverging. This is a short run showing the first few iterations:</p>
-<figure><p><img alt="f9412b7cb88042cc9344ff81bdcf04c0" src="../../../../_images/C1_W2_Lab06_ShortRun.PNG" /></p>
+<figure><p><img alt="244e36f1942a4bce9d8dd32ebd6ae6d1" src="../../../../_images/C1_W2_Lab06_ShortRun.PNG" /></p>
 </figure><p>Above, while cost is being decreased, its clear that <span class="math notranslate nohighlight">\(w_0\)</span> is making more rapid progress than the other parameters due to its much larger gradient.</p>
 <p>The graphic below shows the result of a very long run with <span class="math notranslate nohighlight">\(\alpha\)</span> = 9e-7. This takes several hours.</p>
-<figure><p><img alt="598ce787d7eb4ae18ddf88077ef0af24" src="../../../../_images/C1_W2_Lab06_LongRun.PNG" /></p>
+<figure><p><img alt="b701e3d780c3475699fde04c7337a3cf" src="../../../../_images/C1_W2_Lab06_LongRun.PNG" /></p>
 </figure><p>Above, you can see cost decreased slowly after its initial reduction. Notice the difference between <code class="docutils literal notranslate"><span class="pre">w0</span></code> and <code class="docutils literal notranslate"><span class="pre">w1</span></code>,<code class="docutils literal notranslate"><span class="pre">w2</span></code>,<code class="docutils literal notranslate"><span class="pre">w3</span></code> as well as <code class="docutils literal notranslate"><span class="pre">dj_dw0</span></code> and <code class="docutils literal notranslate"><span class="pre">dj_dw1-3</span></code>. <code class="docutils literal notranslate"><span class="pre">w0</span></code> reaches its near final value very quickly and <code class="docutils literal notranslate"><span class="pre">dj_dw0</span></code> has quickly decreased to a small value showing that <code class="docutils literal notranslate"><span class="pre">w0</span></code> is near the final value. The other parameters were reduced much more slowly.</p>
 <p>Why is this? Is there something we can improve? See below:</p>
-<figure><center><p><img alt="7e5a01934fa348358298573a272bb4c5" src="../../../../_images/C1_W2_Lab06_scale.PNG" /></p>
+<figure><center><p><img alt="af3c169219cc482eabec3db2d640aa3e" src="../../../../_images/C1_W2_Lab06_scale.PNG" /></p>
 </center></figure><p>The figure above shows why <span class="math notranslate nohighlight">\(w\)</span>’s are updated unevenly. - <span class="math notranslate nohighlight">\(\alpha\)</span> is shared by all parameter updates (<span class="math notranslate nohighlight">\(w\)</span>’s and <span class="math notranslate nohighlight">\(b\)</span>). - the common error term is multiplied by the features for the <span class="math notranslate nohighlight">\(w\)</span>’s. (not <span class="math notranslate nohighlight">\(b\)</span>). - the features vary significantly in magnitude making some features update much faster than others. In this case, <span class="math notranslate nohighlight">\(w_0\)</span> is multiplied by ‘size(sqft)’, which is generally &gt; 1000, while <span class="math notranslate nohighlight">\(w_1\)</span> is multiplied by ‘number of bedrooms’, which is generally 2-4.</p>
 <p>The solution is Feature Scaling.</p>
 <p>The lectures discussed three different techniques: - Feature scaling, essentially dividing each positive feature by its maximum value, or more generally, rescale each feature by both its minimum and maximum values using (x-min)/(max-min). Both ways normalizes features to the range of -1 and 1, where the former method works for positive features which is simple and serves well for the lecture’s example, and the latter method works for any features. - Mean normalization: $x_i :=
@@ -611,7 +611,7 @@ w,b found by gradient descent: w: [110.56 -21.27 -32.71 -37.97], b: 363.16
 </div>
 <div class="line-block">
 <div class="line"><strong>Cost Contours</strong></div>
-<div class="line"><a href="#id1"><span class="problematic" id="id2">|</span></a>ca94a72f9563462ab74e10c1a8a12d1b|Another way to view feature scaling is in terms of the cost contours. When feature scales do not match, the plot of cost versus parameters in a contour plot is asymmetric.</div>
+<div class="line"><a href="#id1"><span class="problematic" id="id2">|</span></a>7a78c6fccedc4fc7ae29db7a5debaa05|Another way to view feature scaling is in terms of the cost contours. When feature scales do not match, the plot of cost versus parameters in a contour plot is asymmetric.</div>
 </div>
 <p>In the plot below, the scale of the parameters is matched. The left plot is the cost contour plot of w[0], the square feet versus w[1], the number of bedrooms before normalizing the features. The plot is so asymmetric, the curves completing the contours are not visible. In contrast, when the features are normalized, the cost contour is much more symmetric. The result is that updates to parameters during gradient descent can make equal progress for each parameter.</p>
 <div class="nbinput docutils container">

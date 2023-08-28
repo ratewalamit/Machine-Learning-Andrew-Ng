@@ -17,6 +17,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -77,7 +78,7 @@
   <section id="Optional-Lab---Simple-Neural-Network">
 <h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this headline"></a></h1>
 <p>In this lab we will build a small neural network using Tensorflow.</p>
-<center><p><img alt="692a4e6e2dc1421481a27820e9f20869" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
+<center><p><img alt="c057ba76fca545bba1dff87a56ead5d9" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
 <center/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -188,7 +189,7 @@ Duration    Max, Min post normalization: 1.79, -1.70
 <h2>Tensorflow Model<a class="headerlink" href="#Tensorflow-Model" title="Permalink to this headline"></a></h2>
 <section id="Model">
 <h3>Model<a class="headerlink" href="#Model" title="Permalink to this headline"></a></h3>
-<center><p><img alt="7c8f7fdd05c94a78b72d0c7ce8b07b48" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
+<center><p><img alt="2aec8997e0b14f929fb37bf03af12b7f" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations as shown below:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -393,7 +394,7 @@ b2: [26.14]
 </section>
 <section id="Predictions">
 <h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this headline"></a></h3>
-<p><img alt="967fc3d9a0c94167bc4c395ff4b14204" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingDecision.PNG" /></p>
+<p><img alt="adbd0cfdcc1b4230935daf3fd1ab2aae" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <div class="line-block">
 <div class="line">Let’s start by creating input data. The model is expecting one or more examples where examples are in the rows of matrix. In this case, we have two features so the matrix will be (m,2) where m is the number of examples. Recall, we have normalized the input features so we must normalize our test data as well.</div>

@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-plt.style.use('./deeplearning.mplstyle')
+import os
+proj_path=f"{os.environ['HOME']}/my_web/Machine-Learning-Andrew-Ng"
+module_path=proj_path+"/source/source_files/Advanced_Learning_Algorithms"
+mplstype_path=f"{module_path}/week1/optional-labs/deeplearning.mplstyle"
+plt.style.use(mplstype_path)
 from matplotlib import cm
 import matplotlib.colors as colors
 from lab_utils_common import dlc

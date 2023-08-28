@@ -13,13 +13,16 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch
 from ipywidgets import Output
 from matplotlib.widgets import Button, CheckButtons
-
+import os
+proj_path=f"{os.environ['HOME']}/my_web/Machine-Learning-Andrew-Ng"
+module_path=proj_path+"/source/source_files/Advanced_Learning_Algorithms"
 np.set_printoptions(precision=2)
 
 dlc = dict(dlblue = '#0096ff', dlorange = '#FF9300', dldarkred='#C00000', dlmagenta='#FF40FF', dlpurple='#7030A0', dldarkblue =  '#0D5BDC')
 dlblue = '#0096ff'; dlorange = '#FF9300'; dldarkred='#C00000'; dlmagenta='#FF40FF'; dlpurple='#7030A0'; dldarkblue =  '#0D5BDC'
 dlcolors = [dlblue, dlorange, dldarkred, dlmagenta, dlpurple]
-plt.style.use('./deeplearning.mplstyle')
+mplstype_path=f"{module_path}/week1/optional-labs/deeplearning.mplstyle"
+plt.style.use(mplstype_path)
 
 def sigmoid(z):
     """
