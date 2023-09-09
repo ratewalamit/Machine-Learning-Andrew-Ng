@@ -49,6 +49,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Supervised.html">Supervised_Machine_Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Advanced_Learning_Algorithms/Deep_learning.html">Advanced_Learning_Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -108,7 +110,7 @@
 <p>## 1.1 Goals In this lab, you will: - Review the features of NumPy and Python that are used in Course 1</p>
 <p>## 1.2 Useful References - NumPy Documentation including a basic introduction: <a class="reference external" href="https://NumPy.org/doc/stable/">NumPy.org</a> - A challenging feature topic: <a class="reference external" href="https://NumPy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a></p>
 <p># 2 Python and NumPy Python is the programming language we will be using in this course. It has a set of numeric data types and arithmetic operations. NumPy is a library that extends the base capabilities of python to add a richer data set including more numeric types, vectors, matrices, and many matrix functions. NumPy and python work together fairly seamlessly. Python arithmetic operators work on NumPy data types and many NumPy functions will accept python data types.</p>
-<p># 3 Vectors ## 3.1 Abstract <a href="#id1"><span class="problematic" id="id2">|</span></a>604978023d61473495b5bb504f1cde9b|Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of
+<p># 3 Vectors ## 3.1 Abstract <a href="#id1"><span class="problematic" id="id2">|</span></a>5e30f5a185c34572b0db105c1eb1eb60|Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of
 <span class="math notranslate nohighlight">\(n\)</span>. The elements of a vector can be referenced with an index. In math settings, indexes typically run from 1 to n. In computer science and these labs, indexing will typically run from 0 to n-1. In notation, elements of a vector, when referenced individually will indicate the index in a subscript, for example, the <span class="math notranslate nohighlight">\(0^{th}\)</span> element, of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(x_0\)</span>. Note, the x is not bold in this case.</p>
 <p>## 3.2 NumPy Arrays</p>
 <p>NumPy’s basic data structure is an indexable, n-dimensional <em>array</em> containing elements of the same type (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>). Right away, you may notice we have overloaded the term ‘dimension’. Above, it was the number of elements in the vector, here, dimension refers to the number of indexes of an array. A one-dimensional or 1-D array has one index. In Course 1, we will represent vectors as NumPy 1-D arrays.</p>
@@ -363,7 +365,7 @@ b = 5 * a : [ 5 10 15 20]
 </pre></div></div>
 </div>
 <p>### 3.4.6 Vector Vector dot product The dot product is a mainstay of Linear Algebra and NumPy. This is an operation used extensively in this course and should be well understood. The dot product is shown below.</p>
-<p><img alt="cfb7baf9fcbe4f1bbd3c1e367d420454" class="no-scaled-link" src="../../../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
+<p><img alt="64f14d5275fc496589a3b65a41bdefdb" class="no-scaled-link" src="../../../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
 <p>The dot product multiplies the values in two vectors element-wise and then sums the result. Vector dot product requires the dimensions of the two vectors to be the same.</p>
 <p>Let’s implement our own version of the dot product below:</p>
 <p><strong>Using a for loop</strong>, implement a function which returns the dot product of two vectors. The function to return given inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>

@@ -11,6 +11,8 @@ Welcome to Machine-Learning-Andrew-Ng's documentation!
    :caption: Contents:
 
    source_files/Supervised_Machine_Learning_Regression_and_Classification/Supervised
+   source_files/Advanced_Learning_Algorithms/Deep_learning
+   source_files/Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised
 
 
 

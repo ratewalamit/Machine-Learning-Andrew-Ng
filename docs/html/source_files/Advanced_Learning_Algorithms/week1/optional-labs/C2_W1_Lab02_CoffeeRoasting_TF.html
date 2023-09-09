@@ -49,6 +49,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Supervised_Machine_Learning_Regression_and_Classification/Supervised.html">Supervised_Machine_Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep_learning.html">Advanced_Learning_Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -78,7 +80,7 @@
   <section id="Optional-Lab---Simple-Neural-Network">
 <h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this headline"></a></h1>
 <p>In this lab we will build a small neural network using Tensorflow.</p>
-<center><p><img alt="365c5a6f2c82411ea3365c4742b10b79" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
+<center><p><img alt="16b267caede44d00b0894197eb93ad24" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
 <center/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -189,7 +191,7 @@ Duration    Max, Min post normalization: 1.79, -1.70
 <h2>Tensorflow Model<a class="headerlink" href="#Tensorflow-Model" title="Permalink to this headline"></a></h2>
 <section id="Model">
 <h3>Model<a class="headerlink" href="#Model" title="Permalink to this headline"></a></h3>
-<center><p><img alt="f05aee5564bc4caca27c0ca807cd4eff" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
+<center><p><img alt="a2dec3ef2d9f4321a4e3fa785630373a" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations as shown below:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -394,7 +396,7 @@ b2: [26.14]
 </section>
 <section id="Predictions">
 <h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this headline"></a></h3>
-<p><img alt="2e7b4e944bc54aef8a2ecee454354384" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingDecision.PNG" /></p>
+<p><img alt="70b88c459a8e468c9414b4a59442bf32" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <div class="line-block">
 <div class="line">Let’s start by creating input data. The model is expecting one or more examples where examples are in the rows of matrix. In this case, we have two features so the matrix will be (m,2) where m is the number of examples. Recall, we have normalized the input features so we must normalize our test data as well.</div>

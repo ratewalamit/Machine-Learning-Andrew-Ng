@@ -49,6 +49,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Supervised_Machine_Learning_Regression_and_Classification/Supervised.html">Supervised_Machine_Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep_learning.html">Advanced_Learning_Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Unsupervised_Learning_Recommenders_Reinforcement_Learning/Unsupervised.html">Unsupervised_Learning</a></li>
 </ul>
 
         </div>
@@ -78,7 +80,7 @@
   <section id="Optional-Lab---Simple-Neural-Network">
 <h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this headline"></a></h1>
 <p>In this lab, we will build a small neural network using Numpy. It will be the same “coffee roasting” network you implemented in Tensorflow.</p>
-<center><p><img alt="ee3e7b7bce954cf88a0a3b5a96915dd9" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
+<center><p><img alt="3955cf26615449e19f437a940f400d83" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
 <center/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -163,10 +165,10 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </section>
 <section id="Numpy-Model-(Forward-Prop-in-NumPy)">
 <h2>Numpy Model (Forward Prop in NumPy)<a class="headerlink" href="#Numpy-Model-(Forward-Prop-in-NumPy)" title="Permalink to this headline"></a></h2>
-<center><p><img alt="6c5d6536b504466fb1b12ee720d92233" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
+<center><p><img alt="ae19b206b5624fb8be34a46bf10bb846" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations.</p>
 <p>As described in lecture, it is possible to build your own dense layer using NumPy. This can then be utilized to build a multi-layer neural network.</p>
-<p><img alt="6de2480782a24e2c89a82186fa99e64a" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
+<p><img alt="b5d362d4feb244e4a08451099753b7b4" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
 <p>In the first optional lab, you constructed a neuron in NumPy and in Tensorflow and noted their similarity. A layer simply contains multiple neurons/units. As described in lecture, one can utilize a for loop to visit each unit (<code class="docutils literal notranslate"><span class="pre">j</span></code>) in the layer and perform the dot product of the weights for that unit (<code class="docutils literal notranslate"><span class="pre">W[:,j]</span></code>) and sum the bias for the unit (<code class="docutils literal notranslate"><span class="pre">b[j]</span></code>) to form <code class="docutils literal notranslate"><span class="pre">z</span></code>. An activation function <code class="docutils literal notranslate"><span class="pre">g(z)</span></code> can then be applied to that result. Let’s try that below to build a “dense layer” subroutine.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -219,7 +221,7 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </div>
 <section id="Predictions">
 <h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this headline"></a></h3>
-<p><img alt="edd1a76bf2e543a29631fe660f926af0" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingDecision.PNG" /></p>
+<p><img alt="ed20fddb4ddd45858e7c8a714456547e" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <p>Let’s start by writing a routine similar to Tensorflow’s <code class="docutils literal notranslate"><span class="pre">model.predict()</span></code>. This will take a matrix <span class="math notranslate nohighlight">\(X\)</span> with all <span class="math notranslate nohighlight">\(m\)</span> examples in the rows and make a prediction by running the model.</p>
 <div class="nbinput nblast docutils container">
