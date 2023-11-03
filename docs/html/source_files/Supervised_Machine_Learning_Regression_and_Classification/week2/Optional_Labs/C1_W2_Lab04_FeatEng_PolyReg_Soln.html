@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Feature Engineering and Polynomial Regression &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,14 +79,14 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Feature-Engineering-and-Polynomial-Regression">
-<h1>Optional Lab: Feature Engineering and Polynomial Regression<a class="headerlink" href="#Optional-Lab:-Feature-Engineering-and-Polynomial-Regression" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab: Feature Engineering and Polynomial Regression<a class="headerlink" href="#Optional-Lab:-Feature-Engineering-and-Polynomial-Regression" title="Permalink to this heading"></a></h1>
 <p><img alt="image0" src="../../../../_images/C1_W2_Lab07_FeatureEngLecture.PNG" /></p>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab you will: - explore feature engineering and polynomial regression which allows you to use the machinery of linear regression to fit very complicated, even very non-linear functions.</p>
 </section>
 <section id="Tools">
-<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this headline"></a></h2>
+<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this heading"></a></h2>
 <p>You will utilize the function developed in previous labs as well as matplotlib and NumPy.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -201,7 +202,7 @@ w,b found by gradient descent: w: [1.], b: 0.0490
 </div>
 <p>Great! near perfect fit. Notice the values of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> and b printed right above the graph: <code class="docutils literal notranslate"><span class="pre">w,b</span> <span class="pre">found</span> <span class="pre">by</span> <span class="pre">gradient</span> <span class="pre">descent:</span> <span class="pre">w:</span> <span class="pre">[1.],</span> <span class="pre">b:</span> <span class="pre">0.0490</span></code>. Gradient descent modified our initial values of $:nbsphinx-math:<cite>mathbf{w}</cite>,b $ to be (1.0,0.049) or a model of <span class="math notranslate nohighlight">\(y=1*x_0^2+0.049\)</span>, very close to our target of <span class="math notranslate nohighlight">\(y=1*x_0^2+1\)</span>. If you ran it longer, it could be a better match.</p>
 <section id="Selecting-Features">
-<h3>Selecting Features<a class="headerlink" href="#Selecting-Features" title="Permalink to this headline"></a></h3>
+<h3>Selecting Features<a class="headerlink" href="#Selecting-Features" title="Permalink to this heading"></a></h3>
 <p>Above, we knew that an <span class="math notranslate nohighlight">\(x^2\)</span> term was required. It may not always be obvious which features are required. One could add a variety of potential features to try and find the most useful. For example, what if we had instead tried : <span class="math notranslate nohighlight">\(y=w_0x_0 + w_1x_1^2 + w_2x_2^3+b\)</span> ?</p>
 <p>Run the next cells.</p>
 <div class="nbinput nblast docutils container">
@@ -260,7 +261,7 @@ w,b found by gradient descent: w: [0.08 0.54 0.03], b: 0.0106
 <p>Let’s review this idea: - Intially, the features were re-scaled so they are comparable to each other - less weight value implies less important/correct feature, and in extreme, when the weight becomes zero or very close to zero, the associated feature useful in fitting the model to the data. - above, after fitting, the weight associated with the <span class="math notranslate nohighlight">\(x^2\)</span> feature is much larger than the weights for <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(x^3\)</span> as it is the most useful in fitting the data.</p>
 </section>
 <section id="An-Alternate-View">
-<h3>An Alternate View<a class="headerlink" href="#An-Alternate-View" title="Permalink to this headline"></a></h3>
+<h3>An Alternate View<a class="headerlink" href="#An-Alternate-View" title="Permalink to this heading"></a></h3>
 <p>Above, polynomial features were chosen based on how well they matched the target data. Another way to think about this is to note that we are still using linear regression once we have created new features. Given that, the best features will be linear relative to the target. This is best understood with an example.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -299,7 +300,7 @@ w,b found by gradient descent: w: [0.08 0.54 0.03], b: 0.0106
 <p>Above, it is clear that the <span class="math notranslate nohighlight">\(x^2\)</span> feature mapped against the target value <span class="math notranslate nohighlight">\(y\)</span> is linear. Linear regression can then easily generate a model using that feature.</p>
 </section>
 <section id="Scaling-features">
-<h3>Scaling features<a class="headerlink" href="#Scaling-features" title="Permalink to this headline"></a></h3>
+<h3>Scaling features<a class="headerlink" href="#Scaling-features" title="Permalink to this heading"></a></h3>
 <p>As described in the last lab, if the data set has features with significantly different scales, one should apply feature scaling to speed gradient descent. In the example above, there is <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(x^2\)</span> and <span class="math notranslate nohighlight">\(x^3\)</span> which will naturally have very different scales. Let’s apply Z-score normalization to our example.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -374,7 +375,7 @@ w,b found by gradient descent: w: [5.27e-05 1.13e+02 8.43e-05], b: 123.5000
 </div>
 </section>
 <section id="Complex-Functions">
-<h3>Complex Functions<a class="headerlink" href="#Complex-Functions" title="Permalink to this headline"></a></h3>
+<h3>Complex Functions<a class="headerlink" href="#Complex-Functions" title="Permalink to this heading"></a></h3>
 <p>With feature engineering, even quite complex functions can be modeled:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:

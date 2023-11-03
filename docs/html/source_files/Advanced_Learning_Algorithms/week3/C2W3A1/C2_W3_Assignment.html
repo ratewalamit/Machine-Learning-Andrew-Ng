@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Practice Lab: Advice for Applying Machine Learning &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,11 +79,11 @@
            <div itemprop="articleBody">
              
   <section id="Practice-Lab:-Advice-for-Applying-Machine-Learning">
-<h1>Practice Lab: Advice for Applying Machine Learning<a class="headerlink" href="#Practice-Lab:-Advice-for-Applying-Machine-Learning" title="Permalink to this headline"></a></h1>
+<h1>Practice Lab: Advice for Applying Machine Learning<a class="headerlink" href="#Practice-Lab:-Advice-for-Applying-Machine-Learning" title="Permalink to this heading"></a></h1>
 <p>In this lab, you will explore techniques to evaluate and improve your machine learning models.</p>
 </section>
 <section id="Outline">
-<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h1>
+<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Evaluating a Learning Algorithm (Polynomial Regression)</p>
@@ -96,7 +97,7 @@
 <li><p>2.3 Compare performance on training and test data</p></li>
 </ul>
 </li>
-<li><p>3 - Bias and Variance|3d6c4fbc28f04e8385ec61a13f57151a|</p>
+<li><p>3 - Bias and Variance|a193d3749ddd44ab9a248e25413be6f9|</p>
 <ul>
 <li><p>3.1 Plot Train, Cross-Validation, Test</p></li>
 <li><p>3.2 Finding the optimal degree</p></li>
@@ -168,7 +169,7 @@
 </div>
 </div>
 <p>## 2 - Evaluating a Learning Algorithm (Polynomial Regression)</p>
-<p><img alt="55a31d03a5bb4c15a8a0fa658cbda900" src="../../../../_images/C2_W3_TrainingVsNew.png" /> Let’s say you have created a machine learning model and you find it <em>fits</em> your training data very well. You’re done? Not quite. The goal of creating the model was to be able to predict values for new examples.</p>
+<p><img alt="1ac026838b2c4156a146d802f3f43bcf" src="../../../../_images/C2_W3_TrainingVsNew.png" /> Let’s say you have created a machine learning model and you find it <em>fits</em> your training data very well. You’re done? Not quite. The goal of creating the model was to be able to predict values for new examples.</p>
 <div class="line-block">
 <div class="line">How can you test your model’s performance on new data before deploying it?</div>
 <div class="line">The answer has two parts: * Split your original data set into “Training” and “Test” sets. * Use the training data to fit the parameters of the model * Use the test data to evaluate the model on <em>new</em> data * Develop an error function to evaluate your model.</div>
@@ -200,7 +201,7 @@ X_test.shape (6,) y_test.shape (6,)
 </pre></div></div>
 </div>
 <section id="2.1.1-Plot-Train,-Test-sets">
-<h2>2.1.1 Plot Train, Test sets<a class="headerlink" href="#2.1.1-Plot-Train,-Test-sets" title="Permalink to this headline"></a></h2>
+<h2>2.1.1 Plot Train, Test sets<a class="headerlink" href="#2.1.1-Plot-Train,-Test-sets" title="Permalink to this heading"></a></h2>
 <p>You can see below the data points that will be part of training (in red) are intermixed with those that the model is not trained on (test). This particular data set is a quadratic function with noise added. The “ideal” curve is shown for reference.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -361,11 +362,6 @@ training err 58.01, test err 171215.01
 <p>The test set error shows this model will not work well on new data. If you use the test error to guide improvements in the model, then the model will perform well on the test data… but the test data was meant to represent <em>new</em> data. You need yet another set of data to test new data performance.</p>
 <p>The proposal made during lecture is to separate data into three groups. The distribution of training, cross-validation and test sets shown in the below table is a typical distribution, but can be varied depending on the amount of data available.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 30%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>data</p></th>
 <th class="head"><p>% of total</p></th>
@@ -417,7 +413,7 @@ X_cv.shape (8,) y_cv.shape (8,)
 X_test.shape (8,) y_test.shape (8,)
 </pre></div></div>
 </div>
-<p>## 3 - Bias and Variance|07a95363caf64c909490be5ae4f0ef6d| Above, it was clear the degree of the polynomial model was too high. How can you choose a good value? It turns out, as shown in the diagram, the training and cross-validation performance can provide guidance. By trying a range of degree values, the training and cross-validation performance can be evaluated. As the degree becomes too large, the cross-validation performance will start to degrade relative to the training performance. Let’s
+<p>## 3 - Bias and Variance|b5a2bd42e8f44b2c80c693a2cc870fae| Above, it was clear the degree of the polynomial model was too high. How can you choose a good value? It turns out, as shown in the diagram, the training and cross-validation performance can provide guidance. By trying a range of degree values, the training and cross-validation performance can be evaluated. As the degree becomes too large, the cross-validation performance will start to degrade relative to the training performance. Let’s
 try this on our example.</p>
 <p>### 3.1 Plot Train, Cross-Validation, Test You can see below the datapoints that will be part of training (in red) are intermixed with those that the model is not trained on (test and cv).</p>
 <div class="nbinput docutils container">
@@ -689,7 +685,7 @@ categorization error 0.250, expected:0.250
 </div>
 <p>## 5 - Model Complexity Below, you will build two models. A complex model and a simple model. You will evaluate the models to determine if they are likely to overfit or underfit.</p>
 <section id="5.1-Complex-model">
-<h3>5.1 Complex model<a class="headerlink" href="#5.1-Complex-model" title="Permalink to this headline"></a></h3>
+<h3>5.1 Complex model<a class="headerlink" href="#5.1-Complex-model" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line-block">
 <div class="line">### Exercise 3 Below, compose a three-layer model: * Dense layer with 120 units, relu activation * Dense layer with 40 units, relu activation * Dense layer with 6 units and a linear activation (not softmax)</div>
@@ -21278,7 +21274,7 @@ Finished lambda = 0.3
 </div>
 <p>Our test set is small and seems to have a number of outliers so classification error is high. However, the performance of our optimized models is comparable to ideal performance.</p>
 <section id="Congratulations!">
-<h4>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h4>
+<h4>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h4>
 <div class="line-block">
 <div class="line">You have become familiar with important tools to apply when evaluating your machine learning models. Namely:</div>
 <div class="line">* splitting data into trained and untrained sets allows you to differentiate between underfitting and overfitting * creating three data sets, Training, Cross-Validation and Test allows you to * train your parameters <span class="math notranslate nohighlight">\(W,B\)</span> with the training set * tune model parameters such as complexity, regularization and number of examples with the cross-validation set * evaluate your ‘real world’ performance using the test set. * comparing training vs cross-validation performance provides insight

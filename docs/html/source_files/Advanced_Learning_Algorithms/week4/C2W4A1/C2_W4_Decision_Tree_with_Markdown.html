@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Practice Lab: Decision Trees &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,11 +79,11 @@
            <div itemprop="articleBody">
              
   <section id="Practice-Lab:-Decision-Trees">
-<h1>Practice Lab: Decision Trees<a class="headerlink" href="#Practice-Lab:-Decision-Trees" title="Permalink to this headline"></a></h1>
+<h1>Practice Lab: Decision Trees<a class="headerlink" href="#Practice-Lab:-Decision-Trees" title="Permalink to this heading"></a></h1>
 <p>In this exercise, you will implement a decision tree from scratch and apply it to the task of classifying whether a mushroom is edible or poisonous.</p>
 </section>
 <section id="Outline">
-<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h1>
+<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Problem Statement</p></li>
@@ -138,12 +139,6 @@
 <p>## 3 - Dataset</p>
 <p>You will start by loading the dataset for this task. The dataset you have collected is as follows:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 26%" />
-<col style="width: 32%" />
-<col style="width: 24%" />
-<col style="width: 18%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Cap Color</p></th>
 <th class="head"><p>Stalk Shape</p></th>
@@ -224,12 +219,6 @@
 </ul>
 <p>### 3.1 One hot encoded dataset For ease of implementation, we have one-hot encoded the features (turned them into 0 or 1 valued features)</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 47%" />
-<col style="width: 19%" />
-<col style="width: 14%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Brown Cap</p></th>
 <th class="head"><p>Tapering Stalk Shape</p></th>
@@ -309,7 +298,7 @@
 </div>
 </div>
 <section id="View-the-variables">
-<h2>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this headline"></a></h2>
+<h2>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">Let’s get more familiar with your dataset.</div>
 <div class="line">- A good place to start is to just print out each variable and see what it contains.</div>
@@ -359,7 +348,7 @@ Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
 </div>
 </section>
 <section id="Check-the-dimensions-of-your-variables">
-<h2>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this headline"></a></h2>
+<h2>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this heading"></a></h2>
 <p>Another useful way to get familiar with your data is to view its dimensions.</p>
 <p>Please print the shape of <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and see how many training examples you have in your dataset.</p>
 <div class="nbinput docutils container">
@@ -531,13 +520,6 @@ Entropy at root node:  1.0
 </li>
 </ul>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 19%" />
-<col style="width: 42%" />
-<col style="width: 17%" />
-<col style="width: 13%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Index</p></th>
 <th class="head"><p>Brown Cap</p></th>

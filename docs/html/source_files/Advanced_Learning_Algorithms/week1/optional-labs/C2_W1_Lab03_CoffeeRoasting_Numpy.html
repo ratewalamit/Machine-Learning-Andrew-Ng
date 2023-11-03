@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab - Simple Neural Network &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,9 +79,9 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab---Simple-Neural-Network">
-<h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this heading"></a></h1>
 <p>In this lab, we will build a small neural network using Numpy. It will be the same “coffee roasting” network you implemented in Tensorflow.</p>
-<center><p><img alt="3955cf26615449e19f437a940f400d83" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
+<center><p><img alt="bca3136dac26476cb2e4488bb9a186f1" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
 <center/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -98,7 +99,7 @@
 </div>
 </div>
 <section id="DataSet">
-<h2>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this headline"></a></h2>
+<h2>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this heading"></a></h2>
 <p>This is the same data set as the previous lab.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -134,7 +135,7 @@
 </div>
 </div>
 <section id="Normalize-Data">
-<h3>Normalize Data<a class="headerlink" href="#Normalize-Data" title="Permalink to this headline"></a></h3>
+<h3>Normalize Data<a class="headerlink" href="#Normalize-Data" title="Permalink to this heading"></a></h3>
 <p>To match the previous lab, we’ll normalize the data. Refer to that lab for more details</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -164,11 +165,11 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </section>
 </section>
 <section id="Numpy-Model-(Forward-Prop-in-NumPy)">
-<h2>Numpy Model (Forward Prop in NumPy)<a class="headerlink" href="#Numpy-Model-(Forward-Prop-in-NumPy)" title="Permalink to this headline"></a></h2>
-<center><p><img alt="ae19b206b5624fb8be34a46bf10bb846" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
+<h2>Numpy Model (Forward Prop in NumPy)<a class="headerlink" href="#Numpy-Model-(Forward-Prop-in-NumPy)" title="Permalink to this heading"></a></h2>
+<center><p><img alt="74928dec93554348a14051407c374112" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations.</p>
 <p>As described in lecture, it is possible to build your own dense layer using NumPy. This can then be utilized to build a multi-layer neural network.</p>
-<p><img alt="b5d362d4feb244e4a08451099753b7b4" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
+<p><img alt="0fbed07516324c9f89cb183072d5d178" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
 <p>In the first optional lab, you constructed a neuron in NumPy and in Tensorflow and noted their similarity. A layer simply contains multiple neurons/units. As described in lecture, one can utilize a for loop to visit each unit (<code class="docutils literal notranslate"><span class="pre">j</span></code>) in the layer and perform the dot product of the weights for that unit (<code class="docutils literal notranslate"><span class="pre">W[:,j]</span></code>) and sum the bias for the unit (<code class="docutils literal notranslate"><span class="pre">b[j]</span></code>) to form <code class="docutils literal notranslate"><span class="pre">z</span></code>. An activation function <code class="docutils literal notranslate"><span class="pre">g(z)</span></code> can then be applied to that result. Let’s try that below to build a “dense layer” subroutine.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -220,8 +221,8 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </div>
 </div>
 <section id="Predictions">
-<h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this headline"></a></h3>
-<p><img alt="ed20fddb4ddd45858e7c8a714456547e" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingDecision.PNG" /></p>
+<h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this heading"></a></h3>
+<p><img alt="896a1a7a667b448cb84216598fe4ee57" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <p>Let’s start by writing a routine similar to Tensorflow’s <code class="docutils literal notranslate"><span class="pre">model.predict()</span></code>. This will take a matrix <span class="math notranslate nohighlight">\(X\)</span> with all <span class="math notranslate nohighlight">\(m\)</span> examples in the rows and make a prediction by running the model.</p>
 <div class="nbinput nblast docutils container">
@@ -298,7 +299,7 @@ decisions =
 </section>
 </section>
 <section id="Network-function">
-<h2>Network function<a class="headerlink" href="#Network-function" title="Permalink to this headline"></a></h2>
+<h2>Network function<a class="headerlink" href="#Network-function" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">This graph shows the operation of the whole network and is identical to the Tensorflow result from the previous lab. The left graph is the raw output of the final layer represented by the blue shading. This is overlaid on the training data represented by the X’s and O’s.</div>
 <div class="line">The right graph is the output of the network after a decision threshold. The X’s and O’s here correspond to decisions made by the network.</div>
@@ -321,7 +322,7 @@ decisions =
 </div>
 </section>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
 <p>You have built a small neural network in NumPy. Hopefully this lab revealed the fairly simple and familiar functions which make up a layer in a neural network.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

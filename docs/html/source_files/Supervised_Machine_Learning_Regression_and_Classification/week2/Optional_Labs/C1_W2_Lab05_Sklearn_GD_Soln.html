@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Linear Regression using Scikit-Learn &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,14 +79,14 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Linear-Regression-using-Scikit-Learn">
-<h1>Optional Lab: Linear Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab:-Linear-Regression-using-Scikit-Learn" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab: Linear Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab:-Linear-Regression-using-Scikit-Learn" title="Permalink to this heading"></a></h1>
 <p>There is an open-source, commercially usable machine learning toolkit called <a class="reference external" href="https://scikit-learn.org/stable/index.html">scikit-learn</a>. This toolkit contains implementations of many of the algorithms that you will work with in this course.</p>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab you will: - Utilize scikit-learn to implement linear regression using Gradient Descent</p>
 </section>
 <section id="Tools">
-<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this headline"></a></h2>
+<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this heading"></a></h2>
 <p>You will utilize functions from scikit-learn as well as matplotlib and NumPy.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -113,7 +114,7 @@
 </section>
 </section>
 <section id="Gradient-Descent">
-<h1>Gradient Descent<a class="headerlink" href="#Gradient-Descent" title="Permalink to this headline"></a></h1>
+<h1>Gradient Descent<a class="headerlink" href="#Gradient-Descent" title="Permalink to this heading"></a></h1>
 <p>Scikit-learn has a gradient descent regression model <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html#examples-using-sklearn-linear-model-sgdregressor">sklearn.linear_model.SGDRegressor</a>. Like your previous implementation of gradient descent, this model performs best with normalized inputs.
 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler">sklearn.preprocessing.StandardScaler</a> will perform z-score normalization as in a previous lab. Here it is referred to as ‘standard score’.</p>
 <div class="nbinput nblast docutils container">

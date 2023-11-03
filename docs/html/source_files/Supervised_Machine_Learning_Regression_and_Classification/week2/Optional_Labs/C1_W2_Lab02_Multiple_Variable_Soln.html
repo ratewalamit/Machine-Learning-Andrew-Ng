@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Multiple Variable Linear Regression &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,7 +79,7 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Multiple-Variable-Linear-Regression">
-<h1>Optional Lab: Multiple Variable Linear Regression<a class="headerlink" href="#Optional-Lab:-Multiple-Variable-Linear-Regression" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab: Multiple Variable Linear Regression<a class="headerlink" href="#Optional-Lab:-Multiple-Variable-Linear-Regression" title="Permalink to this heading"></a></h1>
 <p>In this lab, you will extend the data structures and previously developed routines to support multiple features. Several routines are updated making the lab appear lengthy, but it makes minor adjustments to previous routines making it quick to review. # Outline - `  1.1 Goals &lt;#toc_15456_1.1&gt;`__ - `  1.2 Tools &lt;#toc_15456_1.2&gt;`__ - `  1.3 Notation &lt;#toc_15456_1.3&gt;`__ - 2 Problem Statement - `  2.1 Matrix X containing our examples &lt;#toc_15456_2.1&gt;`__ - `  2.2 Parameter vector
 w, b &lt;#toc_15456_2.2&gt;`__ - 3 Model Prediction With Multiple Variables - `  3.1 Single Prediction element by element &lt;#toc_15456_3.1&gt;`__ - `  3.2 Single Prediction, vector &lt;#toc_15456_3.2&gt;`__ - 4 Compute Cost With Multiple Variables - 5 Gradient Descent With Multiple Variables - `  5.1 Compute Gradient with Multiple Variables &lt;#toc_15456_5.1&gt;`__ - `  5.2 Gradient Descent With Multiple Variables &lt;#toc_15456_5.2&gt;`__ - 6
 Congratulations</p>
@@ -105,13 +106,6 @@ Congratulations</p>
 <p># 2 Problem Statement</p>
 <p>You will use the motivating example of housing price prediction. The training dataset contains three examples with four features (size, bedrooms, floors and, age) shown in the table below. Note that, unlike the earlier labs, size is in sqft rather than 1000 sqft. This causes an issue, which you will solve in the next lab!</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 24%" />
-<col style="width: 21%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Size (sqft)</p></th>
 <th class="head"><p>Number of Bedrooms</p></th>

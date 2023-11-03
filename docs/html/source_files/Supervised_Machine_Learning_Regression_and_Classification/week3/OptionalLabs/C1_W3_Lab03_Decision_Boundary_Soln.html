@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Logistic Regression, Decision Boundary &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,9 +79,9 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Logistic-Regression,-Decision-Boundary">
-<h1>Optional Lab: Logistic Regression, Decision Boundary<a class="headerlink" href="#Optional-Lab:-Logistic-Regression,-Decision-Boundary" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab: Logistic Regression, Decision Boundary<a class="headerlink" href="#Optional-Lab:-Logistic-Regression,-Decision-Boundary" title="Permalink to this heading"></a></h1>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab, you will: - Plot the decision boundary for a logistic regression model. This will give you a better sense of what the model is predicting.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -96,7 +97,7 @@
 </div>
 </section>
 <section id="Dataset">
-<h2>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this headline"></a></h2>
+<h2>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this heading"></a></h2>
 <p>Let’s suppose you have following training dataset - The input variable <code class="docutils literal notranslate"><span class="pre">X</span></code> is a numpy array which has 6 training examples, each with two features - The output variable <code class="docutils literal notranslate"><span class="pre">y</span></code> is also a numpy array with 6 examples, and <code class="docutils literal notranslate"><span class="pre">y</span></code> is either <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -108,7 +109,7 @@
 </div>
 </div>
 <section id="Plot-data">
-<h3>Plot data<a class="headerlink" href="#Plot-data" title="Permalink to this headline"></a></h3>
+<h3>Plot data<a class="headerlink" href="#Plot-data" title="Permalink to this heading"></a></h3>
 <p>Let’s use a helper function to plot this data. The data points with label <span class="math notranslate nohighlight">\(y=1\)</span> are shown as red crosses, while the data points with label <span class="math notranslate nohighlight">\(y=0\)</span> are shown as blue circles.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -133,7 +134,7 @@
 </section>
 </section>
 <section id="Logistic-regression-model">
-<h2>Logistic regression model<a class="headerlink" href="#Logistic-regression-model" title="Permalink to this headline"></a></h2>
+<h2>Logistic regression model<a class="headerlink" href="#Logistic-regression-model" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>Suppose you’d like to train a logistic regression model on this data which has the form</p>
 <p><span class="math notranslate nohighlight">\(f(x) = g(w_0x_0+w_1x_1 + b)\)</span></p>
@@ -146,7 +147,7 @@
 </ul>
 <p>Let’s try to understand what this trained model is predicting by plotting its decision boundary</p>
 <section id="Refresher-on-logistic-regression-and-decision-boundary">
-<h3>Refresher on logistic regression and decision boundary<a class="headerlink" href="#Refresher-on-logistic-regression-and-decision-boundary" title="Permalink to this headline"></a></h3>
+<h3>Refresher on logistic regression and decision boundary<a class="headerlink" href="#Refresher-on-logistic-regression-and-decision-boundary" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>Recall that for logistic regression, the model is represented as</p>
 <div class="math notranslate nohighlight">
@@ -196,7 +197,7 @@
 </ul>
 </section>
 <section id="Plotting-decision-boundary">
-<h3>Plotting decision boundary<a class="headerlink" href="#Plotting-decision-boundary" title="Permalink to this headline"></a></h3>
+<h3>Plotting decision boundary<a class="headerlink" href="#Plotting-decision-boundary" title="Permalink to this heading"></a></h3>
 <p>Now, let’s go back to our example to understand how the logistic regression model is making predictions.</p>
 <ul>
 <li><p>Our logistic regression model has the form</p>
@@ -244,7 +245,7 @@
 </section>
 </section>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
 <p>You have explored the decision boundary in the context of logistic regression.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:

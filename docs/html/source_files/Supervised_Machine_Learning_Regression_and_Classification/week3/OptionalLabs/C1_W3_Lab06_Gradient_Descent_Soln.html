@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Gradient Descent for Logistic Regression &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,9 +79,9 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Gradient-Descent-for-Logistic-Regression">
-<h1>Optional Lab: Gradient Descent for Logistic Regression<a class="headerlink" href="#Optional-Lab:-Gradient-Descent-for-Logistic-Regression" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab: Gradient Descent for Logistic Regression<a class="headerlink" href="#Optional-Lab:-Gradient-Descent-for-Logistic-Regression" title="Permalink to this heading"></a></h1>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab, you will: - update gradient descent for logistic regression. - explore gradient descent on a familiar data set</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -98,7 +99,7 @@
 </div>
 </section>
 <section id="Data-set">
-<h2>Data set<a class="headerlink" href="#Data-set" title="Permalink to this headline"></a></h2>
+<h2>Data set<a class="headerlink" href="#Data-set" title="Permalink to this heading"></a></h2>
 <p>Let’s start with the same two feature data set used in the decision boundary lab.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -132,8 +133,8 @@
 </div>
 </section>
 <section id="Logistic-Gradient-Descent">
-<h2>Logistic Gradient Descent<a class="headerlink" href="#Logistic-Gradient-Descent" title="Permalink to this headline"></a></h2>
-<p><img alt="3bdd47d2796646a89b3857fee4e3fa35" src="../../../../_images/C1_W3_Logistic_gradient_descent.png" /></p>
+<h2>Logistic Gradient Descent<a class="headerlink" href="#Logistic-Gradient-Descent" title="Permalink to this heading"></a></h2>
+<p><img alt="a069362a6182458686a4f9194b9a2725" src="../../../../_images/C1_W3_Logistic_gradient_descent.png" /></p>
 <p>Recall the gradient descent algorithm utilizes the gradient calculation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -158,10 +159,10 @@ where <span class="math notranslate nohighlight">\(g(z)\)</span> is the sigmoid 
 <span class="math notranslate nohighlight">\(g(z) = \frac{1}{1+e^{-z}}\)</span></p></li>
 </ul>
 <section id="Gradient-Descent-Implementation">
-<h3>Gradient Descent Implementation<a class="headerlink" href="#Gradient-Descent-Implementation" title="Permalink to this headline"></a></h3>
+<h3>Gradient Descent Implementation<a class="headerlink" href="#Gradient-Descent-Implementation" title="Permalink to this heading"></a></h3>
 <p>The gradient descent algorithm implementation has two components: - The loop implementing equation (1) above. This is <code class="docutils literal notranslate"><span class="pre">gradient_descent</span></code> below and is generally provided to you in optional and practice labs. - The calculation of the current gradient, equations (2,3) above. This is <code class="docutils literal notranslate"><span class="pre">compute_gradient_logistic</span></code> below. You will be asked to implement this week’s practice lab.</p>
 <section id="Calculating-the-Gradient,-Code-Description">
-<h4>Calculating the Gradient, Code Description<a class="headerlink" href="#Calculating-the-Gradient,-Code-Description" title="Permalink to this headline"></a></h4>
+<h4>Calculating the Gradient, Code Description<a class="headerlink" href="#Calculating-the-Gradient,-Code-Description" title="Permalink to this heading"></a></h4>
 <div class="line-block">
 <div class="line">Implements equation (2),(3) above for all <span class="math notranslate nohighlight">\(w_j\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. There are many ways to implement this. Outlined below is this: - initialize variables to accumulate <code class="docutils literal notranslate"><span class="pre">dj_dw</span></code> and <code class="docutils literal notranslate"><span class="pre">dj_db</span></code> - for each example - calculate the error for that example <span class="math notranslate nohighlight">\(g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b) - \mathbf{y}^{(i)}\)</span> - for each input value <span class="math notranslate nohighlight">\(x_{j}^{(i)}\)</span> in this example,</div>
 <div class="line">- multiply the error by the input <span class="math notranslate nohighlight">\(x_{j}^{(i)}\)</span>, and add to the corresponding element of <code class="docutils literal notranslate"><span class="pre">dj_dw</span></code>. (equation 2 above) - add the error to <code class="docutils literal notranslate"><span class="pre">dj_db</span></code> (equation 3 above)</div>
@@ -243,7 +244,7 @@ dj_dw: [0.498333393278696, 0.49883942983996693]
 </div>
 </section>
 <section id="Gradient-Descent-Code">
-<h4>Gradient Descent Code<a class="headerlink" href="#Gradient-Descent-Code" title="Permalink to this headline"></a></h4>
+<h4>Gradient Descent Code<a class="headerlink" href="#Gradient-Descent-Code" title="Permalink to this heading"></a></h4>
 <p>The code implementing equation (1) above is implemented below. Take a moment to locate and compare the functions in the routine to the equations above.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -326,7 +327,7 @@ updated parameters: w:[5.28 5.08], b:-14.222409982019837
 </div>
 </section>
 <section id="Let's-plot-the-results-of-gradient-descent:">
-<h4>Let’s plot the results of gradient descent:<a class="headerlink" href="#Let's-plot-the-results-of-gradient-descent:" title="Permalink to this headline"></a></h4>
+<h4>Let’s plot the results of gradient descent:<a class="headerlink" href="#Let's-plot-the-results-of-gradient-descent:" title="Permalink to this heading"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -360,7 +361,7 @@ updated parameters: w:[5.28 5.08], b:-14.222409982019837
 </section>
 </section>
 <section id="Another-Data-set">
-<h2>Another Data set<a class="headerlink" href="#Another-Data-set" title="Permalink to this headline"></a></h2>
+<h2>Another Data set<a class="headerlink" href="#Another-Data-set" title="Permalink to this heading"></a></h2>
 <p>Let’s return to a one-variable data set. With just two parameters, <span class="math notranslate nohighlight">\(w\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, it is possible to plot the cost function using a contour plot to get a better idea of what gradient descent is up to.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -408,7 +409,7 @@ plot, rerun the cell</p>
 </div>
 </section>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
 <p>You have: - examined the formulas and implementation of calculating the gradient for logistic regression - utilized those routines in - exploring a single variable data set - exploring a two-variable data set</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:

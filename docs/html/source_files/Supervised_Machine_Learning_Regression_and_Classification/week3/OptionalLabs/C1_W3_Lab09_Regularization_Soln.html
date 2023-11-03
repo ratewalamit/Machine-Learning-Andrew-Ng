@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab - Regularized Cost and Gradient &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,9 +79,9 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab---Regularized-Cost-and-Gradient">
-<h1>Optional Lab - Regularized Cost and Gradient<a class="headerlink" href="#Optional-Lab---Regularized-Cost-and-Gradient" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab - Regularized Cost and Gradient<a class="headerlink" href="#Optional-Lab---Regularized-Cost-and-Gradient" title="Permalink to this heading"></a></h1>
 <section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab, you will: - extend the previous linear and logistic cost functions with a regularization term. - rerun the previous example of over-fitting with a regularization term added.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -98,13 +99,13 @@
 </section>
 </section>
 <section id="Adding-regularization">
-<h1>Adding regularization<a class="headerlink" href="#Adding-regularization" title="Permalink to this headline"></a></h1>
-<p><img alt="68149161f69c4e3d8c9e6ef0a6ee5523" src="../../../../_images/C1_W3_LinearGradientRegularized.png" /> <img alt="ec3d9f712f2e4c97afe2b926813492a1" src="../../../../_images/C1_W3_LogisticGradientRegularized.png" /></p>
+<h1>Adding regularization<a class="headerlink" href="#Adding-regularization" title="Permalink to this heading"></a></h1>
+<p><img alt="0f3a34a79c8440ac8b685043adb1f176" src="../../../../_images/C1_W3_LinearGradientRegularized.png" /> <img alt="32c828334ce847a1803213a33048c999" src="../../../../_images/C1_W3_LogisticGradientRegularized.png" /></p>
 <p>The slides above show the cost and gradient functions for both linear and logistic regression. Note: - Cost - The cost functions differ significantly between linear and logistic regression, but adding regularization to the equations is the same. - Gradient - The gradient functions for linear and logistic regression are very similar. They differ only in the implementation of <span class="math notranslate nohighlight">\(f_{wb}\)</span>.</p>
 <section id="Cost-functions-with-regularization">
-<h2>Cost functions with regularization<a class="headerlink" href="#Cost-functions-with-regularization" title="Permalink to this headline"></a></h2>
+<h2>Cost functions with regularization<a class="headerlink" href="#Cost-functions-with-regularization" title="Permalink to this heading"></a></h2>
 <section id="Cost-function-for-regularized-linear-regression">
-<h3>Cost function for regularized linear regression<a class="headerlink" href="#Cost-function-for-regularized-linear-regression" title="Permalink to this headline"></a></h3>
+<h3>Cost function for regularized linear regression<a class="headerlink" href="#Cost-function-for-regularized-linear-regression" title="Permalink to this heading"></a></h3>
 <p>The equation for the cost function regularized linear regression is:</p>
 <div class="math notranslate nohighlight">
 \[J(\mathbf{w},b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{\mathbf{w},b}(\mathbf{x}^{(i)}) - y^{(i)})^2  + \frac{\lambda}{2m}  \sum_{j=0}^{n-1} w_j^2 \tag{1}\]</div>
@@ -181,7 +182,7 @@ Regularized cost: 0.07917239320214275
 <table><tr><td><p>Regularized cost: 0.07917239320214275</p>
 </td></tr></table></section>
 <section id="Cost-function-for-regularized-logistic-regression">
-<h3>Cost function for regularized logistic regression<a class="headerlink" href="#Cost-function-for-regularized-logistic-regression" title="Permalink to this headline"></a></h3>
+<h3>Cost function for regularized logistic regression<a class="headerlink" href="#Cost-function-for-regularized-logistic-regression" title="Permalink to this heading"></a></h3>
 <p>For regularized <strong>logistic</strong> regression, the cost function is of the form</p>
 <div class="math notranslate nohighlight">
 \[J(\mathbf{w},b) = \frac{1}{m}  \sum_{i=0}^{m-1} \left[ -y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) \right] + \frac{\lambda}{2m}  \sum_{j=0}^{n-1} w_j^2 \tag{3}\]</div>
@@ -260,7 +261,7 @@ Regularized cost: 0.6850849138741673
 </td></tr></table></section>
 </section>
 <section id="Gradient-descent-with-regularization">
-<h2>Gradient descent with regularization<a class="headerlink" href="#Gradient-descent-with-regularization" title="Permalink to this headline"></a></h2>
+<h2>Gradient descent with regularization<a class="headerlink" href="#Gradient-descent-with-regularization" title="Permalink to this heading"></a></h2>
 <p>The basic algorithm for running gradient descent does not change with regularization, it is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -272,7 +273,7 @@ Regularized cost: 0.6850849138741673
 <p>Where each iteration performs simultaneous updates on <span class="math notranslate nohighlight">\(w_j\)</span> for all <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>What changes with regularization is computing the gradients.</p>
 <section id="Computing-the-Gradient-with-regularization-(both-linear/logistic)">
-<h3>Computing the Gradient with regularization (both linear/logistic)<a class="headerlink" href="#Computing-the-Gradient-with-regularization-(both-linear/logistic)" title="Permalink to this headline"></a></h3>
+<h3>Computing the Gradient with regularization (both linear/logistic)<a class="headerlink" href="#Computing-the-Gradient-with-regularization-(both-linear/logistic)" title="Permalink to this heading"></a></h3>
 <p>The gradient calculation for both linear and logistic regression are nearly identical, differing only in computation of <span class="math notranslate nohighlight">\(f_{\mathbf{w}b}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -302,7 +303,7 @@ Regularized cost: 0.6850849138741673
 <p>The term which adds regularization is the $:nbsphinx-math:<cite>frac{lambda}{m}</cite> w_j $.</p>
 </section>
 <section id="Gradient-function-for-regularized-linear-regression">
-<h3>Gradient function for regularized linear regression<a class="headerlink" href="#Gradient-function-for-regularized-linear-regression" title="Permalink to this headline"></a></h3>
+<h3>Gradient function for regularized linear regression<a class="headerlink" href="#Gradient-function-for-regularized-linear-regression" title="Permalink to this heading"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -376,7 +377,7 @@ Regularized dj_dw:
 </div>
 </section>
 <section id="Gradient-function-for-regularized-logistic-regression">
-<h3>Gradient function for regularized logistic regression<a class="headerlink" href="#Gradient-function-for-regularized-logistic-regression" title="Permalink to this headline"></a></h3>
+<h3>Gradient function for regularized logistic regression<a class="headerlink" href="#Gradient-function-for-regularized-logistic-regression" title="Permalink to this heading"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -452,7 +453,7 @@ Regularized dj_dw:
 </section>
 </section>
 <section id="Rerun-over-fitting-example">
-<h2>Rerun over-fitting example<a class="headerlink" href="#Rerun-over-fitting-example" title="Permalink to this headline"></a></h2>
+<h2>Rerun over-fitting example<a class="headerlink" href="#Rerun-over-fitting-example" title="Permalink to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -478,7 +479,7 @@ Regularized dj_dw:
 <p>In the plot above, try out regularization on the previous example. In particular: - Categorical (logistic regression) - set degree to 6, lambda to 0 (no regularization), fit the data - now set lambda to 1 (increase regularization), fit the data, notice the difference. - Regression (linear regression) - try the same procedure.</p>
 </section>
 <section id="Congratulations!">
-<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h2>
+<h2>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h2>
 <p>You have: - examples of cost and gradient routines with regularization added for both linear and logistic regression - developed some intuition on how regularization can reduce over-fitting</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:

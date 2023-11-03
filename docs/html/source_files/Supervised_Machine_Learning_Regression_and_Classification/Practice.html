@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2 - Logistic Regression &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -1675,15 +1676,15 @@ array([[1.41e-04, 4.91e-04, 1.25e-03, 2.55e-03, 4.44e-03, 6.92e-03,
 </div>
 </div>
 <section id="2---Logistic-Regression">
-<h1>2 - Logistic Regression<a class="headerlink" href="#2---Logistic-Regression" title="Permalink to this headline"></a></h1>
+<h1>2 - Logistic Regression<a class="headerlink" href="#2---Logistic-Regression" title="Permalink to this heading"></a></h1>
 <p>In this part of the exercise, you will build a logistic regression model to predict whether a student gets admitted into a university.</p>
 <section id="2.1-Problem-Statement">
-<h2>2.1 Problem Statement<a class="headerlink" href="#2.1-Problem-Statement" title="Permalink to this headline"></a></h2>
+<h2>2.1 Problem Statement<a class="headerlink" href="#2.1-Problem-Statement" title="Permalink to this heading"></a></h2>
 <p>Suppose that you are the administrator of a university department and you want to determine each applicant’s chance of admission based on their results on two exams. * You have historical data from previous applicants that you can use as a training set for logistic regression. * For each training example, you have the applicant’s scores on two exams and the admissions decision. * Your task is to build a classification model that estimates an applicant’s probability of admission based on the
 scores from those two exams.</p>
 </section>
 <section id="2.2-Loading-and-visualizing-the-data">
-<h2>2.2 Loading and visualizing the data<a class="headerlink" href="#2.2-Loading-and-visualizing-the-data" title="Permalink to this headline"></a></h2>
+<h2>2.2 Loading and visualizing the data<a class="headerlink" href="#2.2-Loading-and-visualizing-the-data" title="Permalink to this heading"></a></h2>
 <p>You will start by loading the dataset for this task. - The <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> - <code class="docutils literal notranslate"><span class="pre">X_train</span></code> contains exam scores on two exams for a student - <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is the admission decision - <code class="docutils literal notranslate"><span class="pre">y_train</span> <span class="pre">=</span> <span class="pre">1</span></code> if the student was admitted - <code class="docutils literal notranslate"><span class="pre">y_train</span> <span class="pre">=</span> <span class="pre">0</span></code> if the student was not admitted - Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
@@ -1770,7 +1771,7 @@ Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
 </div>
 <p>Visualize your data</p>
 <p>Before starting to implement any learning algorithm, it is always good to visualize the data if possible. - The code below displays the data on a 2D plot (as shown below), where the axes are the two exam scores, and the positive and negative examples are shown with different markers. - We use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to generate this plot.</p>
-<p><img alt="2694996532d245ed8f122a3d6905aeed" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="a790d515556e40169198bbf8ffd9eedf" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
@@ -1797,7 +1798,7 @@ Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
 <p>Your goal is to build a logistic regression model to fit this data. - With this model, you can then predict if a new student will be admitted based on their scores on the two exams.</p>
 </section>
 <section id="2.3-Sigmoid-function">
-<h2>2.3 Sigmoid function<a class="headerlink" href="#2.3-Sigmoid-function" title="Permalink to this headline"></a></h2>
+<h2>2.3 Sigmoid function<a class="headerlink" href="#2.3-Sigmoid-function" title="Permalink to this heading"></a></h2>
 <p>Recall that for logistic regression, the model is represented as</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(x) = g(\mathbf{w}\cdot \mathbf{x} + b)\]</div>
@@ -1900,7 +1901,7 @@ sigmoid([ -1, 0, 1, 2]) = [0.27 0.5  0.73 0.88]
 </td><td><p>[0.26894142 0.5 0.73105858 0.88079708]</p>
 </td></tr></table></section>
 <section id="2.4-Cost-function-for-logistic-regression">
-<h2>2.4 Cost function for logistic regression<a class="headerlink" href="#2.4-Cost-function-for-logistic-regression" title="Permalink to this headline"></a></h2>
+<h2>2.4 Cost function for logistic regression<a class="headerlink" href="#2.4-Cost-function-for-logistic-regression" title="Permalink to this heading"></a></h2>
 <p>In this section, you will implement the cost function for logistic regression.</p>
 <p>Exercise 2</p>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_cost</span></code> function using the equations below.</p>
@@ -2063,7 +2064,7 @@ Cost at test w,b: 0.218
 </td><td><p>0.218</p>
 </td></tr></table></section>
 <section id="2.5-Gradient-for-logistic-regression">
-<h2>2.5 Gradient for logistic regression<a class="headerlink" href="#2.5-Gradient-for-logistic-regression" title="Permalink to this headline"></a></h2>
+<h2>2.5 Gradient for logistic regression<a class="headerlink" href="#2.5-Gradient-for-logistic-regression" title="Permalink to this heading"></a></h2>
 <p>In this section, you will implement the gradient for logistic regression.</p>
 <p>Recall that the gradient descent algorithm is:</p>
 <div class="math notranslate nohighlight">
@@ -2232,7 +2233,7 @@ dj_dw at test_w: [-44.831353617873795, -44.37384124953978]
 </td><td><p>[-44.8313536178737957, -44.37384124953978]</p>
 </td></tr></table></section>
 <section id="2.6-Learning-parameters-using-gradient-descent">
-<h2>2.6 Learning parameters using gradient descent<a class="headerlink" href="#2.6-Learning-parameters-using-gradient-descent" title="Permalink to this headline"></a></h2>
+<h2>2.6 Learning parameters using gradient descent<a class="headerlink" href="#2.6-Learning-parameters-using-gradient-descent" title="Permalink to this heading"></a></h2>
 <p>Similar to the previous assignment, you will now find the optimal parameters of a logistic regression model by using gradient descent. - You don’t need to implement anything for this part. Simply run the cells below.</p>
 <ul class="simple">
 <li><p>A good way to verify that gradient descent is working correctly is to look at the value of <span class="math notranslate nohighlight">\(J(\mathbf{w},b)\)</span> and check that it is decreasing with each step.</p></li>
@@ -2358,10 +2359,10 @@ Iteration 9999: Cost     0.30
 </div>
 </section>
 <section id="2.7-Plotting-the-decision-boundary">
-<h2>2.7 Plotting the decision boundary<a class="headerlink" href="#2.7-Plotting-the-decision-boundary" title="Permalink to this headline"></a></h2>
+<h2>2.7 Plotting the decision boundary<a class="headerlink" href="#2.7-Plotting-the-decision-boundary" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">We will now use the final parameters from gradient descent to plot the linear fit. If you implemented the previous parts correctly, you should see the following plot:</div>
-<div class="line"><img alt="9c40577b4e804187850b59ccae917f55" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
+<div class="line"><img alt="b8b35c4dbb9a439f8d288ea3f2049413" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
 </div>
 <p>We will use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to create this plot.</p>
 <div class="nbinput docutils container">
@@ -2381,12 +2382,12 @@ Iteration 9999: Cost     0.30
 </div>
 </section>
 <section id="2.8-Evaluating-logistic-regression">
-<h2>2.8 Evaluating logistic regression<a class="headerlink" href="#2.8-Evaluating-logistic-regression" title="Permalink to this headline"></a></h2>
+<h2>2.8 Evaluating logistic regression<a class="headerlink" href="#2.8-Evaluating-logistic-regression" title="Permalink to this heading"></a></h2>
 <p>We can evaluate the quality of the parameters we have found by seeing how well the learned model predicts on our training set.</p>
 <p>You will implement the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function below to do this.</p>
 </section>
 <section id="Exercise-4">
-<h2>Exercise 4<a class="headerlink" href="#Exercise-4" title="Permalink to this headline"></a></h2>
+<h2>Exercise 4<a class="headerlink" href="#Exercise-4" title="Permalink to this heading"></a></h2>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function to produce <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code> predictions given a dataset and a learned parameter vector <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. - First you need to compute the prediction from the model <span class="math notranslate nohighlight">\(f(x^{(i)}) = g(w \cdot x^{(i)})\)</span> for every example - You’ve implemented this before in the parts above - We interpret the output of the model (<span class="math notranslate nohighlight">\(f(x^{(i)})\)</span>) as the probability that <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span> given <span class="math notranslate nohighlight">\(x^{(i)}\)</span> and parameterized by <span class="math notranslate nohighlight">\(w\)</span>. - Therefore, to get a
 final prediction (<span class="math notranslate nohighlight">\(y^{(i)}=0\)</span> or <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span>) from the logistic regression model, you can use the following heuristic -</p>
 <p>if <span class="math notranslate nohighlight">\(f(x^{(i)}) &gt;= 0.5\)</span>, predict <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span></p>
@@ -2534,14 +2535,14 @@ Train Accuracy: 92.000000
 </td></tr></table></section>
 </section>
 <section id="3---Regularized-Logistic-Regression">
-<h1>3 - Regularized Logistic Regression<a class="headerlink" href="#3---Regularized-Logistic-Regression" title="Permalink to this headline"></a></h1>
+<h1>3 - Regularized Logistic Regression<a class="headerlink" href="#3---Regularized-Logistic-Regression" title="Permalink to this heading"></a></h1>
 <p>In this part of the exercise, you will implement regularized logistic regression to predict whether microchips from a fabrication plant passes quality assurance (QA). During QA, each microchip goes through various tests to ensure it is functioning correctly.</p>
 <section id="3.1-Problem-Statement">
-<h2>3.1 Problem Statement<a class="headerlink" href="#3.1-Problem-Statement" title="Permalink to this headline"></a></h2>
+<h2>3.1 Problem Statement<a class="headerlink" href="#3.1-Problem-Statement" title="Permalink to this heading"></a></h2>
 <p>Suppose you are the product manager of the factory and you have the test results for some microchips on two different tests. - From these two tests, you would like to determine whether the microchips should be accepted or rejected. - To help you make the decision, you have a dataset of test results on past microchips, from which you can build a logistic regression model.</p>
 </section>
 <section id="3.2-Loading-and-visualizing-the-data">
-<h2>3.2 Loading and visualizing the data<a class="headerlink" href="#3.2-Loading-and-visualizing-the-data" title="Permalink to this headline"></a></h2>
+<h2>3.2 Loading and visualizing the data<a class="headerlink" href="#3.2-Loading-and-visualizing-the-data" title="Permalink to this heading"></a></h2>
 <p>Similar to previous parts of this exercise, let’s start by loading the dataset for this task and visualizing it.</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p>
@@ -2638,7 +2639,7 @@ We have m = 118 training examples
 </div>
 <p>Visualize your data</p>
 <p>The helper function <code class="docutils literal notranslate"><span class="pre">plot_data</span></code> (from <code class="docutils literal notranslate"><span class="pre">utils.py</span></code>) is used to generate a figure like Figure 3, where the axes are the two test scores, and the positive (y = 1, accepted) and negative (y = 0, rejected) examples are shown with different markers.</p>
-<p><img alt="5377650db2a442ac9e6707e4cc119e3f" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="a3ad89f6d1e34c0db658817f7bb92739" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
 </pre></div>
@@ -2664,7 +2665,7 @@ We have m = 118 training examples
 <p>Figure 3 shows that our dataset cannot be separated into positive and negative examples by a straight-line through the plot. Therefore, a straight forward application of logistic regression will not perform well on this dataset since logistic regression will only be able to find a linear decision boundary.</p>
 </section>
 <section id="3.3-Feature-mapping">
-<h2>3.3 Feature mapping<a class="headerlink" href="#3.3-Feature-mapping" title="Permalink to this headline"></a></h2>
+<h2>3.3 Feature mapping<a class="headerlink" href="#3.3-Feature-mapping" title="Permalink to this heading"></a></h2>
 <p>One way to fit the data better is to create more features from each data point. In the provided function <code class="docutils literal notranslate"><span class="pre">map_feature</span></code>, we will map the features into all polynomial terms of <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> up to the sixth power.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathrm{map\_feature}(x) =
@@ -2728,7 +2729,7 @@ mapped X_train[0]: [5.13e-02 7.00e-01 2.63e-03 3.59e-02 4.89e-01 1.35e-04 1.84e-
 <p>While the feature mapping allows us to build a more expressive classifier, it is also more susceptible to overfitting. In the next parts of the exercise, you will implement regularized logistic regression to fit the data and also see for yourself how regularization can help combat the overfitting problem.</p>
 </section>
 <section id="3.4-Cost-function-for-regularized-logistic-regression">
-<h2>3.4 Cost function for regularized logistic regression<a class="headerlink" href="#3.4-Cost-function-for-regularized-logistic-regression" title="Permalink to this headline"></a></h2>
+<h2>3.4 Cost function for regularized logistic regression<a class="headerlink" href="#3.4-Cost-function-for-regularized-logistic-regression" title="Permalink to this heading"></a></h2>
 <p>In this part, you will implement the cost function for regularized logistic regression.</p>
 <p>Recall that for regularized logistic regression, the cost function is of the form</p>
 <div class="math notranslate nohighlight">
@@ -2853,7 +2854,7 @@ Cell <span class="ansi-green-fg">In[2], line 6</span>
 </td><td><p>0.6618252552483948</p>
 </td></tr></table></section>
 <section id="3.5-Gradient-for-regularized-logistic-regression">
-<h2>3.5 Gradient for regularized logistic regression<a class="headerlink" href="#3.5-Gradient-for-regularized-logistic-regression" title="Permalink to this headline"></a></h2>
+<h2>3.5 Gradient for regularized logistic regression<a class="headerlink" href="#3.5-Gradient-for-regularized-logistic-regression" title="Permalink to this heading"></a></h2>
 <p>In this section, you will implement the gradient for regularized logistic regression.</p>
 <p>The gradient of the regularized cost function has two components. The first, <span class="math notranslate nohighlight">\(\frac{\partial J(\mathbf{w},b)}{\partial b}\)</span> is a scalar, the other is a vector with the same shape as the parameters <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>, where the <span class="math notranslate nohighlight">\(j^\mathrm{th}\)</span> element is defined as follows:</p>
 <div class="math notranslate nohighlight">
@@ -2969,7 +2970,7 @@ First few elements of regularized dj_dw:
 </td></tr><tr><td><p>[[-0.010386028450548701], [0.01140985288328012], [0.0536273463274574], [0.003140278267313462]]</p>
 </td></tr></table></section>
 <section id="3.6-Learning-parameters-using-gradient-descent">
-<h2>3.6 Learning parameters using gradient descent<a class="headerlink" href="#3.6-Learning-parameters-using-gradient-descent" title="Permalink to this headline"></a></h2>
+<h2>3.6 Learning parameters using gradient descent<a class="headerlink" href="#3.6-Learning-parameters-using-gradient-descent" title="Permalink to this heading"></a></h2>
 <p>Similar to the previous parts, you will use your gradient descent function implemented above to learn the optimal parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>. - If you have completed the cost and gradient for regularized logistic regression correctly, you should be able to step through the next cell to learn the parameters <span class="math notranslate nohighlight">\(w\)</span>. - After training our parameters, we will use it to plot the decision boundary.</p>
 <p><strong>Note</strong></p>
 <p>The code block below takes quite a while to run, especially with a non-vectorized version. You can reduce the <code class="docutils literal notranslate"><span class="pre">iterations</span></code> to test your implementation and iterate faster. If you have time, run for 100,000 iterations to see better results.</p>
@@ -3414,13 +3415,13 @@ Iteration 9999: Cost     0.45
 </div>
 </section>
 <section id="3.7-Plotting-the-decision-boundary">
-<h2>3.7 Plotting the decision boundary<a class="headerlink" href="#3.7-Plotting-the-decision-boundary" title="Permalink to this headline"></a></h2>
+<h2>3.7 Plotting the decision boundary<a class="headerlink" href="#3.7-Plotting-the-decision-boundary" title="Permalink to this heading"></a></h2>
 <p>To help you visualize the model learned by this classifier, we will use our <code class="docutils literal notranslate"><span class="pre">plot_decision_boundary</span></code> function which plots the (non-linear) decision boundary that separates the positive and negative examples.</p>
 <ul class="simple">
 <li><p>In the function, we plotted the non-linear decision boundary by computing the classifier’s predictions on an evenly spaced grid and then drew a contour plot of where the predictions change from y = 0 to y = 1.</p></li>
 <li><p>After learning the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>, the next step is to plot a decision boundary similar to Figure 4.</p></li>
 </ul>
-<p><img alt="96d0cbdfa78947b1b0cb3ce291b8cca9" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="aaa103d494d44c79a0ad3b8a5d9a51c4" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[111]:
 </pre></div>
@@ -3490,7 +3491,7 @@ Iteration 9999: Cost     0.45
 </div>
 </section>
 <section id="3.8-Evaluating-regularized-logistic-regression-model">
-<h2>3.8 Evaluating regularized logistic regression model<a class="headerlink" href="#3.8-Evaluating-regularized-logistic-regression-model" title="Permalink to this headline"></a></h2>
+<h2>3.8 Evaluating regularized logistic regression model<a class="headerlink" href="#3.8-Evaluating-regularized-logistic-regression-model" title="Permalink to this heading"></a></h2>
 <p>You will use the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function that you implemented above to calculate the accuracy of the regulaized logistic regression model on the training set</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
@@ -3515,7 +3516,7 @@ Train Accuracy: 82.203390
 <table><tr><td><p>Train Accuracy:~ 80%</p>
 </td></tr></table></section>
 <section id="My-Solution">
-<h2>My Solution<a class="headerlink" href="#My-Solution" title="Permalink to this headline"></a></h2>
+<h2>My Solution<a class="headerlink" href="#My-Solution" title="Permalink to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -3784,15 +3785,15 @@ Train Accuracy: 0.000000
 </section>
 </section>
 <section id="id5">
-<h1>2 - Logistic Regression<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h1>
+<h1>2 - Logistic Regression<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h1>
 <p>In this part of the exercise, you will build a logistic regression model to predict whether a student gets admitted into a university.</p>
 <section id="id6">
-<h2>2.1 Problem Statement<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2>2.1 Problem Statement<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <p>Suppose that you are the administrator of a university department and you want to determine each applicant’s chance of admission based on their results on two exams. * You have historical data from previous applicants that you can use as a training set for logistic regression. * For each training example, you have the applicant’s scores on two exams and the admissions decision. * Your task is to build a classification model that estimates an applicant’s probability of admission based on the
 scores from those two exams.</p>
 </section>
 <section id="id7">
-<h2>2.2 Loading and visualizing the data<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<h2>2.2 Loading and visualizing the data<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <p>You will start by loading the dataset for this task. - The <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> - <code class="docutils literal notranslate"><span class="pre">X_train</span></code> contains exam scores on two exams for a student - <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is the admission decision - <code class="docutils literal notranslate"><span class="pre">y_train</span> <span class="pre">=</span> <span class="pre">1</span></code> if the student was admitted - <code class="docutils literal notranslate"><span class="pre">y_train</span> <span class="pre">=</span> <span class="pre">0</span></code> if the student was not admitted - Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
@@ -3879,7 +3880,7 @@ Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
 </div>
 <p>Visualize your data</p>
 <p>Before starting to implement any learning algorithm, it is always good to visualize the data if possible. - The code below displays the data on a 2D plot (as shown below), where the axes are the two exam scores, and the positive and negative examples are shown with different markers. - We use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to generate this plot.</p>
-<p><img alt="012e994d30ff4639afbb6b3168b544e5" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="6106f4539db842549a3af69b3906c3f7" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
@@ -3906,7 +3907,7 @@ Type of y_train: &lt;class &#39;numpy.ndarray&#39;&gt;
 <p>Your goal is to build a logistic regression model to fit this data. - With this model, you can then predict if a new student will be admitted based on their scores on the two exams.</p>
 </section>
 <section id="id8">
-<h2>2.3 Sigmoid function<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
+<h2>2.3 Sigmoid function<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <p>Recall that for logistic regression, the model is represented as</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(x) = g(\mathbf{w}\cdot \mathbf{x} + b)\]</div>
@@ -4009,7 +4010,7 @@ sigmoid([ -1, 0, 1, 2]) = [0.27 0.5  0.73 0.88]
 </td><td><p>[0.26894142 0.5 0.73105858 0.88079708]</p>
 </td></tr></table></section>
 <section id="id9">
-<h2>2.4 Cost function for logistic regression<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<h2>2.4 Cost function for logistic regression<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <p>In this section, you will implement the cost function for logistic regression.</p>
 <p>Exercise 2</p>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_cost</span></code> function using the equations below.</p>
@@ -4172,7 +4173,7 @@ Cost at test w,b: 0.218
 </td><td><p>0.218</p>
 </td></tr></table></section>
 <section id="id10">
-<h2>2.5 Gradient for logistic regression<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h2>
+<h2>2.5 Gradient for logistic regression<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <p>In this section, you will implement the gradient for logistic regression.</p>
 <p>Recall that the gradient descent algorithm is:</p>
 <div class="math notranslate nohighlight">
@@ -4341,7 +4342,7 @@ dj_dw at test_w: [-44.831353617873795, -44.37384124953978]
 </td><td><p>[-44.8313536178737957, -44.37384124953978]</p>
 </td></tr></table></section>
 <section id="id11">
-<h2>2.6 Learning parameters using gradient descent<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h2>
+<h2>2.6 Learning parameters using gradient descent<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
 <p>Similar to the previous assignment, you will now find the optimal parameters of a logistic regression model by using gradient descent. - You don’t need to implement anything for this part. Simply run the cells below.</p>
 <ul class="simple">
 <li><p>A good way to verify that gradient descent is working correctly is to look at the value of <span class="math notranslate nohighlight">\(J(\mathbf{w},b)\)</span> and check that it is decreasing with each step.</p></li>
@@ -4467,10 +4468,10 @@ Iteration 9999: Cost     0.30
 </div>
 </section>
 <section id="id12">
-<h2>2.7 Plotting the decision boundary<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
+<h2>2.7 Plotting the decision boundary<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">We will now use the final parameters from gradient descent to plot the linear fit. If you implemented the previous parts correctly, you should see the following plot:</div>
-<div class="line"><img alt="e0347b777132495db6553827180eca15" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
+<div class="line"><img alt="cf57376a1b664b85bb01e30734fa9060" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
 </div>
 <p>We will use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to create this plot.</p>
 <div class="nbinput docutils container">
@@ -4490,12 +4491,12 @@ Iteration 9999: Cost     0.30
 </div>
 </section>
 <section id="id13">
-<h2>2.8 Evaluating logistic regression<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h2>
+<h2>2.8 Evaluating logistic regression<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <p>We can evaluate the quality of the parameters we have found by seeing how well the learned model predicts on our training set.</p>
 <p>You will implement the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function below to do this.</p>
 </section>
 <section id="id14">
-<h2>Exercise 4<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h2>
+<h2>Exercise 4<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function to produce <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code> predictions given a dataset and a learned parameter vector <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. - First you need to compute the prediction from the model <span class="math notranslate nohighlight">\(f(x^{(i)}) = g(w \cdot x^{(i)})\)</span> for every example - You’ve implemented this before in the parts above - We interpret the output of the model (<span class="math notranslate nohighlight">\(f(x^{(i)})\)</span>) as the probability that <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span> given <span class="math notranslate nohighlight">\(x^{(i)}\)</span> and parameterized by <span class="math notranslate nohighlight">\(w\)</span>. - Therefore, to get a
 final prediction (<span class="math notranslate nohighlight">\(y^{(i)}=0\)</span> or <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span>) from the logistic regression model, you can use the following heuristic -</p>
 <p>if <span class="math notranslate nohighlight">\(f(x^{(i)}) &gt;= 0.5\)</span>, predict <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span></p>
@@ -4643,14 +4644,14 @@ Train Accuracy: 92.000000
 </td></tr></table></section>
 </section>
 <section id="id15">
-<h1>3 - Regularized Logistic Regression<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h1>
+<h1>3 - Regularized Logistic Regression<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h1>
 <p>In this part of the exercise, you will implement regularized logistic regression to predict whether microchips from a fabrication plant passes quality assurance (QA). During QA, each microchip goes through various tests to ensure it is functioning correctly.</p>
 <section id="id16">
-<h2>3.1 Problem Statement<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>
+<h2>3.1 Problem Statement<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
 <p>Suppose you are the product manager of the factory and you have the test results for some microchips on two different tests. - From these two tests, you would like to determine whether the microchips should be accepted or rejected. - To help you make the decision, you have a dataset of test results on past microchips, from which you can build a logistic regression model.</p>
 </section>
 <section id="id17">
-<h2>3.2 Loading and visualizing the data<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h2>
+<h2>3.2 Loading and visualizing the data<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
 <p>Similar to previous parts of this exercise, let’s start by loading the dataset for this task and visualizing it.</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p>
@@ -4747,7 +4748,7 @@ We have m = 118 training examples
 </div>
 <p>Visualize your data</p>
 <p>The helper function <code class="docutils literal notranslate"><span class="pre">plot_data</span></code> (from <code class="docutils literal notranslate"><span class="pre">utils.py</span></code>) is used to generate a figure like Figure 3, where the axes are the two test scores, and the positive (y = 1, accepted) and negative (y = 0, rejected) examples are shown with different markers.</p>
-<p><img alt="de3632f5191449ab8962fdb796cca3a2" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="dc3baa15caa342439ae3da3ba4880d07" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
 </pre></div>
@@ -4773,7 +4774,7 @@ We have m = 118 training examples
 <p>Figure 3 shows that our dataset cannot be separated into positive and negative examples by a straight-line through the plot. Therefore, a straight forward application of logistic regression will not perform well on this dataset since logistic regression will only be able to find a linear decision boundary.</p>
 </section>
 <section id="id18">
-<h2>3.3 Feature mapping<a class="headerlink" href="#id18" title="Permalink to this headline"></a></h2>
+<h2>3.3 Feature mapping<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h2>
 <p>One way to fit the data better is to create more features from each data point. In the provided function <code class="docutils literal notranslate"><span class="pre">map_feature</span></code>, we will map the features into all polynomial terms of <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> up to the sixth power.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathrm{map\_feature}(x) =
@@ -4837,7 +4838,7 @@ mapped X_train[0]: [5.13e-02 7.00e-01 2.63e-03 3.59e-02 4.89e-01 1.35e-04 1.84e-
 <p>While the feature mapping allows us to build a more expressive classifier, it is also more susceptible to overfitting. In the next parts of the exercise, you will implement regularized logistic regression to fit the data and also see for yourself how regularization can help combat the overfitting problem.</p>
 </section>
 <section id="id19">
-<h2>3.4 Cost function for regularized logistic regression<a class="headerlink" href="#id19" title="Permalink to this headline"></a></h2>
+<h2>3.4 Cost function for regularized logistic regression<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h2>
 <p>In this part, you will implement the cost function for regularized logistic regression.</p>
 <p>Recall that for regularized logistic regression, the cost function is of the form</p>
 <div class="math notranslate nohighlight">
@@ -4962,7 +4963,7 @@ Cell <span class="ansi-green-fg">In[2], line 6</span>
 </td><td><p>0.6618252552483948</p>
 </td></tr></table></section>
 <section id="id20">
-<h2>3.5 Gradient for regularized logistic regression<a class="headerlink" href="#id20" title="Permalink to this headline"></a></h2>
+<h2>3.5 Gradient for regularized logistic regression<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h2>
 <p>In this section, you will implement the gradient for regularized logistic regression.</p>
 <p>The gradient of the regularized cost function has two components. The first, <span class="math notranslate nohighlight">\(\frac{\partial J(\mathbf{w},b)}{\partial b}\)</span> is a scalar, the other is a vector with the same shape as the parameters <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>, where the <span class="math notranslate nohighlight">\(j^\mathrm{th}\)</span> element is defined as follows:</p>
 <div class="math notranslate nohighlight">
@@ -5078,7 +5079,7 @@ First few elements of regularized dj_dw:
 </td></tr><tr><td><p>[[-0.010386028450548701], [0.01140985288328012], [0.0536273463274574], [0.003140278267313462]]</p>
 </td></tr></table></section>
 <section id="id21">
-<h2>3.6 Learning parameters using gradient descent<a class="headerlink" href="#id21" title="Permalink to this headline"></a></h2>
+<h2>3.6 Learning parameters using gradient descent<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h2>
 <p>Similar to the previous parts, you will use your gradient descent function implemented above to learn the optimal parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>. - If you have completed the cost and gradient for regularized logistic regression correctly, you should be able to step through the next cell to learn the parameters <span class="math notranslate nohighlight">\(w\)</span>. - After training our parameters, we will use it to plot the decision boundary.</p>
 <p><strong>Note</strong></p>
 <p>The code block below takes quite a while to run, especially with a non-vectorized version. You can reduce the <code class="docutils literal notranslate"><span class="pre">iterations</span></code> to test your implementation and iterate faster. If you have time, run for 100,000 iterations to see better results.</p>
@@ -5523,13 +5524,13 @@ Iteration 9999: Cost     0.45
 </div>
 </section>
 <section id="id22">
-<h2>3.7 Plotting the decision boundary<a class="headerlink" href="#id22" title="Permalink to this headline"></a></h2>
+<h2>3.7 Plotting the decision boundary<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
 <p>To help you visualize the model learned by this classifier, we will use our <code class="docutils literal notranslate"><span class="pre">plot_decision_boundary</span></code> function which plots the (non-linear) decision boundary that separates the positive and negative examples.</p>
 <ul class="simple">
 <li><p>In the function, we plotted the non-linear decision boundary by computing the classifier’s predictions on an evenly spaced grid and then drew a contour plot of where the predictions change from y = 0 to y = 1.</p></li>
 <li><p>After learning the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>, the next step is to plot a decision boundary similar to Figure 4.</p></li>
 </ul>
-<p><img alt="f15e556c725a44aab7bc51836bf283d9" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="d78333442db846b990e8f15449d403c4" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[111]:
 </pre></div>
@@ -5599,7 +5600,7 @@ Iteration 9999: Cost     0.45
 </div>
 </section>
 <section id="id23">
-<h2>3.8 Evaluating regularized logistic regression model<a class="headerlink" href="#id23" title="Permalink to this headline"></a></h2>
+<h2>3.8 Evaluating regularized logistic regression model<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h2>
 <p>You will use the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function that you implemented above to calculate the accuracy of the regulaized logistic regression model on the training set</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
@@ -5624,7 +5625,7 @@ Train Accuracy: 82.203390
 <table><tr><td><p>Train Accuracy:~ 80%</p>
 </td></tr></table></section>
 <section id="id24">
-<h2>My Solution<a class="headerlink" href="#id24" title="Permalink to this headline"></a></h2>
+<h2>My Solution<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>

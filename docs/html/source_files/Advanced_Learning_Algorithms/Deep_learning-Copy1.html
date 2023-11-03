@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advanced_Learning_Algorithms &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -78,9 +79,9 @@
            <div itemprop="articleBody">
              
   <hr style="height: 3px; background-color: black;"><section id="Advanced_Learning_Algorithms">
-<h1>Advanced_Learning_Algorithms<a class="headerlink" href="#Advanced_Learning_Algorithms" title="Permalink to this headline"></a></h1>
+<h1>Advanced_Learning_Algorithms<a class="headerlink" href="#Advanced_Learning_Algorithms" title="Permalink to this heading"></a></h1>
 <section id="(Convolutional-Neural-Networks)">
-<h2><strong>(Convolutional Neural Networks)</strong><a class="headerlink" href="#(Convolutional-Neural-Networks)" title="Permalink to this headline"></a></h2>
+<h2><strong>(Convolutional Neural Networks)</strong><a class="headerlink" href="#(Convolutional-Neural-Networks)" title="Permalink to this heading"></a></h2>
 <hr style="height: 3px; background-color: black;"><div style="margin-bottom: 4vh;"></div><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
@@ -94,12 +95,12 @@
 </div>
 </div>
 <section id="Optional-Lab---Neurons-and-Layers">
-<h3>Optional Lab - Neurons and Layers<a class="headerlink" href="#Optional-Lab---Neurons-and-Layers" title="Permalink to this headline"></a></h3>
+<h3>Optional Lab - Neurons and Layers<a class="headerlink" href="#Optional-Lab---Neurons-and-Layers" title="Permalink to this heading"></a></h3>
 <p>In this lab we will explore the inner workings of neurons/units and layers. In particular, the lab will draw parallels to the models you have mastered in Course 1, the regression/linear model and the logistic model. The lab will introduce Tensorflow and demonstrate how these models are implemented in that framework.</p>
-<figure><p><img alt="10d5fa4115df4d9eac0fd221de48adae" src="../../_images/C2_W1_NeuronsAndLayers.png" /></p>
+<figure><p><img alt="2bb8612eff6545c4ae3a9906001ed370" src="../../_images/C2_W1_NeuronsAndLayers.png" /></p>
 </figure></section>
 <section id="Packages">
-<h3>Packages<a class="headerlink" href="#Packages" title="Permalink to this headline"></a></h3>
+<h3>Packages<a class="headerlink" href="#Packages" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><strong>Tensorflow and Keras</strong></div>
 <div class="line">Tensorflow is a machine learning package developed by Google. In 2019, Google integrated Keras into Tensorflow and released Tensorflow 2.0. Keras is a framework developed independently by François Chollet that creates a simple, layer-centric interface to Tensorflow. This course will be using the Keras interface.</div>
@@ -141,12 +142,12 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </pre></div></div>
 </div>
 <section id="Neuron-without-activation---Regression/Linear-Model">
-<h4>Neuron without activation - Regression/Linear Model<a class="headerlink" href="#Neuron-without-activation---Regression/Linear-Model" title="Permalink to this headline"></a></h4>
+<h4>Neuron without activation - Regression/Linear Model<a class="headerlink" href="#Neuron-without-activation---Regression/Linear-Model" title="Permalink to this heading"></a></h4>
 </section>
 </section>
 </section>
 <section id="DataSet">
-<h2>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this headline"></a></h2>
+<h2>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this heading"></a></h2>
 <p>We’ll use an example from Course 1, linear regression on house prices.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -310,7 +311,7 @@ tf.Tensor([[300.]], shape=(1, 1), dtype=float32)
 </div>
 </div>
 <section id="Neuron-with-Sigmoid-activation">
-<h3>Neuron with Sigmoid activation<a class="headerlink" href="#Neuron-with-Sigmoid-activation" title="Permalink to this headline"></a></h3>
+<h3>Neuron with Sigmoid activation<a class="headerlink" href="#Neuron-with-Sigmoid-activation" title="Permalink to this heading"></a></h3>
 <p>The function implemented by a neuron/unit with a sigmoid activation is the same as in Course 1, logistic regression:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(x^{(i)}) = g(\mathbf{w}x^{(i)} + b) \tag{2}\]</div>
@@ -321,7 +322,7 @@ tf.Tensor([[300.]], shape=(1, 1), dtype=float32)
 </section>
 </section>
 <section id="id1">
-<h2>DataSet<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>DataSet<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>We’ll use an example from Course 1, logistic regression.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
@@ -381,7 +382,7 @@ array([3., 4., 5.], dtype=float32)
 </div>
 </section>
 <section id="Logistic-Neuron">
-<h2>Logistic Neuron<a class="headerlink" href="#Logistic-Neuron" title="Permalink to this headline"></a></h2>
+<h2>Logistic Neuron<a class="headerlink" href="#Logistic-Neuron" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">We can implement a ‘logistic neuron’ by adding a sigmoid activation. The function of the neuron is then described by (2) above.</div>
 <div class="line">This section will create a Tensorflow Model that contains our logistic layer to demonstrate an alternate method of creating models. Tensorflow is most often used to create multi-layer models. The <a class="reference external" href="https://keras.io/guides/sequential_model/">Sequential</a> model is a convenient means of constructing these models.</div>
@@ -589,7 +590,7 @@ _________________________________________________________________
 </div>
 </div>
 <p>In this lab we will build a small neural network using Tensorflow.</p>
-<center><p><img alt="e65ce958e50d44c69810785076628305" class="no-scaled-link" src="../../_images/C2_W1_CoffeeRoasting.png" style="width: 500px;" /></p>
+<center><p><img alt="bdbc7724f6cb4753bb5d06e2e623b6b9" class="no-scaled-link" src="../../_images/C2_W1_CoffeeRoasting.png" style="width: 500px;" /></p>
 <center/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
@@ -692,9 +693,9 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </div>
 </section>
 <section id="Tensorflow-Model">
-<h2>Tensorflow Model<a class="headerlink" href="#Tensorflow-Model" title="Permalink to this headline"></a></h2>
+<h2>Tensorflow Model<a class="headerlink" href="#Tensorflow-Model" title="Permalink to this heading"></a></h2>
 <p>Model</p>
-<center><p><img alt="9eb26bb1d5f541d490c2fdb350d48c0f" class="no-scaled-link" src="../../_images/C2_W1_RoastingNetwork.PNG" style="width: 300px;" /></p>
+<center><p><img alt="fc0a5469f499445db31f7036f381e7e2" class="no-scaled-link" src="../../_images/C2_W1_RoastingNetwork.PNG" style="width: 300px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations as shown below:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
@@ -848,7 +849,7 @@ Epoch 10/10
 </div>
 </section>
 <section id="Updated-Weights">
-<h2>Updated Weights<a class="headerlink" href="#Updated-Weights" title="Permalink to this headline"></a></h2>
+<h2>Updated Weights<a class="headerlink" href="#Updated-Weights" title="Permalink to this heading"></a></h2>
 <p>After fitting, the weights have been updated:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -896,7 +897,7 @@ b2: [26.14]
 </pre></div>
 </div>
 </div>
-<p><img alt="25714761cd2b498984274695142fd68e" src="../../_images/C2_W1_RoastingDecision.PNG" /></p>
+<p><img alt="8eb2fbd2199f4d45b4a3b562a0fe1f85" src="../../_images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <div class="line-block">
 <div class="line">Let’s start by creating input data. The model is expecting one or more examples where examples are in the rows of matrix. In this case, we have two features so the matrix will be (m,2) where m is the number of examples. Recall, we have normalized the input features so we must normalize our test data as well.</div>
@@ -927,7 +928,7 @@ predictions =
 </div>
 </section>
 <section id="Epochs-and-batches">
-<h2>Epochs and batches<a class="headerlink" href="#Epochs-and-batches" title="Permalink to this headline"></a></h2>
+<h2>Epochs and batches<a class="headerlink" href="#Epochs-and-batches" title="Permalink to this heading"></a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">compile</span></code> statement above, the number of <code class="docutils literal notranslate"><span class="pre">epochs</span></code> was set to 10. This specifies that the entire data set should be applied during training 10 times. During training, you see output describing the progress of training that looks like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Epoch 1/10
 6250/6250 [==============================] - 6s 910us/step - loss: 0.1782
@@ -980,7 +981,7 @@ decisions =
 </pre></div></div>
 </div>
 <section id="Layer-Functions">
-<h3>Layer Functions<a class="headerlink" href="#Layer-Functions" title="Permalink to this headline"></a></h3>
+<h3>Layer Functions<a class="headerlink" href="#Layer-Functions" title="Permalink to this heading"></a></h3>
 <p>Let’s examine the functions of the units to determine their role in the coffee roasting decision. We will plot the output of each node for all values of the inputs (duration,temp). Each unit is a logistic function whose output can range from zero to one. The shading in the graph represents the output value. &gt; Note: In labs we typically number things starting at zero while the lectures may start with 1.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
@@ -1039,7 +1040,7 @@ roast’ area’s.</p>
 </div>
 </section>
 <section id="Congratulations!">
-<h3>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h3>
+<h3>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h3>
 <p>You have built a small neural network in Tensorflow. The network demonstrated the ability of neural networks to handle complex decisions by dividing the decisions between multiple units.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1053,9 +1054,9 @@ roast’ area’s.</p>
 </section>
 </section>
 <section id="Optional-Lab---Simple-Neural-Network">
-<h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this heading"></a></h1>
 <p>In this lab, we will build a small neural network using Numpy. It will be the same “coffee roasting” network you implemented in Tensorflow.</p>
-<center><p><img alt="014c572fb14d4fb79ddc6cdfe8c8c73e" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
+<center><p><img alt="8b7ea439103749f58dfc79813d82f67c" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
 <center/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -1132,10 +1133,10 @@ Temperature Max, Min post normalization: 1.66, -1.69
 Duration    Max, Min post normalization: 1.79, -1.70
 </pre></div></div>
 </div>
-<center><p><img alt="191832744db24ab581a96995f1148736" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
+<center><p><img alt="70c6348cb11f481494b37b20effa00ab" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations.</p>
 <p>As described in lecture, it is possible to build your own dense layer using NumPy. This can then be utilized to build a multi-layer neural network.</p>
-<p><img alt="78f0cdfe14cf4457b6fa932599254107" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
+<p><img alt="b539110724bb4455b05834409800d277" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
 <p>In the first optional lab, you constructed a neuron in NumPy and in Tensorflow and noted their similarity. A layer simply contains multiple neurons/units. As described in lecture, one can utilize a for loop to visit each unit (<code class="docutils literal notranslate"><span class="pre">j</span></code>) in the layer and perform the dot product of the weights for that unit (<code class="docutils literal notranslate"><span class="pre">W[:,j]</span></code>) and sum the bias for the unit (<code class="docutils literal notranslate"><span class="pre">b[j]</span></code>) to form <code class="docutils literal notranslate"><span class="pre">z</span></code>. An activation function <code class="docutils literal notranslate"><span class="pre">g(z)</span></code> can then be applied to that result. Let’s try that below to build a “dense layer” subroutine.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -1186,7 +1187,7 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </pre></div>
 </div>
 </div>
-<p><img alt="b33db1126840464eb78e70d51e57c26b" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_RoastingDecision.PNG" /></p>
+<p><img alt="8d6819f74d2f40258c6da1770ed2ab8b" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <p>Let’s start by writing a routine similar to Tensorflow’s <code class="docutils literal notranslate"><span class="pre">model.predict()</span></code>. This will take a matrix <span class="math notranslate nohighlight">\(X\)</span> with all <span class="math notranslate nohighlight">\(m\)</span> examples in the rows and make a prediction by running the model.</p>
 <div class="nbinput nblast docutils container">

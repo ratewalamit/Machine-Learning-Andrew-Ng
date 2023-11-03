@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Supervised_Machine_Learning &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -155,15 +156,15 @@
            <div itemprop="articleBody">
              
   <hr style="height: 3px; background-color: black;"><section id="Supervised_Machine_Learning">
-<h1>Supervised_Machine_Learning<a class="headerlink" href="#Supervised_Machine_Learning" title="Permalink to this headline"></a></h1>
+<h1>Supervised_Machine_Learning<a class="headerlink" href="#Supervised_Machine_Learning" title="Permalink to this heading"></a></h1>
 <p><strong>(Regression_and_Classification)</strong></p>
 <hr style="height: 3px; background-color: black;"><div style="margin-bottom: 4vh;"></div><section id="Module---1">
-<h2>Module - 1<a class="headerlink" href="#Module---1" title="Permalink to this headline"></a></h2>
+<h2>Module - 1<a class="headerlink" href="#Module---1" title="Permalink to this heading"></a></h2>
 <div style="margin-bottom: 8vh;"></div><div style="margin-bottom: 5vh;"></div><section id="Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks">
-<h3>Optional Lab - W1: Brief Introduction to Python and Jupyter Notebooks<a class="headerlink" href="#Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks" title="Permalink to this headline"></a></h3>
+<h3>Optional Lab - W1: Brief Introduction to Python and Jupyter Notebooks<a class="headerlink" href="#Optional-Lab---W1:-Brief-Introduction-to-Python-and-Jupyter-Notebooks" title="Permalink to this heading"></a></h3>
 <p>Welcome to the first optional lab! Optional labs are available to: - provide information - like this notebook - reinforce lecture material with hands-on examples - provide working examples of routines used in the graded labs</p>
 <section id="Goals">
-<h4>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h4>
+<h4>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h4>
 <p>In this lab, you will: - Get a brief introduction to Jupyter notebooks - Take a tour of Jupyter notebooks - Learn the difference between markdown cells and code cells - Practice some basic python</p>
 <p>The easiest way to become familiar with Jupyter notebooks is to take the tour available above in the Help menu:</p>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/C1W1L1_Tour.PNG" style="width: 400px;" /></p>
@@ -182,11 +183,11 @@
 </section>
 </section>
 <section id="Python">
-<h3>Python<a class="headerlink" href="#Python" title="Permalink to this headline"></a></h3>
+<h3>Python<a class="headerlink" href="#Python" title="Permalink to this heading"></a></h3>
 <p>You can write your code in the code cells. To run the code, select the cell and either - hold the shift-key down and hit ‘enter’ or ‘return’ - click the ‘run’ arrow above</p>
-<figure><p><img alt="43dcdd433d2a4db49da1eac19275b9d5" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
+<figure><p><img alt="ea9b69914e1347daaa852757710645a3" class="no-scaled-link" src="../../_images/C1W1L1_Run.PNG" style="width: 800px;" /></p>
 <figure/><section id="Print-statement">
-<h4>Print statement<a class="headerlink" href="#Print-statement" title="Permalink to this headline"></a></h4>
+<h4>Print statement<a class="headerlink" href="#Print-statement" title="Permalink to this heading"></a></h4>
 <div class="line-block">
 <div class="line">Print statements will generally use the python f-string style.</div>
 <div class="line">Try creating your own print in the following cell.</div>
@@ -205,17 +206,17 @@
 </section>
 </section>
 <section id="Practice-Quiz">
-<h3>Practice Quiz<a class="headerlink" href="#Practice-Quiz" title="Permalink to this headline"></a></h3>
+<h3>Practice Quiz<a class="headerlink" href="#Practice-Quiz" title="Permalink to this heading"></a></h3>
 <section id="Quiz---1">
-<h4>Quiz - 1<a class="headerlink" href="#Quiz---1" title="Permalink to this headline"></a></h4>
+<h4>Quiz - 1<a class="headerlink" href="#Quiz---1" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss1.png" style="width: 800px;" /></p>
 <center/><figure/></section>
 <section id="Quiz---2">
-<h4>Quiz - 2<a class="headerlink" href="#Quiz---2" title="Permalink to this headline"></a></h4>
+<h4>Quiz - 2<a class="headerlink" href="#Quiz---2" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss2.png" style="width: 800px;" /></p>
 <center/><figure/></section>
 <section id="Quiz---3">
-<h4>Quiz - 3<a class="headerlink" href="#Quiz---3" title="Permalink to this headline"></a></h4>
+<h4>Quiz - 3<a class="headerlink" href="#Quiz---3" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss3.png" style="width: 800px;" /></p>
 <center/><figure/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -245,12 +246,12 @@
 </section>
 </section>
 <section id="Module---2">
-<h2>Module - 2<a class="headerlink" href="#Module---2" title="Permalink to this headline"></a></h2>
+<h2>Module - 2<a class="headerlink" href="#Module---2" title="Permalink to this heading"></a></h2>
 <section id="Optional-Lab-W2:-Python,-NumPy-and-Vectorization">
-<h3>Optional Lab W2: Python, NumPy and Vectorization<a class="headerlink" href="#Optional-Lab-W2:-Python,-NumPy-and-Vectorization" title="Permalink to this headline"></a></h3>
+<h3>Optional Lab W2: Python, NumPy and Vectorization<a class="headerlink" href="#Optional-Lab-W2:-Python,-NumPy-and-Vectorization" title="Permalink to this heading"></a></h3>
 <p>A brief introduction to some of the scientific computing used in this course. In particular the NumPy scientific computing package and its use with python.</p>
 <section id="Outline">
-<h4>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h4>
+<h4>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>1.1 Goals</p></li>
 <li><p>1.2 Useful References</p></li>
@@ -277,36 +278,36 @@
 </div>
 </section>
 <section id="1.1-Goals">
-<h4>1.1 Goals<a class="headerlink" href="#1.1-Goals" title="Permalink to this headline"></a></h4>
+<h4>1.1 Goals<a class="headerlink" href="#1.1-Goals" title="Permalink to this heading"></a></h4>
 <p>In this lab, you will: - Review the features of NumPy and Python that are used in Course 1</p>
 </section>
 <section id="1.2-Useful-References">
-<h4>1.2 Useful References<a class="headerlink" href="#1.2-Useful-References" title="Permalink to this headline"></a></h4>
+<h4>1.2 Useful References<a class="headerlink" href="#1.2-Useful-References" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>NumPy Documentation including a basic introduction: <a class="reference external" href="https://NumPy.org/doc/stable/">NumPy.org</a> - A challenging feature topic: <a class="reference external" href="https://NumPy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a></p></li>
 </ul>
 </section>
 <section id="2-Python-and-NumPy">
-<h4>2 Python and NumPy<a class="headerlink" href="#2-Python-and-NumPy" title="Permalink to this headline"></a></h4>
+<h4>2 Python and NumPy<a class="headerlink" href="#2-Python-and-NumPy" title="Permalink to this heading"></a></h4>
 <p>Python is the programming language we will be using in this course. It has a set of numeric data types and arithmetic operations. NumPy is a library that extends the base capabilities of python to add a richer data set including more numeric types, vectors, matrices, and many matrix functions. NumPy and python work together fairly seamlessly. Python arithmetic operators work on NumPy data types and many NumPy functions will accept python data types.</p>
 </section>
 <section id="3-Vectors">
-<h4>3 Vectors<a class="headerlink" href="#3-Vectors" title="Permalink to this headline"></a></h4>
+<h4>3 Vectors<a class="headerlink" href="#3-Vectors" title="Permalink to this heading"></a></h4>
 <section id="3.1-Abstract">
-<h5>3.1 Abstract<a class="headerlink" href="#3.1-Abstract" title="Permalink to this headline"></a></h5>
+<h5>3.1 Abstract<a class="headerlink" href="#3.1-Abstract" title="Permalink to this heading"></a></h5>
 <div style="float: right;margin-left: 10px;"><p><img alt="Image" class="no-scaled-link" src="../../_images/C1_W2_Lab04_Vectors.PNG" style="width: 340px;" /></p>
 </div><p><p>Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of <span class="math notranslate nohighlight">\(n\)</span>. The elements of a vector can be referenced with an
 index. In math settings, indexes typically run from 1 to n. In computer science and these labs, indexing will typically run from 0 to n-1. In notation, elements of a vector, when referenced individually will indicate the index in a subscript, for example, the <span class="math notranslate nohighlight">\(0^{th}\)</span> element, of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(x_0\)</span>. Note, the x is not bold in this case.</p>
 </p></section>
 <section id="3.2-NumPy-Arrays">
-<h5>3.2 NumPy Arrays<a class="headerlink" href="#3.2-NumPy-Arrays" title="Permalink to this headline"></a></h5>
+<h5>3.2 NumPy Arrays<a class="headerlink" href="#3.2-NumPy-Arrays" title="Permalink to this heading"></a></h5>
 <p>NumPy’s basic data structure is an indexable, n-dimensional <em>array</em> containing elements of the same type (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>). Right away, you may notice we have overloaded the term ‘dimension’. Above, it was the number of elements in the vector, here, dimension refers to the number of indexes of an array. A one-dimensional or 1-D array has one index. In Course 1, we will represent vectors as NumPy 1-D arrays.</p>
 <ul class="simple">
 <li><p>1-D array, shape (n,): n elements indexed [0] through [n-1]</p></li>
 </ul>
 </section>
 <section id="3.3-Vector-Creation">
-<h5>3.3 Vector Creation<a class="headerlink" href="#3.3-Vector-Creation" title="Permalink to this headline"></a></h5>
+<h5>3.3 Vector Creation<a class="headerlink" href="#3.3-Vector-Creation" title="Permalink to this heading"></a></h5>
 <p>Data creation routines in NumPy will generally have a first parameter which is the shape of the object. This can either be a single value for a 1-D result or a tuple (n,m,…) specifying the shape of the result. Below are examples of creating vectors using these routines.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -344,7 +345,7 @@ index. In math settings, indexes typically run from 1 to n. In computer science 
 <p>These have all created a one-dimensional vector <code class="docutils literal notranslate"><span class="pre">a</span></code> with four elements. <code class="docutils literal notranslate"><span class="pre">a.shape</span></code> returns the dimensions. Here we see a.shape = <code class="docutils literal notranslate"><span class="pre">(4,)</span></code> indicating a 1-d array with 4 elements.</p>
 </section>
 <section id="3.4-Operations-on-Vectors">
-<h5>3.4 Operations on Vectors<a class="headerlink" href="#3.4-Operations-on-Vectors" title="Permalink to this headline"></a></h5>
+<h5>3.4 Operations on Vectors<a class="headerlink" href="#3.4-Operations-on-Vectors" title="Permalink to this heading"></a></h5>
 <p>Let’s explore some operations using vectors.</p>
 <p>3.4.1 Indexing</p>
 <div class="line-block">
@@ -472,7 +473,7 @@ index. In math settings, indexes typically run from 1 to n. In computer science 
 </div>
 <p>3.4.6 Vector Vector dot product</p>
 <p>The dot product is a mainstay of Linear Algebra and NumPy. This is an operation used extensively in this course and should be well understood. The dot product is shown below.</p>
-<p><img alt="92ec0a401e3e4d6e9041e634ee600b45" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
+<p><img alt="92bf0c6f6a364b88af6cc7ffc3525951" class="no-scaled-link" src="../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
 <p>The dot product multiplies the values in two vectors element-wise and then sums the result. Vector dot product requires the dimensions of the two vectors to be the same.</p>
 <p>Let’s implement our own version of the dot product below:</p>
 <p><strong>Using a for loop</strong>, implement a function which returns the dot product of two vectors. The function to return given inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
@@ -580,20 +581,20 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </section>
 </section>
 <section id="4-Matrices">
-<h4>4 Matrices<a class="headerlink" href="#4-Matrices" title="Permalink to this headline"></a></h4>
+<h4>4 Matrices<a class="headerlink" href="#4-Matrices" title="Permalink to this heading"></a></h4>
 <section id="4.1-Abstract">
-<h5>4.1 Abstract<a class="headerlink" href="#4.1-Abstract" title="Permalink to this headline"></a></h5>
+<h5>4.1 Abstract<a class="headerlink" href="#4.1-Abstract" title="Permalink to this heading"></a></h5>
 <p>Matrices, are two dimensional arrays. The elements of a matrix are all of the same type. In notation, matrices are denoted with capitol, bold letter such as <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In this and other labs, <code class="docutils literal notranslate"><span class="pre">m</span></code> is often the number of rows and <code class="docutils literal notranslate"><span class="pre">n</span></code> the number of columns. The elements of a matrix can be referenced with a two dimensional index. In math settings, numbers in the index typically run from 1 to n. In computer science and these labs, indexing will run from 0 to n-1.</p>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/C1_W2_Lab04_Matrices.PNG" style="width: 900px;" /></p>
 <center/><figcaption><p>Generic Matrix Notation, 1st index is row, 2nd is column</p>
 </figcaption><figure/></section>
 <section id="4.2-NumPy-Arrays">
-<h5>4.2 NumPy Arrays<a class="headerlink" href="#4.2-NumPy-Arrays" title="Permalink to this headline"></a></h5>
+<h5>4.2 NumPy Arrays<a class="headerlink" href="#4.2-NumPy-Arrays" title="Permalink to this heading"></a></h5>
 <p>NumPy’s basic data structure is an indexable, n-dimensional <em>array</em> containing elements of the same type (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>). These were described earlier. Matrices have a two-dimensional (2-D) index [m,n].</p>
 <p>In Course 1, 2-D matrices are used to hold training data. Training data is <span class="math notranslate nohighlight">\(m\)</span> examples by <span class="math notranslate nohighlight">\(n\)</span> features creating an (m,n) array. Course 1 does not do operations directly on matrices but typically extracts an example as a vector and operates on that. Below you will review: - data creation - slicing and indexing</p>
 </section>
 <section id="4.3-Matrix-Creation">
-<h5>4.3 Matrix Creation<a class="headerlink" href="#4.3-Matrix-Creation" title="Permalink to this headline"></a></h5>
+<h5>4.3 Matrix Creation<a class="headerlink" href="#4.3-Matrix-Creation" title="Permalink to this heading"></a></h5>
 <p>The same functions that created 1-D vectors will create 2-D or n-D arrays. Here are some examples</p>
 <p>Below, the shape tuple is provided to achieve a 2-D result. Notice how NumPy uses brackets to denote each dimension. Notice further than NumPy, when printing, will print one row per line.</p>
 <div class="nbinput nblast docutils container">
@@ -627,7 +628,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </div>
 </section>
 <section id="4.4-Operations-on-Matrices">
-<h5>4.4 Operations on Matrices<a class="headerlink" href="#4.4-Operations-on-Matrices" title="Permalink to this headline"></a></h5>
+<h5>4.4 Operations on Matrices<a class="headerlink" href="#4.4-Operations-on-Matrices" title="Permalink to this heading"></a></h5>
 <p>Let’s explore some operations using matrices.</p>
 <p>4.4.1 Indexing</p>
 <p>Matrices include a second index. The two indexes describe [row, column]. Access can either return an element or a row/column. See below:</p>
@@ -686,27 +687,27 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </section>
 </section>
 <section id="id4">
-<h3>Practice Quiz<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<h3>Practice Quiz<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <section id="Quiz-1">
-<h4>Quiz-1<a class="headerlink" href="#Quiz-1" title="Permalink to this headline"></a></h4>
+<h4>Quiz-1<a class="headerlink" href="#Quiz-1" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss11.png" style="width: 800px;" /></p>
 <center/><figure/></section>
 <section id="Quiz-2">
-<h4>Quiz-2<a class="headerlink" href="#Quiz-2" title="Permalink to this headline"></a></h4>
+<h4>Quiz-2<a class="headerlink" href="#Quiz-2" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss21.png" style="width: 800px;" /></p>
 <center/><figure/></section>
 <section id="Quiz-3">
-<h4>Quiz-3<a class="headerlink" href="#Quiz-3" title="Permalink to this headline"></a></h4>
+<h4>Quiz-3<a class="headerlink" href="#Quiz-3" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/ss31.png" style="width: 800px;" /></p>
 <center/><figure/></section>
 </section>
 <section id="Assignment-W2:">
-<h3>Assignment W2:<a class="headerlink" href="#Assignment-W2:" title="Permalink to this headline"></a></h3>
+<h3>Assignment W2:<a class="headerlink" href="#Assignment-W2:" title="Permalink to this heading"></a></h3>
 <section id="Practice-Lab:-Linear-Regression">
-<h4>Practice Lab: Linear Regression<a class="headerlink" href="#Practice-Lab:-Linear-Regression" title="Permalink to this headline"></a></h4>
+<h4>Practice Lab: Linear Regression<a class="headerlink" href="#Practice-Lab:-Linear-Regression" title="Permalink to this heading"></a></h4>
 <p>Welcome to your first practice lab! In this lab, you will implement linear regression with one variable to predict profits for a restaurant franchise.</p>
 <section id="id8">
-<h5>Outline<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h5>
+<h5>Outline<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h5>
 <ul class="simple">
 <li><p>1 - Packages</p></li>
 <li><p>2 - Linear regression with one variable</p></li>
@@ -728,7 +729,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </section>
 </section>
 <section id="1---Packages">
-<h4>1 - Packages<a class="headerlink" href="#1---Packages" title="Permalink to this headline"></a></h4>
+<h4>1 - Packages<a class="headerlink" href="#1---Packages" title="Permalink to this heading"></a></h4>
 <p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a class="reference external" href="www.numpy.org">numpy</a> is the fundamental package for working with matrices in Python. - <a class="reference external" href="http://matplotlib.org">matplotlib</a> is a famous library to plot graphs in Python. - <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> contains helper functions for this assignment. You do not need to modify code in this file.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -751,12 +752,12 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </div>
 </section>
 <section id="2---Problem-Statement">
-<h4>2 - Problem Statement<a class="headerlink" href="#2---Problem-Statement" title="Permalink to this headline"></a></h4>
+<h4>2 - Problem Statement<a class="headerlink" href="#2---Problem-Statement" title="Permalink to this heading"></a></h4>
 <p>Suppose you are the CEO of a restaurant franchise and are considering different cities for opening a new outlet. - You would like to expand your business to cities that may give your restaurant higher profits. - The chain already has restaurants in various cities and you have data for profits and populations from the cities. - You also have data on cities that are candidates for a new restaurant. - For these cities, you have the city population.</p>
 <p>Can you use the data to help you identify which cities may potentially give your business higher profits?</p>
 </section>
 <section id="3---Dataset">
-<h4>3 - Dataset<a class="headerlink" href="#3---Dataset" title="Permalink to this headline"></a></h4>
+<h4>3 - Dataset<a class="headerlink" href="#3---Dataset" title="Permalink to this heading"></a></h4>
 <div class="line-block">
 <div class="line">You will start by loading the dataset for this task. - The <code class="docutils literal notranslate"><span class="pre">load_data()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> - <code class="docutils literal notranslate"><span class="pre">x_train</span></code> is the population of a city - <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is the profit of a restaurant in that city. A negative value for profit indicates a loss.</div>
 <div class="line">- Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</div>
@@ -771,7 +772,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </div>
 </div>
 <section id="View-the-variables">
-<h5>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this headline"></a></h5>
+<h5>View the variables<a class="headerlink" href="#View-the-variables" title="Permalink to this heading"></a></h5>
 <div class="line-block">
 <div class="line">Before starting on any task, it is useful to get more familiar with your dataset.</div>
 <div class="line">- A good place to start is to just print out each variable and see what it contains.</div>
@@ -802,7 +803,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 <p>Similarly, <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is a numpy array that has decimal values, some negative, some positive. - These represent your restaurant’s average monthly profits in each city, in units of $10,000. - For example, 17.592 represents $175,920 in average monthly profits for that city. - -2.6807 represents -$26,807 in average monthly loss for that city.</p>
 </section>
 <section id="Check-the-dimensions-of-your-variables">
-<h5>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this headline"></a></h5>
+<h5>Check the dimensions of your variables<a class="headerlink" href="#Check-the-dimensions-of-your-variables" title="Permalink to this heading"></a></h5>
 <p>Another useful way to get familiar with your data is to view its dimensions.</p>
 <p>Please print the shape of <code class="docutils literal notranslate"><span class="pre">x_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and see how many training examples you have in your dataset.</p>
 <div class="nbinput nblast docutils container">
@@ -818,7 +819,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 <p>The city population array has 97 data points, and the monthly average profits also has 97 data points. These are NumPy 1D arrays.</p>
 </section>
 <section id="Visualize-your-data">
-<h5>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this headline"></a></h5>
+<h5>Visualize your data<a class="headerlink" href="#Visualize-your-data" title="Permalink to this heading"></a></h5>
 <p>It is often useful to understand the data by visualizing it. - For this dataset, you can use a scatter plot to visualize the data, since it has only two properties to plot (profit and population). - Many other problems that you will encounter in real life have more than two properties (for example, population, average household income, monthly profits, monthly sales).When you have more than two properties, you can still use a scatter plot to see the relationship between each pair of properties.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -842,7 +843,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </section>
 </section>
 <section id="4---Refresher-on-linear-regression">
-<h4>4 - Refresher on linear regression<a class="headerlink" href="#4---Refresher-on-linear-regression" title="Permalink to this headline"></a></h4>
+<h4>4 - Refresher on linear regression<a class="headerlink" href="#4---Refresher-on-linear-regression" title="Permalink to this heading"></a></h4>
 <p>In this practice lab, you will fit the linear regression parameters <span class="math notranslate nohighlight">\((w,b)\)</span> to your dataset. - The model function for linear regression, which is a function that maps from <code class="docutils literal notranslate"><span class="pre">x</span></code> (city population) to <code class="docutils literal notranslate"><span class="pre">y</span></code> (your restaurant’s monthly profit for that city) is represented as</p>
 <div class="math notranslate nohighlight">
 \[f_{w,b}(x) = wx + b\]</div>
@@ -866,10 +867,10 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </ul>
 </section>
 <section id="5---Compute-Cost">
-<h4>5 - Compute Cost<a class="headerlink" href="#5---Compute-Cost" title="Permalink to this headline"></a></h4>
+<h4>5 - Compute Cost<a class="headerlink" href="#5---Compute-Cost" title="Permalink to this heading"></a></h4>
 <p>Gradient descent involves repeated steps to adjust the value of your parameter <span class="math notranslate nohighlight">\((w,b)\)</span> to gradually get a smaller and smaller cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>. - At each step of gradient descent, it will be helpful for you to monitor your progress by computing the cost <span class="math notranslate nohighlight">\(J(w,b)\)</span> as <span class="math notranslate nohighlight">\((w,b)\)</span> gets updated. - In this section, you will implement a function to calculate <span class="math notranslate nohighlight">\(J(w,b)\)</span> so that you can check the progress of your gradient descent implementation.</p>
 <section id="Cost-function">
-<h5>Cost function<a class="headerlink" href="#Cost-function" title="Permalink to this headline"></a></h5>
+<h5>Cost function<a class="headerlink" href="#Cost-function" title="Permalink to this heading"></a></h5>
 <p>As you may recall from the lecture, for one variable, the cost function for linear regression <span class="math notranslate nohighlight">\(J(w,b)\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2\]</div>
@@ -879,7 +880,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </ul>
 </section>
 <section id="Model-prediction">
-<h5>Model prediction<a class="headerlink" href="#Model-prediction" title="Permalink to this headline"></a></h5>
+<h5>Model prediction<a class="headerlink" href="#Model-prediction" title="Permalink to this heading"></a></h5>
 <ul class="simple">
 <li><p>For linear regression with one variable, the prediction of the model <span class="math notranslate nohighlight">\(f_{w,b}\)</span> for an example <span class="math notranslate nohighlight">\(x^{(i)}\)</span> is representented as:</p></li>
 </ul>
@@ -888,12 +889,12 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 <p>This is the equation for a line, with an intercept <span class="math notranslate nohighlight">\(b\)</span> and a slope <span class="math notranslate nohighlight">\(w\)</span></p>
 </section>
 <section id="Implementation">
-<h5>Implementation<a class="headerlink" href="#Implementation" title="Permalink to this headline"></a></h5>
+<h5>Implementation<a class="headerlink" href="#Implementation" title="Permalink to this heading"></a></h5>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_cost()</span></code> function below to compute the cost <span class="math notranslate nohighlight">\(J(w,b)\)</span>.</p>
 </section>
 </section>
 <section id="Exercise-1">
-<h4>Exercise 1<a class="headerlink" href="#Exercise-1" title="Permalink to this headline"></a></h4>
+<h4>Exercise 1<a class="headerlink" href="#Exercise-1" title="Permalink to this heading"></a></h4>
 <p>Complete the <code class="docutils literal notranslate"><span class="pre">compute_cost</span></code> below to:</p>
 <ul>
 <li><p>Iterate over the training examples, and for each example, compute:</p>
@@ -1034,7 +1035,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 <table><tr><td><p>Cost at initial w (zeros): 75.203</p>
 </td></tr></table></section>
 <section id="6---Gradient-descent">
-<h4>6 - Gradient descent<a class="headerlink" href="#6---Gradient-descent" title="Permalink to this headline"></a></h4>
+<h4>6 - Gradient descent<a class="headerlink" href="#6---Gradient-descent" title="Permalink to this heading"></a></h4>
 <p>In this section, you will implement the gradient for parameters <span class="math notranslate nohighlight">\(w, b\)</span> for linear regression.</p>
 <p>As described in the lecture videos, the gradient descent algorithm is:</p>
 <div class="math notranslate nohighlight">
@@ -1056,7 +1057,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </ul>
 <p>You will implement a function called <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> which calculates <span class="math notranslate nohighlight">\(\frac{\partial J(w)}{\partial w}\)</span>, <span class="math notranslate nohighlight">\(\frac{\partial J(w)}{\partial b}\)</span></p>
 <section id="Exercise-2">
-<h5>Exercise 2<a class="headerlink" href="#Exercise-2" title="Permalink to this headline"></a></h5>
+<h5>Exercise 2<a class="headerlink" href="#Exercise-2" title="Permalink to this heading"></a></h5>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code> function to:</p>
 <ul>
 <li><p>Iterate over the training examples, and for each example, compute:</p>
@@ -1227,7 +1228,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </td><td><p>-47.41610118 -4.007175051546391</p>
 </td></tr></table></section>
 <section id="6.1-Learning-parameters-using-batch-gradient-descent">
-<h5>6.1 Learning parameters using batch gradient descent<a class="headerlink" href="#6.1-Learning-parameters-using-batch-gradient-descent" title="Permalink to this headline"></a></h5>
+<h5>6.1 Learning parameters using batch gradient descent<a class="headerlink" href="#6.1-Learning-parameters-using-batch-gradient-descent" title="Permalink to this heading"></a></h5>
 <p>You will now find the optimal parameters of a linear regression model by using batch gradient descent. Recall batch refers to running all the examples in one iteration. - You don’t need to implement anything for this part. Simply run the cells below.</p>
 <ul class="simple">
 <li><p>A good way to verify that gradient descent is working correctly is to look at the value of <span class="math notranslate nohighlight">\(J(w,b)\)</span> and check that it is decreasing with each step.</p></li>
@@ -1315,7 +1316,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 <p>To calculate the predictions on the entire dataset, we can loop through all the training examples and calculate the prediction for each example. This is shown in the code block below.</p>
 </section>
 <section id="Assignment2:-My-solution">
-<h5>Assignment2: My solution<a class="headerlink" href="#Assignment2:-My-solution" title="Permalink to this headline"></a></h5>
+<h5>Assignment2: My solution<a class="headerlink" href="#Assignment2:-My-solution" title="Permalink to this heading"></a></h5>
 <details><p>My Solution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#my solution: Dictate learning rate automatically,costrain parameter within boundry</span>
 
@@ -1510,11 +1511,11 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </section>
 </section>
 <section id="Module---3">
-<h2>Module - 3<a class="headerlink" href="#Module---3" title="Permalink to this headline"></a></h2>
+<h2>Module - 3<a class="headerlink" href="#Module---3" title="Permalink to this heading"></a></h2>
 <section id="Optional-Lab-W3">
-<h3>Optional Lab W3<a class="headerlink" href="#Optional-Lab-W3" title="Permalink to this headline"></a></h3>
+<h3>Optional Lab W3<a class="headerlink" href="#Optional-Lab-W3" title="Permalink to this heading"></a></h3>
 <section id="Optional-Lab---3.1:-Classification">
-<h4>Optional Lab - 3.1: Classification<a class="headerlink" href="#Optional-Lab---3.1:-Classification" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.1: Classification<a class="headerlink" href="#Optional-Lab---3.1:-Classification" title="Permalink to this heading"></a></h4>
 <p>In this lab, you will contrast regression and classification.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1541,8 +1542,8 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 </div>
 </div>
 <section id="Classification-Problems">
-<h5>Classification Problems<a class="headerlink" href="#Classification-Problems" title="Permalink to this headline"></a></h5>
-<p><img alt="dbcf2879001a41858e7c56b03531d7b1" src="../../_images/C1_W3_Classification.png" /> Examples of classification problems are things like: identifying email as Spam or Not Spam or determining if a tumor is malignant or benign. In particular, these are examples of <em>binary</em> classification where there are two possible outcomes. Outcomes can be described in pairs of ‘positive’/’negative’ such as ‘yes’/’no, ‘true’/’false’ or ‘1’/’0’.</p>
+<h5>Classification Problems<a class="headerlink" href="#Classification-Problems" title="Permalink to this heading"></a></h5>
+<p><img alt="c09696e79d1749f3945a5de8eba24300" src="../../_images/C1_W3_Classification.png" /> Examples of classification problems are things like: identifying email as Spam or Not Spam or determining if a tumor is malignant or benign. In particular, these are examples of <em>binary</em> classification where there are two possible outcomes. Outcomes can be described in pairs of ‘positive’/’negative’ such as ‘yes’/’no, ‘true’/’false’ or ‘1’/’0’.</p>
 <p>Plots of classification data sets often use symbols to indicate the outcome of an example. In the plots below, ‘X’ is used to represent the positive values while ‘O’ represents negative outcomes.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1589,7 +1590,7 @@ example:<code class="docutils literal notranslate"><span class="pre">X[i]</span>
 would not have been limited to two values and a similar plot would have been three-dimensional.</p>
 </section>
 <section id="Linear-Regression-approach">
-<h5>Linear Regression approach<a class="headerlink" href="#Linear-Regression-approach" title="Permalink to this headline"></a></h5>
+<h5>Linear Regression approach<a class="headerlink" href="#Linear-Regression-approach" title="Permalink to this heading"></a></h5>
 <p>In the previous week, you applied linear regression to build a prediction model. Let’s try that approach here using the simple example that was described in the lecture. The model will predict if a tumor is benign or malignant based on tumor size. Try the following: - Click on ‘Run Linear Regression’ to find the best linear regression model for the given data. - Note the resulting linear model does <strong>not</strong> match the data well. One option to improve the results is to apply a <em>threshold</em>. - Tick
 the box on the ‘Toggle 0.5 threshold’ to show the predictions if a threshold is applied. - These predictions look good, the predictions match the data - <em>Important</em>: Now, add further ‘malignant’ data points on the far right, in the large tumor size range (near 10), and re-run linear regression. - Now, the model predicts the larger tumor, but data point at x=3 is being incorrectly predicted! - to clear/renew the plot, rerun the cell containing the plot command.</p>
 <div class="nbinput nblast docutils container">
@@ -1608,7 +1609,7 @@ the box on the ‘Toggle 0.5 threshold’ to show the predictions if a threshold
 </section>
 </section>
 <section id="Optional-Lab---3.2:-Logistic-Regression">
-<h4>Optional Lab - 3.2: Logistic Regression<a class="headerlink" href="#Optional-Lab---3.2:-Logistic-Regression" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.2: Logistic Regression<a class="headerlink" href="#Optional-Lab---3.2:-Logistic-Regression" title="Permalink to this heading"></a></h4>
 <p>In this ungraded lab, you will - explore the sigmoid function (also known as the logistic function) - explore logistic regression; which uses the sigmoid function</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1624,13 +1625,13 @@ the box on the ‘Toggle 0.5 threshold’ to show the predictions if a threshold
 </div>
 </div>
 <section id="Sigmoid-or-Logistic-Function">
-<h5>Sigmoid or Logistic Function<a class="headerlink" href="#Sigmoid-or-Logistic-Function" title="Permalink to this headline"></a></h5>
-<p><a href="#id9"><span class="problematic" id="id10">|</span></a>14d807ec542f4e4fa671ba92708ab380|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
+<h5>Sigmoid or Logistic Function<a class="headerlink" href="#Sigmoid-or-Logistic-Function" title="Permalink to this heading"></a></h5>
+<p><a href="#id9"><span class="problematic" id="id10">|</span></a>6ad9867be1614455a28dddf811316f6f|As discussed in the lecture videos, for a classification task, we can start by using our linear regression model, <span class="math notranslate nohighlight">\(f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)} + b\)</span>, to predict <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(x\)</span>. - However, we would like the predictions of our classification model to be between 0 and 1 since our output variable <span class="math notranslate nohighlight">\(y\)</span> is either 0 or 1. - This can be accomplished by using a “sigmoid function” which maps all input values
 to values between 0 and 1.</p>
 <p>Let’s implement the sigmoid function and see this for ourselves.</p>
 </section>
 <section id="Formula-for-Sigmoid-function">
-<h5>Formula for Sigmoid function<a class="headerlink" href="#Formula-for-Sigmoid-function" title="Permalink to this headline"></a></h5>
+<h5>Formula for Sigmoid function<a class="headerlink" href="#Formula-for-Sigmoid-function" title="Permalink to this heading"></a></h5>
 <p>The formula for a sigmoid function is as follows -</p>
 <p><span class="math notranslate nohighlight">\(g(z) = \frac{1}{1+e^{-z}}\tag{1}\)</span></p>
 <p>In the case of logistic regression, z (the input to the sigmoid function), is the output of a linear regression model. - In the case of a single example, <span class="math notranslate nohighlight">\(z\)</span> is scalar. - in the case of multiple examples, <span class="math notranslate nohighlight">\(z\)</span> may be a vector consisting of <span class="math notranslate nohighlight">\(m\)</span> values, one for each example. - The implementation of the sigmoid function should cover both of these potential input formats. Let’s implement this in Python.</p>
@@ -1717,8 +1718,8 @@ to values between 0 and 1.</p>
 <p>As you can see, the sigmoid function approaches <code class="docutils literal notranslate"><span class="pre">0</span></code> as <code class="docutils literal notranslate"><span class="pre">z</span></code> goes to large negative values and approaches <code class="docutils literal notranslate"><span class="pre">1</span></code> as <code class="docutils literal notranslate"><span class="pre">z</span></code> goes to large positive values.</p>
 </section>
 <section id="Logistic-Regression">
-<h5>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this headline"></a></h5>
-<p><img alt="8ee890d4f4b14303b2f423a367d388d0" src="../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
+<h5>Logistic Regression<a class="headerlink" href="#Logistic-Regression" title="Permalink to this heading"></a></h5>
+<p><img alt="0442188443004810b5ebeffc6afac6b4" src="../../_images/C1_W3_LogisticRegression_right.png" /> A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b ) \tag{2}\]</div>
 <p>where</p>
@@ -1754,9 +1755,9 @@ predictions look good. The predictions match the data - Now, add further data po
 </section>
 </section>
 <section id="Optional-Lab---3.3:-Logistic-Regression,-Decision-Boundary">
-<h4>Optional Lab - 3.3: Logistic Regression, Decision Boundary<a class="headerlink" href="#Optional-Lab---3.3:-Logistic-Regression,-Decision-Boundary" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.3: Logistic Regression, Decision Boundary<a class="headerlink" href="#Optional-Lab---3.3:-Logistic-Regression,-Decision-Boundary" title="Permalink to this heading"></a></h4>
 <section id="id11">
-<h5>Goals<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h5>
+<h5>Goals<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h5>
 <p>In this lab, you will: - Plot the decision boundary for a logistic regression model. This will give you a better sense of what the model is predicting.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1772,7 +1773,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </div>
 </section>
 <section id="Dataset">
-<h5>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this headline"></a></h5>
+<h5>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this heading"></a></h5>
 <p>Let’s suppose you have following training dataset - The input variable <code class="docutils literal notranslate"><span class="pre">X</span></code> is a numpy array which has 6 training examples, each with two features - The output variable <code class="docutils literal notranslate"><span class="pre">y</span></code> is also a numpy array with 6 examples, and <code class="docutils literal notranslate"><span class="pre">y</span></code> is either <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1785,7 +1786,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </div>
 </section>
 <section id="Plot-data">
-<h5>Plot data<a class="headerlink" href="#Plot-data" title="Permalink to this headline"></a></h5>
+<h5>Plot data<a class="headerlink" href="#Plot-data" title="Permalink to this heading"></a></h5>
 <p>Let’s use a helper function to plot this data. The data points with label <span class="math notranslate nohighlight">\(y=1\)</span> are shown as red crosses, while the data points with label <span class="math notranslate nohighlight">\(y=0\)</span> are shown as blue circles.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1803,7 +1804,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </div>
 </section>
 <section id="Logistic-regression-model">
-<h5>Logistic regression model<a class="headerlink" href="#Logistic-regression-model" title="Permalink to this headline"></a></h5>
+<h5>Logistic regression model<a class="headerlink" href="#Logistic-regression-model" title="Permalink to this heading"></a></h5>
 <ul>
 <li><p>Suppose you’d like to train a logistic regression model on this data which has the form</p>
 <p><span class="math notranslate nohighlight">\(f(x) = g(w_0x_0+w_1x_1 + b)\)</span></p>
@@ -1817,7 +1818,7 @@ predictions look good. The predictions match the data - Now, add further data po
 <p>Let’s try to understand what this trained model is predicting by plotting its decision boundary</p>
 </section>
 <section id="Refresher-on-logistic-regression-and-decision-boundary">
-<h5>Refresher on logistic regression and decision boundary<a class="headerlink" href="#Refresher-on-logistic-regression-and-decision-boundary" title="Permalink to this headline"></a></h5>
+<h5>Refresher on logistic regression and decision boundary<a class="headerlink" href="#Refresher-on-logistic-regression-and-decision-boundary" title="Permalink to this heading"></a></h5>
 <ul>
 <li><p>Recall that for logistic regression, the model is represented as</p>
 <div class="math notranslate nohighlight">
@@ -1861,7 +1862,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </ul>
 </section>
 <section id="Plotting-decision-boundary">
-<h5>Plotting decision boundary<a class="headerlink" href="#Plotting-decision-boundary" title="Permalink to this headline"></a></h5>
+<h5>Plotting decision boundary<a class="headerlink" href="#Plotting-decision-boundary" title="Permalink to this heading"></a></h5>
 <p>Now, let’s go back to our example to understand how the logistic regression model is making predictions.</p>
 <ul>
 <li><p>Our logistic regression model has the form</p>
@@ -1929,7 +1930,7 @@ predictions look good. The predictions match the data - Now, add further data po
 </section>
 </section>
 <section id="Optional-Lab---3.4:-Logistic-Regression,-Logistic-Loss">
-<h4>Optional Lab - 3.4: Logistic Regression, Logistic Loss<a class="headerlink" href="#Optional-Lab---3.4:-Logistic-Regression,-Logistic-Loss" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.4: Logistic Regression, Logistic Loss<a class="headerlink" href="#Optional-Lab---3.4:-Logistic-Regression,-Logistic-Loss" title="Permalink to this heading"></a></h4>
 <p>In this ungraded lab, you will: - explore the reason the squared error loss is not appropriate for logistic regression - explore the logistic loss function</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1953,8 +1954,8 @@ predictions look good. The predictions match the data - Now, add further data po
 </div>
 </div>
 <section id="Squared-error-for-logistic-regression?">
-<h5>Squared error for logistic regression?<a class="headerlink" href="#Squared-error-for-logistic-regression?" title="Permalink to this headline"></a></h5>
-<p><img alt="c3368b8cb34143e2a85703f6c681c288" src="../../_images/C1_W3_SqErrorVsLogistic.png" /> Recall for <strong>Linear</strong> Regression we have used the <strong>squared error cost function</strong>: The equation for the squared error cost with one variable is:</p>
+<h5>Squared error for logistic regression?<a class="headerlink" href="#Squared-error-for-logistic-regression?" title="Permalink to this heading"></a></h5>
+<p><img alt="eb0fee0c629b4358b1773145e76e33c9" src="../../_images/C1_W3_SqErrorVsLogistic.png" /> Recall for <strong>Linear</strong> Regression we have used the <strong>squared error cost function</strong>: The equation for the squared error cost with one variable is:</p>
 <div class="math notranslate nohighlight">
 \[J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 \tag{1}\]</div>
 <p>where</p>
@@ -2039,8 +2040,8 @@ predictions look good. The predictions match the data - Now, add further data po
 <p>Logistic regression requires a cost function more suitable to its non-linear nature. This starts with a Loss function. This is described below.</p>
 </section>
 <section id="Logistic-Loss-Function">
-<h5>Logistic Loss Function<a class="headerlink" href="#Logistic-Loss-Function" title="Permalink to this headline"></a></h5>
-<p><img alt="4aca540a44874de79baa7c68d05a1681" src="../../_images/C1_W3_LogisticLoss_a.png" /> <img alt="3f2129b0309b49388690a1d2416b21a8" src="../../_images/C1_W3_LogisticLoss_b.png" /> <img alt="9c9b77dfc2ab4bf2afa05d4c8d5c4bf5" src="../../_images/C1_W3_LogisticLoss_c.png" /></p>
+<h5>Logistic Loss Function<a class="headerlink" href="#Logistic-Loss-Function" title="Permalink to this heading"></a></h5>
+<p><img alt="88b9e16f29d142e595943977f8176990" src="../../_images/C1_W3_LogisticLoss_a.png" /> <img alt="0b1ddebc6bac4c9fbb656b28d64ce4aa" src="../../_images/C1_W3_LogisticLoss_b.png" /> <img alt="416be6430c2a44dd95d08dec745420da" src="../../_images/C1_W3_LogisticLoss_c.png" /></p>
 <p>Logistic Regression uses a loss function more suited to the task of categorization where the target is 0 or 1 rather than any number.</p>
 <blockquote>
 <div><div class="line-block">
@@ -2111,9 +2112,9 @@ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), 0) &amp;= (-(0) \log\left(f_{\mathbf{w}
 </section>
 </section>
 <section id="Optional-Lab---3.5:-Cost-Function-for-Logistic-Regression">
-<h4>Optional Lab - 3.5: Cost Function for Logistic Regression<a class="headerlink" href="#Optional-Lab---3.5:-Cost-Function-for-Logistic-Regression" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.5: Cost Function for Logistic Regression<a class="headerlink" href="#Optional-Lab---3.5:-Cost-Function-for-Logistic-Regression" title="Permalink to this heading"></a></h4>
 <section id="id15">
-<h5>Goals<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h5>
+<h5>Goals<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h5>
 <p>In this lab, you will: - examine the implementation and utilize the cost function for logistic regression.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2156,7 +2157,7 @@ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), 0) &amp;= (-(0) \log\left(f_{\mathbf{w}
 </div>
 </section>
 <section id="id16">
-<h5>Cost function<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h5>
+<h5>Cost function<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h5>
 <p>In a previous lab, you developed the <em>logistic loss</em> function. Recall, loss is defined to apply to one example. Here you combine the losses to form the <strong>cost</strong>, which includes all the examples.</p>
 <p>Recall that for logistic regression, the cost function is of the form</p>
 <div class="math notranslate nohighlight">
@@ -2177,7 +2178,7 @@ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), 0) &amp;= (-(0) \log\left(f_{\mathbf{w}
 </ul>
 </section>
 <section id="Code-Description">
-<h5>Code Description<a class="headerlink" href="#Code-Description" title="Permalink to this headline"></a></h5>
+<h5>Code Description<a class="headerlink" href="#Code-Description" title="Permalink to this heading"></a></h5>
 <p>The algorithm for <code class="docutils literal notranslate"><span class="pre">compute_cost_logistic</span></code> loops over all the examples calculating the loss for each example and accumulating the total.</p>
 <p>Note that the variables X and y are not scalar values but matrices of shape (<span class="math notranslate nohighlight">\(m, n\)</span>) and (<span class="math notranslate nohighlight">\(𝑚\)</span>,) respectively, where <span class="math notranslate nohighlight">\(𝑛\)</span> is the number of features and <span class="math notranslate nohighlight">\(𝑚\)</span> is the number of training examples.</p>
 <div class="nbinput nblast docutils container">
@@ -2244,7 +2245,7 @@ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), 0) &amp;= (-(0) \log\left(f_{\mathbf{w}
 </div>
 </section>
 <section id="Example">
-<h5>Example<a class="headerlink" href="#Example" title="Permalink to this headline"></a></h5>
+<h5>Example<a class="headerlink" href="#Example" title="Permalink to this heading"></a></h5>
 <p>Now, let’s see what the cost function output is for a different value of <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <ul class="simple">
 <li><p>In a previous lab, you plotted the decision boundary for <span class="math notranslate nohighlight">\(b = -3, w_0 = 1, w_1 = 1\)</span>. That is, you had <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">-3,</span> <span class="pre">w</span> <span class="pre">=</span> <span class="pre">np.array([1,1])</span></code>.</p></li>
@@ -2308,9 +2309,9 @@ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), 0) &amp;= (-(0) \log\left(f_{\mathbf{w}
 </section>
 </section>
 <section id="Optional-Lab---3.6:-Gradient-Descent-for-Logistic-Regression">
-<h4>Optional Lab - 3.6: Gradient Descent for Logistic Regression<a class="headerlink" href="#Optional-Lab---3.6:-Gradient-Descent-for-Logistic-Regression" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.6: Gradient Descent for Logistic Regression<a class="headerlink" href="#Optional-Lab---3.6:-Gradient-Descent-for-Logistic-Regression" title="Permalink to this heading"></a></h4>
 <section id="id17">
-<h5>Goals<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h5>
+<h5>Goals<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h5>
 <p>In this lab, you will: - update gradient descent for logistic regression. - explore gradient descent on a familiar data set</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2354,8 +2355,8 @@ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), 0) &amp;= (-(0) \log\left(f_{\mathbf{w}
 </div>
 </section>
 <section id="Logistic-Gradient-Descent">
-<h5>Logistic Gradient Descent<a class="headerlink" href="#Logistic-Gradient-Descent" title="Permalink to this headline"></a></h5>
-<p><img alt="1e40b2735f51468f8d8cf14717d1ece3" src="../../_images/C1_W3_Logistic_gradient_descent.png" /></p>
+<h5>Logistic Gradient Descent<a class="headerlink" href="#Logistic-Gradient-Descent" title="Permalink to this heading"></a></h5>
+<p><img alt="c4f03d4462dc4be081371dbbbe094286" src="../../_images/C1_W3_Logistic_gradient_descent.png" /></p>
 <p>Recall the gradient descent algorithm utilizes the gradient calculation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -2381,7 +2382,7 @@ where <span class="math notranslate nohighlight">\(g(z)\)</span> is the sigmoid 
 </ul>
 </section>
 <section id="Gradient-Descent-Implementation">
-<h5>Gradient Descent Implementation<a class="headerlink" href="#Gradient-Descent-Implementation" title="Permalink to this headline"></a></h5>
+<h5>Gradient Descent Implementation<a class="headerlink" href="#Gradient-Descent-Implementation" title="Permalink to this heading"></a></h5>
 <p>The gradient descent algorithm implementation has two components: - The loop implementing equation (1) above. This is <code class="docutils literal notranslate"><span class="pre">gradient_descent</span></code> below and is generally provided to you in optional and practice labs. - The calculation of the current gradient, equations (2,3) above. This is <code class="docutils literal notranslate"><span class="pre">compute_gradient_logistic</span></code> below. You will be asked to implement this week’s practice lab.</p>
 <p>Calculating the Gradient, Code Description</p>
 <div class="line-block">
@@ -2403,7 +2404,7 @@ where <span class="math notranslate nohighlight">\(g(z)\)</span> is the sigmoid 
 </section>
 </section>
 <section id="My-solution">
-<h4>My solution<a class="headerlink" href="#My-solution" title="Permalink to this headline"></a></h4>
+<h4>My solution<a class="headerlink" href="#My-solution" title="Permalink to this heading"></a></h4>
 <details><p>Logistic regression(1 variable)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -2695,7 +2696,7 @@ dj_dw: [0.498333393278696, 0.49883942983996693]
 </pre></div>
 </div>
 <section id="Gradient-Descent-Code">
-<h5>Gradient Descent Code<a class="headerlink" href="#Gradient-Descent-Code" title="Permalink to this headline"></a></h5>
+<h5>Gradient Descent Code<a class="headerlink" href="#Gradient-Descent-Code" title="Permalink to this heading"></a></h5>
 <p>The code implementing equation (1) above is implemented below. Take a moment to locate and compare the functions in the routine to the equations above.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2759,7 +2760,7 @@ dj_dw: [0.498333393278696, 0.49883942983996693]
 </div>
 </section>
 <section id="Let's-plot-the-results-of-gradient-descent:">
-<h5>Let’s plot the results of gradient descent:<a class="headerlink" href="#Let's-plot-the-results-of-gradient-descent:" title="Permalink to this headline"></a></h5>
+<h5>Let’s plot the results of gradient descent:<a class="headerlink" href="#Let's-plot-the-results-of-gradient-descent:" title="Permalink to this heading"></a></h5>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2821,9 +2822,9 @@ plot, rerun the cell</p>
 </section>
 </section>
 <section id="Optional-Lab---3.7:-Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn">
-<h4>Optional Lab - 3.7: Ungraded Lab: Logistic Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab---3.7:-Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.7: Ungraded Lab: Logistic Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab---3.7:-Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn" title="Permalink to this heading"></a></h4>
 <section id="id18">
-<h5>Goals<a class="headerlink" href="#id18" title="Permalink to this headline"></a></h5>
+<h5>Goals<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h5>
 <p>In this lab you will: - Train a logistic regression model using scikit-learn.</p>
 <p>Dataset</p>
 <p>Let’s start with the same dataset as before.</p>
@@ -2840,7 +2841,7 @@ plot, rerun the cell</p>
 </div>
 </section>
 <section id="Fit-the-model">
-<h5>Fit the model<a class="headerlink" href="#Fit-the-model" title="Permalink to this headline"></a></h5>
+<h5>Fit the model<a class="headerlink" href="#Fit-the-model" title="Permalink to this heading"></a></h5>
 <p>The code below imports the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression">logistic regression model</a> from scikit-learn. You can fit this model on the training data by calling <code class="docutils literal notranslate"><span class="pre">fit</span></code> function.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2855,7 +2856,7 @@ plot, rerun the cell</p>
 </div>
 </section>
 <section id="Make-Predictions">
-<h5>Make Predictions<a class="headerlink" href="#Make-Predictions" title="Permalink to this headline"></a></h5>
+<h5>Make Predictions<a class="headerlink" href="#Make-Predictions" title="Permalink to this heading"></a></h5>
 <p>You can see the predictions made by this model by calling the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2869,7 +2870,7 @@ plot, rerun the cell</p>
 </div>
 </section>
 <section id="Calculate-accuracy">
-<h5>Calculate accuracy<a class="headerlink" href="#Calculate-accuracy" title="Permalink to this headline"></a></h5>
+<h5>Calculate accuracy<a class="headerlink" href="#Calculate-accuracy" title="Permalink to this heading"></a></h5>
 <p>You can calculate this accuracy of this model by calling the <code class="docutils literal notranslate"><span class="pre">score</span></code> function.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2890,15 +2891,15 @@ plot, rerun the cell</p>
 </section>
 </section>
 <section id="Optional-Lab---3.8:-Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn">
-<h4>Optional Lab - 3.8: Ungraded Lab: Logistic Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab---3.8:-Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.8: Ungraded Lab: Logistic Regression using Scikit-Learn<a class="headerlink" href="#Optional-Lab---3.8:-Ungraded-Lab:-Logistic-Regression-using-Scikit-Learn" title="Permalink to this heading"></a></h4>
 <section id="Ungraded-Lab:-Overfitting">
-<h5>Ungraded Lab: Overfitting<a class="headerlink" href="#Ungraded-Lab:-Overfitting" title="Permalink to this headline"></a></h5>
-<p><img alt="200b813c63d94505ab406f95188889ce" src="../../_images/C1_W3_Overfitting_a.png" /> <img alt="4fe31e4ec9204702b8f6feb8109d9e3b" src="../../_images/C1_W3_Overfitting_b.png" /> <img alt="8cc7165083c54e7b9af86ecb26ede9df" src="../../_images/C1_W3_Overfitting_c.png" /></p>
+<h5>Ungraded Lab: Overfitting<a class="headerlink" href="#Ungraded-Lab:-Overfitting" title="Permalink to this heading"></a></h5>
+<p><img alt="3b5540a7cfb4436695ef3b7ba9a91b26" src="../../_images/C1_W3_Overfitting_a.png" /> <img alt="8af0da8aa23a4114be6546bab2d0df5a" src="../../_images/C1_W3_Overfitting_b.png" /> <img alt="333147c53b0f43c49aa7562b3d8c611a" src="../../_images/C1_W3_Overfitting_c.png" /></p>
 <p>Goals</p>
 <p>In this lab, you will explore: - the situations where overfitting can occur - some of the solutions</p>
 </section>
 <section id="Overfitting">
-<h5>Overfitting<a class="headerlink" href="#Overfitting" title="Permalink to this headline"></a></h5>
+<h5>Overfitting<a class="headerlink" href="#Overfitting" title="Permalink to this heading"></a></h5>
 <p>The week’s lecture described situations where overfitting can arise. Run the cell below to generate a plot that will allow you to explore overfitting. There are further instructions below the cell.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
@@ -2949,7 +2950,7 @@ plot, rerun the cell</p>
 </section>
 </section>
 <section id="Optional-Lab---3.9---Regularized-Cost-and-Gradient">
-<h4>Optional Lab - 3.9 - Regularized Cost and Gradient<a class="headerlink" href="#Optional-Lab---3.9---Regularized-Cost-and-Gradient" title="Permalink to this headline"></a></h4>
+<h4>Optional Lab - 3.9 - Regularized Cost and Gradient<a class="headerlink" href="#Optional-Lab---3.9---Regularized-Cost-and-Gradient" title="Permalink to this heading"></a></h4>
 <p>Goals</p>
 <p>In this lab, you will: - extend the previous linear and logistic cost functions with a regularization term. - rerun the previous example of over-fitting with a regularization term added.</p>
 <div class="nbinput nblast docutils container">
@@ -2971,12 +2972,12 @@ plot, rerun the cell</p>
 </div>
 </div>
 <section id="Adding-regularization">
-<h5>Adding regularization<a class="headerlink" href="#Adding-regularization" title="Permalink to this headline"></a></h5>
-<p><img alt="ca6aef5080cb4660af85128b79b3721c" src="../../_images/C1_W3_LinearGradientRegularized.png" /> <img alt="1b528c6f3acb44138a22a76dc76c36e1" src="../../_images/C1_W3_LogisticGradientRegularized.png" /></p>
+<h5>Adding regularization<a class="headerlink" href="#Adding-regularization" title="Permalink to this heading"></a></h5>
+<p><img alt="3a1d3be101ff4f62ba58be225e4eab10" src="../../_images/C1_W3_LinearGradientRegularized.png" /> <img alt="f8ca09e2898c47f28245914c669af737" src="../../_images/C1_W3_LogisticGradientRegularized.png" /></p>
 <p>The slides above show the cost and gradient functions for both linear and logistic regression. Note: - Cost - The cost functions differ significantly between linear and logistic regression, but adding regularization to the equations is the same. - Gradient - The gradient functions for linear and logistic regression are very similar. They differ only in the implementation of <span class="math notranslate nohighlight">\(f_{wb}\)</span>.</p>
 </section>
 <section id="Cost-functions-with-regularization">
-<h5>Cost functions with regularization<a class="headerlink" href="#Cost-functions-with-regularization" title="Permalink to this headline"></a></h5>
+<h5>Cost functions with regularization<a class="headerlink" href="#Cost-functions-with-regularization" title="Permalink to this heading"></a></h5>
 <p>Cost function for regularized linear regression</p>
 <p>The equation for the cost function regularized linear regression is:</p>
 <div class="math notranslate nohighlight">
@@ -3046,7 +3047,7 @@ plot, rerun the cell</p>
 <table><tr><td><p>Regularized cost: 0.07917239320214275</p>
 </td></tr></table></section>
 <section id="Cost-function-for-regularized-logistic-regression">
-<h5>Cost function for regularized logistic regression<a class="headerlink" href="#Cost-function-for-regularized-logistic-regression" title="Permalink to this headline"></a></h5>
+<h5>Cost function for regularized logistic regression<a class="headerlink" href="#Cost-function-for-regularized-logistic-regression" title="Permalink to this heading"></a></h5>
 <p>For regularized <strong>logistic</strong> regression, the cost function is of the form</p>
 <div class="math notranslate nohighlight">
 \[J(\mathbf{w},b) = \frac{1}{m}  \sum_{i=0}^{m-1} \left[ -y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) \right] + \frac{\lambda}{2m}  \sum_{j=0}^{n-1} w_j^2 \tag{3}\]</div>
@@ -3116,7 +3117,7 @@ plot, rerun the cell</p>
 <table><tr><td><p>Regularized cost: 0.6850849138741673</p>
 </td></tr></table></section>
 <section id="Gradient-descent-with-regularization">
-<h5>Gradient descent with regularization<a class="headerlink" href="#Gradient-descent-with-regularization" title="Permalink to this headline"></a></h5>
+<h5>Gradient descent with regularization<a class="headerlink" href="#Gradient-descent-with-regularization" title="Permalink to this heading"></a></h5>
 <p>The basic algorithm for running gradient descent does not change with regularization, it is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -3129,7 +3130,7 @@ plot, rerun the cell</p>
 <p>What changes with regularization is computing the gradients.</p>
 </section>
 <section id="Computing-the-Gradient-with-regularization-(both-linear/logistic)">
-<h5>Computing the Gradient with regularization (both linear/logistic)<a class="headerlink" href="#Computing-the-Gradient-with-regularization-(both-linear/logistic)" title="Permalink to this headline"></a></h5>
+<h5>Computing the Gradient with regularization (both linear/logistic)<a class="headerlink" href="#Computing-the-Gradient-with-regularization-(both-linear/logistic)" title="Permalink to this heading"></a></h5>
 <p>The gradient calculation for both linear and logistic regression are nearly identical, differing only in computation of <span class="math notranslate nohighlight">\(f_{\mathbf{w}b}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -3159,7 +3160,7 @@ plot, rerun the cell</p>
 <p>The term which adds regularization is the $:nbsphinx-math:<cite>frac{lambda}{m}</cite> w_j $.</p>
 </section>
 <section id="Gradient-function-for-regularized-linear-regression">
-<h5>Gradient function for regularized linear regression<a class="headerlink" href="#Gradient-function-for-regularized-linear-regression" title="Permalink to this headline"></a></h5>
+<h5>Gradient function for regularized linear regression<a class="headerlink" href="#Gradient-function-for-regularized-linear-regression" title="Permalink to this heading"></a></h5>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3223,7 +3224,7 @@ Regularized dj_dw:
 </div>
 </section>
 <section id="Gradient-function-for-regularized-logistic-regression">
-<h5>Gradient function for regularized logistic regression<a class="headerlink" href="#Gradient-function-for-regularized-logistic-regression" title="Permalink to this headline"></a></h5>
+<h5>Gradient function for regularized logistic regression<a class="headerlink" href="#Gradient-function-for-regularized-logistic-regression" title="Permalink to this heading"></a></h5>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3288,7 +3289,7 @@ Regularized dj_dw:
 </div>
 </section>
 <section id="Rerun-over-fitting-example">
-<h5>Rerun over-fitting example<a class="headerlink" href="#Rerun-over-fitting-example" title="Permalink to this headline"></a></h5>
+<h5>Rerun over-fitting example<a class="headerlink" href="#Rerun-over-fitting-example" title="Permalink to this heading"></a></h5>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3305,18 +3306,18 @@ Regularized dj_dw:
 </section>
 </section>
 <section id="id19">
-<h3>Practice Quiz<a class="headerlink" href="#id19" title="Permalink to this headline"></a></h3>
+<h3>Practice Quiz<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
 <section id="id20">
-<h4>Quiz-1<a class="headerlink" href="#id20" title="Permalink to this headline"></a></h4>
+<h4>Quiz-1<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/gradient_decent_for_logistic.png" style="width: 800px;" /></p>
 <center/><figure/></section>
 <section id="id21">
-<h4>Quiz-2<a class="headerlink" href="#id21" title="Permalink to this headline"></a></h4>
+<h4>Quiz-2<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
 <figure><center><p><img alt="missing" class="no-scaled-link" src="../../_images/costfnlogistic.png" style="width: 800px;" /></p>
 <center/><figure/></section>
 </section>
 <section id="Assignment-W3:">
-<h3>Assignment W3:<a class="headerlink" href="#Assignment-W3:" title="Permalink to this headline"></a></h3>
+<h3>Assignment W3:<a class="headerlink" href="#Assignment-W3:" title="Permalink to this heading"></a></h3>
 <p>In this exercise, you will implement logistic regression and apply it to two different datasets.</p>
 <p>Outline</p>
 <ul class="simple">
@@ -3347,7 +3348,7 @@ Regularized dj_dw:
 </li>
 </ul>
 <section id="id22">
-<h4>1 - Packages<a class="headerlink" href="#id22" title="Permalink to this headline"></a></h4>
+<h4>1 - Packages<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h4>
 <p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a class="reference external" href="www.numpy.org">numpy</a> is the fundamental package for scientific computing with Python. - <a class="reference external" href="http://matplotlib.org">matplotlib</a> is a famous library to plot graphs in Python. - <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> contains helper functions for this assignment. You do not need to modify code in this file.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -3388,15 +3389,15 @@ Regularized dj_dw:
 </div>
 </section>
 <section id="2---Logistic-Regression">
-<h4>2 - Logistic Regression<a class="headerlink" href="#2---Logistic-Regression" title="Permalink to this headline"></a></h4>
+<h4>2 - Logistic Regression<a class="headerlink" href="#2---Logistic-Regression" title="Permalink to this heading"></a></h4>
 <p>In this part of the exercise, you will build a logistic regression model to predict whether a student gets admitted into a university.</p>
 <section id="2.1-Problem-Statement">
-<h5>2.1 Problem Statement<a class="headerlink" href="#2.1-Problem-Statement" title="Permalink to this headline"></a></h5>
+<h5>2.1 Problem Statement<a class="headerlink" href="#2.1-Problem-Statement" title="Permalink to this heading"></a></h5>
 <p>Suppose that you are the administrator of a university department and you want to determine each applicant’s chance of admission based on their results on two exams. * You have historical data from previous applicants that you can use as a training set for logistic regression. * For each training example, you have the applicant’s scores on two exams and the admissions decision. * Your task is to build a classification model that estimates an applicant’s probability of admission based on the
 scores from those two exams.</p>
 </section>
 <section id="2.2-Loading-and-visualizing-the-data">
-<h5>2.2 Loading and visualizing the data<a class="headerlink" href="#2.2-Loading-and-visualizing-the-data" title="Permalink to this headline"></a></h5>
+<h5>2.2 Loading and visualizing the data<a class="headerlink" href="#2.2-Loading-and-visualizing-the-data" title="Permalink to this heading"></a></h5>
 <p>You will start by loading the dataset for this task. - The <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> - <code class="docutils literal notranslate"><span class="pre">X_train</span></code> contains exam scores on two exams for a student - <code class="docutils literal notranslate"><span class="pre">y_train</span></code> is the admission decision - <code class="docutils literal notranslate"><span class="pre">y_train</span> <span class="pre">=</span> <span class="pre">1</span></code> if the student was admitted - <code class="docutils literal notranslate"><span class="pre">y_train</span> <span class="pre">=</span> <span class="pre">0</span></code> if the student was not admitted - Both <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> are numpy arrays.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -3480,7 +3481,7 @@ We have m = 100 training examples
 </div>
 <p>Visualize your data</p>
 <p>Before starting to implement any learning algorithm, it is always good to visualize the data if possible. - The code below displays the data on a 2D plot (as shown below), where the axes are the two exam scores, and the positive and negative examples are shown with different markers. - We use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to generate this plot.</p>
-<p><img alt="e0663f8f9e5d494988b11bc8f7be0cf4" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="b6af4754ba0344c98af2be9583829137" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure1.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
@@ -3507,7 +3508,7 @@ We have m = 100 training examples
 <p>Your goal is to build a logistic regression model to fit this data. - With this model, you can then predict if a new student will be admitted based on their scores on the two exams.</p>
 </section>
 <section id="2.3-Sigmoid-function">
-<h5>2.3 Sigmoid function<a class="headerlink" href="#2.3-Sigmoid-function" title="Permalink to this headline"></a></h5>
+<h5>2.3 Sigmoid function<a class="headerlink" href="#2.3-Sigmoid-function" title="Permalink to this heading"></a></h5>
 <p>Recall that for logistic regression, the model is represented as</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(x) = g(\mathbf{w}\cdot \mathbf{x} + b)\]</div>
@@ -3610,7 +3611,7 @@ sigmoid([ -1, 0, 1, 2]) = [0.26894142 0.5        0.73105858 0.88079708]
 </td><td><p>[0.26894142 0.5 0.73105858 0.88079708]</p>
 </td></tr></table></section>
 <section id="2.4-Cost-function-for-logistic-regression">
-<h5>2.4 Cost function for logistic regression<a class="headerlink" href="#2.4-Cost-function-for-logistic-regression" title="Permalink to this headline"></a></h5>
+<h5>2.4 Cost function for logistic regression<a class="headerlink" href="#2.4-Cost-function-for-logistic-regression" title="Permalink to this heading"></a></h5>
 <p>In this section, you will implement the cost function for logistic regression.</p>
 <p>Exercise 2</p>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">compute_cost</span></code> function using the equations below.</p>
@@ -3773,7 +3774,7 @@ Cost at test w,b: 0.218
 </td><td><p>0.218</p>
 </td></tr></table></section>
 <section id="2.5-Gradient-for-logistic-regression">
-<h5>2.5 Gradient for logistic regression<a class="headerlink" href="#2.5-Gradient-for-logistic-regression" title="Permalink to this headline"></a></h5>
+<h5>2.5 Gradient for logistic regression<a class="headerlink" href="#2.5-Gradient-for-logistic-regression" title="Permalink to this heading"></a></h5>
 <p>In this section, you will implement the gradient for logistic regression.</p>
 <p>Recall that the gradient descent algorithm is:</p>
 <div class="math notranslate nohighlight">
@@ -3942,7 +3943,7 @@ dj_dw at test_w: [-44.831353617873795, -44.37384124953978]
 </td><td><p>[-44.8313536178737957, -44.37384124953978]</p>
 </td></tr></table></section>
 <section id="2.6-Learning-parameters-using-gradient-descent">
-<h5>2.6 Learning parameters using gradient descent<a class="headerlink" href="#2.6-Learning-parameters-using-gradient-descent" title="Permalink to this headline"></a></h5>
+<h5>2.6 Learning parameters using gradient descent<a class="headerlink" href="#2.6-Learning-parameters-using-gradient-descent" title="Permalink to this heading"></a></h5>
 <p>Similar to the previous assignment, you will now find the optimal parameters of a logistic regression model by using gradient descent. - You don’t need to implement anything for this part. Simply run the cells below.</p>
 <ul class="simple">
 <li><p>A good way to verify that gradient descent is working correctly is to look at the value of <span class="math notranslate nohighlight">\(J(\mathbf{w},b)\)</span> and check that it is decreasing with each step.</p></li>
@@ -4068,10 +4069,10 @@ Iteration 9999: Cost     0.30
 </div>
 </section>
 <section id="2.7-Plotting-the-decision-boundary">
-<h5>2.7 Plotting the decision boundary<a class="headerlink" href="#2.7-Plotting-the-decision-boundary" title="Permalink to this headline"></a></h5>
+<h5>2.7 Plotting the decision boundary<a class="headerlink" href="#2.7-Plotting-the-decision-boundary" title="Permalink to this heading"></a></h5>
 <div class="line-block">
 <div class="line">We will now use the final parameters from gradient descent to plot the linear fit. If you implemented the previous parts correctly, you should see the following plot:</div>
-<div class="line"><img alt="bb76243e95a74e6eb9c93570bb953eae" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
+<div class="line"><img alt="563b5d6cd6234bc089b8b60e1f682470" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure2.png" style="width: 450px; height: 450px;" /></div>
 </div>
 <p>We will use a helper function in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to create this plot.</p>
 <div class="nbinput docutils container">
@@ -4091,12 +4092,12 @@ Iteration 9999: Cost     0.30
 </div>
 </section>
 <section id="2.8-Evaluating-logistic-regression">
-<h5>2.8 Evaluating logistic regression<a class="headerlink" href="#2.8-Evaluating-logistic-regression" title="Permalink to this headline"></a></h5>
+<h5>2.8 Evaluating logistic regression<a class="headerlink" href="#2.8-Evaluating-logistic-regression" title="Permalink to this heading"></a></h5>
 <p>We can evaluate the quality of the parameters we have found by seeing how well the learned model predicts on our training set.</p>
 <p>You will implement the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function below to do this.</p>
 </section>
 <section id="Exercise-4">
-<h5>Exercise 4<a class="headerlink" href="#Exercise-4" title="Permalink to this headline"></a></h5>
+<h5>Exercise 4<a class="headerlink" href="#Exercise-4" title="Permalink to this heading"></a></h5>
 <p>Please complete the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function to produce <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code> predictions given a dataset and a learned parameter vector <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. - First you need to compute the prediction from the model <span class="math notranslate nohighlight">\(f(x^{(i)}) = g(w \cdot x^{(i)})\)</span> for every example - You’ve implemented this before in the parts above - We interpret the output of the model (<span class="math notranslate nohighlight">\(f(x^{(i)})\)</span>) as the probability that <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span> given <span class="math notranslate nohighlight">\(x^{(i)}\)</span> and parameterized by <span class="math notranslate nohighlight">\(w\)</span>. - Therefore, to get a
 final prediction (<span class="math notranslate nohighlight">\(y^{(i)}=0\)</span> or <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span>) from the logistic regression model, you can use the following heuristic -</p>
 <p>if <span class="math notranslate nohighlight">\(f(x^{(i)}) &gt;= 0.5\)</span>, predict <span class="math notranslate nohighlight">\(y^{(i)}=1\)</span></p>
@@ -4244,14 +4245,14 @@ Train Accuracy: 92.000000
 </td></tr></table></section>
 </section>
 <section id="3---Regularized-Logistic-Regression">
-<h4>3 - Regularized Logistic Regression<a class="headerlink" href="#3---Regularized-Logistic-Regression" title="Permalink to this headline"></a></h4>
+<h4>3 - Regularized Logistic Regression<a class="headerlink" href="#3---Regularized-Logistic-Regression" title="Permalink to this heading"></a></h4>
 <p>In this part of the exercise, you will implement regularized logistic regression to predict whether microchips from a fabrication plant passes quality assurance (QA). During QA, each microchip goes through various tests to ensure it is functioning correctly.</p>
 <section id="3.1-Problem-Statement">
-<h5>3.1 Problem Statement<a class="headerlink" href="#3.1-Problem-Statement" title="Permalink to this headline"></a></h5>
+<h5>3.1 Problem Statement<a class="headerlink" href="#3.1-Problem-Statement" title="Permalink to this heading"></a></h5>
 <p>Suppose you are the product manager of the factory and you have the test results for some microchips on two different tests. - From these two tests, you would like to determine whether the microchips should be accepted or rejected. - To help you make the decision, you have a dataset of test results on past microchips, from which you can build a logistic regression model.</p>
 </section>
 <section id="3.2-Loading-and-visualizing-the-data">
-<h5>3.2 Loading and visualizing the data<a class="headerlink" href="#3.2-Loading-and-visualizing-the-data" title="Permalink to this headline"></a></h5>
+<h5>3.2 Loading and visualizing the data<a class="headerlink" href="#3.2-Loading-and-visualizing-the-data" title="Permalink to this heading"></a></h5>
 <p>Similar to previous parts of this exercise, let’s start by loading the dataset for this task and visualizing it.</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> function shown below loads the data into variables <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p>
@@ -4348,7 +4349,7 @@ We have m = 118 training examples
 </div>
 <p>Visualize your data</p>
 <p>The helper function <code class="docutils literal notranslate"><span class="pre">plot_data</span></code> (from <code class="docutils literal notranslate"><span class="pre">utils.py</span></code>) is used to generate a figure like Figure 3, where the axes are the two test scores, and the positive (y = 1, accepted) and negative (y = 0, rejected) examples are shown with different markers.</p>
-<p><img alt="2248a6bf0ee8441b9395c026ee387e16" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="cb0314feb9294cf88a9629d24ca06704" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure3.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
@@ -4374,7 +4375,7 @@ We have m = 118 training examples
 <p>Figure 3 shows that our dataset cannot be separated into positive and negative examples by a straight-line through the plot. Therefore, a straight forward application of logistic regression will not perform well on this dataset since logistic regression will only be able to find a linear decision boundary.</p>
 </section>
 <section id="3.3-Feature-mapping">
-<h5>3.3 Feature mapping<a class="headerlink" href="#3.3-Feature-mapping" title="Permalink to this headline"></a></h5>
+<h5>3.3 Feature mapping<a class="headerlink" href="#3.3-Feature-mapping" title="Permalink to this heading"></a></h5>
 <p>One way to fit the data better is to create more features from each data point. In the provided function <code class="docutils literal notranslate"><span class="pre">map_feature</span></code>, we will map the features into all polynomial terms of <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> up to the sixth power.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathrm{map\_feature}(x) =
@@ -4438,7 +4439,7 @@ mapped X_train[0]: [5.13e-02 7.00e-01 2.63e-03 3.59e-02 4.89e-01 1.35e-04 1.84e-
 <p>While the feature mapping allows us to build a more expressive classifier, it is also more susceptible to overfitting. In the next parts of the exercise, you will implement regularized logistic regression to fit the data and also see for yourself how regularization can help combat the overfitting problem.</p>
 </section>
 <section id="3.4-Cost-function-for-regularized-logistic-regression">
-<h5>3.4 Cost function for regularized logistic regression<a class="headerlink" href="#3.4-Cost-function-for-regularized-logistic-regression" title="Permalink to this headline"></a></h5>
+<h5>3.4 Cost function for regularized logistic regression<a class="headerlink" href="#3.4-Cost-function-for-regularized-logistic-regression" title="Permalink to this heading"></a></h5>
 <p>In this part, you will implement the cost function for regularized logistic regression.</p>
 <p>Recall that for regularized logistic regression, the cost function is of the form</p>
 <div class="math notranslate nohighlight">
@@ -4555,7 +4556,7 @@ Regularized cost : 0.6618252552483948
 </td><td><p>0.6618252552483948</p>
 </td></tr></table></section>
 <section id="3.5-Gradient-for-regularized-logistic-regression">
-<h5>3.5 Gradient for regularized logistic regression<a class="headerlink" href="#3.5-Gradient-for-regularized-logistic-regression" title="Permalink to this headline"></a></h5>
+<h5>3.5 Gradient for regularized logistic regression<a class="headerlink" href="#3.5-Gradient-for-regularized-logistic-regression" title="Permalink to this heading"></a></h5>
 <p>In this section, you will implement the gradient for regularized logistic regression.</p>
 <p>The gradient of the regularized cost function has two components. The first, <span class="math notranslate nohighlight">\(\frac{\partial J(\mathbf{w},b)}{\partial b}\)</span> is a scalar, the other is a vector with the same shape as the parameters <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>, where the <span class="math notranslate nohighlight">\(j^\mathrm{th}\)</span> element is defined as follows:</p>
 <div class="math notranslate nohighlight">
@@ -4671,7 +4672,7 @@ First few elements of regularized dj_dw:
 </td></tr><tr><td><p>[[-0.010386028450548701], [0.01140985288328012], [0.0536273463274574], [0.003140278267313462]]</p>
 </td></tr></table></section>
 <section id="3.6-Learning-parameters-using-gradient-descent">
-<h5>3.6 Learning parameters using gradient descent<a class="headerlink" href="#3.6-Learning-parameters-using-gradient-descent" title="Permalink to this headline"></a></h5>
+<h5>3.6 Learning parameters using gradient descent<a class="headerlink" href="#3.6-Learning-parameters-using-gradient-descent" title="Permalink to this heading"></a></h5>
 <p>Similar to the previous parts, you will use your gradient descent function implemented above to learn the optimal parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>. - If you have completed the cost and gradient for regularized logistic regression correctly, you should be able to step through the next cell to learn the parameters <span class="math notranslate nohighlight">\(w\)</span>. - After training our parameters, we will use it to plot the decision boundary.</p>
 <p><strong>Note</strong></p>
 <p>The code block below takes quite a while to run, especially with a non-vectorized version. You can reduce the <code class="docutils literal notranslate"><span class="pre">iterations</span></code> to test your implementation and iterate faster. If you have time, run for 100,000 iterations to see better results.</p>
@@ -4754,13 +4755,13 @@ Iteration 9999: Cost     0.45
 </div>
 </section>
 <section id="3.7-Plotting-the-decision-boundary">
-<h5>3.7 Plotting the decision boundary<a class="headerlink" href="#3.7-Plotting-the-decision-boundary" title="Permalink to this headline"></a></h5>
+<h5>3.7 Plotting the decision boundary<a class="headerlink" href="#3.7-Plotting-the-decision-boundary" title="Permalink to this heading"></a></h5>
 <p>To help you visualize the model learned by this classifier, we will use our <code class="docutils literal notranslate"><span class="pre">plot_decision_boundary</span></code> function which plots the (non-linear) decision boundary that separates the positive and negative examples.</p>
 <ul class="simple">
 <li><p>In the function, we plotted the non-linear decision boundary by computing the classifier’s predictions on an evenly spaced grid and then drew a contour plot of where the predictions change from y = 0 to y = 1.</p></li>
 <li><p>After learning the parameters <span class="math notranslate nohighlight">\(w\)</span>,<span class="math notranslate nohighlight">\(b\)</span>, the next step is to plot a decision boundary similar to Figure 4.</p></li>
 </ul>
-<p><img alt="7bea4801e0e74875a8cda3e4569092cc" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
+<p><img alt="da581d08953d4b968c19af6abcf5763f" class="no-scaled-link" src="source_files/Supervised_Machine_Learning_Regression_and_Classification/week3/C1W3A1/images/figure4.png" style="width: 450px; height: 450px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
@@ -4816,7 +4817,7 @@ Iteration 9999: Cost     0.45
 </div>
 </section>
 <section id="3.8-Evaluating-regularized-logistic-regression-model">
-<h5>3.8 Evaluating regularized logistic regression model<a class="headerlink" href="#3.8-Evaluating-regularized-logistic-regression-model" title="Permalink to this headline"></a></h5>
+<h5>3.8 Evaluating regularized logistic regression model<a class="headerlink" href="#3.8-Evaluating-regularized-logistic-regression-model" title="Permalink to this heading"></a></h5>
 <p>You will use the <code class="docutils literal notranslate"><span class="pre">predict</span></code> function that you implemented above to calculate the accuracy of the regulaized logistic regression model on the training set</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
@@ -4841,7 +4842,7 @@ Train Accuracy: 82.203390
 <table><tr><td><p>Train Accuracy:~ 80%</p>
 </td></tr></table></section>
 <section id="My-Solution">
-<h5>My Solution<a class="headerlink" href="#My-Solution" title="Permalink to this headline"></a></h5>
+<h5>My Solution<a class="headerlink" href="#My-Solution" title="Permalink to this heading"></a></h5>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>

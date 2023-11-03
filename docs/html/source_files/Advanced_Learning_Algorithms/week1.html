@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advanced_Learning_Algorithms &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -78,11 +79,11 @@
            <div itemprop="articleBody">
              
   <hr style="height: 3px; background-color: black;"><section id="Advanced_Learning_Algorithms">
-<h1>Advanced_Learning_Algorithms<a class="headerlink" href="#Advanced_Learning_Algorithms" title="Permalink to this headline"></a></h1>
+<h1>Advanced_Learning_Algorithms<a class="headerlink" href="#Advanced_Learning_Algorithms" title="Permalink to this heading"></a></h1>
 <section id="(Convolutional-Neural-Networks)">
-<h2><strong>(Convolutional Neural Networks)</strong><a class="headerlink" href="#(Convolutional-Neural-Networks)" title="Permalink to this headline"></a></h2>
+<h2><strong>(Convolutional Neural Networks)</strong><a class="headerlink" href="#(Convolutional-Neural-Networks)" title="Permalink to this heading"></a></h2>
 <hr style="height: 3px; background-color: black;"><div style="margin-bottom: 4vh;"></div><div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### ignore these lines, these are added to load some data</span>
@@ -94,18 +95,18 @@
 </div>
 </div>
 <section id="Optional-Lab---Neurons-and-Layers">
-<h3>Optional Lab - Neurons and Layers<a class="headerlink" href="#Optional-Lab---Neurons-and-Layers" title="Permalink to this headline"></a></h3>
+<h3>Optional Lab - Neurons and Layers<a class="headerlink" href="#Optional-Lab---Neurons-and-Layers" title="Permalink to this heading"></a></h3>
 <p>In this lab we will explore the inner workings of neurons/units and layers. In particular, the lab will draw parallels to the models you have mastered in Course 1, the regression/linear model and the logistic model. The lab will introduce Tensorflow and demonstrate how these models are implemented in that framework.</p>
-<figure><p><img alt="254b113eaa234314aed1c5f2ac470b58" src="../../_images/C2_W1_NeuronsAndLayers.png" /></p>
+<figure><p><img alt="e2e36034ea1d483384783eaf45dd1ed4" src="../../_images/C2_W1_NeuronsAndLayers.png" /></p>
 </figure></section>
 <section id="Packages">
-<h3>Packages<a class="headerlink" href="#Packages" title="Permalink to this headline"></a></h3>
+<h3>Packages<a class="headerlink" href="#Packages" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><strong>Tensorflow and Keras</strong></div>
 <div class="line">Tensorflow is a machine learning package developed by Google. In 2019, Google integrated Keras into Tensorflow and released Tensorflow 2.0. Keras is a framework developed independently by François Chollet that creates a simple, layer-centric interface to Tensorflow. This course will be using the Keras interface.</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -133,23 +134,23 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-08-28 22:44:25.464276: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2023-08-28 22:44:26.260482: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2023-08-28 22:44:26.262869: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+2023-09-01 11:32:37.701075: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-09-01 11:32:40.040068: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-09-01 11:32:40.054266: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2023-08-28 22:44:29.460556: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-09-01 11:32:47.064825: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div></div>
 </div>
 <section id="Neuron-without-activation---Regression/Linear-Model">
-<h4>Neuron without activation - Regression/Linear Model<a class="headerlink" href="#Neuron-without-activation---Regression/Linear-Model" title="Permalink to this headline"></a></h4>
+<h4>Neuron without activation - Regression/Linear Model<a class="headerlink" href="#Neuron-without-activation---Regression/Linear-Model" title="Permalink to this heading"></a></h4>
 </section>
 </section>
 </section>
 <section id="DataSet">
-<h2>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this headline"></a></h2>
+<h2>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this heading"></a></h2>
 <p>We’ll use an example from Course 1, linear regression on house prices.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>           <span class="c1">#(size in 1000 square feet)</span>
@@ -176,7 +177,7 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 \[f_{\mathbf{w},b}(x^{(i)}) = \mathbf{w}\cdot x^{(i)} + b \tag{1}\]</div>
 <p>We can define a layer with one neuron or unit and compare it to the familiar linear regression function.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linear_layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="p">)</span>
@@ -185,7 +186,7 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 <p>Let’s examine the weights.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linear_layer</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
@@ -193,7 +194,7 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -203,7 +204,7 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 <p>There are no weights as the weights are not yet instantiated. Let’s try the model on one example in <code class="docutils literal notranslate"><span class="pre">X_train</span></code>. This will trigger the instantiation of the weights. Note, the input to the layer must be 2-D, so we’ll reshape it.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="n">linear_layer</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -216,7 +217,7 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-tf.Tensor([[-0.71]], shape=(1, 1), dtype=float32)
+tf.Tensor([[0.22]], shape=(1, 1), dtype=float32)
 </pre></div></div>
 </div>
 <div class="line-block">
@@ -224,7 +225,7 @@ tf.Tensor([[-0.71]], shape=(1, 1), dtype=float32)
 <div class="line">Now let’s look at the weights and bias. These weights are randomly initialized to small numbers and the bias defaults to being initialized to zero.</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span> <span class="n">linear_layer</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
@@ -237,7 +238,7 @@ tf.Tensor([[-0.71]], shape=(1, 1), dtype=float32)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-w = [[-0.71]], b=[0.]
+w = [[0.22]], b=[0.]
 </pre></div></div>
 </div>
 <p>A linear regression model (1) with a single input feature will have a single weight and bias. This matches the dimensions of our <code class="docutils literal notranslate"><span class="pre">linear_layer</span></code> above.</p>
@@ -309,8 +310,6 @@ tf.Tensor([[300.]], shape=(1, 1), dtype=float32)
 <img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_26_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_26_0.png" />
 </div>
 </div>
-<section id="Neuron-with-Sigmoid-activation">
-<h3>Neuron with Sigmoid activation<a class="headerlink" href="#Neuron-with-Sigmoid-activation" title="Permalink to this headline"></a></h3>
 <p>The function implemented by a neuron/unit with a sigmoid activation is the same as in Course 1, logistic regression:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(x^{(i)}) = g(\mathbf{w}x^{(i)} + b) \tag{2}\]</div>
@@ -319,12 +318,11 @@ tf.Tensor([[300.]], shape=(1, 1), dtype=float32)
 \[g(x) = sigmoid(x)\]</div>
 <p>Let’s set <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> to some known values and check the model.</p>
 </section>
-</section>
 <section id="id1">
-<h2>DataSet<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>DataSet<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>We’ll use an example from Course 1, logistic regression.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 2-D Matrix</span>
@@ -333,7 +331,7 @@ tf.Tensor([[300.]], shape=(1, 1), dtype=float32)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">Y_train</span> <span class="o">==</span> <span class="mi">1</span>
@@ -343,7 +341,7 @@ tf.Tensor([[300.]], shape=(1, 1), dtype=float32)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -352,7 +350,7 @@ array([3., 4., 5.], dtype=float32)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">Y_train</span> <span class="o">==</span> <span class="mi">1</span>
@@ -381,18 +379,18 @@ array([3., 4., 5.], dtype=float32)
 </div>
 </section>
 <section id="Logistic-Neuron">
-<h2>Logistic Neuron<a class="headerlink" href="#Logistic-Neuron" title="Permalink to this headline"></a></h2>
+<h2>Logistic Neuron<a class="headerlink" href="#Logistic-Neuron" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">We can implement a ‘logistic neuron’ by adding a sigmoid activation. The function of the neuron is then described by (2) above.</div>
 <div class="line">This section will create a Tensorflow Model that contains our logistic layer to demonstrate an alternate method of creating models. Tensorflow is most often used to create multi-layer models. The <a class="reference external" href="https://keras.io/guides/sequential_model/">Sequential</a> model is a convenient means of constructing these models.</div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">)</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">)</span>
     <span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
@@ -400,7 +398,7 @@ array([3., 4., 5.], dtype=float32)
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">model.summary()</span></code> shows the layers and number of parameters in the model. There is only one layer in this model and that layer has only one unit. The unit has two parameters, <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -412,7 +410,7 @@ array([3., 4., 5.], dtype=float32)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Model: &#34;sequential&#34;
+Model: &#34;sequential_1&#34;
 _________________________________________________________________
  Layer (type)                Output Shape              Param #
 =================================================================
@@ -426,7 +424,7 @@ _________________________________________________________________
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logistic_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)</span>
@@ -441,13 +439,13 @@ _________________________________________________________________
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[0.25]] [0.]
+[[0.29]] [0.]
 (1, 1) (1,)
 </pre></div></div>
 </div>
 <p>Let’s set the weight and bias to some known values.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">]])</span>
@@ -468,7 +466,7 @@ _________________________________________________________________
 </div>
 <p>Let’s compare equation (2) to the layer output.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -483,14 +481,14 @@ _________________________________________________________________
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-1/1 [==============================] - 1s 569ms/step
+1/1 [==============================] - 1s 871ms/step
 [[0.01]]
 [[0.01]]
 </pre></div></div>
 </div>
 <p>They produce the same values! Now, we can use our logistic layer and NumPy model to make predictions on our training data.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_logistic</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">set_w</span><span class="p">,</span> <span class="n">set_b</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">neg</span><span class="p">)</span>
@@ -502,55 +500,55 @@ _________________________________________________________________
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-1/1 [==============================] - 0s 82ms/step
-1/1 [==============================] - 0s 70ms/step
-1/1 [==============================] - 0s 67ms/step
+1/1 [==============================] - 0s 74ms/step
+1/1 [==============================] - 0s 58ms/step
 1/1 [==============================] - 0s 60ms/step
-1/1 [==============================] - 0s 57ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 62ms/step
-1/1 [==============================] - 0s 64ms/step
-1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 63ms/step
+1/1 [==============================] - 0s 61ms/step
+1/1 [==============================] - 0s 80ms/step
+1/1 [==============================] - 0s 81ms/step
+1/1 [==============================] - 0s 54ms/step
+1/1 [==============================] - 0s 52ms/step
 1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 63ms/step
+1/1 [==============================] - 0s 73ms/step
+1/1 [==============================] - 0s 55ms/step
+1/1 [==============================] - 0s 51ms/step
+1/1 [==============================] - 0s 51ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 78ms/step
+1/1 [==============================] - 0s 63ms/step
+1/1 [==============================] - 0s 60ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 44ms/step
+1/1 [==============================] - 0s 44ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 53ms/step
 1/1 [==============================] - 0s 53ms/step
 1/1 [==============================] - 0s 52ms/step
-1/1 [==============================] - 0s 54ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 52ms/step
 1/1 [==============================] - 0s 51ms/step
 1/1 [==============================] - 0s 52ms/step
-1/1 [==============================] - 0s 50ms/step
-1/1 [==============================] - 0s 64ms/step
-1/1 [==============================] - 0s 65ms/step
 1/1 [==============================] - 0s 48ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 55ms/step
-1/1 [==============================] - 0s 68ms/step
-1/1 [==============================] - 0s 69ms/step
-1/1 [==============================] - 0s 76ms/step
-1/1 [==============================] - 0s 58ms/step
-1/1 [==============================] - 0s 67ms/step
-1/1 [==============================] - 0s 54ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 58ms/step
-1/1 [==============================] - 0s 57ms/step
-1/1 [==============================] - 0s 58ms/step
+1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 49ms/step
 1/1 [==============================] - 0s 52ms/step
 1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 60ms/step
+1/1 [==============================] - 0s 45ms/step
+1/1 [==============================] - 0s 44ms/step
 1/1 [==============================] - 0s 48ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 54ms/step
-1/1 [==============================] - 0s 55ms/step
-1/1 [==============================] - 0s 49ms/step
-1/1 [==============================] - 0s 66ms/step
-1/1 [==============================] - 0s 64ms/step
-1/1 [==============================] - 0s 54ms/step
-1/1 [==============================] - 0s 55ms/step
-1/1 [==============================] - 0s 50ms/step
-1/1 [==============================] - 0s 46ms/step
 1/1 [==============================] - 0s 67ms/step
-1/1 [==============================] - 0s 55ms/step
-1/1 [==============================] - 0s 65ms/step
+1/1 [==============================] - 0s 66ms/step
+1/1 [==============================] - 0s 50ms/step
 1/1 [==============================] - 0s 52ms/step
 </pre></div></div>
 </div>
@@ -572,26 +570,12 @@ _________________________________________________________________
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
+<section id="Optional-Lab---Simple-Neural-Network">
+<h3>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this heading"></a></h3>
 <p>In this lab we will build a small neural network using Tensorflow.</p>
-<center><p><img alt="cbdf8d4a80c3499b9e6e514749496d3b" class="no-scaled-link" src="../../_images/C2_W1_CoffeeRoasting.png" style="width: 500px;" /></p>
+<center><p><img alt="ea574c90ec8a434c879afa873c867be2" class="no-scaled-link" src="../../_images/C2_W1_CoffeeRoasting.png" style="width: 500px;" /></p>
 <center/><div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -609,7 +593,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">load_coffee_data</span><span class="p">();</span>
@@ -627,7 +611,7 @@ _________________________________________________________________
 </div>
 <p>Let’s plot the coffee roasting data below. The two features are Temperature in Celsius and Duration in minutes. <a class="reference external" href="https://www.merchantsofgreencoffee.com/how-to-roast-green-coffee-in-your-oven/">Coffee Roasting at Home</a> suggests that the duration is best kept between 12 and 15 minutes while the temp should be between 175 and 260 degrees Celsius. Of course, as temperature rises, the duration should shrink.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_roast</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
@@ -638,16 +622,18 @@ _________________________________________________________________
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_53_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_53_0.png" />
+<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_51_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_51_0.png" />
 </div>
 </div>
+<section id="Normalize-Data">
+<h4>Normalize Data<a class="headerlink" href="#Normalize-Data" title="Permalink to this heading"></a></h4>
 <div class="line-block">
 <div class="line">Fitting the weights to the data (back-propagation, covered in next week’s lectures) will proceed more quickly if the data is normalized. This is the same procedure you used in Course 1 where features in the data are each normalized to have a similar range. The procedure below uses a Keras <a class="reference external" href="https://keras.io/api/layers/preprocessing_layers/numerical/normalization/">normalization layer</a>. It has the following steps: - create a “Normalization Layer”. Note, as applied here, this is not a layer in
 your model. - ‘adapt’ the data. This learns the mean and variance of the data set and saves the values internally. - normalize the data.</div>
 <div class="line">It is important to apply normalization to any future data that utilizes the learned model.</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperature Max, Min pre normalization: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -673,7 +659,7 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </div>
 <p>Tile/copy our data to increase the training set size and reduce the number of training epochs.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">Xn</span><span class="p">,(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -691,13 +677,15 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </pre></div></div>
 </div>
 </section>
+</section>
+</section>
 <section id="Tensorflow-Model">
-<h2>Tensorflow Model<a class="headerlink" href="#Tensorflow-Model" title="Permalink to this headline"></a></h2>
+<h2>Tensorflow Model<a class="headerlink" href="#Tensorflow-Model" title="Permalink to this heading"></a></h2>
 <p>Model</p>
-<center><p><img alt="24faa31a0bf8469c939c80ff754f4906" class="no-scaled-link" src="../../_images/C2_W1_RoastingNetwork.PNG" style="width: 300px;" /></p>
+<center><p><img alt="8760fb1ed618443d9a1b05d31b6c6fa7" class="no-scaled-link" src="../../_images/C2_W1_RoastingNetwork.PNG" style="width: 300px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations as shown below:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>  <span class="c1"># applied to achieve consistent results</span>
@@ -713,13 +701,13 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </div>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><strong>Note 1:</strong> The <code class="docutils literal notranslate"><span class="pre">tf.keras.Input(shape=(2,)),</span></code> specifies the expected shape of the input. This allows Tensorflow to size the weights and bias parameters at this point. This is useful when exploring Tensorflow models. This statement can be omitted in practice and Tensorflow will size the network parameters when the input data is specified in the <code class="docutils literal notranslate"><span class="pre">model.fit</span></code> statement.</div>
+<div class="line"><strong>Note 1:</strong> The <code class="docutils literal notranslate"><span class="pre">tf.keras.Input(shape=(2,)),</span></code> specifies the expected shape of the input. This allows Tensorflow to size the weights and bias parameters at this point. This is useful when exploring Tensorflow models. <strong>Howerver, this statement can be omitted in practice</strong> and Tensorflow will size the network parameters when the input data is specified in the <code class="docutils literal notranslate"><span class="pre">model.fit</span></code> statement.</div>
 <div class="line"><strong>Note 2:</strong> Including the sigmoid activation in the final layer is not considered best practice. It would instead be accounted for in the loss which improves numerical stability. This will be described in more detail in a later lab.</div>
 </div>
 </div></blockquote>
 <p>The <code class="docutils literal notranslate"><span class="pre">model.summary()</span></code> provides a description of the network:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -731,7 +719,7 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Model: &#34;sequential_1&#34;
+Model: &#34;sequential_2&#34;
 _________________________________________________________________
  Layer (type)                Output Shape              Param #
 =================================================================
@@ -748,7 +736,7 @@ _________________________________________________________________
 </div>
 <p>The parameter counts shown in the summary correspond to the number of elements in the weight and bias arrays as shown below.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_num_params</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span>   <span class="c1"># W1 parameters  + b1 parameters</span>
@@ -767,7 +755,7 @@ L1 params =  9 , L2 params =  4
 </div>
 <p>Let’s examine the weights and biases Tensorflow has instantiated. The weights <span class="math notranslate nohighlight">\(W\)</span> should be of size (number of features in input, number of units in the layer) while the bias <span class="math notranslate nohighlight">\(b\)</span> size should match the number of units in the layer: - In the first layer with 3 units, we expect W to have a size of (2,3) and <span class="math notranslate nohighlight">\(b\)</span> should have 3 elements. - In the second layer with 1 unit, we expect W to have a size of (3,1) and <span class="math notranslate nohighlight">\(b\)</span> should have 1 element.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W1</span><span class="p">,</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;layer1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
@@ -783,13 +771,13 @@ L1 params =  9 , L2 params =  4
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 W1(2, 3):
- [[ 0.01  0.06 -0.52]
- [-0.11 -0.82  0.04]]
+ [[-0.5  -0.46  0.69]
+ [ 0.53 -0.24 -0.64]]
 b1(3,): [0. 0. 0.]
 W2(3, 1):
- [[ 0.44]
- [-0.75]
- [ 0.2 ]]
+ [[-0.23]
+ [ 0.98]
+ [-0.17]]
 b2(1,): [0.]
 </pre></div></div>
 </div>
@@ -848,7 +836,7 @@ Epoch 10/10
 </div>
 </section>
 <section id="Updated-Weights">
-<h2>Updated Weights<a class="headerlink" href="#Updated-Weights" title="Permalink to this headline"></a></h2>
+<h2>Updated Weights<a class="headerlink" href="#Updated-Weights" title="Permalink to this heading"></a></h2>
 <p>After fitting, the weights have been updated:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -896,14 +884,14 @@ b2: [26.14]
 </pre></div>
 </div>
 </div>
-<p><img alt="ef8ad0876a9e4d2f9a6ef0ee245331fa" src="../../_images/C2_W1_RoastingDecision.PNG" /></p>
+<p><img alt="f6ef567029604a21af71ffe82347f704" src="../../_images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <div class="line-block">
 <div class="line">Let’s start by creating input data. The model is expecting one or more examples where examples are in the rows of matrix. In this case, we have two features so the matrix will be (m,2) where m is the number of examples. Recall, we have normalized the input features so we must normalize our test data as well.</div>
 <div class="line">To make a prediction, you apply the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method.</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
@@ -920,14 +908,15 @@ b2: [26.14]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+1/1 [==============================] - 0s 441ms/step
 predictions =
- [[9.63e-01]
- [3.03e-08]]
+ [[0.58]
+ [0.54]]
 </pre></div></div>
 </div>
 </section>
 <section id="Epochs-and-batches">
-<h2>Epochs and batches<a class="headerlink" href="#Epochs-and-batches" title="Permalink to this headline"></a></h2>
+<h2>Epochs and batches<a class="headerlink" href="#Epochs-and-batches" title="Permalink to this heading"></a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">compile</span></code> statement above, the number of <code class="docutils literal notranslate"><span class="pre">epochs</span></code> was set to 10. This specifies that the entire data set should be applied during training 10 times. During training, you see output describing the progress of training that looks like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Epoch 1/10
 6250/6250 [==============================] - 6s 910us/step - loss: 0.1782
@@ -936,7 +925,7 @@ predictions =
 <p>The first line, <code class="docutils literal notranslate"><span class="pre">Epoch</span> <span class="pre">1/10</span></code>, describes which epoch the model is currently running. For efficiency, the training data set is broken into ‘batches’. The default size of a batch in Tensorflow is 32. There are 200000 examples in our expanded data set or 6250 batches. The notation on the 2nd line <code class="docutils literal notranslate"><span class="pre">6250/6250</span> <span class="pre">[====</span></code> is describing which batch has been executed.</p>
 <p>To convert the probabilities to a decision, we apply a threshold:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
@@ -956,12 +945,12 @@ predictions =
 <div class="highlight"><pre>
 decisions =
 [[1.]
- [0.]]
+ [1.]]
 </pre></div></div>
 </div>
 <p>This can be accomplished more succinctly:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yhat</span> <span class="o">=</span> <span class="p">(</span><span class="n">predictions</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -976,11 +965,9 @@ decisions =
 <div class="highlight"><pre>
 decisions =
 [[1]
- [0]]
+ [1]]
 </pre></div></div>
 </div>
-<section id="Layer-Functions">
-<h3>Layer Functions<a class="headerlink" href="#Layer-Functions" title="Permalink to this headline"></a></h3>
 <p>Let’s examine the functions of the units to determine their role in the coffee roasting decision. We will plot the output of each node for all values of the inputs (duration,temp). Each unit is a logistic function whose output can range from zero to one. The shading in the graph represents the output value. &gt; Note: In labs we typically number things starting at zero while the lectures may start with 1.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
@@ -994,7 +981,7 @@ decisions =
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_82_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_82_0.png" />
+<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_80_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_80_0.png" />
 </div>
 </div>
 <p>The shading shows that each unit is responsible for a different “bad roast” region. unit 0 has larger values when the temperature is too low. unit 1 has larger values when the duration is too short and unit 2 has larger values for bad combinations of time/temp. It is worth noting that the network learned these functions on its own through the process of gradient descent. They are very much the same sort of functions a person might choose to make the same decisions.</p>
@@ -1012,7 +999,7 @@ roast’ area’s.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_85_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_85_0.png" />
+<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_83_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_83_0.png" />
 </div>
 </div>
 <div class="line-block">
@@ -1034,12 +1021,9 @@ roast’ area’s.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_87_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_87_0.png" />
+<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_85_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_85_0.png" />
 </div>
 </div>
-</section>
-<section id="Congratulations!">
-<h3>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h3>
 <p>You have built a small neural network in Tensorflow. The network demonstrated the ability of neural networks to handle complex decisions by dividing the decisions between multiple units.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1049,13 +1033,10 @@ roast’ area’s.</p>
 </pre></div>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="Optional-Lab---Simple-Neural-Network">
-<h1>Optional Lab - Simple Neural Network<a class="headerlink" href="#Optional-Lab---Simple-Neural-Network" title="Permalink to this headline"></a></h1>
+<section id="id2">
+<h3>Optional Lab - Simple Neural Network<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>In this lab, we will build a small neural network using Numpy. It will be the same “coffee roasting” network you implemented in Tensorflow.</p>
-<center><p><img alt="095b602b72734cfe8f65e6fd080c6bb5" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
+<center><p><img alt="86ad4975336440009913adbfbdb4daa6" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_CoffeeRoasting.png" style="width: 400px;" /></p>
 <center/><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -1072,6 +1053,9 @@ roast’ area’s.</p>
 </pre></div>
 </div>
 </div>
+</section>
+<section id="id3">
+<h3>DataSet<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>This is the same data set as the previous lab.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -1103,9 +1087,11 @@ roast’ area’s.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_95_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_95_0.png" />
+<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_93_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_93_0.png" />
 </div>
 </div>
+<section id="id4">
+<h4>Normalize Data<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
 <p>To match the previous lab, we’ll normalize the data. Refer to that lab for more details</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -1132,10 +1118,14 @@ Temperature Max, Min post normalization: 1.66, -1.69
 Duration    Max, Min post normalization: 1.79, -1.70
 </pre></div></div>
 </div>
-<center><p><img alt="d3054a8a62654a0783e725b2f81e0c3a" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
+</section>
+</section>
+<section id="Numpy-Model-(Forward-Prop-in-NumPy)">
+<h3>Numpy Model (Forward Prop in NumPy)<a class="headerlink" href="#Numpy-Model-(Forward-Prop-in-NumPy)" title="Permalink to this heading"></a></h3>
+<center><p><img alt="89d1ad8829de4a26895eda459da74e64" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_RoastingNetwork.PNG" style="width: 200px;" /></p>
 <center/><p>Let’s build the “Coffee Roasting Network” described in lecture. There are two layers with sigmoid activations.</p>
 <p>As described in lecture, it is possible to build your own dense layer using NumPy. This can then be utilized to build a multi-layer neural network.</p>
-<p><img alt="740d3b56a1ed4e4cb7561ced7924c6eb" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
+<p><img alt="8f6803b885654dc5bfab3cf58c840f33" class="no-scaled-link" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_dense2.PNG" style="width: 600px; height: 450px;" /></p>
 <p>In the first optional lab, you constructed a neuron in NumPy and in Tensorflow and noted their similarity. A layer simply contains multiple neurons/units. As described in lecture, one can utilize a for loop to visit each unit (<code class="docutils literal notranslate"><span class="pre">j</span></code>) in the layer and perform the dot product of the weights for that unit (<code class="docutils literal notranslate"><span class="pre">W[:,j]</span></code>) and sum the bias for the unit (<code class="docutils literal notranslate"><span class="pre">b[j]</span></code>) to form <code class="docutils literal notranslate"><span class="pre">z</span></code>. An activation function <code class="docutils literal notranslate"><span class="pre">g(z)</span></code> can then be applied to that result. Let’s try that below to build a “dense layer” subroutine.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -1186,7 +1176,9 @@ Duration    Max, Min post normalization: 1.79, -1.70
 </pre></div>
 </div>
 </div>
-<p><img alt="86c417217e744c5eb069c0069c7ae90e" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_RoastingDecision.PNG" /></p>
+<section id="Predictions">
+<h4>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this heading"></a></h4>
+<p><img alt="f2dd8227cdbf4472995e4fc163d0a15c" src="source_files/Advanced_Learning_Algorithms/images/C2_W1_RoastingDecision.PNG" /></p>
 <p>Once you have a trained model, you can then use it to make predictions. Recall that the output of our model is a probability. In this case, the probability of a good roast. To make a decision, one must apply the probability to a threshold. In this case, we will use 0.5</p>
 <p>Let’s start by writing a routine similar to Tensorflow’s <code class="docutils literal notranslate"><span class="pre">model.predict()</span></code>. This will take a matrix <span class="math notranslate nohighlight">\(X\)</span> with all <span class="math notranslate nohighlight">\(m\)</span> examples in the rows and make a prediction by running the model.</p>
 <div class="nbinput nblast docutils container">
@@ -1260,6 +1252,10 @@ decisions =
  [0]]
 </pre></div></div>
 </div>
+</section>
+</section>
+<section id="Network-function">
+<h3>Network function<a class="headerlink" href="#Network-function" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line">This graph shows the operation of the whole network and is identical to the Tensorflow result from the previous lab. The left graph is the raw output of the final layer represented by the blue shading. This is overlaid on the training data represented by the X’s and O’s.</div>
 <div class="line">The right graph is the output of the network after a decision threshold. The X’s and O’s here correspond to decisions made by the network.</div>
@@ -1277,9 +1273,12 @@ decisions =
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_116_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_116_0.png" />
+<img alt="../../_images/source_files_Advanced_Learning_Algorithms_week1_114_0.png" src="../../_images/source_files_Advanced_Learning_Algorithms_week1_114_0.png" />
 </div>
 </div>
+</section>
+<section id="Congratulations!">
+<h3>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h3>
 <p>You have built a small neural network in NumPy. Hopefully this lab revealed the fairly simple and familiar functions which make up a layer in a neural network.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1289,6 +1288,8 @@ decisions =
 </pre></div>
 </div>
 </div>
+</section>
+</section>
 </section>
 
 

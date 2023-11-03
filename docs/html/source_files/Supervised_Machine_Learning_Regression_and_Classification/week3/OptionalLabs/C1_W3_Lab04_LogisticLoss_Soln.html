@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Logistic Regression, Logistic Loss &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,7 +79,7 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Logistic-Regression,-Logistic-Loss">
-<h1>Optional Lab: Logistic Regression, Logistic Loss<a class="headerlink" href="#Optional-Lab:-Logistic-Regression,-Logistic-Loss" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab: Logistic Regression, Logistic Loss<a class="headerlink" href="#Optional-Lab:-Logistic-Regression,-Logistic-Loss" title="Permalink to this heading"></a></h1>
 <p>In this ungraded lab, you will: - explore the reason the squared error loss is not appropriate for logistic regression - explore the logistic loss function</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -94,8 +95,8 @@
 </div>
 </div>
 <section id="Squared-error-for-logistic-regression?">
-<h2>Squared error for logistic regression?<a class="headerlink" href="#Squared-error-for-logistic-regression?" title="Permalink to this headline"></a></h2>
-<p><img alt="95c17a7ac2e64f499dd31dc70ed4b7f1" src="../../../../_images/C1_W3_SqErrorVsLogistic.png" /> Recall for <strong>Linear</strong> Regression we have used the <strong>squared error cost function</strong>: The equation for the squared error cost with one variable is:</p>
+<h2>Squared error for logistic regression?<a class="headerlink" href="#Squared-error-for-logistic-regression?" title="Permalink to this heading"></a></h2>
+<p><img alt="8376c4ab72d44502bbfd51f4ae14f495" src="../../../../_images/C1_W3_SqErrorVsLogistic.png" /> Recall for <strong>Linear</strong> Regression we have used the <strong>squared error cost function</strong>: The equation for the squared error cost with one variable is:</p>
 <div class="math notranslate nohighlight">
 \[J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 \tag{1}\]</div>
 <p>where</p>
@@ -160,8 +161,8 @@
 <p>Logistic regression requires a cost function more suitable to its non-linear nature. This starts with a Loss function. This is described below.</p>
 </section>
 <section id="Logistic-Loss-Function">
-<h2>Logistic Loss Function<a class="headerlink" href="#Logistic-Loss-Function" title="Permalink to this headline"></a></h2>
-<p><img alt="dc6b6ca05eff48c99aedac14aff6e70a" src="../../../../_images/C1_W3_LogisticLoss_a.png" /> <img alt="1a3fedd958314d77bb445e6780e44ee7" src="../../../../_images/C1_W3_LogisticLoss_b.png" /> <img alt="20695aca013449629181afa40a8a4224" src="../../../../_images/C1_W3_LogisticLoss_c.png" /></p>
+<h2>Logistic Loss Function<a class="headerlink" href="#Logistic-Loss-Function" title="Permalink to this heading"></a></h2>
+<p><img alt="68ffd98766fb487b9570c7234cec8a6e" src="../../../../_images/C1_W3_LogisticLoss_a.png" /> <img alt="395834d27c8b46b49704b68a7fe0345d" src="../../../../_images/C1_W3_LogisticLoss_b.png" /> <img alt="46c90a1e8a52450abbbc79e8e693c20b" src="../../../../_images/C1_W3_LogisticLoss_c.png" /></p>
 <p>Logistic Regression uses a loss function more suited to the task of categorization where the target is 0 or 1 rather than any number.</p>
 <blockquote>
 <div><div class="line-block">
@@ -242,7 +243,7 @@ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), 0) &amp;= (-(0) \log\left(f_{\mathbf{w}
 <p>This curve is well suited to gradient descent! It does not have plateaus, local minima, or discontinuities. Note, it is not a bowl as in the case of squared error. Both the cost and the log of the cost are plotted to illuminate the fact that the curve, when the cost is small, has a slope and continues to decline. Reminder: you can rotate the above plots using your mouse.</p>
 </section>
 <section id="Congratulation!">
-<h2>Congratulation!<a class="headerlink" href="#Congratulation!" title="Permalink to this headline"></a></h2>
+<h2>Congratulation!<a class="headerlink" href="#Congratulation!" title="Permalink to this heading"></a></h2>
 <p>You have: - determined a squared error loss function is not suitable for classification tasks - developed and examined the logistic loss function which <strong>is</strong> suitable for classification tasks.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:

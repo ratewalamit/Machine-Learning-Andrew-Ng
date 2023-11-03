@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab - Neurons and Layers &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,11 +79,11 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab---Neurons-and-Layers">
-<h1>Optional Lab - Neurons and Layers<a class="headerlink" href="#Optional-Lab---Neurons-and-Layers" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab - Neurons and Layers<a class="headerlink" href="#Optional-Lab---Neurons-and-Layers" title="Permalink to this heading"></a></h1>
 <p>In this lab we will explore the inner workings of neurons/units and layers. In particular, the lab will draw parallels to the models you have mastered in Course 1, the regression/linear model and the logistic model. The lab will introduce Tensorflow and demonstrate how these models are implemented in that framework.</p>
-<figure><p><img alt="6e3ce251e2e6420d9b90ee0e232b972d" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_NeuronsAndLayers.png" /></p>
+<figure><p><img alt="d51b65745b8842cca742adad80085586" src="source_files/Advanced_Learning_Algorithms/week1/optional-labs/images/C2_W1_NeuronsAndLayers.png" /></p>
 </figure><section id="Packages">
-<h2>Packages<a class="headerlink" href="#Packages" title="Permalink to this headline"></a></h2>
+<h2>Packages<a class="headerlink" href="#Packages" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><strong>Tensorflow and Keras</strong></div>
 <div class="line">Tensorflow is a machine learning package developed by Google. In 2019, Google integrated Keras into Tensorflow and released Tensorflow 2.0. Keras is a framework developed independently by François Chollet that creates a simple, layer-centric interface to Tensorflow. This course will be using the Keras interface.</div>
@@ -109,9 +110,9 @@
 </div>
 </section>
 <section id="Neuron-without-activation---Regression/Linear-Model">
-<h2>Neuron without activation - Regression/Linear Model<a class="headerlink" href="#Neuron-without-activation---Regression/Linear-Model" title="Permalink to this headline"></a></h2>
+<h2>Neuron without activation - Regression/Linear Model<a class="headerlink" href="#Neuron-without-activation---Regression/Linear-Model" title="Permalink to this heading"></a></h2>
 <section id="DataSet">
-<h3>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this headline"></a></h3>
+<h3>DataSet<a class="headerlink" href="#DataSet" title="Permalink to this heading"></a></h3>
 <p>We’ll use an example from Course 1, linear regression on house prices.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -138,7 +139,7 @@
 </div>
 </section>
 <section id="Regression/Linear-Model">
-<h3>Regression/Linear Model<a class="headerlink" href="#Regression/Linear-Model" title="Permalink to this headline"></a></h3>
+<h3>Regression/Linear Model<a class="headerlink" href="#Regression/Linear-Model" title="Permalink to this heading"></a></h3>
 <p>The function implemented by a neuron with no activation is the same as in Course 1, linear regression:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(x^{(i)}) = \mathbf{w}\cdot x^{(i)} + b \tag{1}\]</div>
@@ -280,7 +281,7 @@ tf.Tensor([[300.]], shape=(1, 1), dtype=float32)
 </section>
 </section>
 <section id="Neuron-with-Sigmoid-activation">
-<h2>Neuron with Sigmoid activation<a class="headerlink" href="#Neuron-with-Sigmoid-activation" title="Permalink to this headline"></a></h2>
+<h2>Neuron with Sigmoid activation<a class="headerlink" href="#Neuron-with-Sigmoid-activation" title="Permalink to this heading"></a></h2>
 <p>The function implemented by a neuron/unit with a sigmoid activation is the same as in Course 1, logistic regression:</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf{w},b}(x^{(i)}) = g(\mathbf{w}x^{(i)} + b) \tag{2}\]</div>
@@ -289,7 +290,7 @@ tf.Tensor([[300.]], shape=(1, 1), dtype=float32)
 \[g(x) = sigmoid(x)\]</div>
 <p>Let’s set <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> to some known values and check the model.</p>
 <section id="id1">
-<h3>DataSet<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<h3>DataSet<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>We’ll use an example from Course 1, logistic regression.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -349,7 +350,7 @@ array([3., 4., 5.], dtype=float32)
 </div>
 </section>
 <section id="Logistic-Neuron">
-<h3>Logistic Neuron<a class="headerlink" href="#Logistic-Neuron" title="Permalink to this headline"></a></h3>
+<h3>Logistic Neuron<a class="headerlink" href="#Logistic-Neuron" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line">We can implement a ‘logistic neuron’ by adding a sigmoid activation. The function of the neuron is then described by (2) above.</div>
 <div class="line">This section will create a Tensorflow Model that contains our logistic layer to demonstrate an alternate method of creating models. Tensorflow is most often used to create multi-layer models. The <a class="reference external" href="https://keras.io/guides/sequential_model/">Sequential</a> model is a convenient means of constructing these models.</div>
@@ -476,7 +477,7 @@ _________________________________________________________________
 </section>
 </section>
 <section id="Congratulations!">
-<h1>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h1>
+<h1>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h1>
 <p>You built a very simple neural network and have explored the similarities of a neuron to the linear and logistic regression from Course 1.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

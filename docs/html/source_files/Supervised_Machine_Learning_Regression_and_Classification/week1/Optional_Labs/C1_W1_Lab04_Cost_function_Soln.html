@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Cost Function &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,14 +79,14 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Cost-Function">
-<h1>Optional Lab: Cost Function<a class="headerlink" href="#Optional-Lab:-Cost-Function" title="Permalink to this headline"></a></h1>
-<figure><center><p><img alt="e4279ab93434483ab512393241ae1a64" src="../../../../_images/C1_W1_L3_S2_Lecture_b.png" /></p>
+<h1>Optional Lab: Cost Function<a class="headerlink" href="#Optional-Lab:-Cost-Function" title="Permalink to this heading"></a></h1>
+<figure><center><p><img alt="7386ce7bef39478fa937997e9847b4e2" src="../../../../_images/C1_W1_L3_S2_Lecture_b.png" /></p>
 </center></figure><section id="Goals">
-<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this headline"></a></h2>
+<h2>Goals<a class="headerlink" href="#Goals" title="Permalink to this heading"></a></h2>
 <p>In this lab you will: - you will implement and explore the <code class="docutils literal notranslate"><span class="pre">cost</span></code> function for linear regression with one variable.</p>
 </section>
 <section id="Tools">
-<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this headline"></a></h2>
+<h2>Tools<a class="headerlink" href="#Tools" title="Permalink to this heading"></a></h2>
 <p>In this lab we will make use of: - NumPy, a popular library for scientific computing - Matplotlib, a popular library for plotting data - local plotting routines in the lab_utils_uni.py file in the local directory</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -101,16 +102,12 @@
 </div>
 </section>
 <section id="Problem-Statement">
-<h2>Problem Statement<a class="headerlink" href="#Problem-Statement" title="Permalink to this headline"></a></h2>
+<h2>Problem Statement<a class="headerlink" href="#Problem-Statement" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">You would like a model which can predict housing prices given the size of the house.</div>
 <div class="line">Let’s use the same two data points as before the previous lab- a house with 1000 square feet sold for \$300,000 and a house with 2000 square feet sold for \$500,000.</div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 40%" />
-<col style="width: 60%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Size (1000 sqft)</p></th>
 <th class="head"><p>Price (1000s of dollars)</p></th>
@@ -136,7 +133,7 @@
 </div>
 </section>
 <section id="Computing-Cost">
-<h2>Computing Cost<a class="headerlink" href="#Computing-Cost" title="Permalink to this headline"></a></h2>
+<h2>Computing Cost<a class="headerlink" href="#Computing-Cost" title="Permalink to this heading"></a></h2>
 <p>The term ‘cost’ in this assignment might be a little confusing since the data is housing cost. Here, cost is a measure how well our model is predicting the target price of the house. The term ‘price’ is used for housing data.</p>
 <p>The equation for cost with one variable is:</p>
 <div class="math notranslate nohighlight">
@@ -184,8 +181,8 @@
 </div>
 </section>
 <section id="Cost-Function-Intuition">
-<h2>Cost Function Intuition<a class="headerlink" href="#Cost-Function-Intuition" title="Permalink to this headline"></a></h2>
-<p><img alt="2b71390b08404703b4635eb37271cc4e" src="../../../../_images/C1_W1_Lab02_GoalOfRegression.PNG" /> Your goal is to find a model <span class="math notranslate nohighlight">\(f_{w,b}(x) = wx + b\)</span>, with parameters <span class="math notranslate nohighlight">\(w,b\)</span>, which will accurately predict house values given an input <span class="math notranslate nohighlight">\(x\)</span>. The cost is a measure of how accurate the model is on the training data.</p>
+<h2>Cost Function Intuition<a class="headerlink" href="#Cost-Function-Intuition" title="Permalink to this heading"></a></h2>
+<p><img alt="c8450411d6d843f28bd94973ba9e0a1e" src="../../../../_images/C1_W1_Lab02_GoalOfRegression.PNG" /> Your goal is to find a model <span class="math notranslate nohighlight">\(f_{w,b}(x) = wx + b\)</span>, with parameters <span class="math notranslate nohighlight">\(w,b\)</span>, which will accurately predict house values given an input <span class="math notranslate nohighlight">\(x\)</span>. The cost is a measure of how accurate the model is on the training data.</p>
 <p>The cost equation (1) above shows that if <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> can be selected such that the predictions <span class="math notranslate nohighlight">\(f_{w,b}(x)\)</span> match the target data <span class="math notranslate nohighlight">\(y\)</span>, the $(f_{w,b}(x^{(i)}) - y<sup>{(i)})</sup>2 $ term will be zero and the cost minimized. In this simple two point example, you can achieve this!</p>
 <p>In the previous lab, you determined that <span class="math notranslate nohighlight">\(b=100\)</span> provided an optimal solution so let’s set <span class="math notranslate nohighlight">\(b\)</span> to 100 and focus on <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <p>Below, use the slider control to select the value of <span class="math notranslate nohighlight">\(w\)</span> that minimizes cost. It can take a few seconds for the plot to update.</p>
@@ -206,13 +203,13 @@
 <p>The plot contains a few points that are worth mentioning. - cost is minimized when <span class="math notranslate nohighlight">\(w = 200\)</span>, which matches results from the previous lab - Because the difference between the target and pediction is squared in the cost equation, the cost increases rapidly when <span class="math notranslate nohighlight">\(w\)</span> is either too large or too small. - Using the <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> selected by minimizing cost results in a line which is a perfect fit to the data.</p>
 </section>
 <section id="Cost-Function-Visualization--3D">
-<h2>Cost Function Visualization- 3D<a class="headerlink" href="#Cost-Function-Visualization--3D" title="Permalink to this headline"></a></h2>
+<h2>Cost Function Visualization- 3D<a class="headerlink" href="#Cost-Function-Visualization--3D" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">You can see how cost varies with respect to <em>both</em> <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> by plotting in 3D or using a contour plot.</div>
 <div class="line">It is worth noting that some of the plotting in this course can become quite involved. The plotting routines are provided and while it can be instructive to read through the code to become familiar with the methods, it is not needed to complete the course successfully. The routines are in lab_utils_uni.py in the local directory.</div>
 </div>
 <section id="Larger-Data-Set">
-<h3>Larger Data Set<a class="headerlink" href="#Larger-Data-Set" title="Permalink to this headline"></a></h3>
+<h3>Larger Data Set<a class="headerlink" href="#Larger-Data-Set" title="Permalink to this heading"></a></h3>
 <p>It’s use instructive to view a scenario with a few more data points. This data set includes data points that do not fall on the same line. What does that mean for the cost equation? Can we find <span class="math notranslate nohighlight">\(w\)</span>, and <span class="math notranslate nohighlight">\(b\)</span> that will give us a cost of 0?</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -243,7 +240,7 @@
 <p>Above, note the dashed lines in the left plot. These represent the portion of the cost contributed by each example in your training set. In this case, values of approximately <span class="math notranslate nohighlight">\(w=209\)</span> and <span class="math notranslate nohighlight">\(b=2.4\)</span> provide low cost. Note that, because our training examples are not on a line, the minimum cost is not zero.</p>
 </section>
 <section id="Convex-Cost-surface">
-<h3>Convex Cost surface<a class="headerlink" href="#Convex-Cost-surface" title="Permalink to this headline"></a></h3>
+<h3>Convex Cost surface<a class="headerlink" href="#Convex-Cost-surface" title="Permalink to this heading"></a></h3>
 <p>The fact that the cost function squares the loss ensures that the ‘error surface’ is convex like a soup bowl. It will always have a minimum that can be reached by following the gradient in all dimensions. In the previous plot, because the <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> dimensions scale differently, this is not easy to recognize. The following plot, where <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are symmetric, was shown in lecture:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -263,7 +260,7 @@
 </section>
 </section>
 <section id="Congratulations!">
-<h1>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this headline"></a></h1>
+<h1>Congratulations!<a class="headerlink" href="#Congratulations!" title="Permalink to this heading"></a></h1>
 <p>You have learned the following: - The cost equation provides a measure of how well your predictions match your training data. - Minimizing the cost can provide optimal values of <span class="math notranslate nohighlight">\(w\)</span>, <span class="math notranslate nohighlight">\(b\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

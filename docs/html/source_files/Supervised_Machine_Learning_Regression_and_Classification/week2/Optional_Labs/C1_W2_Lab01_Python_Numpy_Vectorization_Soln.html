@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Optional Lab: Python, NumPy and Vectorization &mdash; Machine Learning by Andrew Ng  documentation</title>
@@ -12,14 +12,15 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -78,11 +79,11 @@
            <div itemprop="articleBody">
              
   <section id="Optional-Lab:-Python,-NumPy-and-Vectorization">
-<h1>Optional Lab: Python, NumPy and Vectorization<a class="headerlink" href="#Optional-Lab:-Python,-NumPy-and-Vectorization" title="Permalink to this headline"></a></h1>
+<h1>Optional Lab: Python, NumPy and Vectorization<a class="headerlink" href="#Optional-Lab:-Python,-NumPy-and-Vectorization" title="Permalink to this heading"></a></h1>
 <p>A brief introduction to some of the scientific computing used in this course. In particular the NumPy scientific computing package and its use with python.</p>
 </section>
 <section id="Outline">
-<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this headline"></a></h1>
+<h1>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p>`  1.1 Goals &lt;#toc_40015_1.1&gt;`__</p></li>
 <li><p>`  1.2 Useful References &lt;#toc_40015_1.2&gt;`__</p></li>
@@ -110,7 +111,7 @@
 <p>## 1.1 Goals In this lab, you will: - Review the features of NumPy and Python that are used in Course 1</p>
 <p>## 1.2 Useful References - NumPy Documentation including a basic introduction: <a class="reference external" href="https://NumPy.org/doc/stable/">NumPy.org</a> - A challenging feature topic: <a class="reference external" href="https://NumPy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a></p>
 <p># 2 Python and NumPy Python is the programming language we will be using in this course. It has a set of numeric data types and arithmetic operations. NumPy is a library that extends the base capabilities of python to add a richer data set including more numeric types, vectors, matrices, and many matrix functions. NumPy and python work together fairly seamlessly. Python arithmetic operators work on NumPy data types and many NumPy functions will accept python data types.</p>
-<p># 3 Vectors ## 3.1 Abstract <a href="#id1"><span class="problematic" id="id2">|</span></a>5e30f5a185c34572b0db105c1eb1eb60|Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of
+<p># 3 Vectors ## 3.1 Abstract <a href="#id1"><span class="problematic" id="id2">|</span></a>6c991b1287dc4cf18de6792998474604|Vectors, as you will use them in this course, are ordered arrays of numbers. In notation, vectors are denoted with lower case bold letters such as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The elements of a vector are all the same type. A vector does not, for example, contain both characters and numbers. The number of elements in the array is often referred to as the <em>dimension</em> though mathematicians may prefer <em>rank</em>. The vector shown has a dimension of
 <span class="math notranslate nohighlight">\(n\)</span>. The elements of a vector can be referenced with an index. In math settings, indexes typically run from 1 to n. In computer science and these labs, indexing will typically run from 0 to n-1. In notation, elements of a vector, when referenced individually will indicate the index in a subscript, for example, the <span class="math notranslate nohighlight">\(0^{th}\)</span> element, of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(x_0\)</span>. Note, the x is not bold in this case.</p>
 <p>## 3.2 NumPy Arrays</p>
 <p>NumPy’s basic data structure is an indexable, n-dimensional <em>array</em> containing elements of the same type (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>). Right away, you may notice we have overloaded the term ‘dimension’. Above, it was the number of elements in the vector, here, dimension refers to the number of indexes of an array. A one-dimensional or 1-D array has one index. In Course 1, we will represent vectors as NumPy 1-D arrays.</p>
@@ -365,7 +366,7 @@ b = 5 * a : [ 5 10 15 20]
 </pre></div></div>
 </div>
 <p>### 3.4.6 Vector Vector dot product The dot product is a mainstay of Linear Algebra and NumPy. This is an operation used extensively in this course and should be well understood. The dot product is shown below.</p>
-<p><img alt="64f14d5275fc496589a3b65a41bdefdb" class="no-scaled-link" src="../../../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
+<p><img alt="7baf31b1edc645e2a8a660907917193e" class="no-scaled-link" src="../../../../_images/C1_W2_Lab04_dot_notrans.gif" style="width: 800px;" /></p>
 <p>The dot product multiplies the values in two vectors element-wise and then sums the result. Vector dot product requires the dimensions of the two vectors to be the same.</p>
 <p>Let’s implement our own version of the dot product below:</p>
 <p><strong>Using a for loop</strong>, implement a function which returns the dot product of two vectors. The function to return given inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
